@@ -1,0 +1,53 @@
+<script src="app/assets/script.js?uniqecall=<?php echo date("YmdHis")?>"></script>
+ <nav class="navbar navbar-default " role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="../api/media/images/logo.png" style="width:100px;" alt="">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="btn btn-sm" data-toggle="modal" data-target="#login-modal">Masuk</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-sm" href="#!/registration">Daftar</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                <center>
+                     <img src="../api/media/images/logo.png" style="width:200px;padding-bottom: 50px;" alt=""><br>
+                     </center>
+                     <div id="add_err"></div>
+                  <form id="Form"  method="POST">
+                    <input type="text"  name="email" placeholder="Username">
+                    <input type="password" ng-model="form.password" name="password" placeholder="Password">
+                     <input type="submit" class="btn btn-danger" name="password" value="Log in" id="login"  />
+                  </form> 
+                   <!--  <a href="#">Lupa Password</a> -->
+                  <div class="login-help">
+                    Belum Punya akun ? <a id="daftar" href="#!/registration">Daftar</a>
+                  </div>
+
+                </div>
+
+            </div>
+
+          </div>
+    

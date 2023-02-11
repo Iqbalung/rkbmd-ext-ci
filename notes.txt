@@ -1,0 +1,30 @@
+-  diberi tanda data yang sudah melakukan proses kepulangan 
+-- cara merubah data konfirmasi kepulangan 
+--  validasi kepulangan
+-- Tersisa di konfersi ke bulan, legenda disesuaikan
+-- Metode menampilkan grid dikembalikan semula.
+-- Penulisan format header gird diseragamkan besar kecilnya
+-- button bahasa dipindah di submenu profile
+-- Logo dikembalikan ke sebelumnya.
+
+PEKERJAAN HARI INI
+- title di kepulangan dirubah menjadi Konfirmasi kepulangan
+- kolom konfirmasi kepulangan jadi Pulang
+- fieldlabel uraian datefield di form purna diganti menjadi tanggal 
+- Menu TKI-> masing masing grid di tab, dilakukan order by sesuai kebutuhan datanya	
+- Menu TKI->tab purna ditambahkan filter yang sudah melakukan konfirmasi / belum 	
+- catatan di jabatan, agensi header chemalcase
+- Perbaikan di perncarian, 
+- melakukan pengecekan terhadap data2 sesuai kepemilikan pptkis.
+
+Laporan Detail teknis
+- Pembuatan sql view vw_tki -> untuk menu tki
+- Pembuatanan sql view getperjanjian membantu view tki mendapatkan perjanjian terakhir yang di gunakan di grid
+- Perbaikan logika query pencarian job.
+- filter job get_nonbekerja dipindah semula dari post get_view model.PPTKIS_ID diubah
+  session pptkis pada method get_nonbekerja,
+
+
+Laporan progress
+-- Pengecekan kembali valid data / pptkis, 
+-- Cek bugs minor

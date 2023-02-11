@@ -1,0 +1,30 @@
+[
+   {
+      "id":"2",
+      "nombre":"Enrique",
+      "paterno":null,
+      "foto":"http:\/\/icons.iconarchive.com\/icons\/deleket\/face-avatars\/256\/Male-Face-F3-icon.png",
+      "jefe":"Andrey"
+   },
+   {
+      "id":"5",
+      "nombre":"Jhon",
+      "paterno":null,
+      "foto":"http:\/\/icons.iconarchive.com\/icons\/deleket\/face-avatars\/256\/Male-Face-H1-icon.png",
+      "jefe":"Enrique" 
+   },
+    {
+      "id":"6",
+      "nombre":"Jhon",
+      "paterno":null,
+      "foto":"http:\/\/icons.iconarchive.com\/icons\/deleket\/face-avatars\/256\/Male-Face-H1-icon.png",
+      "jefe":"Enrique" 
+   },
+   {
+      "id":"7",
+      "nombre":"Billy",
+      "paterno":null,
+      "foto":"http:\/\/icons.iconarchive.com\/icons\/deleket\/face-avatars\/256\/Male-Face-H1-icon.png",
+      "jefe":"Enrique" 
+   }
+]

@@ -1,0 +1,80 @@
+
+sekenario pengecekan 
+
+1. Tambahkan pegawai novianto ( statusnya sudah purna) di lamaran Cost Estimator Enginer 
+2. tambahkan kelengkapan media dari novianto 
+3. cek tanda V pada tki yang kelengkapan medianya sudah ada
+4. proses novianto jadi tki aktif 
+6. lihat apakah novianto masih ada dalam daftar calon
+5. cari novianto pada tki aktif 
+6. lakukan proses submit kelengkapan data dan
+7. cek tanda V pada data yang sudah di submit apakah berubah warna 
+9. proses keberangkatan
+10. cek apakah novianto masih ada di daftar calon ?
+11. cek pada tki aktif, cek novianto  di tki aktif
+12. cek proses pada tki aktif
+13. proses purna
+14. cek novianto pada tab purna
+ 	- proses kepulangan novianto 
+15. proses pekerja Wulansari identik dengan proses 1 - 12/
+16. cek wulansari di tab aktif 
+17. proses wulansari hilang
+18. cek wulasari di tab purna
+19. cek status wulansari di tab purna
+
+
+hasil pengecekan 
+1. pegawai novianto masuk dala pendaftar [ok]
+3. tanda v berubah pada file yang tersedia [ok]
+4. proses berhasil [ok]
+6. novianto tidak masuk dalam daftar carlon [ok]
+5. novianto masuk dalam datar aktif [ok] 
+7. berubah warna kecuali pap [Not ok]
+9 proses keberangkatan berhasil [ok]
+10. novianto tidak dalam daftar caon [OK]
+11. novianto tidak pada daftar calon dan statusnya aktif [OK]
+	-----catatan pada grid tki aktif data belum terisi semua 
+
+13. proses purna pindah ke tab purna [OK]
+	-----catatan pada grid tki aktif data belum terisi semua 
+14. pada tab purna novianto ketika di proses statusnya berbah pindah 
+15. proses uwlansari 1-12 ok 
+16. wulansari pada tab aktif ok 
+19. wulansari statusnya berubah jadi hilang
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++
+Progres pengerjaan bugs
+
+Minor
+
+Menu TKI 
+Bugs
+
+- numberfield pada saat tahun riwayat pendidikan [OK]
+-  hapus clolumn dokumen di grid median [ok]
+- Tombol kembali pada priofile tki [OK]
+- detail tki tombol kembali [OK]
+- menambah tki pada menu tki masuk ke lamaran [ok] 
+- text di menu tki purna diganti kepulangan []
+- order by pada combo filter [OK]
+- tambah pencarian di pendaftar [OK]
+- proses pap tidak langsung berubah iconya 
+- ubah icon v pada grid calon [OK]
+-  
+
+
+Major
+- sekenario
+
+-proses kepulangan statusnya jadi pindah 
+-grid editor blkln 
+
+catatan lain 
+tambahan fitur : 
+
+Priortias Hati : 
+- Daftar pengguna aktifkan user 
+- Maping dari pekerja KE PPTKIS
+- 	

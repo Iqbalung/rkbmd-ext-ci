@@ -1,0 +1,36 @@
+<w3-test-directive></w3-test-directive>
+<br><br>
+<script>
+$( document ).ready(function() {
+     $('#login-modal').modal('hide');
+      $('body').removeClass('modal-open');
+      $('.modal-backdrop').remove();
+});
+</script>
+<br>
+<div class="container" id="tourpackages-carousel">      
+      <div class="row">
+        <div class="col-xs-18 col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <img src="../api/media/images/bitmap.png"  style="width:100%" alt="">
+              <div class="caption">
+                <center><h4>Pencari Kerja</h4></center>
+                <p>Anda seorang yang berkompetensi, ingin bekerja dan mengembangkan kompetensi ?</p>
+                <p><a href="#!/registration_pekerja" class="btn btn-info btn-danger btn-block" role="button">Daftar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-18 col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <img src="../api/media/images/bitmap2.png" style="width:100%" alt="">
+              <div class="caption">
+                <center><h4>Agen</h4></center>
+                <p>Pendaftaran untuk para agen atau PPTKIS yang mengininkan untuk login </p>
+                <p><a href="#!/registration_pptkis" class="btn btn-info btn-danger btn-block" role="button">Daftar</a>
+            </div>
+          </div>
+        </div>
+      </div><!-- End row -->
+      
+    </div><!-- End container -->
+  <footer-directive></footer-directive>

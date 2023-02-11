@@ -1,0 +1,37 @@
+<script src="app/assets/script.js?uniqecall=<?php echo date("YmdHis")?>"></script>
+<div class="bg">
+<br>
+<div class="modal-dialog">
+	<div class="loginmodal-container">
+		<center>
+			<img src="../api/media/images/logo.png" style="width:200px;padding-bottom: 50px;" alt=""><br>
+		</center>
+		<div id="add_err"></div>
+		<form id="Form" method="POST">
+			<input type="text" ng-model="form.email" name="email" placeholder="Username">
+			<input type="password" ng-model="form.password" name="password" placeholder="Password">
+			<input type="submit" class="btn btn-danger" name="password" value="Log in" id="login" />	
+		</form> 
+		
+		<!--  <a href="#">Lupa Password</a> -->
+		<div class="login-help">
+			Belum Punya akun ? <a href="#!/registration">Daftar</a>
+		</div>
+	</div>
+</div>
+</div>
+<br><br>
+<footer-directive></footer-directive>
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Modal header</h3>
+    </div>
+    <div class="modal-body">
+        <p>One fine body…</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary">Save changes</button>
+    </div>
+</div>

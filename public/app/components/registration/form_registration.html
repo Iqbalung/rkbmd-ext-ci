@@ -1,0 +1,153 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+
+moment.locale('ina');
+//var ahmet = moment("25/04/2012","DD/MM/YYYY").year();
+var date = new Date();
+bugun = moment(date).format("DD/MM/YYYY");
+
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        //startDate: '+1d',
+        //endDate: '+0d',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+        format: 'dd/mm/yyyy',
+        language: 'tr',
+        //defaultDate: moment().subtract(15, 'days')
+        //setStartDate : "<DATETIME STRING HERE>"
+      };
+      date_input.val(bugun);
+      date_input.datepicker(options).on('focus', function(date_input){
+     $("h3").html("focus event");      
+      }); ;
+      
+      
+ date_input.change(function () {
+    var deger = $(this).val();
+    $("h3").html("<font color=green>" + deger + "</font>");
+  });      
+      
+ 
+      
+$('.input-group').find('.glyphicon-calendar').on('click', function(){
+//date_input.trigger('focus');
+//date_input.datepicker('show');
+ //$("h3").html("event : click");
+
+
+if( !date_input.data('datepicker').picker.is(":visible"))
+{
+       date_input.trigger('focus');
+    $("h3").html("Ok"); 
+ 
+    //$('.input-group').find('.glyphicon-calendar').blur();
+    //date_input.trigger('blur');
+    //$("h3").html("görünür");    
+} else {
+}
+});      
+ });
+    $(document).ready(function(){
+      $("#register").hide();
+});
+ </script>
+</script>
+<w3-test-directive></w3-test-directive>
+<div class="container">
+<h4>Pendaftaran Akun Pelamar</h4><hr></hr>
+<div id="add_err"></div>
+	<div class="row">
+  <div id="add_err"></div>
+	  <form name="addItem" method="POST" role="form" id="Form">
+
+    <div class="col-md-6">
+        <div class="required form-group">
+            <label for="exampleInputEmail1">Nama Depan</label>
+            <input type=""  name="PEKERJA_NAMA" g-model="form.NAMA" class="form-control" required>
+        </div>
+         <div class="required form-group">
+            <label for="exampleInputEmail1">Nama Belakang</label>
+            <input type="text" ng-model="form.NAMA_PANJANG" class="form-control" placeholder="" required>
+        </div>
+        <div class="required form-group">
+            <label for="exampleInputPassword1">Jenis Kelamin</label>
+            <select id="selectbasic" ng-model="form.JENIS_KELAMIN" class="form-control" required>
+                <option value="1">Laki Laki</option>
+                <option value="2">Perempuan</option>
+            </select>
+        </div>
+        <div class="form-group"> <!-- Date input -->
+        <div class="required form-group col-sm-6 ">
+            <label for="exampleInputPassword1">Tempat lahir</label>
+            <input type="text" ng-model="form.TEMPAT_LAHIR" class="form-control" required>
+        </div>
+          <label class="control-label col-sm-6" for="date">TGL LAHIR</label>
+          <div class="input-group date" id="dp3" data-date="12-02-2017" ng-model="form.TANGGAL_LAHIR" >
+              <input name="date" class="form-control" type="text" ng-model="form.TANGGAL_LAHIR" value="12-02-2017">
+              <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar" id="butt"></i></span>
+          </div>
+
+        </div>
+        <div class="form-group ">
+            <label for="exampleInputPassword1">Alamat</label>
+            <textarea type="text" class="form-control" ng-model="form.ALAMAT_TINGGAL" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">No Hp</label>
+            <input type="text" ng-model="form.NO_TELP"  class="form-control" required>
+        </div>
+         
+
+
+    </div>
+    <div class="col-md-6">
+        <div class="required form-group">
+            <label for="exampleInputPassword1">No KTP</label>
+            <input type="text" ng-model="form.NO_KTP" class="form-control">
+            <input type="file" id="exampleInputFile">
+        </div>
+         
+        <div class="form-group ">
+          <label for="exampleInputPassword1">Email</label>
+            <input type="text" ng-model="form.EMAIL" class="form-control" >
+        </div>
+        <div class="form-group ">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="Password" ng-model="form.PASSWORD" id="txtNewPassword" class="form-control" required>
+        </div>
+         <div class="form-group ">
+            <label for="exampleInputPassword1">Konfirmasi Password</label>
+            <input type="Password" ng-model="form.KONFIRMASI_PASSWORD" id="txtConfirmPassword" onChange="checkPasswordMatch();" class="form-control" required>
+            <div class="registrationFormAlert" id="divCheckPasswordMatch">
+        </div>
+        <button id="register" class="btn btn-danger btn-block">Daftar</button>
+        
+    </div>
+        
+       
+       
+       
+        
+        
+         
+        
+
+    </form>
+
+    <div class="clearfix"></div>
+
+    <br /><br />
+	</div>
+</div>
+
+
+<div class="modal fade" id="register-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+                <div class="loginmodal-container">  
+                Email Sudah Terdaftar, Anda dapat menggunakan Email lain    
+        </div>
+    </div>
+</div>

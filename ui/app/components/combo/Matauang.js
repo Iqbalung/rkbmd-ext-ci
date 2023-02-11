@@ -1,0 +1,20 @@
+Ext.define('koyoku.components.combo.Matauang', {
+    extend: 'Ext.form.ComboBox',
+    name: 'MATA_UANG_ID',
+    xtype: 'combo_matauang',
+    allowBlank: false,
+    triggerAction: 'all',
+    typeAhead: true,
+    queryMode: 'remote',
+    minChars: 2,
+    itemId: 'pencarian_matauang',
+    forceSelection: false,
+    displayField: 'MATAUANG_CAPTION',
+    emptyText: "Pencarian ..",
+    valueField: 'MATAUANG_ID',
+    store: Ext.create('koyoku.store.MataUang', {
+        storeId: 'store_list_matauang',
+        autoLoad: true,
+    }),
+    hideTrigger: true,
+});

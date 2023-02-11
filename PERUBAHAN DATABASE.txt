@@ -1,0 +1,335 @@
+use koyoku_live
+
+
+--perubahan pada job
+ALTER TABLE JOB ADD JOB_SISKOTKLN varchar(200) NULL ;
+ALTER TABLE JOB ADD JOB_RANGEUMUR varchar(100) NULL ;
+
+
+-- perubahan pada LAMARAN
+ALTER TABLE LAMARAN ADD ID_TKI_DATE DATE NULL ;
+ALTER TABLE LAMARAN ADD DOKUMEN_ID varchar(100) NULL ;
+
+-- table lamaran asuransi
+ALTER TABLE LAMARAN_ASURANSI ADD ASURANSI_STATUS varchar(2) NULL ;
+
+-- tabel LAMARAN_KASUS
+ALTER TABLE LAMARAN_KASUS ADD ALASANKASUS_ID varchar(100) NULL ;
+ALTER TABLE LAMARAN_KASUS ADD RIWAYAT_TEXT varchar(100) NULL ;
+
+
+-- tabel LAMARAN_PEMBEKALAN
+
+
+
+-- tabel LAMARAN_PINDAH
+ALTER TABLE LAMARAN_PINDAH ADD ALASANPINDAH_ID varchar(100) NULL ;
+ALTER TABLE LAMARAN_PINDAH ADD RIWAYAT_TEXT varchar(100) NULL ;
+
+-- tabel LAMARAN_PURNA
+
+ALTER TABLE LAMARAN_PURNA ADD ALASANPULANG_ID varchar(100) NULL ;
+ALTER TABLE LAMARAN_PURNA ADD RIWAYAT_TEXT varchar(100) NULL ;
+
+-- tabel LAMARAN_PENGGUNA
+
+ALTER TABLE koyoku.PENGGUNA ADD WILAYAH_ID TEXT NULL ;
+ALTER TABLE PENGGUNA ADD BIDANG_ID TEXT NULL ;
+ALTER TABLE PENGGUNA ADD KOMPETENSI_ID TEXT NULL ;
+ALTER TABLE PENGGUNA ADD KOMPETENSI TEXT NULL ;
+ALTER TABLE PENGGUNA ADD BIDANG TEXT NULL ;
+ALTER TABLE PENGGUNA ADD WILAYAH_MINAT TEXT NULL ;
+ALTER TABLE PENGGUNA ADD WILAYAH_MINAT_ID TEXT NULL ;
+
+-- tabel RIW_KERJA
+
+ALTER TABLE RIW_KERJA ADD DOKUMEN_ID VARCHAR (100) NULL ;
+
+-- tabel RIW_PENDIDKAN
+
+ALTER TABLE RIW_PENDIDIKAN ADD DOKUMEN_ID VARCHAR (100) NULL ;
+
+
+-- tabel LAMARAN_PEMBEKALAN
+ALTER TABLE koyoku_live.LAMARAN_PEMBEKALAN MODIFY COLUMN PEMBEKALAN_ID int(11) NOT NULL KEY AUTO_INCREMENT ;
+
+
+--VIEW RIWAYAT KERJA
+
+select
+    `P1`.`PENGALAMAN_ID` AS `PENGALAMAN_ID`,
+    `P1`.`PEKERJA_ID` AS `PEKERJA_ID`,
+    `P1`.`PERUSAHAAN` AS `PERUSAHAAN`,
+    `P1`.`POSISI` AS `POSISI`,
+    `P1`.`END_DATE` AS `END_DATE`
+from
+    (
+        `koyoku`.`RIW_KERJA` `P1` left join `koyoku`.`RIW_KERJA` `P2` on
+        (
+            (
+                (
+                    `P1`.`PEKERJA_ID` = `P2`.`PEKERJA_ID`
+                )
+                and(
+                    `P1`.`END_DATE` < `P2`.`END_DATE`
+                )
+            )
+        )
+    )
+where
+    isnull(
+        `P2`.`END_DATE`
+    )
+order by
+    `P1`.`END_DATE`
+
+
+-- VIEW RIWAYAT PENDIDIKAN
+select
+    `P1`.`FORMAL_ID` AS `FORMAL_ID`,
+    `P1`.`ID_PEKERJA` AS `ID_PEKERJA`,
+    `P1`.`TPENDIDIKAN_ID` AS `TPENDIDIKAN_ID`,
+    `P1`.`FORMAL_JURUSAN` AS `FORMAL_JURUSAN`,
+    `P1`.`FORMAL_START` AS `FORMAL_START`,
+    `P1`.`FORMAL_END` AS `FORMAL_END`,
+    `P1`.`NAMA_INSTANSI` AS `NAMA_INSTANSI`,
+    `P1`.`NILAI` AS `NILAI`,
+    `koyoku`.`MASTER_TPENDIDIKAN`.`PENDIDIKAN_NAMA` AS `PENDIDIKAN_NAMA`
+from
+    (
+        (
+            `koyoku`.`RIW_PENDIDIKAN` `P1` left join `koyoku`.`RIW_PENDIDIKAN` `P2` on
+            (
+                (
+                    (
+                        `P1`.`ID_PEKERJA` = `P2`.`ID_PEKERJA`
+                    )
+                    and(
+                        `P1`.`TPENDIDIKAN_ID` < `P2`.`TPENDIDIKAN_ID`
+                    )
+                )
+            )
+        ) join `koyoku`.`MASTER_TPENDIDIKAN` on
+        (
+            (
+                `koyoku`.`MASTER_TPENDIDIKAN`.`PENDIDIKAN_ID` = `P1`.`TPENDIDIKAN_ID`
+            )
+        )
+    )
+where
+    isnull(
+        `P2`.`TPENDIDIKAN_ID`
+    )
+order by
+    `P1`.`FORMAL_END`
+
+
+
+-- PENAMBAHAN KOLOM TAHAP 2
+ALTER TABLE JOB ADD JOB_FASILITAS_LEMBUR varchar(100) NULL ;
+ALTER TABLE JOB ADD JOB_RANGEJAM varchar(100) NULL ;
+
+
+
+-- akhir september 
+ALTER TABLE koyoku.PENGGUNA MODIFY COLUMN DATE_CREATED TIMESTAMP DEFAULT CURRENT_TIMESTAMP NULL ;
+ALTER TABLE koyoku.PENGGUNA MODIFY COLUMN DATE_KONFIRMED datetime DEFAULT CURRENT_TIMESTAMP NULL ;
+ALTER TABLE koyoku.PENGGUNA MODIFY COLUMN LAST_UPDATED datetime DEFAULT CURRENT_TIMESTAMP NULL ;
+
+
+
+--view tki
+create view VW_TKI AS
+select
+    `LAMARAN`.`ID` AS `ID`,
+    `LAMARAN`.`PEKERJA_ID` AS `PEKERJA_ID`,
+    `LAMARAN`.`JOB_ID` AS `JOB_ID`,
+    `LAMARAN`.`DATE_CREATED` AS `DATE_CREATED`,
+    `LAMARAN`.`STATUS_ID` AS `STATUS_ID`,
+    `LAMARAN`.`REKRUITER_ID` AS `REKRUITER_ID`,
+    `LAMARAN`.`PPTKIS_ID` AS `PPTKIS_ID`,
+    `LAMARAN`.`ID_TKI` AS `ID_TKI`,
+    `LAMARAN`.`BNP2TKI_TKI_ID` AS `BNP2TKI_TKI_ID`,
+    `LAMARAN`.`ID_TKI_DATE` AS `ID_TKI_DATE`,
+    `LAMARAN`.`DOKUMEN_ID` AS `DOKUMEN_ID`,
+    `PEKERJA`.`NAMA` AS `NAMA_PEKERJA`,
+    `PEKERJA`.`TANGGAL_LAHIR` AS `TANGGAL_LAHIR`,
+    `PEKERJA`.`JENIS_KELAMIN` AS `JENIS_KELAMIN`,
+    `MASTER_WILAYAH`.`WILAYAH_NAMA` AS `WILAYAH_NAMA`,
+    `PEKERJA`.`ALAMAT_TINGGAL` AS `ALAMAT_TINGGAL`,
+    `PEKERJA`.`NO_KTP` AS `NO_KTP`,
+    `PEKERJA`.`PHOTO` AS `PHOTO`,
+    `PEKERJA`.`COVER` AS `COVER`,
+    `PEKERJA`.`USERGROUP_ID` AS `USERGROUP_ID`,
+    `MASTER_JABATAN`.`JABATAN_NAMA` AS `JABATAN_NAMA`,
+    `REKRUITER`.`NAMA` AS `NAMA_REKRUITER`,
+    `MASTER_JOB_OWNER`.`OWNER_NAMA` AS `OWNER_NAMA`,
+    `MASTER_AGENSI`.`AGEN_NAMA` AS `AGEN_NAMA`,
+    `VW_GETPERJANJIAN`.`LAMARAN_ID` AS `LAMARAN_ID`,
+    `VW_GETPERJANJIAN`.`PERJANJIAN_START` AS `PERJANJIAN_START`,
+    `VW_GETPERJANJIAN`.`PERJANJIAN_END` AS `PERJANJIAN_END`,
+    `MST`.`STATUS` AS `STATUS`,
+    `LAMARAN_PEMBEKALAN`.`PEMBEKALAN_ID` AS `PEMBEKALAN`,
+    `LAMARAN_ASURANSI`.`ASURANSI_ID` AS `ASURANSI`,
+    `LAMARAN_PURNA`.`PURNA_ID` AS `PURNA`,
+    `LAMARAN_VISA`.`VISA_ID` AS `VISA`,
+    `LAMARAN_BNP2TKI`.`BNP2TKI_ID` AS `L`,
+    `LAMARAN_LK`.`LK_ID` AS `LK`,
+    `PENGGUNA_PPTKIS`.`SATKER_ID` AS `SATKER_ID`,
+    `A`.`LAMARAN_ID` AS `MEDICALPRA`,
+    `B`.`LAMARAN_ID` AS `MEDICALFULL`,
+    `VW_GETPERJANJIAN`.`PERJANJIAN_ID` AS `PERJANJIAN`,
+    `VW_GETPERJANJIAN`.`PERJANJIAN_START` AS `PJ_START`,
+    `VW_GETPERJANJIAN`.`PERJANJIAN_END` AS `PJ_END`,
+    (
+        to_days(
+            `VW_GETPERJANJIAN`.`PERJANJIAN_END`
+        )- to_days(
+            cast(
+                now() as date
+            )
+        )
+    ) AS `TERSISA`,
+    floor((( to_days( cast( now() as date ))- to_days( `PEKERJA`.`TANGGAL_LAHIR` ))/ 365 )) AS `UMUR`,
+    `RIW_PENDIDIKAN_INFORMAL`.`LAMARAN_ID` AS `BLKLN`,
+    `MASTER_JABATAN`.`JABATAN_ID` AS `JABATAN_ID`
+from
+    (
+        (
+            (
+                (
+                    (
+                        (
+                            (
+                                (
+                                    (
+                                        (
+                                            (
+                                                (
+                                                    (
+                                                        (
+                                                            (
+                                                                (
+                                                                    (
+                                                                        (
+                                                                            (
+                                                                                `LAMARAN` left join `JOB` on
+                                                                                (
+                                                                                    (
+                                                                                        `LAMARAN`.`JOB_ID` = `JOB`.`JOB_ID`
+                                                                                    )
+                                                                                )
+                                                                            ) left join `MASTER_JABATAN` on
+                                                                            (
+                                                                                (
+                                                                                    `JOB`.`JOB_JABATAN_ID` = `MASTER_JABATAN`.`JABATAN_ID`
+                                                                                )
+                                                                            )
+                                                                        ) left join `MASTER_JOB_OWNER` on
+                                                                        (
+                                                                            (
+                                                                                `JOB`.`OWNER_ID` = `MASTER_JOB_OWNER`.`OWNER_ID`
+                                                                            )
+                                                                        )
+                                                                    ) left join `MASTER_AGENSI` on
+                                                                    (
+                                                                        (
+                                                                            `JOB`.`AGEN_ID` = `MASTER_AGENSI`.`AGEN_ID`
+                                                                        )
+                                                                    )
+                                                                ) left join `PENGGUNA` `PEKERJA` on
+                                                                (
+                                                                    (
+                                                                        `LAMARAN`.`PEKERJA_ID` = `PEKERJA`.`ID`
+                                                                    )
+                                                                )
+                                                            ) left join `PENGGUNA` `REKRUITER` on
+                                                            (
+                                                                (
+                                                                    `LAMARAN`.`REKRUITER_ID` = `REKRUITER`.`ID`
+                                                                )
+                                                            )
+                                                        ) left join `VW_GETPERJANJIAN` on
+                                                        (
+                                                            (
+                                                                `VW_GETPERJANJIAN`.`LAMARAN_ID` = `LAMARAN`.`ID`
+                                                            )
+                                                        )
+                                                    ) left join `MASTER_STATUS_LAMARAN` `MST` on
+                                                    (
+                                                        (
+                                                            `LAMARAN`.`STATUS_ID` = `MST`.`ID`
+                                                        )
+                                                    )
+                                                ) left join `PENGGUNA_PPTKIS` on
+                                                (
+                                                    (
+                                                        `LAMARAN`.`REKRUITER_ID` = `PENGGUNA_PPTKIS`.`PENGGUNA_ID`
+                                                    )
+                                                )
+                                            ) left join `MASTER_WILAYAH` on
+                                            (
+                                                (
+                                                    `MASTER_WILAYAH`.`WILAYAH_ID` = `JOB`.`WILAYAH_ID`
+                                                )
+                                            )
+                                        ) left join `LAMARAN_ASURANSI` on
+                                        (
+                                            (
+                                                `LAMARAN`.`ID` = `LAMARAN_ASURANSI`.`LAMARAN_ID`
+                                            )
+                                        )
+                                    ) left join `LAMARAN_PURNA` on
+                                    (
+                                        (
+                                            `LAMARAN`.`ID` = `LAMARAN_PURNA`.`LAMARAN_ID`
+                                        )
+                                    )
+                                ) left join `LAMARAN_VISA` on
+                                (
+                                    (
+                                        `LAMARAN`.`ID` = `LAMARAN_VISA`.`LAMARAN_ID`
+                                    )
+                                )
+                            ) left join `LAMARAN_LK` on
+                            (
+                                (
+                                    `LAMARAN`.`ID` = `LAMARAN_LK`.`LAMARAN_ID`
+                                )
+                            )
+                        ) left join `LAMARAN_MEDICALPRA` `A` on
+                        (
+                            (
+                                `LAMARAN`.`ID` = `A`.`LAMARAN_ID`
+                            )
+                        )
+                    ) left join `LAMARAN_MEDICALPRA` `B` on
+                    (
+                        (
+                            `LAMARAN`.`ID` = `B`.`LAMARAN_ID`
+                        )
+                    )
+                ) left join `LAMARAN_PEMBEKALAN` on
+                (
+                    (
+                        `LAMARAN`.`ID` = `LAMARAN_PEMBEKALAN`.`LAMARAN_ID`
+                    )
+                )
+            ) left join `LAMARAN_BNP2TKI` on
+            (
+                (
+                    `LAMARAN`.`ID` = `LAMARAN_BNP2TKI`.`LAMARAN_ID`
+                )
+            )
+        ) left join `RIW_PENDIDIKAN_INFORMAL` on
+        (
+            (
+                `LAMARAN`.`ID` = `RIW_PENDIDIKAN_INFORMAL`.`LAMARAN_ID`
+            )
+        )
+    )
+where
+    (
+        `PEKERJA`.`USERGROUP_ID` is not null
+    )
+
