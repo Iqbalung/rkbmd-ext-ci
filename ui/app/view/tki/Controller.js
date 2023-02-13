@@ -57,6 +57,73 @@ Ext.define('koyoku.view.tki.Controller', {
 		}
 	},
 
+	ubah_pemeliharaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_pemeliharaan"),
+			page = Ext.getCmp("page_pemeliharaan"),			
+			grid = cmp.down("grid_pemeliharaan"),
+			grid_form = cmp.down("#grid_form_pemeliharaan"),
+			form = cmp.down("form_pemeliharaan").down("form"),
+			data_selected = grid.getSelectionModel().getSelection();
+		
+		if(data_selected.length > 0)
+		{
+			var row = data_selected[0].getData();			
+			me.show_page('form_pemeliharaan');			
+			var params = {
+				ROWID: btoa(row.PEMELIHARAAN_ID)
+			}
+			koyoku.app.ajaxRequest("pemeliharaan/get_detail", params, function(res) {				
+				if(res.success) {
+					if(res.items) {						
+						var data_form = res.items;						
+						form.getForm().setValues(res.items);
+						if (data_form.DATA_BARANG) {
+							data_form.DATA_BARANG.forEach(function(row_barang, idx) {
+								grid_form.getStore().insert(idx, row_barang);
+							})
+						}
+					}					
+				}
+			});
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu terlebih dahulu");
+		}
+	},
+
+	ubah_barang_pemeliharaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_pemeliharaan"),
+			grid = cmp.down("#grid_form_pemeliharaan"),
+			store = grid.getStore(),
+			row_editing = grid.getPlugin('rowediting'),
+			row_selection = grid.getSelectionModel().getSelection();
+		if (row_selection.length > 0) {			
+			var idx = store.indexOf(row_selection[0]);					
+			row_editing.cancelEdit();			
+			row_editing.startEdit(idx, 0);
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu data terlebih dahulu");
+		}
+	},
+
+	hapus_barang_pemeliharaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_pemeliharaan"),
+			grid = cmp.down("#grid_form_pemeliharaan"),
+			row_selection = grid.getSelectionModel().getSelection();
+		if (row_selection.length > 0) {			
+			Ext.Msg.confirm('Konfirmasi', 'Apakah anda yakin akan menghapus data ?', function(e) {
+                if (e == 'yes') {
+					grid.getStore().remove(row_selection);
+					grid.getView().refresh();
+				}
+			});
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu data terlebih dahulu");
+		}
+	},
+
 	tambah_barang_pemeliharaan: function() {
 		var me = this,
 			cmp = Ext.getCmp("page_pemeliharaan"),
@@ -85,11 +152,12 @@ Ext.define('koyoku.view.tki.Controller', {
 			})
 
 			params.DATA_BARANG = JSON.stringify(data_barang);
-			koyoku.app.ajaxRequest("pemeliharaan/simpan", params, function(res) {				
+			koyoku.app.ajaxRequest("pemeliharaan/save", params, function(res) {				
 				if(res.success) {
 					Ext.Msg.alert('Informasi', res.msg);
 					me.clear_form_pemeliharaan();
 					me.show_page('back');
+					me.load_pemeliharaan();
 				}
 			});
 		} catch (error) {
@@ -137,18 +205,14 @@ Ext.define('koyoku.view.tki.Controller', {
 		},200);		
 	},
 
-	select_filter_org : function( ths, record, index, eOpts ){
-		this.load_tki();
-		this.load_calon_tki();
-		this.load_pendaftar();
-		this.load_aktif();
-		this.load_purna();
+	select_filter_bidang : function( ths, record, index, eOpts ){
+		this.load_pemeliharaan();		
 	},
 
-	load_tki_keyword : function(field, e){
+	load_pemeliharaan_keyword : function(field, e){
 		me=this;
         if (e.getKey() == e.ENTER) {
-            me.load_tki();
+            me.load_pemeliharaan();
         }
     },
 
@@ -180,20 +244,15 @@ Ext.define('koyoku.view.tki.Controller', {
         }
     },
 
-	load_tki : function(){
-		var store = this.getView().down('grid_tki_all').getStore();
-		var fcari = this.getView().down('grid_tki_all').down('#text_cari');
-		var tree_org = this.getView().down('tree_satker');
-		var rec = tree_org.getSelectionModel().getSelection();
+	load_pemeliharaan : function(){
+		var store = this.getView().down('grid_pemeliharaan').getStore();
+		var fcari = this.getView().down('grid_pemeliharaan').down('#text_cari');
+		var tree_bidang = this.getView().down('tree_bidang');
+		var rec = tree_bidang.getSelectionModel().getSelection();
 		if(rec.length>0){
-			store.proxy.extraParams.SATKER_ID = rec[0].data.SATKER_ID;
-			if(rec[0].data.IS_PEGAWAI){
-				store.proxy.extraParams.REKRUITER_ID = rec[0].data.ID;				
-			}else{
-				store.proxy.extraParams.REKRUITER_ID = '';
-			}	
+			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
-		store.proxy.extraParams.keyword = fcari.getValue();
+		store.proxy.extraParams.PENCARIAN = fcari.getValue();
 		store.load();
 	},
 

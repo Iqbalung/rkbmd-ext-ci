@@ -43,7 +43,7 @@ Ext.define('koyoku.view.tki.pemeliharaan.Form', {
         items: [{
             xtype: 'hiddenfield',
             width : 250,
-            name: 'ID',
+            name: 'PEMELIHARAAN_ID',
         }, {
             xtype: 'hiddenfield',
             width : 250,
@@ -74,7 +74,7 @@ Ext.define('koyoku.view.tki.pemeliharaan.Form', {
                 handler: 'ubah_barang_pemeliharaan'
             }, {
                 text: 'Hapus',
-                // glyph: 'xf067@fontAwesome',
+                glyph: 'xf1f8@fontAwesome',
                 handler: 'hapus_barang_pemeliharaan'
             }
         ],

@@ -36,7 +36,7 @@ Ext.define('koyoku.view.tki.Main', {
 		
 		listeners: {
 			afterrender: 'load_organisasi',
-			select: 'select_filter_org'
+			select: 'select_filter_bidang'
 		}
 	}, {
 		layout: 'card',
@@ -55,7 +55,7 @@ Ext.define('koyoku.view.tki.Main', {
 						emptyText: 'Cari ...',
 						itemId: 'text_cari',
 						listeners: {
-							specialkey: 'load_tki_keyword'
+							specialkey: 'load_pemeliharaan_keyword'
 						}
 					},
 					'->', {
@@ -65,7 +65,7 @@ Ext.define('koyoku.view.tki.Main', {
 					}, {
 						bind : { text : '{language.ubah}', },
 						glyph: 'xf044@fontAwesome',
-						handler: 'ubah_tki'
+						handler: 'ubah_pemeliharaan'
 					}
 				]
 			}, {

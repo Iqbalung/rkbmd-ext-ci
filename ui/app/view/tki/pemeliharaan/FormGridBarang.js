@@ -10,7 +10,7 @@ Ext.define('koyoku.view.tki.pemeliharaan.FormGridBarang', {
 		Ext.apply(me, {
 			store: Ext.create('Ext.data.Store', {
 					storeId: 'store_barang',
-					fields:[ 'ROWID', 'BARANG_KODE', 'BARANG_ID', 'BARANG_NAMA', 'KONDISI_BAIK', 'KONDISI_RUSAK_RINGAN', 'KONDISI_RUSAK_BERAT', 'STATUS_BARANG', 'STATUS_BARANG_ID',
+					fields:[ 'BARANG_PEMELIHARAAN_ID', 'BARANG_KODE', 'BARANG_ID', 'BARANG_NAMA', 'KONDISI_BAIK', 'KONDISI_RUSAK_RINGAN', 'KONDISI_RUSAK_BERAT', 'STATUS_BARANG', 'STATUS_BARANG_ID',
 							'PEMELIHARAAN_NAMA', 'USULAN_JUMLAH', 'USULAN_SATUAN', 'RENCANA_JUMLAH', 'RENCANA_SATUAN', 'KETERANGAN'],					
 							 
 				})
@@ -29,11 +29,15 @@ Ext.define('koyoku.view.tki.pemeliharaan.FormGridBarang', {
 			// var field = e.field;
 			console.log(editor, e, options);			
 			var combo_barang = e.grid.columns[1].getEditor(e.record);			
-			e.record.set('BARANG_ID', combo_barang.getSelectedRecord().data.BARANG_ID);
+			if (combo_barang.getSelectedRecord()) {				
+				e.record.set('BARANG_ID', combo_barang.getSelectedRecord().data.BARANG_ID);
+			}
 			e.record.set('BARANG_NAMA', combo_barang.getRawValue());
 
 			var combo_status = e.grid.columns[3].getEditor(e.record);			
-			e.record.set('STATUS_BARANG_ID', combo_status.getSelectedRecord().data.STATUS_ID);
+			if (combo_status.getSelectedRecord()) {				
+				e.record.set('STATUS_BARANG_ID', combo_status.getSelectedRecord().data.STATUS_ID);
+			}
 			e.record.set('STATUS_BARANG', combo_status.getRawValue());
 			
 		},
