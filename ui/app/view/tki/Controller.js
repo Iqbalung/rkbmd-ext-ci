@@ -2,6 +2,101 @@ Ext.define('koyoku.view.tki.Controller', {
 	extend: 'Ext.app.ViewController',
 	alias: 'controller.tki',
 
+	show_page(to) {
+		var me = this,
+			page = Ext.getCmp("page_pemeliharaan"),
+			tree_bidang = page.down("tree_bidang"),
+			layout = Ext.getCmp("panel_pemeliharaan").getLayout();
+
+		switch (to) {
+			case 'form_pemeliharaan':
+				layout.setActiveItem(1);
+				tree_bidang.hide();
+				break;		
+			default:
+				layout.setActiveItem(0);
+				tree_bidang.show();
+				break;
+		}		
+	},
+
+	kembali: function() {
+		this.show_page('back');
+	}, 
+
+	
+	clear_form_pemeliharaan: function() {
+		var me = this,
+				cmp = Ext.getCmp("page_pemeliharaan"),
+				form = cmp.down("form_pemeliharaan").down("form"),
+				grid = cmp.down("#grid_form_pemeliharaan"),
+				store = grid.getStore();
+			
+			form.reset();
+			store.clearData();
+			store.reload();
+
+	},
+
+	tambah_pemeliharaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_pemeliharaan"),
+			page = Ext.getCmp("page_pemeliharaan"),
+			tree_bidang = page.down("tree_bidang"),
+			form = cmp.down("form_pemeliharaan").down("form"),
+			data_bidang = tree_bidang.getSelectionModel().getSelection();
+		
+		if(data_bidang.length > 0)
+		{
+			var row_bidang = data_bidang[0].getData();
+			form.down("[name=BIDANG_ID]").setValue(row_bidang.BIDANG_ID);
+			form.down("[name=BIDANG_NAMA]").setValue(row_bidang.BIDANG_NAMA);	
+			me.show_page('form_pemeliharaan');
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu bidang terlebih dahulu");
+		}
+	},
+
+	tambah_barang_pemeliharaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_pemeliharaan"),
+			grid = cmp.down("#grid_form_pemeliharaan"),
+			rowEditing = grid.getPlugin('rowediting');
+		
+			rowEditing.cancelEdit(); // rowEditing is now defined... :)
+			let idx = grid.getStore().getData().length;
+			grid.getStore().insert(idx, {});
+			rowEditing.startEdit(idx, 0);
+	},
+
+	simpan_pemeliharaan: function() {
+		try {
+			var me = this,
+				cmp = Ext.getCmp("page_pemeliharaan"),
+				form = cmp.down("form_pemeliharaan").down("form"),
+				grid = cmp.down("#grid_form_pemeliharaan"),
+				store = grid.getStore();
+
+			let params = form.getValues(),
+				data_barang = [];
+
+			store.getData().items.forEach(function (row) {
+				data_barang.push(row.data);
+			})
+
+			params.DATA_BARANG = JSON.stringify(data_barang);
+			koyoku.app.ajaxRequest("pemeliharaan/simpan", params, function(res) {				
+				if(res.success) {
+					Ext.Msg.alert('Informasi', res.msg);
+					me.clear_form_pemeliharaan();
+					me.show_page('back');
+				}
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	},
+
 	/* Proses CRUD TKI */
 	tambah_tki: function() {
 		//this.redirectTo('profile_tki');
@@ -210,7 +305,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form.reset();
 		status = Ext.getCmp('window_medup_pra').down('form_medup').down('[name=MEDICAL_STATUS]').setValue("1");;
 		form.load({
-			url: 'http://localhost/koyoku/api/index.php/Tki/getmedical',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/getmedical',
 			params: {
 				LAMARAN_ID: rec[0].data.ID,
 				MEDICAL_STATUS: 1
@@ -247,7 +342,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		status = Ext.getCmp('window_medup_full').down('form_medup').down('[name=MEDICAL_STATUS]').setValue("2");
 
 		form.load({
-			url: 'http://localhost/koyoku/api/index.php/Tki/getmedical',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/getmedical',
 			params: {
 				LAMARAN_ID: rec[0].data.ID,
 				MEDICAL_STATUS: 2
@@ -280,7 +375,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = Ext.getCmp('window_purna').down('form_purna');
 		form.reset();
 		form.load({
-			url: 'http://localhost/koyoku/api/index.php/Tki/getkepulangan',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/getkepulangan',
 			params: {
 				LAMARAN_ID: rec[0].data.ID,
 			},
@@ -340,7 +435,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = Ext.getCmp('window_job').down('form').getForm();
 		if (form.isValid) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/setjob',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/setjob',
 				params:{
 					JOB_ID: rec[0].data.JOB_ID
 				},
@@ -383,7 +478,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = Ext.getCmp('window_bnp2tki').down('form_bnp2tki');
 		form.reset();
 		form.load({
-			url: 'http://localhost/koyoku/api/index.php/Tki/getbnp2tki',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/getbnp2tki',
 			params: {
 				LAMARAN_ID: rec[0].data.ID,
 			},
@@ -410,7 +505,7 @@ Ext.define('koyoku.view.tki.Controller', {
 
 		form = Ext.getCmp('window_perjanjian_kerja').down('form_perjanjian_kerja');
 		form.load({
-			url: 'http://localhost/koyoku/api/index.php/Tki/getperjanjian',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/getperjanjian',
 			params: {
 				LAMARAN_ID: rec[0].data.ID,
 			},
@@ -439,7 +534,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form.getForm().reset();
 
 		form.load({
-			url: 'http://localhost/koyoku/api/index.php/Tki/getasuransi',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/getasuransi',
 			params: {
 				LAMARAN_ID: rec[0].data.ID,
 				ASURANSI_STATUS: "1",
@@ -471,7 +566,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form.getForm().reset();
 
 		form.load({
-			url: 'http://localhost/koyoku/api/index.php/Tki/getasuransi',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/getasuransi',
 			params: {
 				LAMARAN_ID: rec[0].data.ID,
 				ASURANSI_STATUS: "2",
@@ -600,7 +695,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		});
 		form = Ext.getCmp('window_visa').down('form_visa');
 		form.load({
-			url: 'http://localhost/koyoku/api/index.php/Tki/getvisa',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/getvisa',
 			params: {
 				LAMARAN_ID: rec[0].data.ID,
 			},
@@ -650,7 +745,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form.getForm().reset();
 		form.getForm().setValues(rec[0].data);
 		form.load({
-			url: 'http://localhost/koyoku/api/index.php/Tki/getlk',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/getlk',
 			params: {
 				LAMARAN_ID: rec[0].data.ID,
 			},
@@ -676,7 +771,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form.getForm().reset();
 		form.getForm().setValues(rec[0].data);
 		form.load({
-			url: 'http://localhost/koyoku/api/index.php/Tki/getpap',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/getpap',
 			params: {
 				LAMARAN_ID: rec[0].data.ID,
 			},
@@ -700,7 +795,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form.getForm().reset();
 		form.getForm().setValues(rec[0].data);
 		form.load({
-			url: 'http://localhost/koyoku/api/index.php/Tki/getberangkat',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/getberangkat',
 			params: {
 				LAMARAN_ID: rec[0].data.ID,
 			},
@@ -715,7 +810,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = Ext.getCmp('window_perjanjian_kerja').down('form_perjanjian_kerja').getForm();
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/saveperjanjian',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/saveperjanjian',
 				success: function(form, action) {
 					var success_opt = true;
 					try {
@@ -756,7 +851,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		}
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/savemedical',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/savemedical',
 				success: function(form, action) {
 					var success_opt = true;
 					try {
@@ -791,7 +886,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = win.down('form_visa').getForm();
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/savevisa',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/savevisa',
 				success: function(form, action) {
 					var success_opt = true;
 					try {
@@ -825,7 +920,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = win.down('form_siskot').getForm();
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/savesiskot',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/savesiskot',
 				success: function(form, action) {
 					var success_opt = true;
 					try {
@@ -860,7 +955,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = win.down('form_berangkat').getForm();
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/saveberangkat',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/saveberangkat',
 				success: function(form, action) {
 					var success_opt = true;
 					try {
@@ -897,7 +992,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = win.down('form_proses_lk').getForm();
 		if (form.isValid) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/savelk',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/savelk',
 				success: function(form, action) {
 					var success_opt = true;
 					try {
@@ -927,7 +1022,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = win.down('form_pap').getForm();
 		if (form.isValid) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/savepembekalan',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/savepembekalan',
 				success: function(form, action) {
 					var success_opt = true;
 					try {
@@ -959,7 +1054,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = win.down('form_asuransi').getForm();
 		if (form.isValid) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/saveasuransi',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/saveasuransi',
 				success: function(form, action) {
 					var success_opt = true;
 					try {
@@ -991,7 +1086,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = Ext.getCmp('window_sampai').down('form_sampai');
 		if (form.isValid) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/change_status',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/change_status',
 				success: function(form, action) {
 					var success_opt = true;
 					try {
@@ -1041,7 +1136,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		}
 		if (form.isValid) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/change_status',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/change_status',
 				params : {
 					TEXT : riwayat,
 				},
@@ -1074,7 +1169,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = Ext.getCmp('window_perpanjang').down('form_perpanjang');
 		if (form.isValid) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/saveperjanjian',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/saveperjanjian',
 
 				success: function(form, action) {
 					var success_opt = true;
@@ -1105,7 +1200,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = Ext.getCmp('window_purna').down('form_purna');
 		if (form.isValid) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/savepurna',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/savepurna',
 				params : {
 					TEXT : form.down('#riwayat').getRawValue(),
 				},
@@ -1141,7 +1236,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		form = Ext.getCmp('window_bnp2tki').down('form_bnp2tki');
 		if (form.isValid) {
 			form.submit({
-				url: 'http://localhost/koyoku/api/index.php/Tki/savebnp2tki',
+				url: 'http://localhost/project/rkbmd/api/index.php/Tki/savebnp2tki',
 				success: function(form, action) {
 					var success_opt = true;
 					try {
@@ -1191,7 +1286,7 @@ Ext.define('koyoku.view.tki.Controller', {
 			win = Ext.getCmp("win_verifikasi_pendaftar"),
 			form = win.down("form");
 		form.submit({
-			url: 'http://localhost/koyoku/api/index.php/Tki/change_status',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/change_status',
 			params:{
 				STATUS_ID:'1.1.'
 			},
@@ -1223,7 +1318,7 @@ Ext.define('koyoku.view.tki.Controller', {
 			win = Ext.getCmp("win_verifikasi_pendaftar"),
 			form = win.down("form");
 		form.submit({
-			url: 'http://localhost/koyoku/api/index.php/Tki/change_status',
+			url: 'http://localhost/project/rkbmd/api/index.php/Tki/change_status',
 			params:{
 				STATUS_ID:'2.'
 			},
@@ -1306,8 +1401,6 @@ Ext.define('koyoku.view.tki.Controller', {
     		store = grid.getStore();
 			store.proxy.extraParams.PURNA = cmp.down("grid_ptki").down("#combo_purna").getValue();
 			store.load();
-    },
-
-
+    }	
 
 });
