@@ -1,7 +1,7 @@
 Ext.define('koyoku.components.combo.Barang', {
     extend: 'Ext.form.ComboBox',
-    xtype: 'combo_agency',
-    fieldLabel: 'Barang',
+    xtype: 'combo_barang',
+    // fieldLabel: 'Barang',
     triggerAction:'all',
     typeAhead:true,
     mode:'remote',

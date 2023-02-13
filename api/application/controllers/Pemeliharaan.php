@@ -3,54 +3,38 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Kegiatan extends MY_Controller {
+class Pemeliharaan extends MY_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('M_kegiatan');
+		$this->load->model('M_pemeliharaan');
         
 	}
 	
-	function get()
+	function simpan()
 	{
 
 		$params = array(
-			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
-			'JABATAN_ID' => ifunsetempty($_POST,'JABATAN_ID',''),
-			'KEGIATAN_NAMA' => ifunsetempty($_POST,'KEGIATAN_NAMA',''),
-			'KEGIATAN_SLUG' => ifunsetempty($_GET,'slug',''),
-			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',$this->session->userdata('BIDANG_ID')),
+			'PEMELIHARAAN_ID' => ifunsetempty($_POST,'PEMELIHARAAN_ID',''),
+			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID', $this->session->userdata('BIDANG_ID')),
+			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
+			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),			
+			'SUB_KEGIATAN_ID' => ifunsetempty($_POST,'SUB_KEGIATAN_ID',''),
+			'DATA_BARANG' => json_decode(ifunsetempty($_POST,'DATA_BARANG','[]'), true)			
 		);
 
-        
-		if ($params["KEGIATAN_NAMA"]=="") {
-			unset($params["KEGIATAN_NAMA"]);
-		}
-
-		if ($params["BIDANG_ID"]=="") {
-			unset($params["BIDANG_ID"]);
-		}
-
-
-		if($params["JABATAN_ID"]==""){
-			unset($params["JABATAN_ID"]);
-		}	
-
-		if (!$params["KEGIATAN_SLUG"]){
-			unset($params["KEGIATAN_SLUG"]);
-		}
+		$params["TAHUN"] = date("Y");        
+		$params["BIDANG_ID"] = "12.";   
 		
-		$res = $this->M_kegiatan->get($params);
-		$out = array(
-					'items' => $res->result(),
-				);
+		$out = $this->M_pemeliharaan->save($params);
+		
 		echo json_encode($out);
 	}
 
 	function save(){
 		$params = array(
-			'KEGIATAN_NAMA' => ifunsetempty($_POST,'KEGIATAN_NAMA',''),
-			'KEGIATAN_SLUG' => slug(ifunsetempty($_POST,'KEGIATAN_NAMA','')),
-			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
+			'PEMELIHARAAN_NAMA' => ifunsetempty($_POST,'PEMELIHARAAN_NAMA',''),
+			'PEMELIHARAAN_SLUG' => slug(ifunsetempty($_POST,'PEMELIHARAAN_NAMA','')),
+			'PEMELIHARAAN_ID' => ifunsetempty($_POST,'PEMELIHARAAN_ID',''),
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',''),
 			'UPDATE' => ifunsetempty($_POST, 'UPDATE',''),
 		);
@@ -77,13 +61,13 @@ class Kegiatan extends MY_Controller {
 
 	function rsave(){
 		$params = array(
-			'KEGIATAN_NAMA' => ifunsetempty($_POST,'KEGIATAN_NAMA',''),
-			'KEGIATAN_SLUG' => slug(ifunsetempty($_POST,'KEGIATAN_NAMA','')),
-			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
+			'PEMELIHARAAN_NAMA' => ifunsetempty($_POST,'PEMELIHARAAN_NAMA',''),
+			'PEMELIHARAAN_SLUG' => slug(ifunsetempty($_POST,'PEMELIHARAAN_NAMA','')),
+			'PEMELIHARAAN_ID' => ifunsetempty($_POST,'PEMELIHARAAN_ID',''),
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',''),
 			'UPDATE' => ifunsetempty($_POST, 'UPDATE',''),
 		);
-		if($params['KEGIATAN_ID']==''){
+		if($params['PEMELIHARAAN_ID']==''){
 			$res = $this->M_kegiatan->add($params);
 			if($res){
 					$out = array(
@@ -109,7 +93,7 @@ class Kegiatan extends MY_Controller {
 
 	function del(){
 		$params = array(
-			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
+			'PEMELIHARAAN_ID' => ifunsetempty($_POST,'PEMELIHARAAN_ID',''),
 		);
 		$res = $this->M_kegiatan->del($params);
 		if($res){

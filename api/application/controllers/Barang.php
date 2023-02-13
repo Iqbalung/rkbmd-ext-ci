@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Barang extends MY_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('M_agency');
+		$this->load->model('M_master_barang');
 		
 	}
 	
@@ -27,7 +27,7 @@ class Barang extends MY_Controller {
 			unset($params["BARANG_ID"]);
 		}
 		
-		$res = $this->M_agency->get($params);
+		$res = $this->M_master_barang->get($params);
 		$out = array(
 					'items' => $res->result(),
 				);
@@ -44,7 +44,7 @@ class Barang extends MY_Controller {
 		);
 		
 		if($params['BARANG_ID']==""){ 
-			$res = $this->M_agency->add($params);
+			$res = $this->M_master_barang->add($params);
 				if($res){
 					$out = array(
 						'success' => true,
@@ -52,7 +52,7 @@ class Barang extends MY_Controller {
 					);
 				}	
 		}else{
-			$res = $this->M_agency->upd($params);
+			$res = $this->M_master_barang->upd($params);
 			if($res){
 					$out = array(
 						'success' => true,
@@ -67,7 +67,7 @@ class Barang extends MY_Controller {
 		$params = array(
 			'BARANG_ID' => ifunsetempty($_POST,'BARANG_ID',''),
 		);
-		$res = $this->M_agency->del($params);
+		$res = $this->M_master_barang->del($params);
 		if($res){
 					$out = array(
 						'success' => true,

@@ -16,8 +16,8 @@ Ext.define('koyoku.Application', {
     },
 
     api: {
-        siteurl: 'http://localhost/koyoku/api/index.php/index.php/',
-        baseurl: 'http://localhost/koyoku/api/'
+        siteurl: 'http://localhost/project/rkbmd/api/index.php/index.php/',
+        baseurl: 'http://localhost/project/rkbmd/api/'
     },
     akses : {
 
@@ -60,7 +60,7 @@ Ext.define('koyoku.Application', {
 
     chekIsLoginServer: function() {
         Ext.Ajax.request({
-            url: "http://localhost/koyoku/api/index.php/login/is_login",
+            url: "http://localhost/project/rkbmd/api/index.php/login/is_login",
             params: {},
             // async : false,
             success: function(form, action, value) {
@@ -101,6 +101,36 @@ Ext.define('koyoku.Application', {
                 return false;
             }
         });
+    },
 
+    ajaxRequest: function(url, params, callback) {
+        try {
+            Ext.Ajax.request({
+                url: koyoku.app.api.baseurl + "/" + url,
+                params: params,
+                // async : false,
+                success: function(form, action, value) {
+                    var success_opt = true;
+                    try {
+                        res = Ext.JSON.decode(form.responseText);
+                    } catch (err) {
+                        var success_opt = false;
+                        Ext.Msg.alert('Error', form.responseText);
+                    }
+                    if (success_opt) {
+                        if(callback) {
+                            callback(res);
+                        }
+                    }
+                },
+                failure: function(form) {
+                    Ext.Msg.alert('Error', form.responseText);
+                    return false;
+                }
+            });
+        } catch (error) {
+            Ext.Msg.alert('Error', error);
+            return false;
+        }
     }
 });
