@@ -2,28 +2,19 @@ Ext.define('koyoku.view.tki.Main', {
 	extend: 'Ext.panel.Panel',
 	xtype: 'page_tki',
 	requires: [
-		'koyoku.view.tki.Controller',		
-		'koyoku.view.tki.Grid_pendaftar_tki',
-		'koyoku.view.tki.Grid_ctki',
-		'koyoku.view.tki.Grid_tki',
-		'koyoku.view.tki.Grid_ptki',
-		'koyoku.view.master.bidang.Tree_bidang',
-		'koyoku.view.tki.Win_berangkat',
-		'koyoku.view.tki.Win_siskot',
-		'koyoku.components.combo.Jabatan',
-		'koyoku.components.combo.Kasus',
-		'koyoku.components.combo.Pindah',
-		'koyoku.components.combo.Kepulangan',
-		'koyoku.components.combo.Filter_purna',
+		'koyoku.view.tki.Controller',				
 
 		'koyoku.view.tki.pemeliharaan.Grid',
-		'koyoku.view.tki.pemeliharaan.Form'
+		'koyoku.view.tki.pemeliharaan.Form',
+
+		'koyoku.view.tki.pemanfaatan.Grid',
+		'koyoku.view.tki.pemanfaatan.Form',
 	],
 
 	controller: 'tki',
 
 	border: 1,
-	id: 'page_pemeliharaan',
+	id: 'page_renbut',
 	layout: 'border',
 	items: [{
 		xtype: 'tree_bidang',
@@ -34,8 +25,7 @@ Ext.define('koyoku.view.tki.Main', {
 		collapsible: true,
 		collapsed: true,
 		
-		listeners: {
-			afterrender: 'load_organisasi',
+		listeners: {			
 			select: 'select_filter_bidang'
 		}
 	}, {
@@ -46,10 +36,7 @@ Ext.define('koyoku.view.tki.Main', {
 			xtype: 'tabpanel',
 			items: [{
 				title: 'Pemeliharaan',
-				xtype: 'grid_pemeliharaan',
-				listeners: {
-					itemdblclick: 'detail_tki',
-				},
+				xtype: 'grid_pemeliharaan',				
 				tbar: [{
 						xtype: 'textfield',
 						emptyText: 'Cari ...',
@@ -69,69 +56,25 @@ Ext.define('koyoku.view.tki.Main', {
 					}
 				]
 			}, {
-				xtype: 'grid_tki',
-				title: 'Pemanfaatan',
-				listeners: {
-					itemdblclick: 'detail_tki_lamaran',
-				},
+				xtype: 'grid_pemanfaatan',
+				title: 'Pemanfaatan',				
 				tbar: [{
 						xtype: 'textfield',
-						emptyText: 'Cari',
+						emptyText: 'Cari ...',
 						itemId: 'text_cari',
 						listeners: {
-							specialkey: function(field, e) {
-								if (e.getKey() == e.ENTER) {
-									var cmp = Ext.getCmp("page_tki");
-									cmp.controller.load_aktif();
-								}
-							}
-						}
-					}, {
-						xtype: 'combo_jabatan',
-						itemId: 'combo_posisi',
-						forceSelection: false,
-						allowBlank: true,
-						queryMode: 'remote',
-						emptyText: 'Posisi',
-						fieldLabel: 'Posisi',
-						labelWidth: 80,
-						listeners: {
-							change: function() {
-								var cmp = Ext.getCmp("page_tki");
-								cmp.controller.load_aktif();
-							}
+							specialkey: 'load_pemanfaatan_keyword'
 						}
 					},
-					/*{
-						xtype: 'combo',
-						emptyText: 'Negara Tujuan'
-					}, */
-					/*{
-										xtype: 'combo',
-										emptyText: 'Status'
-									},*/
 					'->', {
-						text: 'Proses',
-						menu: [{
-							text: 'Konfirmasi Sampai Tujuan',
-							handler: 'show_konfirmasi'
-						}, {
-							text: 'Kasus',
-							handler: 'show_kasus'
-						}, {
-							text: 'Perpanjang',
-							handler: 'show_perpanjang'
-						}, {
-							text: 'Pindah',
-							handler: 'show_pindah'
-						}, {
-							text: 'Hilang',
-							handler: 'show_hilang'
-						}, {
-							text: 'Selesai',
-							handler: 'show_selesai'
-						}]
-					},
+						bind : { text : '{language.tambah}', },
+						glyph: 'xf067@fontAwesome',
+						handler: 'tambah_pemanfaatan'
+					}, {
+						bind : { text : '{language.ubah}', },
+						glyph: 'xf044@fontAwesome',
+						handler: 'ubah_pemanfaatan'
+					}
 				]
 			}, {
 				xtype: 'grid_ptki',
@@ -174,6 +117,8 @@ Ext.define('koyoku.view.tki.Main', {
 			}]
 		}, {
 			xtype: 'form_pemeliharaan'
+		}, {
+			xtype: 'form_pemanfaatan'
 		}]
 	}]
 });

@@ -12,7 +12,7 @@ Ext.define('koyoku.view.tki.pemeliharaan.Grid', {
 				autoLoad: true,
 				listeners: {
 					beforeload: function(store, operation, eOpts) {
-						var cmp = Ext.getCmp("page_pemeliharaan"),
+						var cmp = Ext.getCmp("page_renbut"),
 							data = cmp.controller.getViewModel().data;
 					}
 				}
