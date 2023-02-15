@@ -12,6 +12,9 @@ Ext.define('koyoku.view.tki.Main', {
 
 		'koyoku.view.tki.penghapusan.Grid',
 		'koyoku.view.tki.penghapusan.Form',
+
+		'koyoku.view.tki.pengadaan.Grid',
+		'koyoku.view.tki.pengadaan.Form',
 	],
 
 	controller: 'tki',
@@ -37,7 +40,30 @@ Ext.define('koyoku.view.tki.Main', {
 		region: 'center',
 		items: [{
 			xtype: 'tabpanel',
+			activeTab: 1, 
 			items: [{
+				title: 'Pengadaan',
+				hidden: true,
+				xtype: 'grid_pengadaan',				
+				tbar: [{
+						xtype: 'textfield',
+						emptyText: 'Cari ...',
+						itemId: 'text_cari',
+						listeners: {
+							specialkey: 'load_pengadaan_keyword'
+						}
+					},
+					'->', {
+						bind : { text : '{language.tambah}', },
+						glyph: 'xf067@fontAwesome',
+						handler: 'tambah_pengadaan'
+					}, {
+						bind : { text : '{language.ubah}', },
+						glyph: 'xf044@fontAwesome',
+						handler: 'ubah_pengadaan'
+					}
+				]
+			}, {
 				title: 'Pemeliharaan',
 				xtype: 'grid_pemeliharaan',				
 				tbar: [{
@@ -107,6 +133,8 @@ Ext.define('koyoku.view.tki.Main', {
 			xtype: 'form_pemanfaatan'
 		}, {
 			xtype: 'form_penghapusan'
+		}, {
+			xtype: 'form_pengadaan'
 		}]
 	}]
 });

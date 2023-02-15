@@ -25,13 +25,6 @@ Ext.define('koyoku.view.tki.pemeliharaan.Grid', {
 		xtype: 'rownumberer',
 		width: 60
 	}, {
-		text: 'No Reg11',
-		dataIndex: 'ID',
-		hidden: true,
-		flex: 1,
-		width: 300,
-		locked   : true,
-	}, {
 		text: 'PENGGUNA BARANG/ PROGRAM/KEGIATAN/ SUB KEGIATAN/ OUTPUT',
 		dataIndex: 'NAMA_KEGIATAN',
 		locked   : true,

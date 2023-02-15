@@ -21,6 +21,10 @@ Ext.define('koyoku.view.tki.Controller', {
 				layout.setActiveItem(3);
 				tree_bidang.hide();
 				break;		
+			case 'form_pengadaan':
+				layout.setActiveItem(4);
+				tree_bidang.hide();
+				break;		
 			default:
 				layout.setActiveItem(0);
 				tree_bidang.show();
@@ -36,6 +40,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		this.load_pemeliharaan();		
 		this.load_pemanfaatan();
 		this.load_penghapusan();
+		this.load_pengadaan();
 	},
 	
 	clear_form_pemeliharaan: function() {
@@ -504,6 +509,163 @@ Ext.define('koyoku.view.tki.Controller', {
 	load_penghapusan : function(){
 		var store = this.getView().down('grid_penghapusan').getStore();
 		var fcari = this.getView().down('grid_penghapusan').down('#text_cari');
+		var tree_bidang = this.getView().down('tree_bidang');
+		var rec = tree_bidang.getSelectionModel().getSelection();
+		if(rec.length>0){
+			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
+		}
+		store.proxy.extraParams.PENCARIAN = fcari.getValue();
+		store.load();
+	},
+
+	tambah_pengadaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_renbut"),			
+			tree_bidang = cmp.down("tree_bidang"),
+			form = cmp.down("form_pengadaan").down("form"),
+			data_bidang = tree_bidang.getSelectionModel().getSelection();
+		
+		if(data_bidang.length > 0)
+		{
+			var row_bidang = data_bidang[0].getData();
+			form.down("[name=BIDANG_ID]").setValue(row_bidang.BIDANG_ID);
+			form.down("[name=BIDANG_NAMA]").setValue(row_bidang.BIDANG_NAMA);	
+			me.show_page('form_pengadaan');
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu bidang terlebih dahulu");
+		}
+	},
+
+	ubah_pengadaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_renbut"),			
+			grid = cmp.down("grid_pengadaan"),
+			grid_form = cmp.down("#grid_form_pengadaan"),
+			form = cmp.down("form_pengadaan").down("form"),
+			data_selected = grid.getSelectionModel().getSelection();
+		
+		if(data_selected.length > 0)
+		{
+			var row = data_selected[0].getData();			
+			me.show_page('form_pengadaan');			
+			var params = {
+				ROWID: btoa(row.PENGADAAN_ID)
+			}
+			koyoku.app.ajaxRequest("pengadaan/get_detail", params, function(res) {				
+				if(res.success) {
+					if(res.items) {						
+						var data_form = res.items;						
+						form.getForm().setValues(res.items);
+						if (data_form.DATA_BARANG) {
+							data_form.DATA_BARANG.forEach(function(row_barang, idx) {
+								grid_form.getStore().insert(idx, row_barang);
+							})
+						}
+					}					
+				}
+			});
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu terlebih dahulu");
+		}
+	},
+
+	ubah_barang_pengadaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_renbut"),
+			grid = cmp.down("#grid_form_pengadaan"),
+			store = grid.getStore(),
+			row_editing = grid.getPlugin('rowediting'),
+			row_selection = grid.getSelectionModel().getSelection();
+		if (row_selection.length > 0) {			
+			var idx = store.indexOf(row_selection[0]);					
+			row_editing.cancelEdit();			
+			row_editing.startEdit(idx, 0);
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu data terlebih dahulu");
+		}
+	},
+
+	hapus_barang_pengadaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_renbut"),
+			grid = cmp.down("#grid_form_pengadaan"),
+			row_selection = grid.getSelectionModel().getSelection();
+		if (row_selection.length > 0) {			
+			Ext.Msg.confirm('Konfirmasi', 'Apakah anda yakin akan menghapus data ?', function(e) {
+                if (e == 'yes') {
+					grid.getStore().remove(row_selection);
+					grid.getView().refresh();
+				}
+			});
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu data terlebih dahulu");
+		}
+	},
+
+	tambah_barang_pengadaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_renbut"),
+			grid = cmp.down("#grid_form_pengadaan"),
+			rowEditing = grid.getPlugin('rowediting');
+		
+			rowEditing.cancelEdit(); // rowEditing is now defined... :)
+			let idx = grid.getStore().getData().length;
+			grid.getStore().insert(idx, {});
+			rowEditing.startEdit(idx, 0);
+	},
+
+	simpan_pengadaan: function() {
+		try {
+			var me = this,
+				cmp = Ext.getCmp("page_renbut"),
+				form = cmp.down("form_pengadaan").down("form"),
+				grid = cmp.down("#grid_form_pengadaan"),
+				store = grid.getStore();
+
+			let params = form.getValues(),
+				data_barang = [];
+
+			store.getData().items.forEach(function (row) {
+				data_barang.push(row.data);
+			})
+
+			params.DATA_BARANG = JSON.stringify(data_barang);
+			koyoku.app.ajaxRequest("pengadaan/save", params, function(res) {				
+				if(res.success) {
+					Ext.Msg.alert('Informasi', res.msg);
+					me.clear_form_pengadaan();
+					me.show_page('back');
+					me.load_pengadaan();
+				}
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	},
+
+	clear_form_pengadaan: function() {
+		var me = this,
+				cmp = Ext.getCmp("page_renbut"),
+				form = cmp.down("form_pengadaan").down("form"),
+				grid = cmp.down("#grid_form_pengadaan"),
+				store = grid.getStore();
+			
+			form.reset();
+			store.clearData();
+			store.reload();
+
+	},
+
+	load_pengadaan_keyword : function(field, e){
+		me=this;
+        if (e.getKey() == e.ENTER) {
+            me.load_pengadaan();
+        }
+    },
+
+	load_pengadaan : function(){
+		var store = this.getView().down('grid_pengadaan').getStore();
+		var fcari = this.getView().down('grid_pengadaan').down('#text_cari');
 		var tree_bidang = this.getView().down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
 		if(rec.length>0){
