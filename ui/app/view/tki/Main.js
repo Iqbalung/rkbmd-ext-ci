@@ -9,6 +9,9 @@ Ext.define('koyoku.view.tki.Main', {
 
 		'koyoku.view.tki.pemanfaatan.Grid',
 		'koyoku.view.tki.pemanfaatan.Form',
+
+		'koyoku.view.tki.penghapusan.Grid',
+		'koyoku.view.tki.penghapusan.Form',
 	],
 
 	controller: 'tki',
@@ -77,48 +80,33 @@ Ext.define('koyoku.view.tki.Main', {
 					}
 				]
 			}, {
-				xtype: 'grid_ptki',
-				listeners: {
-					itemdblclick: 'detail_tki_lamaran',
-				},
 				title: 'Penghapusan',
+				xtype: 'grid_penghapusan',				
 				tbar: [{
 						xtype: 'textfield',
-						emptyText: 'Cari',
+						emptyText: 'Cari ...',
 						itemId: 'text_cari',
 						listeners: {
-							specialkey: function(field, e) {
-								if (e.getKey() == e.ENTER) {
-									var cmp = Ext.getCmp("page_tki");
-									cmp.controller.load_purna();
-								}
-							}
+							specialkey: 'load_penghapusan_keyword'
 						}
-					},{
-						xtype: 'combo_filterpurna',
-						itemId: 'combo_purna',
-						forceSelection: false,
-						allowBlank: true,
-						queryMode: 'remote',
-						fieldLabel: 'Status Pulang',
-						labelWidth: 180,
-						listeners: {
-							select: 'select_statuspurna',
-						}	
 					},
 					'->', {
-						text: 'Proses',
-						menu: [{
-							text: 'Kepulangan',
-							handler: 'show_purna'
-						}]
-					},
-				],
+						bind : { text : '{language.tambah}', },
+						glyph: 'xf067@fontAwesome',
+						handler: 'tambah_penghapusan'
+					}, {
+						bind : { text : '{language.ubah}', },
+						glyph: 'xf044@fontAwesome',
+						handler: 'ubah_penghapusan'
+					}
+				]
 			}]
 		}, {
 			xtype: 'form_pemeliharaan'
 		}, {
 			xtype: 'form_pemanfaatan'
+		}, {
+			xtype: 'form_penghapusan'
 		}]
 	}]
 });

@@ -1,0 +1,19 @@
+Ext.define('koyoku.store.penghapusan.Daftar', {
+    extend: 'Ext.data.Store',
+    alias: 'store.store_penghapusan',
+    fields: [ 'PENGHAPUSAN_ID', 'NAMA_KEGIATAN', 'BARANG_PENGHAPUSAN_ID', 'BARANG_PENGHAPUSAN_ID', 'BARANG_KODE', 'BARANG_ID', 'BARANG_NAMA', 'KONDISI_BAIK', 'KONDISI_RUSAK_RINGAN', 'KONDISI_RUSAK_BERAT', 'STATUS_BARANG', 'STATUS_BARANG_ID',
+				'PENGHAPUSAN_NAMA', 'USULAN_JUMLAH', 'USULAN_SATUAN', 'RENCANA_JUMLAH', 'RENCANA_SATUAN', 'KETERANGAN'],
+    proxy: {
+        type: 'ajax',
+        actionMethods: {
+            read: 'POST',
+        },
+        autoLoad: false,
+        url: 'http://localhost/project/rkbmd/api/index.php/penghapusan/get',
+        reader: {
+            type: 'json',
+            rootProperty: 'items',
+            totalProperty: 'count'
+        }
+    }
+});
