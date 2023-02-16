@@ -86,6 +86,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		
 		if(data_selected.length > 0)
 		{
+			me.clear_form_pemeliharaan();
 			var row = data_selected[0].getData();			
 			me.show_page('form_pemeliharaan');			
 			var params = {
@@ -230,6 +231,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		
 		if(data_selected.length > 0)
 		{
+			me.clear_form_pemanfaatan();
 			var row = data_selected[0].getData();			
 			me.show_page('form_pemanfaatan');			
 			var params = {
@@ -402,6 +404,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		
 		if(data_selected.length > 0)
 		{
+			me.clear_form_penghapusan();
 			var row = data_selected[0].getData();			
 			me.show_page('form_penghapusan');			
 			var params = {
@@ -546,6 +549,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		
 		if(data_selected.length > 0)
 		{
+			me.clear_form_pengadaan();
 			var row = data_selected[0].getData();			
 			me.show_page('form_pengadaan');			
 			var params = {

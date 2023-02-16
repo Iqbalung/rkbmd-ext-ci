@@ -1,7 +1,7 @@
 Ext.define('koyoku.store.pengadaan.Daftar', {
     extend: 'Ext.data.Store',
     alias: 'store.store_pengadaan',
-    fields: [ 'PENGADAAN_ID', 'NAMA_KEGIATAN', 'BARANG_PENGADAAN_ID', 'BARANG_KODE', 'BARANG_ID', 'BARANG_NAMA',
+    fields: [ 'PENGADAAN_ID', 'NAMA_KEGIATAN', 'SUB_KEGIATAN_NAMA', 'BARANG_PENGADAAN_ID', 'BARANG_KODE', 'BARANG_ID', 'BARANG_NAMA',
 				'JUMLAH', 'SATUAN', 'CARA_PEMENUHAN', 'KETERANGAN'],
     proxy: {
         type: 'ajax',

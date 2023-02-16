@@ -42,8 +42,7 @@ Ext.define('koyoku.view.tki.Main', {
 			xtype: 'tabpanel',
 			activeTab: 1, 
 			items: [{
-				title: 'Pengadaan',
-				hidden: true,
+				title: 'Pengadaan',				
 				xtype: 'grid_pengadaan',				
 				tbar: [{
 						xtype: 'textfield',

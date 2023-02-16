@@ -10,7 +10,8 @@ Ext.define('koyoku.view.tki.pengadaan.Grid', {
 
 		Ext.apply(me, {			
 			store: Ext.create('koyoku.store.pengadaan.Daftar', {
-				storeId: 'store_pengadaan',				
+				storeId: 'store_pengadaan',			
+				groupField: 'SUB_KEGIATAN_NAMA',	
 				autoLoad: true,
 				listeners: {
 					beforeload: function(store, operation, eOpts) {
@@ -18,7 +19,8 @@ Ext.define('koyoku.view.tki.pengadaan.Grid', {
 							data = cmp.controller.getViewModel().data;
 					}
 				}
-			})			
+			}),
+			features: [{ftype:'grouping', groupHeaderTpl: '{name}',}],		
 		});
 		me.callParent([arguments]);
 	},
@@ -28,8 +30,8 @@ Ext.define('koyoku.view.tki.pengadaan.Grid', {
 		width: 60
 	}, {
 		text: 'PENGGUNA BARANG/ PROGRAM/KEGIATAN/ SUB KEGIATAN/ OUTPUT',
-		dataIndex: 'NAMA_KEGIATAN',
-		locked   : true,
+		dataIndex: 'NAMA_KEGIATAN',		
+		hidden: true,
 		width: 500,
 	}, {
 		text: 'KODE',

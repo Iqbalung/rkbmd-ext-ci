@@ -11,7 +11,7 @@ Ext.define('koyoku.view.tki.pemanfaatan.Grid', {
 		Ext.apply(me, {			
 			store: Ext.create('koyoku.store.pemanfaatan.Daftar', {
 				storeId: 'store_pemanfaatan',
-				groupField: 'BIDANG_NAMA',
+				groupField: 'SUB_KEGIATAN_NAMA',
 				autoLoad: true,
 				listeners: {
 					beforeload: function(store, operation, eOpts) {
