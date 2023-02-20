@@ -75,6 +75,7 @@ class M_pengadaan extends CI_Model{
 				"TAHUN" => $params["TAHUN"],
 				"KEGIATAN_ID" => $params["KEGIATAN_ID"],
 				"SUB_KEGIATAN_ID" => $params["SUB_KEGIATAN_ID"],
+				"STATUS" => $params["STATUS"],
 			);
 
 			$idParent = $paramsPengadaan["PENGADAAN_ID"];
@@ -123,13 +124,18 @@ class M_pengadaan extends CI_Model{
 				$this->db->where("PENGADAAN_ID", $paramsBarang["PENGADAAN_ID"]);
 				$res_delete = $this->db->delete("pengadaan_barang");				
 				
-			}
+			}			
 
 			$out = array(
 				'success' => true,
-				'msg' => 'Berhasil Disimpan',
+				'msg' => 'Draft Berhasil Disimpan',
 				"error" => null
 			);
+
+			if ($paramsPengadaan["STATUS"] == 1) {
+				$out["msg"] = "Berhasil Diajukan";
+			}
+
 		} catch (\Throwable $e) {			
 			$out = array(
 				'success' => false,

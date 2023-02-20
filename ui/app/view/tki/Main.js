@@ -117,7 +117,7 @@ Ext.define('koyoku.view.tki.Main', {
 					},
 					'->', {
 						bind : { text : '{language.tambah}', },
-						glyph: 'xf067@fontAwesome',
+						glyph: 'xf067@fontAwesome',						
 						handler: 'tambah_penghapusan'
 					}, {
 						bind : { text : '{language.ubah}', },

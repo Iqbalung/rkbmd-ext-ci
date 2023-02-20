@@ -13,7 +13,7 @@ Ext.define('koyoku.view.tki.pemeliharaan.Form', {
         titlePosition: 1,
         items: [{            
             xtype:'label',
-            text: 'Tambah Rencana Kebutuhan Pemeliharaan',
+            text: 'Tambah Pemeliharaan Barang',
             cls: 'lefty'
         }, {
             xtype: 'button',
@@ -23,10 +23,16 @@ Ext.define('koyoku.view.tki.pemeliharaan.Form', {
     },
     bbar:[{
         xtype: 'button',
-        text: 'Simpan',
+        text: 'Simpan Draft',
         height: 40,
         width: 100,
-        handler: 'simpan_pemeliharaan'
+        handler: 'simpan_draft_pemeliharaan'
+    },{
+        xtype: 'button',
+        text: 'Ajukan',
+        height: 40,
+        width: 100,
+        handler: 'simpan_ajukan_pemeliharaan'
     }, {
         xtype: 'button',
         text: 'Batal',

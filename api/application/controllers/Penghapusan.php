@@ -35,10 +35,13 @@ class Penghapusan extends MY_Controller {
 			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),			
 			'SUB_KEGIATAN_ID' => ifunsetempty($_POST,'SUB_KEGIATAN_ID',''),
+			'STATUS' => (int) ifunsetempty($_POST,'STATUS', 0),
 			'DATA_BARANG' => json_decode(ifunsetempty($_POST,'DATA_BARANG','[]'), true)			
 		);
 
-		$params["TAHUN"] = date("Y");        		
+		if (empty($params["TAHUN"])) {			
+			$params["TAHUN"] = date("Y");        		
+		}      		
 		
 		$out = $this->M_penghapusan->save($params);
 		

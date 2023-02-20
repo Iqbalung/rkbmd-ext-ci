@@ -23,10 +23,16 @@ Ext.define('koyoku.view.tki.penghapusan.Form', {
     },
     bbar:[{
         xtype: 'button',
-        text: 'Simpan',
+        text: 'Simpan Draft',
         height: 40,
         width: 100,
-        handler: 'simpan_penghapusan'
+        handler: 'simpan_draft_penghapusan'
+    },{
+        xtype: 'button',
+        text: 'Ajukan',
+        height: 40,
+        width: 100,
+        handler: 'simpan_ajukan_penghapusan'
     }, {
         xtype: 'button',
         text: 'Batal',

@@ -155,7 +155,17 @@ Ext.define('koyoku.view.tki.Controller', {
 			rowEditing.startEdit(idx, 0);
 	},
 
-	simpan_pemeliharaan: function() {
+	simpan_draft_pemeliharaan: function() {
+		var me = this;	
+		me.simpan_pemeliharaan(0);
+	},
+
+	simpan_ajukan_pemeliharaan: function() {
+		var me = this;	
+		me.simpan_pemeliharaan(1);
+	},
+
+	simpan_pemeliharaan: function(status) {
 		try {
 			var me = this,
 				cmp = Ext.getCmp("page_renbut"),
@@ -170,6 +180,7 @@ Ext.define('koyoku.view.tki.Controller', {
 				data_barang.push(row.data);
 			})
 
+			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
 			koyoku.app.ajaxRequest("pemeliharaan/save", params, function(res) {				
 				if(res.success) {
@@ -299,8 +310,18 @@ Ext.define('koyoku.view.tki.Controller', {
 			grid.getStore().insert(idx, {});
 			rowEditing.startEdit(idx, 0);
 	},
+	
+	simpan_draft_pemanfaatan: function() {
+		var me = this;	
+		me.simpan_pemanfaatan(0);
+	},
 
-	simpan_pemanfaatan: function() {
+	simpan_ajukan_pemanfaatan: function() {
+		var me = this;	
+		me.simpan_pemanfaatan(1);
+	},
+
+	simpan_pemanfaatan: function(status) {
 		try {
 			var me = this,
 				cmp = Ext.getCmp("page_renbut"),
@@ -315,6 +336,7 @@ Ext.define('koyoku.view.tki.Controller', {
 				data_barang.push(row.data);
 			})
 
+			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
 			koyoku.app.ajaxRequest("pemanfaatan/save", params, function(res) {				
 				if(res.success) {
@@ -473,7 +495,17 @@ Ext.define('koyoku.view.tki.Controller', {
 			rowEditing.startEdit(idx, 0);
 	},
 
-	simpan_penghapusan: function() {
+	simpan_draft_penghapusan: function() {
+		var me = this;	
+		me.simpan_penghapusan(0);
+	},
+
+	simpan_ajukan_penghapusan: function() {
+		var me = this;	
+		me.simpan_penghapusan(1);
+	},
+
+	simpan_penghapusan: function(status) {
 		try {
 			var me = this,
 				cmp = Ext.getCmp("page_renbut"),
@@ -488,6 +520,7 @@ Ext.define('koyoku.view.tki.Controller', {
 				data_barang.push(row.data);
 			})
 
+			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
 			koyoku.app.ajaxRequest("penghapusan/save", params, function(res) {				
 				if(res.success) {
@@ -617,8 +650,18 @@ Ext.define('koyoku.view.tki.Controller', {
 			grid.getStore().insert(idx, {});
 			rowEditing.startEdit(idx, 0);
 	},
+	
+	simpan_draft_pengadaan: function() {
+		var me = this;	
+		me.simpan_pengadaan(0);
+	},
 
-	simpan_pengadaan: function() {
+	simpan_ajukan_pengadaan: function() {
+		var me = this;	
+		me.simpan_pengadaan(1);
+	},
+
+	simpan_pengadaan: function(status) {
 		try {
 			var me = this,
 				cmp = Ext.getCmp("page_renbut"),
@@ -633,6 +676,7 @@ Ext.define('koyoku.view.tki.Controller', {
 				data_barang.push(row.data);
 			})
 
+			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
 			koyoku.app.ajaxRequest("pengadaan/save", params, function(res) {				
 				if(res.success) {

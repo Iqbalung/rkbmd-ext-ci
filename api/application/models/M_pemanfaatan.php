@@ -69,23 +69,24 @@ class M_pemanfaatan extends CI_Model{
 	function save($params = array())
 	{
 		try {
-			$paramsPemeliharaan = array(
+			$paramsPemanfaatan = array(
 				"PEMANFAATAN_ID" => $params["PEMANFAATAN_ID"],
 				"BIDANG_ID" => $params["BIDANG_ID"],
 				"TAHUN" => $params["TAHUN"],
 				"KEGIATAN_ID" => $params["KEGIATAN_ID"],
 				"SUB_KEGIATAN_ID" => $params["SUB_KEGIATAN_ID"],
+				"STATUS" => $params["STATUS"],
 			);
 
-			$idParent = $paramsPemeliharaan["PEMANFAATAN_ID"];
-			if (!empty($paramsPemeliharaan["PEMANFAATAN_ID"])) {
-				$paramsPemeliharaan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
-				$this->db->where("PEMANFAATAN_ID", $paramsPemeliharaan["PEMANFAATAN_ID"]);
-				$res = $this->db->update("pemanfaatan", $paramsPemeliharaan);
+			$idParent = $paramsPemanfaatan["PEMANFAATAN_ID"];
+			if (!empty($paramsPemanfaatan["PEMANFAATAN_ID"])) {
+				$paramsPemanfaatan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
+				$this->db->where("PEMANFAATAN_ID", $paramsPemanfaatan["PEMANFAATAN_ID"]);
+				$res = $this->db->update("pemanfaatan", $paramsPemanfaatan);
 			} else {
-				$paramsPemeliharaan["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
-				unset($paramsPemeliharaan["PEMANFAATAN_ID"]);
-				$res = $this->db->insert("pemanfaatan", $paramsPemeliharaan);
+				$paramsPemanfaatan["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
+				unset($paramsPemanfaatan["PEMANFAATAN_ID"]);
+				$res = $this->db->insert("pemanfaatan", $paramsPemanfaatan);
 				$idParent = $this->db->insert_id();
 			}			
 			$barangPemanfaatanAktif = array();
@@ -104,7 +105,7 @@ class M_pemanfaatan extends CI_Model{
 							"SATUAN" => ifunsetempty($value, "SATUAN", ""),
 							"RENCANA_PEMANFAATAN" => ifunsetempty($value, "RENCANA_PEMANFAATAN", ""),							
 							"KETERANGAN" => ifunsetempty($value, "KETERANGAN", ""),
-							"TAHUN" => ifunsetempty($paramsPemeliharaan, "TAHUN", ""),
+							"TAHUN" => ifunsetempty($paramsPemanfaatan, "TAHUN", ""),
 						);
 						if (!empty($paramsBarang["BARANG_PEMANFAATAN_ID"])) {
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");
@@ -128,9 +129,14 @@ class M_pemanfaatan extends CI_Model{
 
 			$out = array(
 				'success' => true,
-				'msg' => 'Berhasil Disimpan',
+				'msg' => 'Draft Berhasil Disimpan',
 				"error" => null
 			);
+
+			if ($paramsPemanfaatan["STATUS"] == 1) {
+				$out["msg"] = "Berhasil Diajukan";
+			}
+
 		} catch (\Throwable $e) {			
 			$out = array(
 				'success' => false,

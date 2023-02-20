@@ -73,6 +73,7 @@ class M_pemeliharaan extends CI_Model{
 				"TAHUN" => $params["TAHUN"],
 				"KEGIATAN_ID" => $params["KEGIATAN_ID"],
 				"SUB_KEGIATAN_ID" => $params["SUB_KEGIATAN_ID"],
+				"STATUS" => $params["STATUS"],
 			);
 
 			$idParent = $paramsPemeliharaan["PEMELIHARAAN_ID"];
@@ -132,9 +133,15 @@ class M_pemeliharaan extends CI_Model{
 
 			$out = array(
 				'success' => true,
-				'msg' => 'Berhasil Disimpan',
+				'msg' => 'Draft Berhasil Disimpan',
 				"error" => null
 			);
+
+			if ($paramsPemeliharaan["STATUS"] == 1) {
+				$out["msg"] = "Berhasil Diajukan";
+			}
+
+			
 		} catch (\Throwable $e) {			
 			$out = array(
 				'success' => false,

@@ -69,23 +69,24 @@ class M_penghapusan extends CI_Model{
 	function save($params = array())
 	{
 		try {
-			$paramsPemeliharaan = array(
+			$paramsPenghapusan = array(
 				"PENGHAPUSAN_ID" => $params["PENGHAPUSAN_ID"],
 				"BIDANG_ID" => $params["BIDANG_ID"],
 				"TAHUN" => $params["TAHUN"],
 				"KEGIATAN_ID" => $params["KEGIATAN_ID"],
 				"SUB_KEGIATAN_ID" => $params["SUB_KEGIATAN_ID"],
+				"STATUS" => $params["STATUS"],
 			);
 
-			$idParent = $paramsPemeliharaan["PENGHAPUSAN_ID"];
-			if (!empty($paramsPemeliharaan["PENGHAPUSAN_ID"])) {
-				$paramsPemeliharaan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
-				$this->db->where("PENGHAPUSAN_ID", $paramsPemeliharaan["PENGHAPUSAN_ID"]);
-				$res = $this->db->update("penghapusan", $paramsPemeliharaan);
+			$idParent = $paramsPenghapusan["PENGHAPUSAN_ID"];
+			if (!empty($paramsPenghapusan["PENGHAPUSAN_ID"])) {
+				$paramsPenghapusan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
+				$this->db->where("PENGHAPUSAN_ID", $paramsPenghapusan["PENGHAPUSAN_ID"]);
+				$res = $this->db->update("penghapusan", $paramsPenghapusan);
 			} else {
-				$paramsPemeliharaan["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
-				unset($paramsPemeliharaan["PENGHAPUSAN_ID"]);
-				$res = $this->db->insert("penghapusan", $paramsPemeliharaan);
+				$paramsPenghapusan["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
+				unset($paramsPenghapusan["PENGHAPUSAN_ID"]);
+				$res = $this->db->insert("penghapusan", $paramsPenghapusan);
 				$idParent = $this->db->insert_id();
 			}			
 			$barangPemeleiharaanAktif = array();
@@ -109,7 +110,7 @@ class M_penghapusan extends CI_Model{
 							"RENCANA_PEMINDAHTANGANAN" => ifunsetempty($value, "RENCANA_PEMINDAHTANGANAN", ""),
 							"RENCANA_PENGHAPUSAN" => ifunsetempty($value, "RENCANA_PENGHAPUSAN", ""),							
 							"KETERANGAN" => ifunsetempty($value, "KETERANGAN", ""),
-							"TAHUN" => ifunsetempty($paramsPemeliharaan, "TAHUN", ""),
+							"TAHUN" => ifunsetempty($paramsPenghapusan, "TAHUN", ""),
 						);
 						if (!empty($paramsBarang["BARANG_PENGHAPUSAN_ID"])) {
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");
@@ -133,9 +134,14 @@ class M_penghapusan extends CI_Model{
 
 			$out = array(
 				'success' => true,
-				'msg' => 'Berhasil Disimpan',
+				'msg' => 'Draft Berhasil Disimpan',
 				"error" => null
 			);
+
+			if ($paramsPenghapusan["STATUS"] == 1) {
+				$out["msg"] = "Berhasil Diajukan";
+			}
+
 		} catch (\Throwable $e) {			
 			$out = array(
 				'success' => false,
