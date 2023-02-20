@@ -202,15 +202,22 @@ Ext.define('koyoku.view.tki.Controller', {
         }
     },
 
+	load_pemeliharaan_status: function() {
+		var me = this;	
+		me.load_pemeliharaan();
+	},
+
 	load_pemeliharaan : function(){
 		var store = this.getView().down('grid_pemeliharaan').getStore();
 		var fcari = this.getView().down('grid_pemeliharaan').down('#text_cari');
+		var cboStatus = this.getView().down('grid_pemeliharaan').down('#combo_status');
 		var tree_bidang = this.getView().down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
 		if(rec.length>0){
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		store.proxy.extraParams.PENCARIAN = fcari.getValue();
+		store.proxy.extraParams.STATUS = cboStatus.getValue();
 		store.load();
 	},
 
@@ -371,15 +378,22 @@ Ext.define('koyoku.view.tki.Controller', {
         }
     },
 
+	load_pemanfaatan_status: function() {
+		var me = this;	
+		me.load_pemanfaatan();
+	},
+
 	load_pemanfaatan : function(){
 		var store = this.getView().down('grid_pemanfaatan').getStore();
 		var fcari = this.getView().down('grid_pemanfaatan').down('#text_cari');
+		var cboStatus = this.getView().down('grid_pemanfaatan').down('#combo_status');
 		var tree_bidang = this.getView().down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
 		if(rec.length>0){
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		store.proxy.extraParams.PENCARIAN = fcari.getValue();
+		store.proxy.extraParams.STATUS = cboStatus.getValue();
 		store.load();
 	},
 
@@ -542,15 +556,22 @@ Ext.define('koyoku.view.tki.Controller', {
         }
     },
 
+	load_penghapusan_status: function() {
+		var me = this;	
+		me.load_penghapusan();
+	},
+
 	load_penghapusan : function(){
 		var store = this.getView().down('grid_penghapusan').getStore();
 		var fcari = this.getView().down('grid_penghapusan').down('#text_cari');
+		var cboStatus = this.getView().down('grid_penghapusan').down('#combo_status');
 		var tree_bidang = this.getView().down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
 		if(rec.length>0){
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		store.proxy.extraParams.PENCARIAN = fcari.getValue();
+		store.proxy.extraParams.STATUS = cboStatus.getValue();
 		store.load();
 	},
 
@@ -705,21 +726,28 @@ Ext.define('koyoku.view.tki.Controller', {
 	},
 
 	load_pengadaan_keyword : function(field, e){
-		me=this;
+		var me=this;
         if (e.getKey() == e.ENTER) {
             me.load_pengadaan();
         }
     },
 
+	load_pengadaan_status: function() {
+		var me = this;	
+		me.load_pengadaan();
+	},
+
 	load_pengadaan : function(){
 		var store = this.getView().down('grid_pengadaan').getStore();
 		var fcari = this.getView().down('grid_pengadaan').down('#text_cari');
+		var cboStatus = this.getView().down('grid_pengadaan').down('#combo_status');
 		var tree_bidang = this.getView().down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
 		if(rec.length>0){
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		store.proxy.extraParams.PENCARIAN = fcari.getValue();
+		store.proxy.extraParams.STATUS = cboStatus.getValue();
 		store.load();
 	},
 	

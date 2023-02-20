@@ -17,7 +17,8 @@ class Penghapusan extends MY_Controller {
 			'PENGHAPUSAN_ID' => ifunsetempty($_POST,'PENGHAPUSAN_ID',''),
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID', $this->session->userdata('BIDANG_ID')),
 			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
-			'PENCARIAN' => ifunsetempty($_POST,'PENCARIAN',''),						
+			'PENCARIAN' => ifunsetempty($_POST,'PENCARIAN',''),	
+			'STATUS' => ifunset($_POST,'STATUS', '-1'),								
 		);
 		
 		

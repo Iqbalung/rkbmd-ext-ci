@@ -77,5 +77,9 @@ Ext.define('koyoku.view.tki.penghapusan.Grid', {
 		text: 'Keterangan',
 		dataIndex: 'KETERANGAN',
 		width: 150		
+	}, {
+		text: 'Status',
+		dataIndex: 'STATUS_DATA',
+		width: 100
 	}]	
 });

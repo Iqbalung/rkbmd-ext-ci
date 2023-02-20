@@ -22,7 +22,14 @@ class M_pemeliharaan extends CI_Model{
 				p.BIDANG_ID,
 				p.KEGIATAN_ID,
 				p.SUB_KEGIATAN_ID,
-				pb.*				
+				pb.*,
+				CASE WHEN p.STATUS = 2 THEN
+					'Disetujui'
+				WHEN p.STATUS = 1 THEN						
+					'Diajukan'
+				ELSE
+					'Draft'
+				END as STATUS_DATA
 			", false);
 			$this->db->join("pemeliharaan_barang pb","pb.PEMELIHARAAN_ID = p.PEMELIHARAAN_ID", "RIGHT");
 			$this->db->join("master_kegiatan k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
@@ -30,6 +37,10 @@ class M_pemeliharaan extends CI_Model{
 
 			if (isset($params["BIDANG_ID"]) && !empty($params["BIDANG_ID"])) {
 				$this->db->where("p.BIDANG_ID LIKE", $params["BIDANG_ID"]."%");
+			}
+
+			if (isset($params["STATUS"]) && $params["STATUS"] != -1) {
+				$this->db->where("p.STATUS", $params["STATUS"]);
 			}
 
 			if (isset($params["PENCARIAN"]) && !empty($params["PENCARIAN"])) {

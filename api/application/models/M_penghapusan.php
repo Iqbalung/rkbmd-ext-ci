@@ -23,7 +23,14 @@ class M_penghapusan extends CI_Model{
 				p.KEGIATAN_ID,
 				p.SUB_KEGIATAN_ID,
 				b.BIDANG_NAMA,
-				pb.*				
+				pb.*,
+				CASE WHEN p.STATUS = 2 THEN
+					'Disetujui'
+				WHEN p.STATUS = 1 THEN						
+					'Diajukan'
+				ELSE
+					'Draft'
+				END as STATUS_DATA				
 			", false);
 			$this->db->join("penghapusan_barang pb","pb.PENGHAPUSAN_ID = p.PENGHAPUSAN_ID", "RIGHT");
 			$this->db->join("master_kegiatan k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
@@ -32,6 +39,10 @@ class M_penghapusan extends CI_Model{
 
 			if (isset($params["BIDANG_ID"]) && !empty($params["BIDANG_ID"])) {
 				$this->db->where("p.BIDANG_ID LIKE", $params["BIDANG_ID"]."%");
+			}
+
+			if (isset($params["STATUS"]) && $params["STATUS"] != -1) {
+				$this->db->where("p.STATUS", $params["STATUS"]);
 			}
 
 			if (isset($params["PENCARIAN"]) && !empty($params["PENCARIAN"])) {

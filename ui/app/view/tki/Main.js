@@ -15,6 +15,8 @@ Ext.define('koyoku.view.tki.Main', {
 
 		'koyoku.view.tki.pengadaan.Grid',
 		'koyoku.view.tki.pengadaan.Form',
+
+		'koyoku.components.combo.StatusData'
 	],
 
 	controller: 'tki',
@@ -39,8 +41,7 @@ Ext.define('koyoku.view.tki.Main', {
 		id: 'panel_pemeliharaan',
 		region: 'center',
 		items: [{
-			xtype: 'tabpanel',
-			activeTab: 1, 
+			xtype: 'tabpanel',			
 			items: [{
 				title: 'Pengadaan',				
 				xtype: 'grid_pengadaan',				
@@ -50,6 +51,12 @@ Ext.define('koyoku.view.tki.Main', {
 						itemId: 'text_cari',
 						listeners: {
 							specialkey: 'load_pengadaan_keyword'
+						}
+					}, {
+						xtype: 'combo_status_data',
+						itemId: 'combo_status',
+						listeners: {
+							change: 'load_pengadaan_status'
 						}
 					},
 					'->', {
@@ -72,6 +79,12 @@ Ext.define('koyoku.view.tki.Main', {
 						listeners: {
 							specialkey: 'load_pemeliharaan_keyword'
 						}
+					}, {
+						xtype: 'combo_status_data',
+						itemId: 'combo_status',
+						listeners: {
+							change: 'load_pemeliharaan_status'
+						}
 					},
 					'->', {
 						bind : { text : '{language.tambah}', },
@@ -93,6 +106,12 @@ Ext.define('koyoku.view.tki.Main', {
 						listeners: {
 							specialkey: 'load_pemanfaatan_keyword'
 						}
+					}, {
+						xtype: 'combo_status_data',
+						itemId: 'combo_status',
+						listeners: {
+							change: 'load_pemanfaatan_status'
+						}
 					},
 					'->', {
 						bind : { text : '{language.tambah}', },
@@ -113,6 +132,12 @@ Ext.define('koyoku.view.tki.Main', {
 						itemId: 'text_cari',
 						listeners: {
 							specialkey: 'load_penghapusan_keyword'
+						}
+					}, {
+						xtype: 'combo_status_data',
+						itemId: 'combo_status',
+						listeners: {
+							change: 'load_penghapusan_status'
 						}
 					},
 					'->', {

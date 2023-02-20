@@ -56,5 +56,9 @@ Ext.define('koyoku.view.tki.pengadaan.Grid', {
 		text: 'CARA PEMENUHAN',
 		dataIndex: 'CARA_PEMENUHAN',
 		width: 220		
+	}, {
+		text: 'Status',
+		dataIndex: 'STATUS_DATA',
+		width: 100
 	}]
 });

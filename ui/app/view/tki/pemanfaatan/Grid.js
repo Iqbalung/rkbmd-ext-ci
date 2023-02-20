@@ -45,5 +45,9 @@ Ext.define('koyoku.view.tki.pemanfaatan.Grid', {
 		text: 'Keterangan',
 		dataIndex: 'KETERANGAN',
 		flex: 1
-	}]
+	}, {
+		text: 'Status',
+		dataIndex: 'STATUS_DATA',
+		width: 100
+	}]	
 });
