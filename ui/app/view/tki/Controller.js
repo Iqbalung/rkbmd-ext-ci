@@ -217,7 +217,9 @@ Ext.define('koyoku.view.tki.Controller', {
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		store.proxy.extraParams.PENCARIAN = fcari.getValue();
-		store.proxy.extraParams.STATUS = cboStatus.getValue();
+		if (cboStatus.getValue()) {
+			store.proxy.extraParams.STATUS = cboStatus.getValue();
+		}
 		store.load();
 	},
 
@@ -393,7 +395,9 @@ Ext.define('koyoku.view.tki.Controller', {
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		store.proxy.extraParams.PENCARIAN = fcari.getValue();
-		store.proxy.extraParams.STATUS = cboStatus.getValue();
+		if (cboStatus.getValue()) {
+			store.proxy.extraParams.STATUS = cboStatus.getValue();
+		}
 		store.load();
 	},
 
@@ -570,8 +574,10 @@ Ext.define('koyoku.view.tki.Controller', {
 		if(rec.length>0){
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
-		store.proxy.extraParams.PENCARIAN = fcari.getValue();
-		store.proxy.extraParams.STATUS = cboStatus.getValue();
+		store.proxy.extraParams.PENCARIAN = fcari.getValue();		
+		if (cboStatus.getValue()) {			
+			store.proxy.extraParams.STATUS = cboStatus.getValue();
+		}
 		store.load();
 	},
 
@@ -747,7 +753,9 @@ Ext.define('koyoku.view.tki.Controller', {
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		store.proxy.extraParams.PENCARIAN = fcari.getValue();
-		store.proxy.extraParams.STATUS = cboStatus.getValue();
+		if (cboStatus.getValue()) {
+			store.proxy.extraParams.STATUS = cboStatus.getValue();
+		}
 		store.load();
 	},
 	
