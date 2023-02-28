@@ -70,11 +70,11 @@ class Penghapusan extends MY_Controller {
 			$objPHPExcel = $objReader->load($template);	
 
 			$params = array(
-				'PENGADAAN_ID' => ifunsetempty($_POST,'PENGADAAN_ID',''),
-				'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID', $this->session->userdata('BIDANG_ID')),
-				'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
-				'PENCARIAN' => ifunsetempty($_POST,'PENCARIAN',''),		
-				'STATUS' => ifunset($_POST,'STATUS', '-1'),							
+				'PENGADAAN_ID' => ifunsetempty($_GET,'PENGADAAN_ID',''),
+				'BIDANG_ID' => ifunsetempty($_GET,'BIDANG_ID', $this->session->userdata('BIDANG_ID')),
+				'TAHUN' => ifunsetempty($_GET,'TAHUN', $this->session->userdata('TAHUN')),
+				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
+				'STATUS' => ifunset($_GET,'STATUS', '-1'),							
 			);
 
 			$tahun = $params["TAHUN"];

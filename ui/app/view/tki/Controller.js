@@ -758,5 +758,113 @@ Ext.define('koyoku.view.tki.Controller', {
 		}
 		store.load();
 	},
+
+	get_params_pengadaan: function() {
+		var params = {
+			PENCARIAN: ""
+		};
+
+		var fcari = this.getView().down('grid_pengadaan').down('#text_cari');
+		var cboStatus = this.getView().down('grid_pengadaan').down('#combo_status');
+		var tree_bidang = this.getView().down('tree_bidang');
+		var rec = tree_bidang.getSelectionModel().getSelection();
+		if(rec.length>0){
+			params.BIDANG_ID = rec[0].data.BIDANG_ID;			
+		}
+		params.PENCARIAN = fcari.getValue();
+		if (cboStatus.getValue()) {
+			params.STATUS = cboStatus.getValue();
+		}
+
+		return params;
+	},
+
+	cetak_pengadaan: function() {
+		var me = this,
+			params = me.get_params_pengadaan();			
+		 var params_uri = new URLSearchParams(params).toString();		
+		window.open(koyoku.app.api.siteurl + "/pengadaan/cetak_daftar?" + params_uri, "_blank");
+	},
+
+	get_params_pemeliharaan: function() {
+		var params = {
+			PENCARIAN: ""
+		};
+
+		var fcari = this.getView().down('grid_pemeliharaan').down('#text_cari');
+		var cboStatus = this.getView().down('grid_pemeliharaan').down('#combo_status');
+		var tree_bidang = this.getView().down('tree_bidang');
+		var rec = tree_bidang.getSelectionModel().getSelection();
+		if(rec.length>0){
+			params.BIDANG_ID = rec[0].data.BIDANG_ID;			
+		}
+		params.PENCARIAN = fcari.getValue();
+		if (cboStatus.getValue()) {
+			params.STATUS = cboStatus.getValue();
+		}
+
+		return params;
+	},
+
+	cetak_pemeliharaan: function() {
+		var me = this,
+			params = me.get_params_pemeliharaan();			
+		 var params_uri = new URLSearchParams(params).toString();		
+		window.open(koyoku.app.api.siteurl + "/pemeliharaan/cetak_daftar?" + params_uri, "_blank");
+	},
+
+	get_params_pemanfaatan: function() {
+		var params = {
+			PENCARIAN: ""
+		};
+
+		var fcari = this.getView().down('grid_pemanfaatan').down('#text_cari');
+		var cboStatus = this.getView().down('grid_pemanfaatan').down('#combo_status');
+		var tree_bidang = this.getView().down('tree_bidang');
+		var rec = tree_bidang.getSelectionModel().getSelection();
+		if(rec.length>0){
+			params.BIDANG_ID = rec[0].data.BIDANG_ID;			
+		}
+		params.PENCARIAN = fcari.getValue();
+		if (cboStatus.getValue()) {
+			params.STATUS = cboStatus.getValue();
+		}
+
+		return params;
+	},
+
+	cetak_pemanfaatan: function() {
+		var me = this,
+			params = me.get_params_pemanfaatan();			
+		 var params_uri = new URLSearchParams(params).toString();		
+		window.open(koyoku.app.api.siteurl + "/pemanfaatan/cetak_daftar?" + params_uri, "_blank");
+	},
+
+	get_params_penghapusan: function() {
+		var params = {
+			PENCARIAN: ""
+		};
+
+		var fcari = this.getView().down('grid_penghapusan').down('#text_cari');
+		var cboStatus = this.getView().down('grid_penghapusan').down('#combo_status');
+		var tree_bidang = this.getView().down('tree_bidang');
+		var rec = tree_bidang.getSelectionModel().getSelection();
+		if(rec.length>0){
+			params.BIDANG_ID = rec[0].data.BIDANG_ID;			
+		}
+		params.PENCARIAN = fcari.getValue();
+		if (cboStatus.getValue()) {
+			params.STATUS = cboStatus.getValue();
+		}
+
+		return params;
+	},
+
+	cetak_penghapusan: function() {
+		var me = this,
+			params = me.get_params_penghapusan();			
+		 var params_uri = new URLSearchParams(params).toString();		
+		window.open(koyoku.app.api.siteurl + "/penghapusan/cetak_daftar?" + params_uri, "_blank");
+	}
 	
 });

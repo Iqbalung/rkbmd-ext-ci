@@ -68,13 +68,13 @@ class Pengadaan extends MY_Controller {
 			$template = $this->config->item("template_cetak")."laporan_pengadaan.xlsx";		
 			$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 			$objPHPExcel = $objReader->load($template);	
-
+		
 			$params = array(
-				'PENGADAAN_ID' => ifunsetempty($_POST,'PENGADAAN_ID',''),
-				'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID', $this->session->userdata('BIDANG_ID')),
-				'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
-				'PENCARIAN' => ifunsetempty($_POST,'PENCARIAN',''),		
-				'STATUS' => ifunset($_POST,'STATUS', '-1'),							
+				'PENGADAAN_ID' => ifunsetempty($_GET,'PENGADAAN_ID',''),
+				'BIDANG_ID' => ifunsetempty($_GET,'BIDANG_ID', $this->session->userdata('BIDANG_ID')),
+				'TAHUN' => ifunsetempty($_GET,'TAHUN', $this->session->userdata('TAHUN')),
+				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
+				'STATUS' => ifunset($_GET,'STATUS', '-1'),							
 			);
 			
 			$tahun = $params["TAHUN"];

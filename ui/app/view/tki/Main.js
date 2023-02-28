@@ -59,7 +59,11 @@ Ext.define('koyoku.view.tki.Main', {
 							change: 'load_pengadaan_status'
 						}
 					},
-					'->', {
+					'->',{
+						text : 'Cetak',
+						// glyph: 'xf067@fontAwesome',						
+						handler: 'cetak_pengadaan'
+					}, {
 						bind : { text : '{language.tambah}', },
 						glyph: 'xf067@fontAwesome',
 						handler: 'tambah_pengadaan'
@@ -86,7 +90,11 @@ Ext.define('koyoku.view.tki.Main', {
 							change: 'load_pemeliharaan_status'
 						}
 					},
-					'->', {
+					'->',{
+						text : 'Cetak',
+						// glyph: 'xf067@fontAwesome',						
+						handler: 'cetak_pemeliharaan'
+					}, {
 						bind : { text : '{language.tambah}', },
 						glyph: 'xf067@fontAwesome',
 						handler: 'tambah_pemeliharaan'
@@ -114,6 +122,10 @@ Ext.define('koyoku.view.tki.Main', {
 						}
 					},
 					'->', {
+						text : 'Cetak',
+						// glyph: 'xf067@fontAwesome',						
+						handler: 'cetak_pemanfaatan'
+					}, {
 						bind : { text : '{language.tambah}', },
 						glyph: 'xf067@fontAwesome',
 						handler: 'tambah_pemanfaatan'
@@ -141,6 +153,10 @@ Ext.define('koyoku.view.tki.Main', {
 						}
 					},
 					'->', {
+						text : 'Cetak',
+						// glyph: 'xf067@fontAwesome',						
+						handler: 'cetak_penghapusan'
+					}, {
 						bind : { text : '{language.tambah}', },
 						glyph: 'xf067@fontAwesome',						
 						handler: 'tambah_penghapusan'
