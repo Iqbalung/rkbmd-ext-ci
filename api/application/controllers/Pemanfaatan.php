@@ -61,6 +61,103 @@ class Pemanfaatan extends MY_Controller {
 		echo json_encode($out);
 	}
 
+	public function cetak_daftar()
+	{				
+			$this->load->library('excel');
+			
+			$template = $this->config->item("template_cetak")."laporan_pemanfaatan.xlsx";		
+			$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+			$objPHPExcel = $objReader->load($template);	
+
+			$params = array(
+				'PENGADAAN_ID' => ifunsetempty($_POST,'PENGADAAN_ID',''),
+				'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID', $this->session->userdata('BIDANG_ID')),
+				'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
+				'PENCARIAN' => ifunsetempty($_POST,'PENCARIAN',''),		
+				'STATUS' => ifunset($_POST,'STATUS', '-1'),							
+			);
+
+			$tahun = $params["TAHUN"];
+			if (empty($tahun)) {
+				$tahun = date("Y");			
+			}
+
+			$this->load->model("M_bidang");
+			$bidang = $this->M_bidang->get_root();					
+			
+			$startIndex = 11;
+			$rowIndex = $startIndex;
+			$sheet = $objPHPExcel->getActiveSheet();
+			$no = 1;		
+
+			$tanggal = get_textual_month(date("m"))." ".$tahun;			
+			$sheet->setCellValue('B4', "Tanggal:          ".$tanggal);
+			$judul = "RENCANA PEMANFAATAN  BARANG MILIK DAERAH PEMERINTAH KABUPATEN BANJARNEGARA TAHUN ".$tahun;
+			$sheet->setCellValue('B6', $judul);
+				
+			foreach ($bidang->result_array() as $key => $value) {
+				
+
+				$params["BIDANG_ID"] = $value["BIDANG_ID"];
+				$data = $this->M_pemanfaatan->get($params, true);
+
+				$sheet->setCellValue('B'.$rowIndex, $no++);
+				$sheet->setCellValue('C'.$rowIndex, $value["BIDANG_NAMA"]);		
+				$sheet->getStyle('B'.$rowIndex.":F".$rowIndex)->applyFromArray(
+					array(
+						'fill' => array(
+							'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							'color' => array('rgb' => '92D050')
+						)
+					)
+				);
+				$sheet->getStyle('B'.$rowIndex.":F".$rowIndex)->getFont()->setBold(true);
+				$rowIndex++;
+				if ($data->num_rows() > 0) {
+					$data = $data->result_array();								
+					
+					foreach ($data as $rowBarang) {						
+						$sheet->setCellValue('C'.$rowIndex, $rowBarang["BARANG_NAMA"]);
+						$sheet->setCellValue('D'.$rowIndex, $rowBarang["JENIS_KIB"]);
+						$sheet->setCellValue('E'.$rowIndex, $rowBarang["RENCANA_PEMANFAATAN"]);
+						$sheet->setCellValue('F'.$rowIndex, $rowBarang["KETERANGAN"]);						
+						$rowIndex++;
+					}					
+				}
+
+				$styleArray = array(
+					'borders' => array(
+						'allborders' => array(
+							'style' => PHPExcel_Style_Border::BORDER_THIN
+						)
+					)
+				);
+				$sheet->getStyle('B'.$startIndex.":F".$rowIndex)->applyFromArray($styleArray);
+			}
+
+			
+			
+			$fileName = "Laporan Pemanfaatan - $tahun.xlsx";
+			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+			header('Content-Disposition: attachment;filename="'.$fileName.'"');
+			header('Cache-Control: max-age=0');
+			// If you're serving to IE 9, then the following may be needed
+			header('Cache-Control: max-age=1');
+
+			// If you're serving to IE over SSL, then the following may be needed
+			header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+			header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+			header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+			header ('Pragma: public'); // HTTP/1.0
+
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+			$objWriter->save('php://output');
+			exit;
+
+			exit;
+
+	}
+
 	
 
 }

@@ -7,7 +7,7 @@ class M_pemeliharaan extends CI_Model{
 		$this->load->database();
 	}
 	
-	function get($params = array())
+	function get($params = array(), $isCetak = false)
 	{
 		try {
 			
@@ -19,6 +19,7 @@ class M_pemeliharaan extends CI_Model{
 					sk.SUB_KEGIATAN_NAMA
 				end as NAMA_KEGIATAN,
 				sk.SUB_KEGIATAN_NAMA,
+				k.KEGIATAN_NAMA as PARENT_KEGIATAN,
 				p.BIDANG_ID,
 				p.KEGIATAN_ID,
 				p.SUB_KEGIATAN_ID,
@@ -56,6 +57,10 @@ class M_pemeliharaan extends CI_Model{
 			}
 
 			$res = $this->db->get("pemeliharaan p");
+
+			if ($isCetak) {
+				return $res;
+			}
 
 			$data = $res->result_array();
 

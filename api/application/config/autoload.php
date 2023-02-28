@@ -83,7 +83,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('tp_input_helper','guid','url','tp_string','tp_slug_helper','email');
+$autoload['helper'] = array('tp_input_helper','guid','url','tp_string','tp_slug_helper','email', 'tp_tanggal_helper');
 
 /*
 | -------------------------------------------------------------------

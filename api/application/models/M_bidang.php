@@ -56,4 +56,10 @@ class M_bidang extends CI_Model{
 		return $res;
 	}
 
+	function get_root()
+	{
+		$this->db->where("LENGTH( BIDANG_ID ) - LENGTH(REPLACE ( BIDANG_ID, '.', '' )) = ", "1");
+		return $this->db->get("MASTER_BIDANG");
+	}
+
 }

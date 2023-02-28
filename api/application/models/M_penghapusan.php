@@ -7,7 +7,7 @@ class M_penghapusan extends CI_Model{
 		$this->load->database();
 	}
 	
-	function get($params = array())
+	function get($params = array(), $isCetak = false)
 	{
 		try {
 			
@@ -59,6 +59,9 @@ class M_penghapusan extends CI_Model{
 
 			$res = $this->db->get("penghapusan p");
 
+			if ($isCetak) {
+				return $res;
+			}
 			$data = $res->result_array();
 
 			$out = array(

@@ -7,7 +7,7 @@ class M_pemanfaatan extends CI_Model{
 		$this->load->database();
 	}
 	
-	function get($params = array())
+	function get($params = array(), $isCetak = false)
 	{
 		try {
 			
@@ -58,6 +58,10 @@ class M_pemanfaatan extends CI_Model{
 			}
 
 			$res = $this->db->get("pemanfaatan p");
+
+			if ($isCetak) {
+				return $res;
+			}
 
 			$data = $res->result_array();
 
