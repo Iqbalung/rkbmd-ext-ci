@@ -11,21 +11,21 @@ Ext.define('koyoku.view.main.Sidebar', {
           <i class="fa fa-navicon btn-close-side-bar"></i>
           <div class="text-username"></div>
       </div>
-       <div class="item"><a href="#dashboard"><i class="fa fa-desktop"></i>Dashboard</a></div>       
+       <div class="item"><a class="menu-link" href="#dashboard"><i class="fa fa-desktop"></i>Dashboard</a></div>       
        <div class="item">
          <a class="sub-btn"><i class="fa fa-list-alt"></i>Setup<i class="fa fa-angle-right dropdown"></i></a>
          <div class="sub-menu">
-           <a href="#" class="sub-item">Kepala SKPD</a>
-           <a href="#" class="sub-item">Bidang</a>
-           <a href="#" class="sub-item">Sub Bidang</a>
+           <a href="#" class="menu-link sub-item">Kepala SKPD</a>
+           <a href="#" class="menu-link sub-item">Bidang</a>
+           <a href="#" class="menu-link sub-item">Sub Bidang</a>
          </div>
        </div>
-       <div class="item"><a href="#tki"><i class="fa fa-pencil"></i>RKPBMD</a></div>       
+       <div class="item"><a class="menu-link" href="#tki"><i class="fa fa-pencil"></i>RKPBMD</a></div>       
        <div class="item">
          <a class="sub-btn"><i class="fa fa-search"></i>Referensi<i class="fa fa-angle-right dropdown"></i></a>
          <div class="sub-menu">
-           <a href="#" class="sub-item">Daftar Barang</a>
-           <a href="#" class="sub-item">Daftar Template</a>           
+           <a href="#" class="menu-link sub-item">Daftar Barang</a>
+           <a href="#" class="menu-link sub-item">Daftar Template</a>           
          </div>
        </div>
      </div>
@@ -51,7 +51,7 @@ Ext.define('koyoku.view.main.Sidebar', {
             me.sideBarToggle();
         });
         
-        $('.menu .item a').click(function(){
+        $('.menu .item a.menu-link').click(function(){
             me.sideBarToggle();
         });
 
