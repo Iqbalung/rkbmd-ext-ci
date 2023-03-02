@@ -19,6 +19,7 @@ Ext.define('koyoku.view.main.Main', {
 
         'koyoku.view.main.MainController',
         'koyoku.view.main.MainModel',
+        'koyoku.view.main.Sidebar',
         'koyoku.view.master.pengguna.Form_pengguna',
         'koyoku.view.portal.Main',
         'koyoku.view.p404.Main',
@@ -55,10 +56,15 @@ Ext.define('koyoku.view.main.Main', {
     layout: 'border',
     id: 'app_main',
     items: [{
+        region: 'west',
+        cls:'side-menu',
+        hidden: true,
+        xtype: 'sideMenu'
+    },{
 
         region: 'north',
         tbar: [
-            '<img src="../api/media/images/logo.png" height="30">', {
+            '<img id="action_side_menu" src="../api/media/images/logo.png" height="30">', {
                 xtype: 'label',
                 bind: {
                     text: '{message}',
