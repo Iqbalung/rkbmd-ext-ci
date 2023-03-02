@@ -24262,14 +24262,15 @@ div.x-border-layout-ct {
 .side-bar {
     background: #16324D;
     backdrop-filter: blur(15px);
-    width: 230px;
+    width: 250px;
     height: 100vh;
     position: fixed;
-    top: 30px;
+    top: 0px;
     /* left: -250px; */
     overflow-y: auto;
     transition: 0.6s ease;
     /* opacity: 0; */
+    z-index: 10001;
     transition-property: left;
 }
 
@@ -24308,7 +24309,7 @@ h1 {
 
 .side-bar .menu {
     width: 100%;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .side-bar .menu .item {
@@ -24354,19 +24355,71 @@ h1 {
     transform: rotate(90deg);
 }
 
-.close-btn {
-    position: absolute;
-    color: #fff;
-    font-size: 23px;
-    right: 0px;
-    margin: 15px;
+.btn-side-bar {
     cursor: pointer;
+    color: black;
+    font-size: 20px !important;
+    margin: 10px;
 }
 
-.menu-btn {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 35px;
-    margin: 25px;
+.btn-close-side-bar {
     cursor: pointer;
+    color: white;
+    font-size: 20px !important;
+    margin: 15px 22px;
+}
+
+.side-bar .box-menu {
+    height: 150px;
+    background-color: #5C81BD;
+}
+
+.my-view {
+    background-color: #eeeeee;
+    column-count: 3;
+    /* padding-right: 10px !important; */
+    column-width: 100%;
+}
+
+.my-card {
+    position: relative;
+    display: block;
+    /* padding: 5px; */
+    float: left;
+    flex-direction: column;
+    margin: 15px;
+    background: #fff;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.my-card-item {
+    text-align: end;
+    color: white;
+    width: 100%;
+    margin-right: 10px;
+    padding: 40px 20px;
+    float: right;
+}
+
+.my-card-item .value {
+    font-size: 34px;
+    padding: 10px 15px;
+}
+
+.my-card-item .label {
+    padding-top: 10px;
+    font-size: 16px;
+}
+
+.my-card-item.item-orange {
+    background-color: #F39C1E;
+}
+
+.my-card-item.item-green {
+    background-color: #68BF71;
+}
+
+.my-card-item.item-purple {
+    background-color: #6E6BB1;
 }

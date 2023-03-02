@@ -7,14 +7,25 @@ Ext.define('koyoku.view.main.Sidebar', {
     `
     <div class="side-bar">          
      <div class="menu">
+      <div class="box-menu">
+          <i class="fa fa-navicon btn-close-side-bar"></i>
+          <div class="text-username"></div>
+      </div>
        <div class="item"><a href="#dashboard"><i class="fa fa-desktop"></i>Dashboard</a></div>       
-       <div class="item"><a href="#tki"><i class="fa fa-pencil"></i>Perencanaan Kebutuhan</a></div>
        <div class="item">
-         <a class="sub-btn">Menu Dropdown<i class="fa fa-angle-right dropdown"></i></a>
+         <a class="sub-btn"><i class="fa fa-list-alt"></i>Setup<i class="fa fa-angle-right dropdown"></i></a>
          <div class="sub-menu">
-           <a href="#" class="sub-item">Sub Item 01</a>
-           <a href="#" class="sub-item">Sub Item 02</a>
-           <a href="#" class="sub-item">Sub Item 03</a>
+           <a href="#" class="sub-item">Kepala SKPD</a>
+           <a href="#" class="sub-item">Bidang</a>
+           <a href="#" class="sub-item">Sub Bidang</a>
+         </div>
+       </div>
+       <div class="item"><a href="#tki"><i class="fa fa-pencil"></i>RKPBMD</a></div>       
+       <div class="item">
+         <a class="sub-btn"><i class="fa fa-search"></i>Referensi<i class="fa fa-angle-right dropdown"></i></a>
+         <div class="sub-menu">
+           <a href="#" class="sub-item">Daftar Barang</a>
+           <a href="#" class="sub-item">Daftar Template</a>           
          </div>
        </div>
      </div>
@@ -23,6 +34,7 @@ Ext.define('koyoku.view.main.Sidebar', {
   ],
   listeners: {    
     afterrender: function() {
+        var me  = this;
          //jquery for toggle sub menus
         $('.sub-btn').click(function(){
             $(this).next('.sub-menu').slideToggle();
@@ -35,13 +47,21 @@ Ext.define('koyoku.view.main.Sidebar', {
             $('.menu-btn').css("visibility", "hidden");
         });
 
-        $('.close-btn').click(function(){
-            $('.side-bar').removeClass('active');
-            $('.menu-btn').css("visibility", "visible");
-        });    
+        $('.btn-close-side-bar').click(function(){
+            me.sideBarToggle();
+        });
+        
+        $('.menu .item a').click(function(){
+            me.sideBarToggle();
+        });
 
         $("#action_side_menu").click(function() {
-            var sideBar = Ext.getCmp("sideMenu");
+            me.sideBarToggle();
+        });
+    }
+  },
+  sideBarToggle: function() {
+    var sideBar = Ext.getCmp("sideMenu");
             if (sideBar.hidden) {                
                 sideBar.getEl().removeCls("menu-fade-out");
                 sideBar.getEl().addCls("menu-fade-in");
@@ -51,7 +71,5 @@ Ext.define('koyoku.view.main.Sidebar', {
                 sideBar.getEl().addCls("menu-fade-out");                
                 sideBar.setHidden(true);
             }
-        });
-    }
   }
 });
