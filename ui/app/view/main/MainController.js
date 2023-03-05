@@ -16,7 +16,7 @@ Ext.define('koyoku.view.main.MainController', {
     },
 
     onUnmatchedRoute: function(hash) {
-        this.redirectTo('portal');
+        this.redirectTo('dashboard');
     },
 
     routes: {
@@ -27,7 +27,7 @@ Ext.define('koyoku.view.main.MainController', {
     },
 
     load_portal: function() {
-        this.redirectTo('portal');
+        this.redirectTo('dashboard');
     },
 
     load_404 : function() {
@@ -75,7 +75,7 @@ Ext.define('koyoku.view.main.MainController', {
         var hashTag = document.location.hash;
         var tag = hashTag.replace("#", "");
         if (tag == '') {
-            tag = 'portal';
+            tag = 'dashboard';
         }
 
         tag = tag.split('/');
