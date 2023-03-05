@@ -16,15 +16,15 @@ Ext.define('koyoku.view.main.Sidebar', {
          <a class="sub-btn"><i class="fa fa-list-alt"></i>Setup<i class="fa fa-angle-right dropdown"></i></a>
          <div class="sub-menu">
            <a href="#" class="menu-link sub-item">Kepala SKPD</a>
-           <a href="#" class="menu-link sub-item">Bidang</a>
-           <a href="#" class="menu-link sub-item">Sub Bidang</a>
+           <a href="#bidang" class="menu-link sub-item">Bidang</a>
+           <a href="#kompetensi" class="menu-link sub-item">Kegiatan</a>
          </div>
        </div>
        <div class="item"><a class="menu-link" href="#tki"><i class="fa fa-pencil"></i>RKPBMD</a></div>       
        <div class="item">
          <a class="sub-btn"><i class="fa fa-search"></i>Referensi<i class="fa fa-angle-right dropdown"></i></a>
          <div class="sub-menu">
-           <a href="#" class="menu-link sub-item">Daftar Barang</a>
+           <a href="#barang" class="menu-link sub-item">Daftar Barang</a>
            <a href="#" class="menu-link sub-item">Daftar Template</a>           
          </div>
        </div>

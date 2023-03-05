@@ -2,12 +2,15 @@ Ext.define('koyoku.view.dashboard.Main', {
 	extend: 'Ext.panel.Panel',
 	xtype: 'page_dashboard',
 	requires: [
-		'koyoku.view.dashboard.Controller'		
+		'koyoku.view.dashboard.Controller',
+		'koyoku.view.dashboard.ChartTopPengajuan',
+		'koyoku.view.dashboard.ListPengajuan'		
 	],
 
 	controller: 'dashboard',
 	padding: 10,	
 	id: 'page_dashboard',
+	cls: 'page-dashboard',
 	layout: {
 		type: 'vbox',		
 	},
@@ -34,64 +37,67 @@ Ext.define('koyoku.view.dashboard.Main', {
 							'<div class="label">{label}</div>',
                           '</div>'],
 
-			},{
-				xtype:'panel'
-			}
-				/* {
-				xtype: 'portal_profile',
-				title: 'Profil',
-				bind: {
-					hidden: '{!akses.portal_profile}'
-				},
-				padding: 2,
-				flex: 1
 			}, {
 				xtype: 'panel',
+				layout: {
+					type: 'hbox',		
+				},
+				cls: 'top-pengajuan',
+				// title: 'V',				
+				width: '100%',
+				items:[
+				{
+					xtype: 'dataview',
+					width: '100%',
+					height: 150,
+					flex: 10,
+					store: {
+						fields: ['cls', 'age', 'label'],
+						data: [
+							{nilai: 119830000,  progress: 26, label:'Dinas A'},
+							{nilai: 100110000,   progress: 41, label:'Dinas B'},
+							{nilai: 100121900, progress: 64, label:'Dinas C'},
+							{nilai: 101319000, progress: 34, label:'Dinas D'},
+							{nilai: 100112219, progress: 74, label:'Dinas E'},
+						]
+					},
+					cls: 'my-top-pengajuan',
+					itemCls: 'my-card-top-pengajuan',
+					itemTpl: ['<div class="my-card-top-pengajuan-item">',
+								'<div class="label">{label}</div>',
+								'<progress value="{progress}" max="100"></progress>',
+								'<div class="nilai">Rp. {nilai}</div>',
+							'</div>'],
+
+				},
+				{
+					flex: 3,
+					height: 150,			
+					xtype: 'chart_top_pengajuan', 					
+					
+				}
+				]
+			}, {
+				xtype: 'list_pengajuan',
+				cls: 'list-pengajuan',
+				width: '100%',
 				flex: 1,
-				layout: {
-					type: 'vbox',
-					align: 'stretch',
-					padding: 2
-				},
-				items: [{
-					xtype: 'pie_jk',
-					bind : {
-						title: '{language.jeniskelamin}',
-					},
-					flex: 1
-				}, {
-					xtype: 'grid_job_populer',
-					hideHeaders: true,
-					bind: {
-						title : '{language.jabatanpopuler}',
-					},
-					flex: 1
-				}]
-			}, {
-				xtype: 'panel',
-				flex: 2,
-				layout: {
-					type: 'vbox',
-					align: 'stretch',
-					padding: 2
-				},
-				items: [{
-					xtype: 'panel',
-					bind: {
-						title : '{language.totaltki}',	
-					},
-					items: [{
-						xtype: 'view_total_tki'
-					}],
-					flex: 1
-				}, {
-					xtype: 'batang_tki',
-					bind: {
-						title : '{language.keberangkatan}',
-					},
-					flex: 2
-				}]
-			} */]
+				tbar: [
+					{
+						xtype:'label',
+						text: 'Daftar Pengajuan SKPD'
+					}, 
+					'->', 
+					{
+						xtype: 'textfield',
+						emptyText: 'Pencarian...',
+						itemId: 'text_cari',
+						listeners: {
+							specialkey: 'load_penghapusan_keyword'
+						}
+					}
+				]
+			}]
 		});
 
 

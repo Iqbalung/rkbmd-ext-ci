@@ -24374,6 +24374,14 @@ h1 {
     background-color: #5C81BD;
 }
 
+.page-dashboard {
+    background-color: #eeeeee;
+}
+
+.page-dashboard .x-panel-body-default {
+    background-color: #eeeeee;
+}
+
 .my-view {
     background-color: #eeeeee;
     column-count: 3;
@@ -24388,16 +24396,21 @@ h1 {
     float: left;
     flex-direction: column;
     margin: 15px;
+    margin-left: 0px !important;
     background: #fff;
     width: 100%;
     justify-content: space-evenly;
+}
+
+.my-view .my-card:first-child {
+    margin-left: 0px !important;
 }
 
 .my-card-item {
     text-align: end;
     color: white;
     width: 100%;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     padding: 40px 20px;
     float: right;
 }
@@ -24422,4 +24435,53 @@ h1 {
 
 .my-card-item.item-purple {
     background-color: #6E6BB1;
+}
+
+.top-pengajuan {
+    margin-top: 15px;
+}
+
+.my-top-pengajuan {
+    background-color: white;
+    column-count: 5;
+    padding: 5px;
+    /* padding-right: 10px !important; */
+    column-width: 100%;
+}
+
+.my-card-top-pengajuan {
+    position: relative;
+    display: block;
+    /* padding: 5px; */
+    float: left;
+    flex-direction: column;
+    /* margin: 15px; */
+    background: #fff;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.my-card-top-pengajuan-item {
+    color: black;
+    width: 100%;
+    margin-right: 10px;
+    padding: 40px 20px;
+}
+
+.my-card-top-pengajuan-item progress {
+    width: 100%;
+}
+
+.my-card-top-pengajuan-item .label {
+    color: #555;
+    float: left;
+    font-size: 13px;
+}
+
+.my-card-top-pengajuan-item .nilai {
+    text-align: end;
+}
+
+.list-pengajuan {
+    margin-top: 15px;
 }
