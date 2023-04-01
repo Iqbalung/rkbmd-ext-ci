@@ -10,7 +10,7 @@ Ext.define('koyoku.store.barang.Fasilitas', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://localhost/project/rkbmd/api/index.php/Pptkis/get_fasilitas',
+        url: 'http://localhost/koyoku/api/index.php/Pptkis/get_fasilitas',
         reader: {
             type: 'json',
             rootProperty: 'items',

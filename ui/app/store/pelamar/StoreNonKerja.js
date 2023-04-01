@@ -7,7 +7,7 @@ Ext.define('koyoku.store.pelamar.StoreNonKerja', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/project/rkbmd/api/index.php/Pekerja/get_nonbekerja',
+        url: 'http://localhost/koyoku/api/index.php/Pekerja/get_nonbekerja',
         reader: {
             type: 'json',
             rootProperty: 'items',

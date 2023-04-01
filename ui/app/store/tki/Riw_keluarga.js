@@ -17,7 +17,7 @@ Ext.define('koyoku.store.tki.Riw_keluarga', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/project/rkbmd/api/index.php/Pekerja/get_riw_keluarga',
+        url: 'http://localhost/koyoku/api/index.php/Pekerja/get_riw_keluarga',
         reader: {
             type: 'json',
             rootProperty: 'items',

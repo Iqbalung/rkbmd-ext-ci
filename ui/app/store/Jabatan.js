@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Jabatan', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/project/rkbmd/api/index.php/Jabatan/get',
+        url: 'http://localhost/koyoku/api/index.php/Jabatan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

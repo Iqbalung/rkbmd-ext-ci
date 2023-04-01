@@ -10,7 +10,7 @@ Ext.define('koyoku.store.barang.Partner', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://localhost/project/rkbmd/api/index.php/Pptkis/get_partner_bytype',
+        url: 'http://localhost/koyoku/api/index.php/Pptkis/get_partner_bytype',
         reader: {
             type: 'json',
             rootProperty: 'items',

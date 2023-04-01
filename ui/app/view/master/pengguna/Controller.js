@@ -41,7 +41,7 @@ Ext.define('koyoku.view.master.pengguna.Controller', {
         
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/project/rkbmd/api/index.php/Pengguna/save',
+                url: 'http://localhost/koyoku/api/index.php/Pengguna/save',
                
                 success: function(form, action) {
                     var success_opt = true;

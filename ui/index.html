@@ -1,25 +1,24 @@
 <!DOCTYPE HTML>
 <html manifest="">
-
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
-    <!-- <link rel="icon" type="image/x-icon" href="../api/media/images/logo.png"> -->
-    <title>RKBMD</title>
+
+    <title>KOYOKU 2</title>
 
     <style type="text/css">
-        .x-panel-header-default {
-            background-image: none;
-            background-color: #5fb1dd !important;
-        }
-        
-        .x-btn-default-toolbar-large {
+
+.x-panel-header-default {
+    background-image: none;
+    background-color: #5fb1dd !important;
+}
+        .x-btn-default-toolbar-large{
             border-color: #ffffff !important;
             background-image: none;
             background-color: #ffffff !important;
         }
-        
+
         .x-panel-default-outer-border-trl {
             border-top-color: #e5e5e5 !important;
             border-top-width: 1px !important;
@@ -28,7 +27,7 @@
             border-left-color: #e5e5e5 !important;
             border-left-width: 1px !important;
         }
-        
+
         .x-panel-default-outer-border-rbl {
             border-top-color: #e5e5e5 !important;
             border-top-width: 1px !important;
@@ -37,7 +36,7 @@
             border-left-color: #e5e5e5 !important;
             border-left-width: 1px !important;
         }
-        
+
         .x-menu-item {
             white-space: nowrap;
             overflow: hidden;
@@ -46,54 +45,49 @@
             padding: 10px !important;
         }
         
-        #wrap_loading {
+        #wrap_loading{
             width: 400px;
             text-align: center;
-            margin: auto;
-            margin-top: 200px;
+            margin:auto;
+            margin-top:200px; 
         }
-        
         .hijau .x-grid-cell {
             background-color: #FFF176 !important;
             color: #221E1E !important;
         }
-        
         .kuning .x-grid-cell {
             background-color: #4DD0E1 !important;
             color: #221E1E !important;
         }
-        
         .orange .x-grid-cell {
             background-color: #FFA726 !important;
             color: #221E1E !important;
         }
-        
         .merah .x-grid-cell {
             background-color: #FF8A80 !important;
             color: #221E1E !important;
         }
-        
         .big-indo-image {
-            width: 12px!important;
-            height: 12px!important;
+            width:12px!important; height:12px!important;
             background-image: url(http://www.icon100.com/up/3881/16/150-Indonesia.png) !important;
         }
-        
         .big-eng-image {
-            width: 12px!important;
-            height: 12px!important;
+            width:12px!important; height:12px!important;
             background-image: url(http://www.icon100.com/up/282/16/united_kingdom_great_britain.png) !important;
         }
+
+
+        
     </style>
-    <script type="text/javascript">
+       <script type="text/javascript">
         var Ext = Ext || {}; // Ext namespace won't be defined yet...
 
-        Ext.beforeLoad = function(tags) {
+        Ext.beforeLoad = function (tags) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     res = JSON.parse(this.responseText);
-
+                   
                 }
             };
             xhttp.open("POST", "http://localhost/koyoku/api/index.php/login/is_login", false);
@@ -141,17 +135,15 @@
 
     <!-- The line below must be kept intact for Sencha Cmd to build your application -->
     <script id="microloader" data-app="8e209dda-15ad-49fa-bb6e-e57dcb963dbf" type="text/javascript" src="bootstrap.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-
 <body>
-    <div id="wrap_loading">
-        <img src="../api/media/images/logo.png"><br>
-        <img src="../api/media/images/loading.gif" height="30">
-    </div>
+<div id="wrap_loading">
+    <img src="../api/media/images/logo.png"><br>
+    <img src="../api/media/images/loading.gif" height="30">
+</div>
 </body>
-
 </html>

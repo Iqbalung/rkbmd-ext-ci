@@ -8,7 +8,7 @@ Ext.define('koyoku.store.lamaran.Store', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://localhost/project/rkbmd/api/index.php/lamaran/get',
+        url: 'http://localhost/koyoku/api/index.php/lamaran/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

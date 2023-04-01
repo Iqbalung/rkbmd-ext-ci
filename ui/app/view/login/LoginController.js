@@ -7,7 +7,7 @@ Ext.define('koyoku.view.login.LoginController', {
         me = this;
 
         me.getView().down('form').submit({
-            url: 'http://localhost/project/rkbmd/api/index.php/login/do_login',
+            url: 'http://localhost/koyoku/api/index.php/login/do_login',
             success: function(form, action) {
                 var success_opt = true;
                 try {

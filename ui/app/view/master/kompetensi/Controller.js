@@ -161,7 +161,7 @@ Ext.define('koyoku.view.master.kompetensi.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/project/rkbmd/api/index.php/Kegiatan/save',
+                url: 'http://localhost/koyoku/api/index.php/Kegiatan/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {
@@ -198,7 +198,7 @@ Ext.define('koyoku.view.master.kompetensi.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/project/rkbmd/api/index.php/SubKegiatan/save',
+                url: 'http://localhost/koyoku/api/index.php/SubKegiatan/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

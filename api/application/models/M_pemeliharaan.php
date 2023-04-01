@@ -36,10 +36,6 @@ class M_pemeliharaan extends CI_Model{
 			$this->db->join("master_kegiatan k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
 			$this->db->join("master_sub_kegiatan sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
-			if (isset($params["TAHUN"]) && !empty($params["TAHUN"])) {
-				$this->db->where("p.TAHUN", $params["TAHUN"]);
-			}
-
 			if (isset($params["BIDANG_ID"]) && !empty($params["BIDANG_ID"])) {
 				$this->db->where("p.BIDANG_ID LIKE", $params["BIDANG_ID"]."%");
 			}

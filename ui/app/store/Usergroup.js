@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Usergroup', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/project/rkbmd/api/index.php/Pekerja/getusergroup',
+        url: 'http://localhost/koyoku/api/index.php/Pekerja/getusergroup',
         reader: {
             type: 'json',
             rootProperty: 'items',

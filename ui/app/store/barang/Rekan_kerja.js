@@ -10,7 +10,7 @@ Ext.define('koyoku.store.barang.Rekan_kerja', {
         actionMethods: {
             read: 'POST',
         },
-        url: 'http://localhost/project/rkbmd/api/index.php/Pptkis/get_partner',
+        url: 'http://localhost/koyoku/api/index.php/Pptkis/get_partner',
         reader: {
             type: 'json',
             rootProperty: 'items',

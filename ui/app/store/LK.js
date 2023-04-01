@@ -10,7 +10,7 @@ Ext.define('koyoku.store.LK', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/project/rkbmd/api/index.php/Lembaga_keuangan/get',
+        url: 'http://localhost/koyoku/api/index.php/Lembaga_keuangan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

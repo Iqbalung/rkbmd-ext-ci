@@ -16,7 +16,7 @@ Ext.define('koyoku.Application', {
     },
 
     api: {
-        siteurl: 'http://localhost/project/rkbmd/api/index.php/',
+        siteurl: 'http://localhost/project/rkbmd/api/index.php/index.php/',
         baseurl: 'http://localhost/project/rkbmd/api/'
     },
     akses : {

@@ -16,7 +16,7 @@ Ext.define('koyoku.store.pengguna.Riw_pendidikan', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/project/rkbmd/api/index.php/Pengguna/get',
+        url: 'http://localhost/koyoku/api/index.php/Pengguna/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

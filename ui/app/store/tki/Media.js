@@ -14,7 +14,7 @@ Ext.define('koyoku.store.tki.Media', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/project/rkbmd/api/index.php/Pekerja/get_media',
+        url: 'http://localhost/koyoku/api/index.php/Pekerja/get_media',
         reader: {
             type: 'json',
             rootProperty: 'items',

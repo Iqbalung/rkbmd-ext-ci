@@ -113,7 +113,6 @@ Ext.define('koyoku.view.main.MainController', {
                 }
                 if (success_opt) {
                     var dataModel = me.getViewModel();
-                    dataModel.set('TAHUN',res.TAHUN);
                     for (r in res.USER) {
                         dataModel.set('USER.'+r,res.USER[r]);
                     }

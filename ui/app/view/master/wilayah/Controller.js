@@ -45,7 +45,7 @@ Ext.define('koyoku.view.master.wilayah.Controller', {
     	form = cmp.windowForm.down("form");
     	if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/project/rkbmd/api/index.php/Wilayah/save',
+                url: 'http://localhost/koyoku/api/index.php/Wilayah/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

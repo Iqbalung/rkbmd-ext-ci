@@ -4,8 +4,7 @@ Ext.define('koyoku.view.login.Login', {
 
     requires: [
         'koyoku.view.login.LoginController',
-        'Ext.form.Panel',
-        'koyoku.components.combo.Tahun'
+        'Ext.form.Panel'
     ],
 
     controller: 'login',
@@ -28,11 +27,6 @@ Ext.define('koyoku.view.login.Login', {
             inputType: 'password',
             fieldLabel: 'Password',
             allowBlank: false
-        }, {
-            fieldLabel: 'Tahun',
-            xtype:'combo_tahun',
-            allowBlank: false,
-            name : 'tahun'
         }],
         buttons: [{
             text: 'Login',

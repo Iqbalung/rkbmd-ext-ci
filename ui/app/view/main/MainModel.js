@@ -7,8 +7,8 @@ Ext.define('koyoku.view.main.MainModel', {
 	alias: 'viewmodel.main',
 
 	data: {
-		name: 'RKBMD',
-		footer: 'RKBMD Banjarnegara @ 2023',
+		name: 'KOYOKU',
+		footer: 'KOYOKU @ 2017',
 
 		message :'',
 
@@ -34,7 +34,7 @@ Ext.define('koyoku.view.main.MainModel', {
 			DESKRIPSI: '',
 			PHOTO: ''
 		},
-		TAHUN: '',
+
 		INSTANSI: {
 			ID: '',
 			NAMA: '',

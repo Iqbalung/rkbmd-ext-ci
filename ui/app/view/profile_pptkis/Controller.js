@@ -15,7 +15,7 @@ Ext.define('koyoku.view.profile_pptkis.Controller', {
 
 		if (form.getForm().isValid()) {
 			form.submit({
-				url: 'http://localhost/project/rkbmd/api/index.php/pptkis/save',			
+				url: 'http://localhost/koyoku/api/index.php/pptkis/save',			
 				success: function(form, action) {
 					var success_opt = true;
 					try {
@@ -160,7 +160,7 @@ Ext.define('koyoku.view.profile_pptkis.Controller', {
 		form = windowForm.down("form");
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://localhost/project/rkbmd/api/index.php/pptkis/save_satker',
+				url: 'http://localhost/koyoku/api/index.php/pptkis/save_satker',
 				params:{
 					SATKER_TIPE:1,
 				},
@@ -283,7 +283,7 @@ Ext.define('koyoku.view.profile_pptkis.Controller', {
 		form = windowForm.down("form");
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://localhost/project/rkbmd/api/index.php/pptkis/save_pegawai',		
+				url: 'http://localhost/koyoku/api/index.php/pptkis/save_pegawai',		
 				params:{
 					PPTKIS_ID:me.getParam(1),
 				},	
@@ -379,7 +379,7 @@ Ext.define('koyoku.view.profile_pptkis.Controller', {
 		form = windowForm.down("form");
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://localhost/project/rkbmd/api/index.php/pptkis/save_fasilitas',		
+				url: 'http://localhost/koyoku/api/index.php/pptkis/save_fasilitas',		
 				params:{
 					PPTKIS_ID:me.getParam(1),
 				},	
@@ -490,7 +490,7 @@ Ext.define('koyoku.view.profile_pptkis.Controller', {
 		form = windowForm.down("form");
 		if (form.isValid()) {
 			form.submit({
-				url: 'http://localhost/project/rkbmd/api/index.php/pptkis/save_partner',		
+				url: 'http://localhost/koyoku/api/index.php/pptkis/save_partner',		
 				params:{
 					PPTKIS_ID:me.getParam(1),
 				},	
