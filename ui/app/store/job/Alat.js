@@ -10,7 +10,7 @@ Ext.define('koyoku.store.job.Alat', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/koyoku/api/index.php/Alat/get_job',
+        url: 'http://localhost/project/rkbmd/api/index.php/Alat/get_job',
         reader: {
             type: 'json',
             rootProperty: 'items',

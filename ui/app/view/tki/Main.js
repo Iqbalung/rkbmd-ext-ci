@@ -136,7 +136,7 @@ Ext.define('koyoku.view.tki.Main', {
 					}
 				]
 			}, {
-				title: 'Penghapusan',
+				title: 'Penghapusan/Pemindahtanganan',
 				xtype: 'grid_penghapusan',				
 				tbar: [{
 						xtype: 'textfield',

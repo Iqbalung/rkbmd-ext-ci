@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Perjanjian', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/koyoku/api/index.php/Tki/riwperjanjian',
+        url: 'http://localhost/project/rkbmd/api/index.php/Tki/riwperjanjian',
         reader: {
             type: 'json',
             rootProperty: 'items',

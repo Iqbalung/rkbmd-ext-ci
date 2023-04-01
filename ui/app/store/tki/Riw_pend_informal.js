@@ -19,7 +19,7 @@ Ext.define('koyoku.store.tki.Riw_pend_informal', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/koyoku/api/index.php/Pekerja/get_riw_pend_informal',
+        url: 'http://localhost/project/rkbmd/api/index.php/Pekerja/get_riw_pend_informal',
         reader: {
             type: 'json',
             rootProperty: 'items',

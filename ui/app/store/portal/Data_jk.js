@@ -9,7 +9,7 @@ Ext.define('koyoku.store.portal.Data_jk', {
         actionMethods: {
             read: 'POST',
         },
-        url: 'http://localhost/koyoku/api/index.php/chart/get_jk',
+        url: 'http://localhost/project/rkbmd/api/index.php/chart/get_jk',
         reader: {
             type: 'json',
             rootProperty: 'data'

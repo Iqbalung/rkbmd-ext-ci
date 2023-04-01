@@ -9,7 +9,7 @@ Ext.define('koyoku.store.Bidang', {
         actionMethods: {
             read: 'POST'
         },
-        url: 'http://localhost/koyoku/api/index.php/Bidang/get',
+        url: 'http://localhost/project/rkbmd/api/index.php/Bidang/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

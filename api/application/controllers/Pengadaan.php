@@ -19,8 +19,7 @@ class Pengadaan extends MY_Controller {
 			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 			'PENCARIAN' => ifunsetempty($_POST,'PENCARIAN',''),		
 			'STATUS' => ifunset($_POST,'STATUS', '-1'),							
-		);
-		
+		);		
 		
 		$out = $this->M_pengadaan->get($params);
 		

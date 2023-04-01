@@ -8,7 +8,7 @@ Ext.define('koyoku.store.chat.CStore', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://localhost/koyoku/api/index.php/Chat/getchathelp',
+        url: 'http://localhost/project/rkbmd/api/index.php/Chat/getchathelp',
         reader: {
             type: 'json',
             rootProperty: 'items',

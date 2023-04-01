@@ -36,7 +36,7 @@ Ext.define('koyoku.view.master.asuransi.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/koyoku/api/index.php/Asuransi/save',
+                url: 'http://localhost/project/rkbmd/api/index.php/Asuransi/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

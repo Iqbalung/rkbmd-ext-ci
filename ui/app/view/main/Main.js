@@ -73,6 +73,11 @@ Ext.define('koyoku.view.main.Main', {
                 },
             },
             '->', {
+                xtype: 'label',
+                bind: {
+                    text: 'TA {TAHUN}',
+                },
+            },'|', {
                 tooltip: 'Akun',
                 itemId: 'btn_akun',
                 scale: 'large',

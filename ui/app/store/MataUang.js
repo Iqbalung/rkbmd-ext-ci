@@ -10,7 +10,7 @@ Ext.define('koyoku.store.MataUang', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/koyoku/api/index.php/Matauang/get',
+        url: 'http://localhost/project/rkbmd/api/index.php/Matauang/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

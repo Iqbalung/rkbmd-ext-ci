@@ -10,7 +10,7 @@ Ext.define('koyoku.store.SubKompetensi', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/koyoku/api/index.php/SubKegiatan/get',
+        url: 'http://localhost/project/rkbmd/api/index.php/SubKegiatan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',
