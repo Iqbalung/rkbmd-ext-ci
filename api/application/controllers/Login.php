@@ -18,6 +18,9 @@ class Login extends CI_Controller{
 		header("Access-Control-Allow-Headers: Authorization, X-API-KEY, Origin,X-Requested-With, Content-Type, Accept, Access-Control-Requested-Method");
 		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PATCH, PUT, DELETE, get, post");
 		$this->load->database();
+
+		$tahun = ifunset($_POST,'tahun',date("Y"));
+
 		$params=array(
 			'EMAIL'=> ifunset($_POST,'email','admin@traspac.co.id'),
 			'PASSWORD'=> md5(ifunset($_POST,'password','b')),
@@ -41,7 +44,8 @@ class Login extends CI_Controller{
 			foreach ($q->first_row() as $key => $value) {
 				$session_data[$key] = $value;
 			}
-			$session_data['is_login'] = true ;
+			$session_data['is_login'] = true;
+			$session_data['TAHUN'] = $tahun;
 			$out['data'] = $session_data;
 			$this->session->set_userdata($session_data);
 		}
@@ -115,6 +119,27 @@ class Login extends CI_Controller{
 
 	function keluar(){
 		$this->session->sess_destroy();
+	}
+
+	public function get_tahun()
+	{
+		$data = array();
+
+		$tahun = date("Y");
+		
+		for ($i= -3; $i <= 1; $i++) { 
+			$data[] = array(
+				"TAHUN" => $tahun + $i
+			);
+		}
+
+		$output = array(
+			"code" => 200,
+			"sucess" => true,
+			"items" => $data
+		);
+
+		echo json_encode($output);
 	}
 
 }

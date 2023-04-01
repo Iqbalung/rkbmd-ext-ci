@@ -72,7 +72,15 @@ Ext.define('koyoku.view.main.Main', {
                     text: '{message}',
                 },
             },
-            '->', {
+            '->',
+            {
+                xtype: 'label',
+                bind: {
+                    text: 'TA {TAHUN}',
+                },
+            },
+            '|',
+             {
                 tooltip: 'Akun',
                 itemId: 'btn_akun',
                 scale: 'large',

@@ -37,6 +37,7 @@ class App extends MY_Controller {
 			$out['INSTANSI'] = $row;
 		}
 		$out['akses'] = $this->get_akses($out['USER']['USERGROUP_ID']);
+		$out['TAHUN'] = $this->session->userdata('TAHUN');
 		$out['message'] = 'RKBMD Banjarnegara';
 		echo json_encode($out);
 	}
