@@ -76,6 +76,7 @@ class Pemanfaatan extends MY_Controller {
 				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
 				'STATUS' => ifunset($_GET,'STATUS', '-1'),							
 			);
+			$filterBidang = $params["BIDANG_ID"];
 
 			$tahun = $params["TAHUN"];
 			if (empty($tahun)) {
@@ -85,7 +86,7 @@ class Pemanfaatan extends MY_Controller {
 			$this->load->model("M_bidang");
 			$bidang = $this->M_bidang->get_root();					
 			
-			$startIndex = 11;
+			$startIndex = 12;
 			$rowIndex = $startIndex;
 			$sheet = $objPHPExcel->getActiveSheet();
 			$no = 1;		
@@ -97,6 +98,9 @@ class Pemanfaatan extends MY_Controller {
 				
 			foreach ($bidang->result_array() as $key => $value) {
 				
+				if (!empty($filterBidang) && $value["BIDANG_ID"] != substr($filterBidang, 0, strlen($value["BIDANG_ID"]))) {
+					continue;
+				}
 
 				$params["BIDANG_ID"] = $value["BIDANG_ID"];
 				$data = $this->M_pemanfaatan->get($params, true);

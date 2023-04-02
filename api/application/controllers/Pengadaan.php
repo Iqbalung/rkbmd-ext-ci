@@ -76,6 +76,7 @@ class Pengadaan extends MY_Controller {
 				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
 				'STATUS' => ifunset($_GET,'STATUS', '-1'),							
 			);
+			$filterBidang = $params["BIDANG_ID"];
 			
 			$tahun = $params["TAHUN"];
 			if (empty($tahun)) {
@@ -83,7 +84,7 @@ class Pengadaan extends MY_Controller {
 			}
 			
 			$this->load->model("M_bidang");
-			$bidang = $this->M_bidang->get_root();					
+			$bidang = $this->M_bidang->get_root();								
 			
 			$startIndex = 11;
 			$rowIndex = $startIndex;
@@ -96,6 +97,10 @@ class Pengadaan extends MY_Controller {
 			$sheet->setCellValue('B6', $judul);
 
 			foreach ($bidang->result_array() as $key => $value) {				
+				
+				if (!empty($filterBidang) && $value["BIDANG_ID"] != substr($filterBidang, 0, strlen($value["BIDANG_ID"]))) {
+					continue;
+				}
 
 				$params["BIDANG_ID"] = $value["BIDANG_ID"];
 				$data = $this->M_pengadaan->get($params, true);

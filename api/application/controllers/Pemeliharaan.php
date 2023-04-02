@@ -77,6 +77,7 @@ class Pemeliharaan extends MY_Controller {
 				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
 				'STATUS' => ifunset($_GET,'STATUS', '-1'),							
 			);
+			$filterBidang = $params["BIDANG_ID"];			
 			
 			$tahun = $params["TAHUN"];
 			if (empty($tahun)) {
@@ -98,7 +99,10 @@ class Pemeliharaan extends MY_Controller {
 				
 			foreach ($bidang->result_array() as $key => $value) {
 				
-
+				if (!empty($filterBidang) && $value["BIDANG_ID"] != substr($filterBidang, 0, strlen($value["BIDANG_ID"]))) {
+					continue;
+				}
+				
 				$params["BIDANG_ID"] = $value["BIDANG_ID"];
 				$data = $this->M_pemeliharaan->get($params, true);
 
