@@ -13,7 +13,7 @@ Ext.define('koyoku.view.master.kompetensi.Window_bidang', {
         modal: true,
         width: 700,
         title: 'Pilih Kompetensi',
-        closeAction: 'hide',   
+        closeAction: 'destroy',   
         items: [{
                     xtype: 'tree_bidang',
                     allowDeselect: true,

@@ -6,6 +6,7 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
         'koyoku.view.master.kompetensi.Controller',
         'koyoku.view.master.kompetensi.List',
         'koyoku.view.master.kompetensi.SubList',
+        'koyoku.view.master.kompetensi.OutputList',
         'koyoku.view.master.bidang.Tree_bidang',
         'koyoku.view.master.kompetensi.Window_bidang',
     ],
@@ -55,16 +56,16 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                     },
                     {
                         text : 'Tambah',
-                        handler : 'add',
-                        glyph: 'xf067@fontAwesome'
+                        glyph: 'xf067@fontAwesome',
+                        handler : 'onTambahKegiatan'
                     },{
                         text : 'Ubah',
                         glyph: 'xf044@fontAwesome',
-                        handler:'upd',
+                        handler:'onUbahKegiatan',
                     },{
                         text : 'Hapus',
-                        handler:'delete',
-                        glyph: 'xf1f8@fontAwesome'
+                        glyph: 'xf1f8@fontAwesome',
+                        handler:'onHapusKegiatan'
                     }
 
                 ],
@@ -125,7 +126,7 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                                 text : 'Tambah',
                                 handler : 'onTambahSub',
                                 glyph: 'xf067@fontAwesome'
-                            },{
+                            }, {
                                 text : 'Hapus',
                                 handler:'delete_sub',
                                 glyph: 'xf1f8@fontAwesome'
@@ -135,6 +136,60 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                         items: [{
                             title: 'Sub Kegiatan',
                             xtype: 'subkompetensiList',
+                        }]
+                    }, {
+                        xtype:'panel',
+                        tbar : [
+                            '->',
+                            {
+                                labelWidth  : 50,
+                                xtype: 'textfield',
+                                triggerAction: 'all',
+                                typeAhead: true,
+                                queryMode: 'remote',
+                                minChars: 2,
+                                itemId: 'pencarian_output',
+                                forceSelection: false,
+                                displayField: 'SUB_KEGIATAN_OUTPUT',
+                                width: 250,
+                                emptyText: "Ketik Kata Kunci",
+                                hideTrigger: true,
+                                listeners: {
+                                    specialkey: function(field, e){
+                                        if (e.getKey() == e.ENTER) {
+                                            cmp = Ext.getCmp("page_kompetensi"),
+                                            grid = cmp.down("outputSubKegiatanList");
+                                            store = grid.getStore();
+                                            store.clearFilter();
+                                            value = field.lastValue;
+                                            store.clearFilter();
+                                            store.filter('SUB_KEGIATAN_OUTPUT', value, false, false);
+                                            store.load();
+                                        }
+                                    }
+        
+                                }
+                            },
+                            {
+                                text : 'Tambah',
+                                handler : 'onTambahOutput',
+                                glyph: 'xf067@fontAwesome'
+                            },
+                            {
+                                text : 'Ubah',
+                                handler : 'onUbahOutput',
+                                glyph: 'xf044@fontAwesome'
+                            },
+                            {
+                                text : 'Hapus',
+                                handler:'onDeleteOutput',
+                                glyph: 'xf1f8@fontAwesome'
+                            }
+        
+                        ],
+                        items: [{
+                            title: 'Output',
+                            xtype: 'outputSubKegiatanList',
                         }]
                     }]
                 }]

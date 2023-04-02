@@ -74,6 +74,11 @@ class M_kegiatan extends CI_Model{
 					$paramsWhere[] = $params['ID'];
 				}
 
+				if(isset($params['TAHUN']) && !empty($params['TAHUN'])){
+					$where .= " AND k.TAHUN = ? ";
+					$paramsWhere[] = $params['TAHUN'];
+				}
+
 				$res = $this->db->query("
 					select
 						k.KEGIATAN_ID as ID,
@@ -96,6 +101,11 @@ class M_kegiatan extends CI_Model{
 				if(isset($params['BIDANG_ID']) && !empty($params['BIDANG_ID'])){
 					$where .= " AND k.BIDANG_ID like ? ";
 					$paramsWhere[] = $params['BIDANG_ID'].'%';
+				}
+
+				if(isset($params['TAHUN']) && !empty($params['TAHUN'])){
+					$where .= " AND k.TAHUN = ? ";
+					$paramsWhere[] = $params['TAHUN'];
 				}
 
 				$res = $this->db->query("

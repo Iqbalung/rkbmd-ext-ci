@@ -48,10 +48,15 @@ class SubKegiatan extends MY_Controller {
 			'SUB_KEGIATAN_NAMA' => ifunsetempty($_POST,'SUB_KEGIATAN_NAMA',''),
 			'SUB_KEGIATAN_SLUG' => slug(ifunsetempty($_POST,'SUB_KEGIATAN_NAMA','')),
 			'SUB_KEGIATAN_ID' => ifunsetempty($_POST,'SUB_KEGIATAN_ID',''),
-			'SUB_KEGIATAN_ID' => ifunsetempty($_POST,'SUB_KEGIATAN_ID',''),
+			'SUB_KEGIATAN_TIPE' => ifunsetempty($_POST,'SUB_KEGIATAN_TIPE',''),
 			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
+			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 			'UPDATE' => ifunsetempty($_POST, 'UPDATE',''),
 		);
+
+		if (empty($params["TAHUN"])) {			
+			$params["TAHUN"] = date("Y");        		
+		}
 		
 		if($params['UPDATE']==""){ 
 			$res = $this->M_subkegiatan->add($params);
@@ -79,8 +84,14 @@ class SubKegiatan extends MY_Controller {
 			'SUB_KEGIATAN_SLUG' => slug(ifunsetempty($_POST,'SUB_KEGIATAN_NAMA','')),
 			'SUB_KEGIATAN_ID' => ifunsetempty($_POST,'SUB_KEGIATAN_ID',''),
 			'SUB_KEGIATAN_ID' => ifunsetempty($_POST,'SUB_KEGIATAN_ID',''),
+			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 			'UPDATE' => ifunsetempty($_POST, 'UPDATE',''),
 		);
+
+		if (empty($params["TAHUN"])) {			
+			$params["TAHUN"] = date("Y");        		
+		}
+
 		if($params['SUB_KEGIATAN_ID']==''){
 			$res = $this->M_subkegiatan->add($params);
 			if($res){

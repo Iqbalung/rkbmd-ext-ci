@@ -31,6 +31,7 @@ Ext.define('koyoku.view.master.kompetensi.SubList', {
                     uncheckedValue: 0
                 },
                 text: 'Active',
+                hidden: true,
                 dataIndex: 'active',
                 renderer: function(value, metadata, record, rowIndex, colIndex, store) {
                     var tempVal = '',
@@ -42,12 +43,29 @@ Ext.define('koyoku.view.master.kompetensi.SubList', {
                 }
             }],
             plugins: [{
-            ptype: 'rowediting',
-            clicksToEdit: 1,
-            listeners: {  
-                edit: 'subredit'
+                ptype: 'rowediting',
+                clicksToEdit: 0,
+                listeners: {  
+                    edit: 'subredit'                
+                }
+            }],     
+            listeners:{
+                itemclick: function(field, e){                    
+                    cmp = Ext.getCmp("page_kompetensi"),
+                    grid = cmp.down("subkompetensiList");
+                    store = grid.getStore();
+                    
+                    selected = grid.getSelectionModel().getSelection();                    
+
+                    value = field.lastValue;
+                    grid = cmp.down("outputSubKegiatanList");
+                    storeList = grid.getStore();
+
+                    storeList.proxy.extraParams =  selected[0].data; 
+                    storeList.load();
+                    
+                },
             }
-    }],     
     });
          me.callParent([arguments]);
          

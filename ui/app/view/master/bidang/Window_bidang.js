@@ -4,7 +4,7 @@ Ext.define('koyoku.view.master.bidang.Window_bidang', {
     requires: [
         'koyoku.view.master.bidang.Tree_bidang',
         'koyoku.view.master.jabatan.Form_jabatan',
-        'koyoku.view.master.kompetensi.Form_kompetensi',
+        'koyoku.view.master.kompetensi.Form_kegiatan',
     ],
     rec : {},
     initComponent: function() {

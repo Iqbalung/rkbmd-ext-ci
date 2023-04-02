@@ -1,13 +1,15 @@
-Ext.define('koyoku.view.master.kompetensi.Form_kompetensi', {
+Ext.define('koyoku.view.master.kompetensi.Form_kegiatan', {
     extend: 'Ext.Window',
-    alias: 'widget.form_kompetensi',
-    xtype: 'main_form_kompetensi',
+    alias: 'widget.form_kegiatan',
+    xtype: 'main_form_kegiatan',
     controller: 'kompetensi',
     width:600,
-    modal : true,
-    Title : 'Form kompetensi',
+    modal : true,    
     id : 'window_form_kegiatan',
-    closeAction : 'hide',
+    closeAction : 'destroy',
+    condif:{
+        title: ''
+    },
     padding: 20,
     items:[{
         xtype : 'form',

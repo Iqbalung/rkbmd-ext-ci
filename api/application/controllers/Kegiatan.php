@@ -17,10 +17,10 @@ class Kegiatan extends MY_Controller {
 			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
 			'JABATAN_ID' => ifunsetempty($_POST,'JABATAN_ID',''),
 			'KEGIATAN_NAMA' => ifunsetempty($_POST,'KEGIATAN_NAMA',''),
-			'KEGIATAN_SLUG' => ifunsetempty($_GET,'slug',''),
+			'KEGIATAN_SLUG' => ifunsetempty($_POST,'slug',''),
+			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',$this->session->userdata('BIDANG_ID')),
 		);
-
         
 		if ($params["KEGIATAN_NAMA"]=="") {
 			unset($params["KEGIATAN_NAMA"]);
@@ -52,8 +52,13 @@ class Kegiatan extends MY_Controller {
 			'KEGIATAN_SLUG' => slug(ifunsetempty($_POST,'KEGIATAN_NAMA','')),
 			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',''),
+			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 			'UPDATE' => ifunsetempty($_POST, 'UPDATE',''),
 		);
+
+		if (empty($params["TAHUN"])) {			
+			$params["TAHUN"] = date("Y");        		
+		}
 		
 		if($params['UPDATE']==""){ 
 			$res = $this->M_kegiatan->add($params);
@@ -81,8 +86,14 @@ class Kegiatan extends MY_Controller {
 			'KEGIATAN_SLUG' => slug(ifunsetempty($_POST,'KEGIATAN_NAMA','')),
 			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',''),
+			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 			'UPDATE' => ifunsetempty($_POST, 'UPDATE',''),
 		);
+
+		if (empty($params["TAHUN"])) {			
+			$params["TAHUN"] = date("Y");        		
+		}
+		
 		if($params['KEGIATAN_ID']==''){
 			$res = $this->M_kegiatan->add($params);
 			if($res){
@@ -128,7 +139,8 @@ class Kegiatan extends MY_Controller {
 			'ID' => ifunsetempty($_POST,'ID',''),
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',''),
 			'TIPE' => ifunsetempty($_POST,'TIPE',''),
-			'node' => ifunsetempty($_POST,'node','')			
+			'node' => ifunsetempty($_POST,'node',''),	
+			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 		);
 
         
