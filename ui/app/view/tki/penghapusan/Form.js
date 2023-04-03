@@ -13,7 +13,7 @@ Ext.define('koyoku.view.tki.penghapusan.Form', {
         titlePosition: 1,
         items: [{            
             xtype:'label',
-            text: 'Tambah Penghapusan Barang',
+            text: 'Tambah Penghapusan/Pemindahtanganan Barang',
             cls: 'lefty'
         }, {
             xtype: 'button',
