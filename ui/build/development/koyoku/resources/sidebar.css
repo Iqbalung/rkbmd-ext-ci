@@ -1,0 +1,226 @@
+.side-bar {
+    background: #16324D;
+    backdrop-filter: blur(15px);
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    /* left: -250px; */
+    overflow-y: auto;
+    transition: 0.6s ease;
+    /* opacity: 0; */
+    z-index: 10001;
+    transition-property: left;
+}
+
+.side-bar::-webkit-scrollbar {
+    width: 0px;
+}
+
+.side-bar.active {
+    left: 0;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 500;
+    font-size: 25px;
+    padding-bottom: 13px;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+}
+
+#action_side_menu {
+    cursor: pointer;
+}
+
+.menu-fade-in {
+    width: 250px !important;
+    animation: fade-in 10s;
+    transition: 1s ease;
+    /* animation: fade-out 1s; */
+}
+
+.menu-fade-out {
+    width: 0px !important;
+    transition: 1s ease;
+}
+
+.side-bar .menu {
+    width: 100%;
+    /* margin-top: 30px; */
+}
+
+.side-bar .menu .item {
+    position: relative;
+    cursor: pointer;
+}
+
+.side-bar .menu .item a {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+    padding: 5px 10px;
+    line-height: 40px;
+}
+
+.side-bar .menu .item a:hover {
+    background: #33363a;
+    transition: 0.3s ease;
+}
+
+.side-bar .menu .item i {
+    margin-right: 15px;
+}
+
+.side-bar .menu .item a .dropdown {
+    position: absolute;
+    right: 0;
+    margin: 20px;
+    transition: 0.3s ease;
+}
+
+.side-bar .menu .item .sub-menu {
+    background: #16324D;
+    display: none;
+}
+
+.side-bar .menu .item .sub-menu a {
+    padding-left: 40px;
+}
+
+.rotate {
+    transform: rotate(90deg);
+}
+
+.btn-side-bar {
+    cursor: pointer;
+    color: black;
+    font-size: 20px !important;
+    margin: 10px;
+}
+
+.btn-close-side-bar {
+    cursor: pointer;
+    color: white;
+    font-size: 20px !important;
+    margin: 15px 22px;
+}
+
+.side-bar .box-menu {
+    height: 150px;
+    background-color: #5C81BD;
+}
+
+.page-dashboard {
+    background-color: #eeeeee;
+}
+
+.page-dashboard .x-panel-body-default {
+    background-color: #eeeeee;
+}
+
+.my-view {
+    background-color: #eeeeee;
+    column-count: 3;
+    /* padding-right: 10px !important; */
+    column-width: 100%;
+}
+
+.my-card {
+    position: relative;
+    display: block;
+    /* padding: 5px; */
+    float: left;
+    flex-direction: column;
+    margin: 15px;
+    margin-left: 0px !important;
+    background: #fff;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.my-view .my-card:first-child {
+    margin-left: 0px !important;
+}
+
+.my-card-item {
+    text-align: end;
+    color: white;
+    width: 100%;
+    /* margin-right: 10px; */
+    padding: 40px 20px;
+    float: right;
+}
+
+.my-card-item .value {
+    font-size: 34px;
+    padding: 10px 15px;
+}
+
+.my-card-item .label {
+    padding-top: 10px;
+    font-size: 16px;
+}
+
+.my-card-item.item-orange {
+    background-color: #F39C1E;
+}
+
+.my-card-item.item-green {
+    background-color: #68BF71;
+}
+
+.my-card-item.item-purple {
+    background-color: #6E6BB1;
+}
+
+.top-pengajuan {
+    margin-top: 15px;
+}
+
+.my-top-pengajuan {
+    background-color: white;
+    column-count: 5;
+    padding: 5px;
+    /* padding-right: 10px !important; */
+    column-width: 100%;
+}
+
+.my-card-top-pengajuan {
+    position: relative;
+    display: block;
+    /* padding: 5px; */
+    float: left;
+    flex-direction: column;
+    /* margin: 15px; */
+    background: #fff;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.my-card-top-pengajuan-item {
+    color: black;
+    width: 100%;
+    margin-right: 10px;
+    padding: 40px 20px;
+}
+
+.my-card-top-pengajuan-item progress {
+    width: 100%;
+}
+
+.my-card-top-pengajuan-item .label {
+    color: #555;
+    float: left;
+    font-size: 13px;
+}
+
+.my-card-top-pengajuan-item .nilai {
+    text-align: end;
+}
+
+.list-pengajuan {
+    margin-top: 15px;
+}
