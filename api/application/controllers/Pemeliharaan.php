@@ -84,7 +84,7 @@ class Pemeliharaan extends MY_Controller {
 				$tahun = date("Y");			
 			}
 			
-			$this->load->model("M_bidang");
+			$this->load->model(array("M_bidang", "M_outputsubkegiatan"));
 			$bidang = $this->M_bidang->get_root();					
 			
 			$startIndex = 11;
@@ -96,7 +96,7 @@ class Pemeliharaan extends MY_Controller {
 			$sheet->setCellValue('B4', "Tanggal:          ".$tanggal);
 			$judul = "RENCANA KEBUTUHAN PEMELIHARAAN BARANG MILIK DAERAH (RKPBMD) PEMERINTAH KABUPATEN BANJARNEGARA TAHUN ".$tahun;
 			$sheet->setCellValue('B6', $judul);
-				
+			
 			foreach ($bidang->result_array() as $key => $value) {
 				
 				if (!empty($filterBidang) && $value["BIDANG_ID"] != substr($filterBidang, 0, strlen($value["BIDANG_ID"]))) {
@@ -105,7 +105,7 @@ class Pemeliharaan extends MY_Controller {
 				
 				$params["BIDANG_ID"] = $value["BIDANG_ID"];
 				$data = $this->M_pemeliharaan->get($params, true);
-
+				
 				if ($data->num_rows() > 0) {
 					$data = $data->result_array();
 					$dataGroup = array();
@@ -133,10 +133,7 @@ class Pemeliharaan extends MY_Controller {
 						"BIDANG_ID" => $value["BIDANG_ID"]
 					);
 
-					$subBidang = $this->M_bidang->get($paramsBidang);
-
-					
-
+					$subBidang = $this->M_bidang->get($paramsBidang);									
 					
 					foreach ($subBidang->result_array() as $subBidang) {									
 
@@ -175,22 +172,43 @@ class Pemeliharaan extends MY_Controller {
 									$rowIndex++;
 									$sheet->setCellValue('C'.$rowIndex, $rowKegiatan["SUB_KEGIATAN_NAMA"]);
 								}
-								$rowIndex++;
-								foreach ($rowKegiatan["BARANG"] as $rowBarang) {
-									$sheet->setCellValue('D'.$rowIndex, $rowBarang["BARANG_KODE"]);
-									$sheet->setCellValue('E'.$rowIndex, $rowBarang["BARANG_NAMA"]);
-									$sheet->setCellValue('F'.$rowIndex, $rowBarang["USULAN_JUMLAH"]);
-									$sheet->setCellValue('G'.$rowIndex, $rowBarang["USULAN_SATUAN"]);
-									$sheet->setCellValue('H'.$rowIndex, $rowBarang["STATUS_BARANG"]);
-									$sheet->setCellValue('I'.$rowIndex, $rowBarang["KONDISI_BAIK"]);
-									$sheet->setCellValue('J'.$rowIndex, $rowBarang["KONDISI_RUSAK_RINGAN"]);
-									$sheet->setCellValue('K'.$rowIndex, $rowBarang["KONDISI_RUSAK_BERAT"]);
-									$sheet->setCellValue('L'.$rowIndex, $rowBarang["PEMELIHARAAN_NAMA"]);
-									$sheet->setCellValue('M'.$rowIndex, $rowBarang["RENCANA_JUMLAH"]);
-									$sheet->setCellValue('N'.$rowIndex, $rowBarang["RENCANA_SATUAN"]);
-									$sheet->setCellValue('O'.$rowIndex, $rowBarang["KETERANGAN"]);
-									$rowIndex++;
+
+								$dataOutput = $this->M_outputsubkegiatan->get(array(
+									"SUB_KEGIATAN_ID" => $rowKegiatan["SUB_KEGIATAN_ID"]
+								));
+
+								$countRow = $dataOutput->num_rows();
+								if ($countRow <= count($rowKegiatan["BARANG"])) {
+									$countRow = count($rowKegiatan["BARANG"]);
 								}
+								$dataOutput = $dataOutput->result_array();
+								$rowIndex++;
+								if ($countRow > 0) {									
+									$sheet->setCellValue('C'.$rowIndex, "Output :");	
+								}
+								for ($i=0; $i < $countRow+1; $i++) { 
+									
+									if (isset($dataOutput[$i])) {											
+										$sheet->setCellValue('C'.($rowIndex+1), $dataOutput[$i]["OUTPUT_NAMA"]);
+									}
+
+									if (isset($rowKegiatan["BARANG"][$i])) {										
+										$rowBarang = $rowKegiatan["BARANG"][$i];
+										$sheet->setCellValue('D'.$rowIndex, $rowBarang["BARANG_KODE"]);
+										$sheet->setCellValue('E'.$rowIndex, $rowBarang["BARANG_NAMA"]);
+										$sheet->setCellValue('F'.$rowIndex, $rowBarang["USULAN_JUMLAH"]);
+										$sheet->setCellValue('G'.$rowIndex, $rowBarang["USULAN_SATUAN"]);
+										$sheet->setCellValue('H'.$rowIndex, $rowBarang["STATUS_BARANG"]);
+										$sheet->setCellValue('I'.$rowIndex, $rowBarang["KONDISI_BAIK"]);
+										$sheet->setCellValue('J'.$rowIndex, $rowBarang["KONDISI_RUSAK_RINGAN"]);
+										$sheet->setCellValue('K'.$rowIndex, $rowBarang["KONDISI_RUSAK_BERAT"]);
+										$sheet->setCellValue('L'.$rowIndex, $rowBarang["PEMELIHARAAN_NAMA"]);
+										$sheet->setCellValue('M'.$rowIndex, $rowBarang["RENCANA_JUMLAH"]);
+										$sheet->setCellValue('N'.$rowIndex, $rowBarang["RENCANA_SATUAN"]);
+										$sheet->setCellValue('O'.$rowIndex, $rowBarang["KETERANGAN"]);
+									}
+									$rowIndex++;
+								}								
 
 							}							
 						}
