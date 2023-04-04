@@ -24485,3 +24485,86 @@ h1 {
 .list-pengajuan {
     margin-top: 15px;
 }
+
+.btn-round:hover .x-btn-icon-el,
+.btn-round.x-btn-hover .x-btn-icon-el,
+.btn-round.x-btn-focus .x-btn-icon-el,
+.btn-round-small:hover .x-btn-icon-el,
+.btn-round-small.x-btn-hover .x-btn-icon-el,
+.btn-round-small.x-btn-focus .x-btn-icon-el {
+    color: black !important;
+}
+
+.btn-round {
+    border-radius: 21px;
+    height: 42px;
+    width: 42px;
+}
+
+.btn-x-m2 {
+    padding: 10px;
+}
+
+.btn-round-small {
+    border-radius: 17px;
+    height: 34px;
+    width: 34px;
+}
+
+.x-btn-default-small .x-btn-icon-el,
+.btn-round .x-btn-icon-el,
+.btn-round-small .x-btn-icon-el,
+.btn-main .x-btn-icon-el,
+.btn-purple .x-btn-icon-el {
+    color: white;
+    opacity: 1 !important;
+}
+
+.btn-main {
+    background-color: #5fb1dd;
+    background: #5fb1dd;
+}
+
+.btn-main .x-btn-inner {
+    color: white;
+}
+
+.btn-purple {
+    background-color: #6C89C5;
+    background: #6C89C5;
+}
+
+.btn-purple .x-btn-inner {
+    color: white;
+}
+
+.btn-tambah {
+    background-color: #21B581;
+    background: #21B581;
+}
+
+.btn-edit {
+    background-color: #F5AD3E;
+    background: #F5AD3E;
+}
+
+.btn-hapus {
+    background-color: #EA4335;
+    background: #EA4335;
+}
+
+.btn-kembali {
+    background: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+    color: white;
+}
+
+.btn-kembali .x-btn-icon-el {
+    opacity: 1 !important;
+}
+
+.text-white {
+    color: white;
+}

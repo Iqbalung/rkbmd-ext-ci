@@ -55,15 +55,15 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                         }
                     },
                     {
-                        text : 'Tambah',
+                        cls: 'btn-round-small btn-tambah',
                         glyph: 'xf067@fontAwesome',
                         handler : 'onTambahKegiatan'
                     },{
-                        text : 'Ubah',
+                        cls: 'btn-round-small btn-edit',
                         glyph: 'xf044@fontAwesome',
                         handler:'onUbahKegiatan',
                     },{
-                        text : 'Hapus',
+                        cls: 'btn-round-small btn-hapus',
                         glyph: 'xf1f8@fontAwesome',
                         handler:'onHapusKegiatan'
                     }
@@ -84,13 +84,17 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                 }, {
                     xtype: 'panel',
                     region: 'center',
+                    layout:'vbox',
                     items:[{
                         title: 'Kegiatan',
+                        width: '100%',
+                        flex:1,
                         xtype: 'kompetensiList',
-                    },
-                    
-                    {
-                        xtype:'panel',
+                    }, {
+                        title: 'Sub Kegiatan',
+                        width: '100%',
+                        flex:1,
+                        xtype: 'subkompetensiList',
                         tbar : [
                             '->',
                             {
@@ -123,22 +127,21 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                                 }
                             },
                             {
-                                text : 'Tambah',
+                                cls: 'btn-round-small btn-tambah',
                                 handler : 'onTambahSub',
                                 glyph: 'xf067@fontAwesome'
                             }, {
-                                text : 'Hapus',
+                                cls: 'btn-round-small btn-hapus',
                                 handler:'delete_sub',
                                 glyph: 'xf1f8@fontAwesome'
                             }
         
-                        ],
-                        items: [{
-                            title: 'Sub Kegiatan',
-                            xtype: 'subkompetensiList',
-                        }]
+                        ]                       
                     }, {
-                        xtype:'panel',
+                        title: 'Output',
+                        width: '100%',
+                        flex:1,
+                        xtype: 'outputSubKegiatanList',
                         tbar : [
                             '->',
                             {
@@ -171,26 +174,22 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                                 }
                             },
                             {
-                                text : 'Tambah',
+                                cls: 'btn-round-small btn-tambah',
                                 handler : 'onTambahOutput',
                                 glyph: 'xf067@fontAwesome'
                             },
                             {
-                                text : 'Ubah',
+                                cls: 'btn-round-small btn-edit',
                                 handler : 'onUbahOutput',
                                 glyph: 'xf044@fontAwesome'
                             },
                             {
-                                text : 'Hapus',
+                                cls: 'btn-round-small btn-hapus',
                                 handler:'onDeleteOutput',
                                 glyph: 'xf1f8@fontAwesome'
                             }
         
-                        ],
-                        items: [{
-                            title: 'Output',
-                            xtype: 'outputSubKegiatanList',
-                        }]
+                        ],                            
                     }]
                 }]
             }]

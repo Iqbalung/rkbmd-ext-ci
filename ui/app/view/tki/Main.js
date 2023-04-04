@@ -44,8 +44,12 @@ Ext.define('koyoku.view.tki.Main', {
 			xtype: 'tabpanel',			
 			items: [{
 				title: 'Pengadaan',				
-				xtype: 'grid_pengadaan',				
-				tbar: [{
+				xtype: 'grid_pengadaan',		
+				dockedItems: [{
+					xtype: 'toolbar',
+					dock: 'top',
+					height: 60,
+					items: [{
 						xtype: 'textfield',
 						emptyText: 'Cari ...',
 						itemId: 'text_cari',
@@ -60,23 +64,29 @@ Ext.define('koyoku.view.tki.Main', {
 						}
 					},
 					'->',{
-						text : 'Cetak',
-						// glyph: 'xf067@fontAwesome',						
+						// text : 'Cetak',
+						glyph: 'f02f@fontAwesome',						
+						cls: 'btn-round btn-main',
 						handler: 'cetak_pengadaan'
-					}, {
-						bind : { text : '{language.tambah}', },
+					}, {					
 						glyph: 'xf067@fontAwesome',
+						cls: 'btn-round btn-tambah',
 						handler: 'tambah_pengadaan'
-					}, {
-						bind : { text : '{language.ubah}', },
+					}, {						
 						glyph: 'xf044@fontAwesome',
+						cls: 'btn-round btn-edit',
 						handler: 'ubah_pengadaan'
 					}
 				]
+				}],
 			}, {
 				title: 'Pemeliharaan',
 				xtype: 'grid_pemeliharaan',				
-				tbar: [{
+				dockedItems: [{
+					xtype: 'toolbar',
+					dock: 'top',
+					height: 60,
+					items: [{
 						xtype: 'textfield',
 						emptyText: 'Cari ...',
 						itemId: 'text_cari',
@@ -91,23 +101,29 @@ Ext.define('koyoku.view.tki.Main', {
 						}
 					},
 					'->',{
-						text : 'Cetak',
-						// glyph: 'xf067@fontAwesome',						
+						// text : 'Cetak',
+						glyph: 'f02f@fontAwesome',						
+						cls: 'btn-round btn-main',
 						handler: 'cetak_pemeliharaan'
-					}, {
-						bind : { text : '{language.tambah}', },
+					}, {					
 						glyph: 'xf067@fontAwesome',
+						cls: 'btn-round btn-tambah',
 						handler: 'tambah_pemeliharaan'
-					}, {
-						bind : { text : '{language.ubah}', },
+					}, {						
 						glyph: 'xf044@fontAwesome',
+						cls: 'btn-round btn-edit',
 						handler: 'ubah_pemeliharaan'
 					}
 				]
+				}],
 			}, {
 				xtype: 'grid_pemanfaatan',
 				title: 'Pemanfaatan',				
-				tbar: [{
+				dockedItems: [{
+					xtype: 'toolbar',
+					dock: 'top',
+					height: 60,
+					items: [{
 						xtype: 'textfield',
 						emptyText: 'Cari ...',
 						itemId: 'text_cari',
@@ -121,24 +137,30 @@ Ext.define('koyoku.view.tki.Main', {
 							change: 'load_pemanfaatan_status'
 						}
 					},
-					'->', {
-						text : 'Cetak',
-						// glyph: 'xf067@fontAwesome',						
+					'->',{
+						// text : 'Cetak',
+						glyph: 'f02f@fontAwesome',						
+						cls: 'btn-round btn-main',
 						handler: 'cetak_pemanfaatan'
-					}, {
-						bind : { text : '{language.tambah}', },
+					}, {					
 						glyph: 'xf067@fontAwesome',
+						cls: 'btn-round btn-tambah',
 						handler: 'tambah_pemanfaatan'
-					}, {
-						bind : { text : '{language.ubah}', },
+					}, {						
 						glyph: 'xf044@fontAwesome',
+						cls: 'btn-round btn-edit',
 						handler: 'ubah_pemanfaatan'
 					}
 				]
+				}],
 			}, {
 				title: 'Penghapusan/Pemindahtanganan',
 				xtype: 'grid_penghapusan',				
-				tbar: [{
+				dockedItems: [{
+					xtype: 'toolbar',
+					dock: 'top',
+					height: 60,
+					items: [{
 						xtype: 'textfield',
 						emptyText: 'Cari ...',
 						itemId: 'text_cari',
@@ -152,20 +174,22 @@ Ext.define('koyoku.view.tki.Main', {
 							change: 'load_penghapusan_status'
 						}
 					},
-					'->', {
-						text : 'Cetak',
-						// glyph: 'xf067@fontAwesome',						
+					'->',{
+						// text : 'Cetak',
+						glyph: 'f02f@fontAwesome',						
+						cls: 'btn-round btn-main',
 						handler: 'cetak_penghapusan'
-					}, {
-						bind : { text : '{language.tambah}', },
-						glyph: 'xf067@fontAwesome',						
+					}, {					
+						glyph: 'xf067@fontAwesome',
+						cls: 'btn-round btn-tambah',
 						handler: 'tambah_penghapusan'
-					}, {
-						bind : { text : '{language.ubah}', },
+					}, {						
 						glyph: 'xf044@fontAwesome',
+						cls: 'btn-round btn-edit',
 						handler: 'ubah_penghapusan'
 					}
 				]
+				}],
 			}]
 		}, {
 			xtype: 'form_pemeliharaan'

@@ -37,6 +37,7 @@ Ext.define('koyoku.view.master.barang.Form_barang', {
     }],
     bbar:['->',{
         text:"Simpan",
+        cls:'btn-main btn-x-m2',
         handler:'save',
         glyph: 'xf0c7@fontAwesome'
 

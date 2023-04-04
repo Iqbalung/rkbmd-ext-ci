@@ -14,10 +14,11 @@ Ext.define('koyoku.view.tki.pemeliharaan.Form', {
         items: [{            
             xtype:'label',
             text: 'Tambah Pemeliharaan Barang',
-            cls: 'lefty'
+            cls: 'lefty text-white'
         }, {
             xtype: 'button',
-            text: 'Kembali',
+            cls: 'btn-kembali',
+            glyph: 'f053@fontAwesome',            
             handler: 'kembali'
         }]
     },
@@ -71,15 +72,15 @@ Ext.define('koyoku.view.tki.pemeliharaan.Form', {
         maxHeight: 500,        
         tbar: [				
             {
-                text: 'Tambah',
+                cls: 'btn-round-small btn-tambah',
                 glyph: 'xf067@fontAwesome',
                 handler: 'tambah_barang_pemeliharaan'
             }, {
-                bind : { text : '{language.ubah}', },
+                cls: 'btn-round-small btn-edit',
                 glyph: 'xf044@fontAwesome',
                 handler: 'ubah_barang_pemeliharaan'
             }, {
-                text: 'Hapus',
+                cls: 'btn-round-small btn-hapus',
                 glyph: 'xf1f8@fontAwesome',
                 handler: 'hapus_barang_pemeliharaan'
             }

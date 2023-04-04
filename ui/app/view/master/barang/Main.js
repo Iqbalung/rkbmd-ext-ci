@@ -48,15 +48,15 @@ Ext.define('koyoku.view.master.barang.Main', {
                         }
                     },
                     {
-                        text : 'Tambah',
+                        cls: 'btn-round btn-tambah',
                         handler : 'add',
                         glyph: 'xf067@fontAwesome'
                     },{
-                        text : 'Ubah',
+                        cls: 'btn-round btn-edit',
                         glyph: 'xf044@fontAwesome',
                         handler:'upd',
                     },{
-                        text : 'Hapus',
+                        cls: 'btn-round btn-hapus',
                         glyph: 'xf1f8@fontAwesome',
                         handler:'delete',
                     }

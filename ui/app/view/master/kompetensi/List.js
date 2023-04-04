@@ -31,20 +31,21 @@ Ext.define('koyoku.view.master.kompetensi.List', {
     },
     listeners:{
         itemdblclick: function(field, e){
-            cmp = Ext.getCmp("page_kompetensi"),
+            var cmp = Ext.getCmp("page_kompetensi"),
             grid = cmp.down("kompetensiList");
+            gridOutput = cmp.down("outputSubKegiatanList"),
             store = grid.getStore();
             
-            selected = grid.getSelectionModel().getSelection();
-
-            console.log("selected",selected[0].data);
-
-            value = field.lastValue;
-            grid = cmp.down("subkompetensiList");
-            storeList = grid.getStore();
+            var selected = grid.getSelectionModel().getSelection();            
+            
+            var grid = cmp.down("subkompetensiList"),
+                storeList = grid.getStore();
 
             storeList.proxy.extraParams =  selected[0].data; 
             storeList.load();
+
+            gridOutput.getStore().proxy.extraParams = {};
+            gridOutput.getStore().load()
             
         },
     }

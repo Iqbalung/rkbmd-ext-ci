@@ -45,6 +45,7 @@ Ext.define('koyoku.view.master.kompetensi.Form_sub_kegiatan', {
     }],
     bbar:['->',{
         text:"Simpan",
+cls:'btn-main btn-x-m2',
         handler:'saveSub',
         glyph: 'xf0c7@fontAwesome'
 

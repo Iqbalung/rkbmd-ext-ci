@@ -22,15 +22,15 @@ Ext.define('koyoku.view.master.bidang.Main',{
                 allowDeselect: true,
                 tbar: [
                     '->',{
-                        text: 'Tambah',
+                        cls: 'btn-round btn-tambah',
                         handler: 'add',
                         glyph: 'xf067@fontAwesome'
                     }, {
-                        bind : { text : '{language.ubah}', },
+                        cls: 'btn-round btn-edit',
                         handler: 'upd',
                         glyph: 'xf044@fontAwesome'
                     }, {
-                        bind : { text : '{language.hapus}', },
+                        cls: 'btn-round btn-hapus',
                         handler: 'delete',
                         glyph: 'xf1f8@fontAwesome'
                     }

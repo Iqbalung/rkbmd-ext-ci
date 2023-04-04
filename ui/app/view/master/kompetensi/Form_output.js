@@ -37,6 +37,7 @@ Ext.define('koyoku.view.master.kompetensi.Form_output', {
     }],
     bbar:['->',{
         text:"Simpan",
+cls:'btn-main btn-x-m2',
         handler:'saveOutput',
         glyph: 'xf0c7@fontAwesome'
 
