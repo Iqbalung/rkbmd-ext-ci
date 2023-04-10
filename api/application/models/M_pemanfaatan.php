@@ -61,7 +61,7 @@ class M_pemanfaatan extends CI_Model{
 				$this->db->group_end();
 			}
 
-			$res = $this->db->get("pemanfaatan p");
+			$res = $this->db->get("PEMANFAATAN p");
 
 			if ($isCetak) {
 				return $res;
@@ -101,11 +101,11 @@ class M_pemanfaatan extends CI_Model{
 			if (!empty($paramsPemanfaatan["PEMANFAATAN_ID"])) {
 				$paramsPemanfaatan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
 				$this->db->where("PEMANFAATAN_ID", $paramsPemanfaatan["PEMANFAATAN_ID"]);
-				$res = $this->db->update("pemanfaatan", $paramsPemanfaatan);
+				$res = $this->db->update("PEMANFAATAN", $paramsPemanfaatan);
 			} else {
 				$paramsPemanfaatan["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
 				unset($paramsPemanfaatan["PEMANFAATAN_ID"]);
-				$res = $this->db->insert("pemanfaatan", $paramsPemanfaatan);
+				$res = $this->db->insert("PEMANFAATAN", $paramsPemanfaatan);
 				$idParent = $this->db->insert_id();
 			}			
 			$barangPemanfaatanAktif = array();
@@ -182,7 +182,7 @@ class M_pemanfaatan extends CI_Model{
 			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
 			$this->db->where("p.PEMANFAATAN_ID", $params["PEMANFAATAN_ID"]);		
-			$res = $this->db->get("pemanfaatan p");
+			$res = $this->db->get("PEMANFAATAN p");
 
 			if ($res->num_rows() == 0) {
 				$out = array(
