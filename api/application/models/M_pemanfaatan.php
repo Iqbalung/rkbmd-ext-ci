@@ -32,10 +32,10 @@ class M_pemanfaatan extends CI_Model{
 					'Draft'
 				END as STATUS_DATA
 			", false);
-			$this->db->join("pemanfaatan_barang pb","pb.PEMANFAATAN_ID = p.PEMANFAATAN_ID", "RIGHT");
-			$this->db->join("master_kegiatan k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
-			$this->db->join("master_sub_kegiatan sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
-			$this->db->join("master_bidang b","b.BIDANG_ID = p.BIDANG_ID", "LEFT");
+			$this->db->join("PEMANFAATAN_BARANG pb","pb.PEMANFAATAN_ID = p.PEMANFAATAN_ID", "RIGHT");
+			$this->db->join("MASTER_KEGIATAN k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
+			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
+			$this->db->join("MASTER_BIDANG b","b.BIDANG_ID = p.BIDANG_ID", "LEFT");
 
 			if (isset($params["TAHUN"]) && !empty($params["TAHUN"])) {
 				$this->db->where("p.TAHUN", $params["TAHUN"]);
@@ -176,10 +176,10 @@ class M_pemanfaatan extends CI_Model{
 				b.BIDANG_NAMA,
 				sk.SUB_KEGIATAN_NAMA				
 			", false);
-			// $this->db->join("pemanfaatan_barang pb","pb.PEMANFAATAN_ID = p.PEMANFAATAN_ID", "RIGHT");
-			$this->db->join("master_bidang b","b.BIDANG_ID = p.BIDANG_ID", "LEFT");
-			$this->db->join("master_kegiatan k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
-			$this->db->join("master_sub_kegiatan sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
+			// $this->db->join("PEMANFAATAN_BARANG pb","pb.PEMANFAATAN_ID = p.PEMANFAATAN_ID", "RIGHT");
+			$this->db->join("MASTER_BIDANG b","b.BIDANG_ID = p.BIDANG_ID", "LEFT");
+			$this->db->join("MASTER_KEGIATAN k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
+			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
 			$this->db->where("p.PEMANFAATAN_ID", $params["PEMANFAATAN_ID"]);		
 			$res = $this->db->get("pemanfaatan p");

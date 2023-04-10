@@ -101,7 +101,7 @@ class M_kegiatan extends CI_Model{
 						p.KEGIATAN_NAMA as PARENT_KEGIATAN_NAMA
 					from
 						master_sub_kegiatan k
-					left join master_kegiatan p on p.KEGIATAN_ID = k.KEGIATAN_ID
+					left join MASTER_KEGIATAN p on p.KEGIATAN_ID = k.KEGIATAN_ID
 					where $where
 				", $paramsWhere);	
 				

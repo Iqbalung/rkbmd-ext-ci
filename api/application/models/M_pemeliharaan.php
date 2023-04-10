@@ -32,9 +32,9 @@ class M_pemeliharaan extends CI_Model{
 					'Draft'
 				END as STATUS_DATA
 			", false);
-			$this->db->join("pemeliharaan_barang pb","pb.PEMELIHARAAN_ID = p.PEMELIHARAAN_ID", "RIGHT");
-			$this->db->join("master_kegiatan k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
-			$this->db->join("master_sub_kegiatan sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
+			$this->db->join("PEMELIHARAAN_BARANG pb","pb.PEMELIHARAAN_ID = p.PEMELIHARAAN_ID", "RIGHT");
+			$this->db->join("MASTER_KEGIATAN k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
+			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
 			
 
@@ -167,10 +167,10 @@ class M_pemeliharaan extends CI_Model{
 				b.BIDANG_NAMA,
 				sk.SUB_KEGIATAN_NAMA				
 			", false);
-			// $this->db->join("pemeliharaan_barang pb","pb.PEMELIHARAAN_ID = p.PEMELIHARAAN_ID", "RIGHT");
-			$this->db->join("master_bidang b","b.BIDANG_ID = p.BIDANG_ID", "LEFT");
-			$this->db->join("master_kegiatan k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
-			$this->db->join("master_sub_kegiatan sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
+			// $this->db->join("PEMELIHARAAN_BARANG pb","pb.PEMELIHARAAN_ID = p.PEMELIHARAAN_ID", "RIGHT");
+			$this->db->join("MASTER_BIDANG b","b.BIDANG_ID = p.BIDANG_ID", "LEFT");
+			$this->db->join("MASTER_KEGIATAN k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
+			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
 			$this->db->where("p.PEMELIHARAAN_ID", $params["PEMELIHARAAN_ID"]);		
 			$res = $this->db->get("pemeliharaan p");

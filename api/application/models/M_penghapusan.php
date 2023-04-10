@@ -32,10 +32,10 @@ class M_penghapusan extends CI_Model{
 					'Draft'
 				END as STATUS_DATA				
 			", false);
-			$this->db->join("penghapusan_barang pb","pb.PENGHAPUSAN_ID = p.PENGHAPUSAN_ID", "RIGHT");
-			$this->db->join("master_kegiatan k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
-			$this->db->join("master_sub_kegiatan sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
-			$this->db->join("master_bidang b","b.BIDANG_ID = p.BIDANG_ID", "LEFT");
+			$this->db->join("PENGHAPUSAN_BARANG pb","pb.PENGHAPUSAN_ID = p.PENGHAPUSAN_ID", "RIGHT");
+			$this->db->join("MASTER_KEGIATAN k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
+			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
+			$this->db->join("MASTER_BIDANG b","b.BIDANG_ID = p.BIDANG_ID", "LEFT");
 
 			if (isset($params["TAHUN"]) && !empty($params["TAHUN"])) {
 				$this->db->where("p.TAHUN", $params["TAHUN"]);
@@ -180,10 +180,10 @@ class M_penghapusan extends CI_Model{
 				b.BIDANG_NAMA,
 				sk.SUB_KEGIATAN_NAMA				
 			", false);
-			// $this->db->join("penghapusan_barang pb","pb.PENGHAPUSAN_ID = p.PENGHAPUSAN_ID", "RIGHT");
-			$this->db->join("master_bidang b","b.BIDANG_ID = p.BIDANG_ID", "LEFT");
-			$this->db->join("master_kegiatan k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
-			$this->db->join("master_sub_kegiatan sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
+			// $this->db->join("PENGHAPUSAN_BARANG pb","pb.PENGHAPUSAN_ID = p.PENGHAPUSAN_ID", "RIGHT");
+			$this->db->join("MASTER_BIDANG b","b.BIDANG_ID = p.BIDANG_ID", "LEFT");
+			$this->db->join("MASTER_KEGIATAN k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
+			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
 			$this->db->where("p.PENGHAPUSAN_ID", $params["PENGHAPUSAN_ID"]);		
 			$res = $this->db->get("penghapusan p");
