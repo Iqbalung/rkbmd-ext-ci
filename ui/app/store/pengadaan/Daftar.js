@@ -9,7 +9,7 @@ Ext.define('koyoku.store.pengadaan.Daftar', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://localhost:8888/project/rkbmd/api/index.php/pengadaan/get',
+        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/pengadaan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

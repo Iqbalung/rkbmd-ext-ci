@@ -98,7 +98,7 @@ Ext.define('koyoku.view.job.Controller', {
 
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost:8888/project/rkbmd/api/index.php/Job/save',
+                url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Job/save',
                 params: {
                     DATA_ALAT: data_alat,
                     DATA_LINGKUNGAN: data_lingkungan,

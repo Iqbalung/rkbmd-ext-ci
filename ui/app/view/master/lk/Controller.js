@@ -36,7 +36,7 @@ Ext.define('koyoku.view.master.lk.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost:8888/project/rkbmd/api/index.php/Lembaga_keuangan/save',
+                url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Lembaga_keuangan/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Kompetensi_Jabatan', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost:8888/project/rkbmd/api/index.php/Job/get_kompetensi',
+        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Job/get_kompetensi',
         reader: {
             type: 'json',
             rootProperty: 'items',

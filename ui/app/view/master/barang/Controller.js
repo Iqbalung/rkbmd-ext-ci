@@ -38,7 +38,7 @@ Ext.define('koyoku.view.master.barang.Controller', {
         console.log("form",form)
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost:8888/project/rkbmd/api/index.php/Barang/save',
+                url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Barang/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

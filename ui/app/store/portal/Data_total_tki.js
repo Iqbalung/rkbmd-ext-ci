@@ -9,7 +9,7 @@ Ext.define('koyoku.store.portal.Data_total_tki', {
         actionMethods: {
             read: 'POST',
         },
-        url: 'http://localhost:8888/project/rkbmd/api/index.php/chart/get_total_tki',
+        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/chart/get_total_tki',
         reader: {
             type: 'json',
             rootProperty: 'data'

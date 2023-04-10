@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Klasifikasi', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost:8888/project/rkbmd/api/index.php/Pekerja/get_klasifikasi',
+        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Pekerja/get_klasifikasi',
         reader: {
             type: 'json',
             rootProperty: 'items',

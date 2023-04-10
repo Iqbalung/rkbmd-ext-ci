@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Barang', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost:8888/project/rkbmd/api/index.php/Barang/get',
+        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Barang/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

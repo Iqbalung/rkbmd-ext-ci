@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                    <img src="http://localhost:8888/project/rkbmd/api/media/image/koyoku.png" style="width:150px; height:50px" alt="">
+                    <img src="http://karya-inovasi.com/beta-rkbmdapi/media/image/koyoku.png" style="width:150px; height:50px" alt="">
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,7 +43,7 @@
     <div id="background-carousel">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        <div class="item active" style="background-image:url(http://localhost:8888/project/rkbmd/api/media/image/home_bg.png)"></div>
+        <div class="item active" style="background-image:url(http://karya-inovasi.com/beta-rkbmdapi/media/image/home_bg.png)"></div>
       </div>
     </div>
 </div>

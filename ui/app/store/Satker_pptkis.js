@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Satker_pptkis', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://localhost:8888/project/rkbmd/api/index.php/pptkis/get_satker',
+        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/pptkis/get_satker',
         reader: {
             type: 'json',
             rootProperty: 'items',
