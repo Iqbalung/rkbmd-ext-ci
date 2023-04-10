@@ -25,9 +25,9 @@ Ext.define('koyoku.view.dashboard.Main', {
 				store: {
 					fields: ['cls', 'age', 'label'],
 					data: [
-						{cls: 'orange',  age: 26, label:'Jumlah A'},
-						{cls: 'green',   age: 21, label:'Jumlah B'},
-						{cls: 'purple', age: 24, label:'Jumlah C'}
+						{cls: 'orange',  age: 26, label:'Jumlah Draft'},
+						{cls: 'green',   age: 21, label:'Jumlah Diajukan'},
+						{cls: 'purple', age: 24, label:'Jumlah Disetujui'}
 					]
 				},
 				cls: 'my-view',
