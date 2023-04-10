@@ -62,7 +62,7 @@ class M_pengadaan extends CI_Model{
 				$this->db->group_end();
 			}
 
-			$res = $this->db->get("pengadaan p");
+			$res = $this->db->get("PENGADAAN p");
 
 			if ($isCetak) {
 				return $res;
@@ -103,11 +103,11 @@ class M_pengadaan extends CI_Model{
 				$paramsPengadaan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
 				unset($paramsPengadaan['DIUBAH_PADA']);
 				$this->db->where("PENGADAAN_ID", $paramsPengadaan["PENGADAAN_ID"]);
-				$res = $this->db->update("pengadaan", $paramsPengadaan);
+				$res = $this->db->update("PENGADAAN", $paramsPengadaan);
 			} else {
 				$paramsPengadaan["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
 				unset($paramsPengadaan["DIUBAH_PADA"]);
-				$res = $this->db->insert("pengadaan", $paramsPengadaan);
+				$res = $this->db->insert("PENGADAAN", $paramsPengadaan);
 				$idParent = $this->db->insert_id();
 			}			
 			$barangPemanfaatanAktif = array();
@@ -184,7 +184,7 @@ class M_pengadaan extends CI_Model{
 			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
 			$this->db->where("p.PENGADAAN_ID", $params["PENGADAAN_ID"]);		
-			$res = $this->db->get("pengadaan p");
+			$res = $this->db->get("PENGADAAN p");
 
 			if ($res->num_rows() == 0) {
 				$out = array(
