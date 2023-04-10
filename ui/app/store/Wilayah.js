@@ -9,7 +9,7 @@ Ext.define('koyoku.store.Wilayah', {
         actionMethods: {
             read: 'POST'
         },
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Wilayah/get',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Wilayah/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

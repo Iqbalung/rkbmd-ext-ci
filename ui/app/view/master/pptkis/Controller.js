@@ -48,7 +48,7 @@ Ext.define('koyoku.view.master.pptkis.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Pptkis/save',
+                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pptkis/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

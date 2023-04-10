@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Blkln', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Blkln/get',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Blkln/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

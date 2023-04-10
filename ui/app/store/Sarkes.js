@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Sarkes', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Sarana_kesehatan/get',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Sarana_kesehatan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

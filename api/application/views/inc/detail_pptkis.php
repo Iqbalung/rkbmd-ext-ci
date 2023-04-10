@@ -43,7 +43,7 @@ materialize.min.css:6
       function drawChart() {
         $.ajax({
                 type: "POST",
-                url: "http://karya-inovasi.com/beta-rkbmdapi/index.php/pptkis/get_orgsatker",
+                url: "http://karya-inovasi.com/beta-rkbmd/api/index.php/pptkis/get_orgsatker",
                 success: function(result){
                     var result = JSON.parse(result);
                         result = result.items;
@@ -160,7 +160,7 @@ amtest = function (data){
 
 $.ajax({
     type: 'POST',
-    url: "http://karya-inovasi.com/beta-rkbmdapi/index.php/publik_pptkis/get_jk",
+    url: "http://karya-inovasi.com/beta-rkbmd/api/index.php/publik_pptkis/get_jk",
     data: {
        PPTKIS_ID : '<?php echo $this->uri->segment(2) ?>'
     },

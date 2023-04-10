@@ -11,7 +11,7 @@ Ext.define('koyoku.store.penghapusan.Daftar', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/penghapusan/get',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/penghapusan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

@@ -8,7 +8,7 @@ Ext.define('koyoku.store.pengguna.Pengguna', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Pengguna/get',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pengguna/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

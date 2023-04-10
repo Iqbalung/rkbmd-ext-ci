@@ -8,7 +8,7 @@ Ext.define('koyoku.store.chat.JStore', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Chat/gettitlehelp',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Chat/gettitlehelp',
         reader: {
             type: 'json',
             rootProperty: 'items',

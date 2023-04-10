@@ -13,7 +13,7 @@ Ext.define('koyoku.view.profile_tki.Controller', {
 
         if (typeof id != 'undefined') {
             ths.load({
-                url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/pekerja/get_by_id',
+                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/pekerja/get_by_id',
                 params: {
                     ID: id
                 },
@@ -96,7 +96,7 @@ Ext.define('koyoku.view.profile_tki.Controller', {
             }
 
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/pekerja/save',
+                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/pekerja/save',
                 params: {
                     data_kerja: JSON.stringify(data_kerja),
                     data_pend: JSON.stringify(data_pend),
@@ -366,7 +366,7 @@ Ext.define('koyoku.view.profile_tki.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/pekerja/save_media',      
+                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/pekerja/save_media',      
                 params:{
                     PEKERJA_ID:me.get_params(1),
                 },  

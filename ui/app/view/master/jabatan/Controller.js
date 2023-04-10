@@ -147,7 +147,7 @@ Ext.define('koyoku.view.master.jabatan.Controller', {
         data_lingkungan = JSON.stringify(data_lingkungan);
         if (form.isValid()) {
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Jabatan/save',
+                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Jabatan/save',
                 params: {
                     DATA_ALAT: data_alat,
                     DATA_KOMPETENSI: data_kompetensi,

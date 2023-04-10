@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Visa', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Tki/riwvisa',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Tki/riwvisa',
         reader: {
             type: 'json',
             rootProperty: 'items',

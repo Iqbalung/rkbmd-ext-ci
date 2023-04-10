@@ -17,7 +17,7 @@ Ext.define('koyoku.store.tki.Riw_keluarga', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Pekerja/get_riw_keluarga',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pekerja/get_riw_keluarga',
         reader: {
             type: 'json',
             rootProperty: 'items',

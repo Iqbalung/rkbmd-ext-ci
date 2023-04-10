@@ -1,7 +1,7 @@
 $("#login").click(function() {
   $.ajax({
     type: 'POST',
-    url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/login/do_login',
+    url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/login/do_login',
     dataType: 'json',
     data: $('#Form').serialize(),
     success: function(data) {

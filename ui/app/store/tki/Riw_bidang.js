@@ -11,7 +11,7 @@ Ext.define('koyoku.store.tki.Riw_bidang', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Pekerja/get_riw_bidang',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pekerja/get_riw_bidang',
         reader: {
             type: 'json',
             rootProperty: 'items',

@@ -16,8 +16,8 @@ Ext.define('koyoku.Application', {
     },
 
     api: {
-        siteurl: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/index.php/',
-        baseurl: 'http://karya-inovasi.com/beta-rkbmdapi/'
+        siteurl: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/index.php/',
+        baseurl: 'http://karya-inovasi.com/beta-rkbmd/api/'
     },
     akses : {
 
@@ -60,7 +60,7 @@ Ext.define('koyoku.Application', {
 
     chekIsLoginServer: function() {
         Ext.Ajax.request({
-            url: "http://karya-inovasi.com/beta-rkbmdapi/index.php/login/is_login",
+            url: "http://karya-inovasi.com/beta-rkbmd/api/index.php/login/is_login",
             params: {},
             // async : false,
             success: function(form, action, value) {

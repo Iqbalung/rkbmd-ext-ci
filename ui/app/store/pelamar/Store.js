@@ -7,7 +7,7 @@ Ext.define('koyoku.store.pelamar.Store', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Pelamar/get',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pelamar/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

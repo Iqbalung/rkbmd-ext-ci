@@ -10,7 +10,7 @@ Ext.define('koyoku.store.barang.Fasilitas', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Pptkis/get_fasilitas',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pptkis/get_fasilitas',
         reader: {
             type: 'json',
             rootProperty: 'items',

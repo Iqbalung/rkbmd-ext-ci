@@ -10,7 +10,7 @@ Ext.define('koyoku.store.barang.Rekan_kerja', {
         actionMethods: {
             read: 'POST',
         },
-        url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Pptkis/get_partner',
+        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pptkis/get_partner',
         reader: {
             type: 'json',
             rootProperty: 'items',

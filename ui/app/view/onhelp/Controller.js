@@ -78,7 +78,7 @@ Ext.define('koyoku.view.onhelp.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmdapi/index.php/Chat/addhelptitle',
+                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Chat/addhelptitle',
                 success: function(form, action) {
                     var success_opt = true;
                     try {
