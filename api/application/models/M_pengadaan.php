@@ -131,11 +131,11 @@ class M_pengadaan extends CI_Model{
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");
 							$this->db->where("BARANG_PENGADAAN_ID", $paramsBarang["BARANG_PENGADAAN_ID"]);
 							unset($paramsBarang["DIUBAH_PADA"]);
-							$resBarang = $this->db->update("pengadaan_barang", $paramsBarang);							
+							$resBarang = $this->db->update("PENGADAAN_BARANG", $paramsBarang);							
 						} else {
 							$paramsBarang["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
 							unset($paramsBarang["BARANG_PENGADAAN_ID"]);
-							$resBarang = $this->db->insert("pengadaan_barang", $paramsBarang);						
+							$resBarang = $this->db->insert("PENGADAAN_BARANG", $paramsBarang);						
 						}
 
 						$barangPemanfaatanAktif[] = $paramsBarang["BARANG_PENGADAAN_ID"];
@@ -144,7 +144,7 @@ class M_pengadaan extends CI_Model{
 				
 				$this->db->where_not_in("BARANG_PENGADAAN_ID", $barangPemanfaatanAktif);
 				$this->db->where("PENGADAAN_ID", $paramsBarang["PENGADAAN_ID"]);
-				$res_delete = $this->db->delete("pengadaan_barang");				
+				$res_delete = $this->db->delete("PENGADAAN_BARANG");				
 				
 			}			
 
@@ -202,7 +202,7 @@ class M_pengadaan extends CI_Model{
 
 			$this->db->select("pb.*");
 			$this->db->where("pb.PENGADAAN_ID", $params["PENGADAAN_ID"]);		
-			$res_barang = $this->db->get("pengadaan_barang pb");
+			$res_barang = $this->db->get("PENGADAAN_BARANG pb");
 			if ($res_barang) {
 				$data["DATA_BARANG"] = $res_barang->result_array();
 			}
