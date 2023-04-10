@@ -100,7 +100,7 @@ class M_kegiatan extends CI_Model{
 						p.KEGIATAN_ID as PARENT_KEGIATAN_ID,
 						p.KEGIATAN_NAMA as PARENT_KEGIATAN_NAMA
 					from
-						master_sub_kegiatan k
+						MASTER_SUB_KEGIATAN k
 					left join MASTER_KEGIATAN p on p.KEGIATAN_ID = k.KEGIATAN_ID
 					where $where
 				", $paramsWhere);	
@@ -124,10 +124,10 @@ class M_kegiatan extends CI_Model{
 						k.KEGIATAN_ID as ID,
 						k.KEGIATAN_ID,
 						k.KEGIATAN_NAMA,
-						(select count(x.KEGIATAN_ID) from master_sub_kegiatan as x where x.KEGIATAN_ID = k.KEGIATAN_ID) as JML_SUB,
+						(select count(x.KEGIATAN_ID) from MASTER_SUB_KEGIATAN as x where x.KEGIATAN_ID = k.KEGIATAN_ID) as JML_SUB,
 						'KEGIATAN' as TIPE
 					from
-						master_kegiatan k
+						MASTER_KEGIATAN k
 					where $where
 				", $paramsWhere);			
 			}
