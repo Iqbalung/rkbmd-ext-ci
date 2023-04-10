@@ -38,7 +38,7 @@ class M_pemeliharaan extends CI_Model{
 
 			
 
-			$res = $this->db->get("pemeliharaan p");
+			$res = $this->db->get("PEMELIHARAAN p");
 			
 			if ($isCetak) {
 				return $res->result_array();
@@ -72,11 +72,11 @@ class M_pemeliharaan extends CI_Model{
 			if (!empty($paramsPemeliharaan["PEMELIHARAAN_ID"])) {
 				$paramsPemeliharaan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
 				$this->db->where("PEMELIHARAAN_ID", $paramsPemeliharaan["PEMELIHARAAN_ID"]);
-				$res = $this->db->update("pemeliharaan", $paramsPemeliharaan);
+				$res = $this->db->update("PEMELIHARAAN", $paramsPemeliharaan);
 			} else {
 				$paramsPemeliharaan["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
 				unset($paramsPemeliharaan["PEMELIHARAAN_ID"]);
-				$res = $this->db->insert("pemeliharaan", $paramsPemeliharaan);
+				$res = $this->db->insert("PEMELIHARAAN", $paramsPemeliharaan);
 				$idParent = $this->db->insert_id();
 			}			
 			$barangPemeleiharaanAktif = array();
@@ -119,11 +119,11 @@ class M_pemeliharaan extends CI_Model{
 						if (!empty($paramsBarang["BARANG_PEMELIHARAAN_ID"])) {
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");
 							$this->db->where("BARANG_PEMELIHARAAN_ID", $paramsBarang["BARANG_PEMELIHARAAN_ID"]);
-							$resBarang = $this->db->update("pemeliharaan_barang", $paramsBarang);							
+							$resBarang = $this->db->update("PEMELIHARAAN_BARANG", $paramsBarang);							
 						} else {
 							$paramsBarang["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
 							unset($paramsBarang["BARANG_PEMELIHARAAN_ID"]);
-							$resBarang = $this->db->insert("pemeliharaan_barang", $paramsBarang);						
+							$resBarang = $this->db->insert("PEMELIHARAAN_BARANG", $paramsBarang);						
 						}
 
 						$barangPemeleiharaanAktif[] = $paramsBarang["BARANG_PEMELIHARAAN_ID"];
@@ -132,7 +132,7 @@ class M_pemeliharaan extends CI_Model{
 				
 				$this->db->where_not_in("BARANG_PEMELIHARAAN_ID", $barangPemeleiharaanAktif);
 				$this->db->where("PEMELIHARAAN_ID", $paramsBarang["PEMELIHARAAN_ID"]);
-				$res_delete = $this->db->delete("pemeliharaan_barang");				
+				$res_delete = $this->db->delete("PEMELIHARAAN_BARANG");				
 				
 			}
 
@@ -173,7 +173,7 @@ class M_pemeliharaan extends CI_Model{
 			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
 			$this->db->where("p.PEMELIHARAAN_ID", $params["PEMELIHARAAN_ID"]);		
-			$res = $this->db->get("pemeliharaan p");
+			$res = $this->db->get("PEMELIHARAAN p");
 
 			if ($res->num_rows() == 0) {
 				$out = array(
@@ -191,7 +191,7 @@ class M_pemeliharaan extends CI_Model{
 
 			$this->db->select("pb.*");
 			$this->db->where("pb.PEMELIHARAAN_ID", $params["PEMELIHARAAN_ID"]);		
-			$res_barang = $this->db->get("pemeliharaan_barang pb");
+			$res_barang = $this->db->get("PEMELIHARAAN_BARANG pb");
 			if ($res_barang) {
 				$data["DATA_BARANG"] = $res_barang->result_array();
 			}
