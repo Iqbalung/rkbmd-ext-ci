@@ -6,4 +6,4 @@ $config['path_service_library'] = $config['path'].'application/controllers/servi
 $config['path_report_file'] = $config['path'].'application/views/report/';
 $config['allowed_types'] 	= '*';
 $config['upload_path'] = FCPATH2."uploads";
-$config['service_url'] = "http://karya-inovasi.com/rkbmd-ext-ci/app/api/";
+$config['service_url'] = "http://karya-inovasi.com/beta-rkbmdapp/api/";
