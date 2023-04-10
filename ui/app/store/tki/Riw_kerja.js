@@ -25,7 +25,7 @@ Ext.define('koyoku.store.tki.Riw_kerja', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/koyoku/api/index.php/Pekerja/get_riw_kerja',
+        url: 'http://localhost:8888/project/rkbmd/api/index.php/Pekerja/get_riw_kerja',
         reader: {
             type: 'json',
             rootProperty: 'items',

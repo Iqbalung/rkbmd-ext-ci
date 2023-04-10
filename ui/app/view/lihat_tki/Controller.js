@@ -13,7 +13,7 @@ Ext.define('koyoku.view.lihat_tki.Controller', {
 
         if (typeof id != 'undefined') {
             ths.load({
-                url: 'http://localhost/koyoku/api/index.php/pekerja/get_by_id',
+                url: 'http://localhost:8888/project/rkbmd/api/index.php/pekerja/get_by_id',
                 params: {
                     ID: id
                 },

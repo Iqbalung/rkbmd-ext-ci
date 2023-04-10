@@ -38,7 +38,7 @@ Ext.define('Admin.view.bidang.BidangsController', {
             form = cmp.windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/koyoku/api/index.php/Bidang/save',
+                url: 'http://localhost:8888/project/rkbmd/api/index.php/Bidang/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

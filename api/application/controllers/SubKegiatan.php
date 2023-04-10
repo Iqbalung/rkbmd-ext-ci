@@ -59,6 +59,7 @@ class SubKegiatan extends MY_Controller {
 		}
 		
 		if($params['UPDATE']==""){ 
+			unset($params['SUB_KEGIATAN_ID']);
 			$res = $this->M_subkegiatan->add($params);
 				if($res){
 					$out = array(

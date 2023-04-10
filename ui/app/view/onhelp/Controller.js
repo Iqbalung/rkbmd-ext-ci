@@ -78,7 +78,7 @@ Ext.define('koyoku.view.onhelp.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/koyoku/api/index.php/Chat/addhelptitle',
+                url: 'http://localhost:8888/project/rkbmd/api/index.php/Chat/addhelptitle',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

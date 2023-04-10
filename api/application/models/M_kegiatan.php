@@ -26,6 +26,16 @@ class M_kegiatan extends CI_Model{
 			$where .= "WHERE a.KEGIATAN_SLUG = '".$params['KEGIATAN_SLUG']."' ";
 		}
 
+
+		if(isset($params['TAHUN']) && !isset($params['BIDANG_ID'])){
+			$where .= "WHERE a.TAHUN = '".$params['TAHUN']."' ";
+		}
+
+		if(isset($params['TAHUN']) && isset($params['BIDANG'])){
+			$where .= $where. "and a.TAHUN = '".$params['TAHUN']."' ";
+		}
+		
+
 		$q = $this->db->query("SELECT * FROM MASTER_KEGIATAN AS a LEFT JOIN MASTER_BIDANG AS b ON a.BIDANG_ID = b.BIDANG_ID $where ");
 		return $q;
 	}
@@ -62,6 +72,7 @@ class M_kegiatan extends CI_Model{
 
 	function get_tree($params)
 	{
+
 		try {
 			$where = "";
 			if(isset($params['TIPE']) && $params['TIPE'] == "SUB") {

@@ -12,7 +12,6 @@ class Kegiatan extends MY_Controller {
 	
 	function get()
 	{
-
 		$params = array(
 			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
 			'JABATAN_ID' => ifunsetempty($_POST,'JABATAN_ID',''),
@@ -61,6 +60,7 @@ class Kegiatan extends MY_Controller {
 		}
 		
 		if($params['UPDATE']==""){ 
+			unset($params["KEGIATAN_ID"]);
 			$res = $this->M_kegiatan->add($params);
 				if($res){
 					$out = array(

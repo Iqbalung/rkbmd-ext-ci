@@ -43,7 +43,7 @@ Ext.define('koyoku.view.master.jobowner.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/koyoku/api/index.php/Owner/save',
+                url: 'http://localhost:8888/project/rkbmd/api/index.php/Owner/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

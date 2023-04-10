@@ -9,7 +9,7 @@ Ext.define('koyoku.store.pemeliharaan.Daftar', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://localhost/project/rkbmd/api/index.php/pemeliharaan/get',
+        url: 'http://localhost:8888/project/rkbmd/api/index.php/pemeliharaan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

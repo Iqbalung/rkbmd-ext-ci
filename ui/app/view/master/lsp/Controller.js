@@ -36,7 +36,7 @@ Ext.define('koyoku.view.master.lsp.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/koyoku/api/index.php/Lembaga_sertifikasi_profesi/save',
+                url: 'http://localhost:8888/project/rkbmd/api/index.php/Lembaga_sertifikasi_profesi/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

@@ -10,7 +10,7 @@ Ext.define('Admin.store.Bidangs', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/koyoku/api/index.php/Kompetensi/get',
+        url: 'http://localhost:8888/project/rkbmd/api/index.php/Kompetensi/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

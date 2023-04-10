@@ -44,6 +44,7 @@ class Barang extends MY_Controller {
 		);
 		
 		if($params['BARANG_ID']==""){ 
+			unset($params["BARANG_ID"]);
 			$res = $this->M_master_barang->add($params);
 				if($res){
 					$out = array(

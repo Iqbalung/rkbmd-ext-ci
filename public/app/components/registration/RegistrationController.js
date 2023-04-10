@@ -5,7 +5,7 @@ app.controller('RegistrationController', function(dataFactory, $scope, $http) {
   
   $("#btnpptkis").click(function(event) {
     $http({
-        url: 'http://localhost/koyoku/api/index.php/Registration/add_pptkis_chalange',
+        url: 'http://localhost:8888/project/rkbmd/api/index.php/Registration/add_pptkis_chalange',
         method: "POST",
         data: $scope.form
       })
@@ -25,7 +25,7 @@ app.controller('RegistrationController', function(dataFactory, $scope, $http) {
 
   $("#register").click(function(event) {
     $http({
-        url: 'http://localhost/koyoku/api/index.php/Registration/add_pekerja_chalange',
+        url: 'http://localhost:8888/project/rkbmd/api/index.php/Registration/add_pekerja_chalange',
         method: "POST",
         data: $scope.form
       })

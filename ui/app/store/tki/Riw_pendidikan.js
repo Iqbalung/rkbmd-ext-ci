@@ -21,7 +21,7 @@ Ext.define('koyoku.store.tki.Riw_pendidikan', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/koyoku/api/index.php/Pekerja/get_riw_pendidikan',
+        url: 'http://localhost:8888/project/rkbmd/api/index.php/Pekerja/get_riw_pendidikan',
         reader: {
             type: 'json',
             rootProperty: 'items',

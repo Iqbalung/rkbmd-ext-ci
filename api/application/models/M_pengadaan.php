@@ -101,11 +101,12 @@ class M_pengadaan extends CI_Model{
 			$idParent = $paramsPengadaan["PENGADAAN_ID"];
 			if (!empty($paramsPengadaan["PENGADAAN_ID"])) {
 				$paramsPengadaan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
+				unset($paramsPengadaan['DIUBAH_PADA']);
 				$this->db->where("PENGADAAN_ID", $paramsPengadaan["PENGADAAN_ID"]);
 				$res = $this->db->update("pengadaan", $paramsPengadaan);
 			} else {
 				$paramsPengadaan["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
-				unset($paramsPengadaan["PENGADAAN_ID"]);
+				unset($paramsPengadaan["DIUBAH_PADA"]);
 				$res = $this->db->insert("pengadaan", $paramsPengadaan);
 				$idParent = $this->db->insert_id();
 			}			
@@ -129,6 +130,7 @@ class M_pengadaan extends CI_Model{
 						if (!empty($paramsBarang["BARANG_PENGADAAN_ID"])) {
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");
 							$this->db->where("BARANG_PENGADAAN_ID", $paramsBarang["BARANG_PENGADAAN_ID"]);
+							unset($paramsBarang["DIUBAH_PADA"]);
 							$resBarang = $this->db->update("pengadaan_barang", $paramsBarang);							
 						} else {
 							$paramsBarang["DIBUAT_PADA"] = date("Y-m-d H:i:s");			

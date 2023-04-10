@@ -13,7 +13,7 @@ Ext.define('koyoku.store.job.Lingkungan', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/koyoku/api/index.php/Lingkungan/get_job',
+        url: 'http://localhost:8888/project/rkbmd/api/index.php/Lingkungan/get_job',
         reader: {
             type: 'json',
             rootProperty: 'items',

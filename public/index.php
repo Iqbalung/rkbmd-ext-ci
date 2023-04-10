@@ -2,7 +2,7 @@
 <head>
 <title>KOYOKU</title>
 	<script>
-	var URL = "http://localhost/koyoku/api/index.php/";
+	var URL = "http://localhost:8888/project/rkbmd/api/index.php/";
 	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">

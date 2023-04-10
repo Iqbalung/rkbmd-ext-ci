@@ -105,9 +105,10 @@ class Pemeliharaan extends MY_Controller {
 				
 				$params["BIDANG_ID"] = $value["BIDANG_ID"];
 				$data = $this->M_pemeliharaan->get($params, true);
+
 				
-				if ($data->num_rows() > 0) {
-					$data = $data->result_array();
+				if (count($data) > 0) {
+					$data = $data;
 					$dataGroup = array();
 
 					foreach ($data as $rowGroup) {

@@ -9,7 +9,7 @@ class M_pemeliharaan extends CI_Model{
 	
 	function get($params = array(), $isCetak = false)
 	{
-		try {
+		
 			
 			$this->db->select("
 				p.TAHUN,
@@ -36,34 +36,12 @@ class M_pemeliharaan extends CI_Model{
 			$this->db->join("master_kegiatan k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
 			$this->db->join("master_sub_kegiatan sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
-			if (isset($params["TAHUN"]) && !empty($params["TAHUN"])) {
-				$this->db->where("p.TAHUN", $params["TAHUN"]);
-			}
 			
-			if (isset($params["BIDANG_ID"]) && !empty($params["BIDANG_ID"])) {
-				$this->db->where("p.BIDANG_ID LIKE", $params["BIDANG_ID"]."%");
-			}
-
-			if (isset($params["STATUS"]) && $params["STATUS"] != -1) {
-				$this->db->where("p.STATUS", $params["STATUS"]);
-			}
-
-			if (isset($params["PENCARIAN"]) && !empty($params["PENCARIAN"])) {
-				$this->db->group_start();
-				$this->db->or_where("CASE WHEN sk.SUB_KEGIATAN_ID IS NULL THEN 
-					k.KEGIATAN_NAMA
-				else
-					sk.SUB_KEGIATAN_NAMA
-				end LIKE", "%".$params["PENCARIAN"]."%");
-				$this->db->or_where("pb.BARANG_NAMA LIKE ", "%".$params["PENCARIAN"]."%");
-				$this->db->or_where("pb.BARANG_KODE LIKE ", "%".$params["PENCARIAN"]."%");
-				$this->db->group_end();
-			}
 
 			$res = $this->db->get("pemeliharaan p");
-
+			
 			if ($isCetak) {
-				return $res;
+				return $res->result_array();
 			}
 
 			$data = $res->result_array();
@@ -74,13 +52,7 @@ class M_pemeliharaan extends CI_Model{
 				"items" => $data,
 				"error" => null
 			);
-		} catch (\Throwable $e) {			
-			$out = array(
-				'success' => false,
-				'msg' => 'Gagal Disimpan',
-				"error" => $e->getMessage()
-			);
-		}
+		
 		return $out;
 	}
 	
@@ -131,6 +103,19 @@ class M_pemeliharaan extends CI_Model{
 							"KETERANGAN" => ifunsetempty($value, "KETERANGAN", ""),
 							"TAHUN" => ifunsetempty($paramsPemeliharaan, "TAHUN", ""),
 						);
+
+						if(empty($paramsBarang["KONDISI_BAIK"])){
+							unset($paramsBarang["KONDISI_BAIK"]);
+						}
+						if(empty($paramsBarang["KONDISI_RUSAK_RINGAN"])){
+							unset($paramsBarang["KONDISI_RUSAK_RINGAN"]);
+						}
+						if(empty($paramsBarang["KONDISI_RUSAK_BERAT"])){
+							unset($paramsBarang["KONDISI_RUSAK_BERAT"]);
+						}
+						if(empty($paramsBarang["RENCANA_JUMLAH"])){
+							unset($paramsBarang["RENCANA_JUMLAH"]);
+						}
 						if (!empty($paramsBarang["BARANG_PEMELIHARAAN_ID"])) {
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");
 							$this->db->where("BARANG_PEMELIHARAAN_ID", $paramsBarang["BARANG_PEMELIHARAAN_ID"]);

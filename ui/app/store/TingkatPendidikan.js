@@ -10,7 +10,7 @@ Ext.define('koyoku.store.TingkatPendidikan', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/koyoku/api/index.php/Tingkatpendidikan/get',
+        url: 'http://localhost:8888/project/rkbmd/api/index.php/Tingkatpendidikan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

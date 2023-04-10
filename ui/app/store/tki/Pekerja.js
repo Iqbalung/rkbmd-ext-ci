@@ -8,7 +8,7 @@ Ext.define('koyoku.store.tki.Pekerja', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/koyoku/api/index.php/Pekerja/get',
+        url: 'http://localhost:8888/project/rkbmd/api/index.php/Pekerja/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

@@ -56,6 +56,7 @@ class OutputSubKegiatan extends MY_Controller {
 		}
 		
 		if($params['UPDATE']==""){ 
+			unset($params['OUTPUT_ID']);
 			$res = $this->M_outputsubkegiatan->add($params);
 				if($res){
 					$out = array(
