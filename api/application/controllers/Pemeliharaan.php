@@ -130,6 +130,84 @@ class Pemeliharaan extends MY_Controller {
 
 						$dataGroup[$keyGroup]["BARANG"][] = $rowGroup;
 					}					
+
+					
+
+					$dataKegiatanParent = array_filter($dataGroup, function ($row) use ($value) {
+						$dataBarang = array_filter($row["BARANG"], function ($rowBarang) use ($value) {							
+							return $rowBarang["BIDANG_ID"] == $value["BIDANG_ID"];
+						});
+						if (count($dataBarang) > 0) {
+							return true;
+						} else {
+							return false;
+						}
+					});
+					
+					if (count($dataKegiatanParent) > 0) {			
+
+						$sheet->setCellValue('B'.$rowIndex, $no++);
+						$sheet->setCellValue('C'.$rowIndex, $value["BIDANG_NAMA"]);		
+						$sheet->getStyle('B'.$rowIndex.":O".$rowIndex)->applyFromArray(
+							array(
+								'fill' => array(
+									'type' => PHPExcel_Style_Fill::FILL_SOLID,
+									'color' => array('rgb' => '92D050')
+								)
+							)
+						);
+						$sheet->getStyle('B'.$rowIndex.":I".$rowIndex)->getFont()->setBold(true);						
+						$rowIndex++;
+
+						foreach ($dataKegiatanParent as $rowKegiatanParent) {								
+							$sheet->setCellValue('C'.$rowIndex, $rowKegiatanParent["PARENT_KEGIATAN"]);													
+							if (!empty($rowKegiatanParent["PARENT_KEGIATAN"])) {
+								$rowIndex++;
+								$sheet->setCellValue('C'.$rowIndex, $rowKegiatanParent["SUB_KEGIATAN_NAMA"]);
+							}
+							
+							$dataOutputParent = $this->M_outputsubkegiatan->get(array(
+								"SUB_KEGIATAN_ID" => $rowKegiatanParent["SUB_KEGIATAN_ID"]
+							));
+
+							$countRow = $dataOutputParent->num_rows();
+							if ($countRow <= count($rowKegiatanParent["BARANG"])) {
+								$countRow = count($rowKegiatanParent["BARANG"]);
+							}
+							$dataOutputParent = $dataOutputParent->result_array();
+							$rowIndex++;
+							if ($countRow > 0) {									
+								$sheet->setCellValue('C'.$rowIndex, "Output :");	
+							}
+							for ($i=0; $i < $countRow+1; $i++) { 
+								
+								if (isset($dataOutputParent[$i])) {											
+									$sheet->setCellValue('C'.($rowIndex+1), $dataOutputParent[$i]["OUTPUT_NAMA"]);
+								}
+
+								if (isset($rowKegiatanParent["BARANG"][$i])) {										
+									$rowBarang = $rowKegiatanParent["BARANG"][$i];
+									$sheet->setCellValue('D'.$rowIndex, $rowBarang["BARANG_KODE"]);
+									$sheet->setCellValue('E'.$rowIndex, $rowBarang["BARANG_NAMA"]);
+									$sheet->setCellValue('F'.$rowIndex, $rowBarang["USULAN_JUMLAH"]);
+									$sheet->setCellValue('G'.$rowIndex, $rowBarang["USULAN_SATUAN"]);
+									$sheet->setCellValue('H'.$rowIndex, $rowBarang["STATUS_BARANG"]);
+									$sheet->setCellValue('I'.$rowIndex, $rowBarang["KONDISI_BAIK"]);
+									$sheet->setCellValue('J'.$rowIndex, $rowBarang["KONDISI_RUSAK_RINGAN"]);
+									$sheet->setCellValue('K'.$rowIndex, $rowBarang["KONDISI_RUSAK_BERAT"]);
+									$sheet->setCellValue('L'.$rowIndex, $rowBarang["PEMELIHARAAN_NAMA"]);
+									$sheet->setCellValue('M'.$rowIndex, $rowBarang["RENCANA_JUMLAH"]);
+									$sheet->setCellValue('N'.$rowIndex, $rowBarang["RENCANA_SATUAN"]);
+									$sheet->setCellValue('O'.$rowIndex, $rowBarang["KETERANGAN"]);
+								}
+
+								$rowIndex++;
+							}
+						}				
+						$rowIndex--;			
+					}
+				
+					// Sub bidang
 					$paramsBidang = array(
 						"BIDANG_ID" => $value["BIDANG_ID"]
 					);
@@ -151,18 +229,21 @@ class Pemeliharaan extends MY_Controller {
 
 						if (count($dataKegiatan) > 0) {			
 
-							$sheet->setCellValue('B'.$rowIndex, $no++);
-							$sheet->setCellValue('C'.$rowIndex, $value["BIDANG_NAMA"]);		
-							$sheet->getStyle('B'.$rowIndex.":O".$rowIndex)->applyFromArray(
-								array(
-									'fill' => array(
-										'type' => PHPExcel_Style_Fill::FILL_SOLID,
-										'color' => array('rgb' => '92D050')
+							if (count($dataKegiatanParent) == 0) {								
+								$sheet->setCellValue('B'.$rowIndex, $no++);
+								$sheet->setCellValue('C'.$rowIndex, $value["BIDANG_NAMA"]);		
+								$sheet->getStyle('B'.$rowIndex.":O".$rowIndex)->applyFromArray(
+									array(
+										'fill' => array(
+											'type' => PHPExcel_Style_Fill::FILL_SOLID,
+											'color' => array('rgb' => '92D050')
+										)
 									)
-								)
-							);
-							$sheet->getStyle('B'.$rowIndex.":O".$rowIndex)->getFont()->setBold(true);
+								);
+							} 
+							
 							$rowIndex++;
+							$sheet->getStyle('B'.$rowIndex.":O".$rowIndex)->getFont()->setBold(true);
 							$sheet->setCellValue('C'.$rowIndex, $subBidang["BIDANG_NAMA"]);			
 							$sheet->getStyle('B'.$rowIndex.":O".$rowIndex)->getFont()->setBold(true);	
 							$rowIndex++;

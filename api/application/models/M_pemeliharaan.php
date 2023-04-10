@@ -36,7 +36,29 @@ class M_pemeliharaan extends CI_Model{
 			$this->db->join("MASTER_KEGIATAN k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
 			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
-			
+			if (isset($params["TAHUN"]) && !empty($params["TAHUN"])) {
+				$this->db->where("p.TAHUN", $params["TAHUN"]);
+			}
+
+			if (isset($params["BIDANG_ID"]) && !empty($params["BIDANG_ID"])) {
+				$this->db->where("p.BIDANG_ID LIKE", $params["BIDANG_ID"]."%");
+			}
+
+			if (isset($params["STATUS"]) && $params["STATUS"] != -1) {
+				$this->db->where("p.STATUS", $params["STATUS"]);
+			}
+
+			if (isset($params["PENCARIAN"]) && !empty($params["PENCARIAN"])) {
+				$this->db->group_start();
+				$this->db->or_where("CASE WHEN sk.SUB_KEGIATAN_ID IS NULL THEN 
+					k.KEGIATAN_NAMA
+				else
+					sk.SUB_KEGIATAN_NAMA
+				end LIKE", "%".$params["PENCARIAN"]."%");
+				$this->db->or_where("pb.BARANG_NAMA LIKE ", "%".$params["PENCARIAN"]."%");
+				$this->db->or_where("pb.BARANG_KODE LIKE ", "%".$params["PENCARIAN"]."%");
+				$this->db->group_end();
+			}
 
 			$res = $this->db->get("PEMELIHARAAN p");
 			

@@ -2,11 +2,11 @@ Ext.define('koyoku.view.dashboard.ListPengajuan', {
     extend: 'Ext.grid.Panel',
     xtype: 'list_pengajuan',
     requires: [
-        'koyoku.store.Barang'
+        'koyoku.store.dashboard.PengajuanSKPD'
     ],
     store: {
-        type: 'listBarang',
-        storeId : 'listBarang',
+        type: 'storePengajuanSKPD',
+        storeId : 'storePengajuanSKPD',
         autoLoad: true,
     },
     columns: [{
@@ -15,15 +15,15 @@ Ext.define('koyoku.view.dashboard.ListPengajuan', {
         width: 60,
     },{
         text: 'Lokasi',
-        dataIndex: 'BARANG_NAMA',
+        dataIndex: 'BIDANG_NAMA',
         flex: 2
     },{
         text: 'Jumlah Barang',
-        dataIndex: 'BARANG_CODE',
-        width: 70,
+        dataIndex: 'JML_BARANG',
+        width: 120,
     },{
         text: 'Total Nilai',
-        dataIndex: 'BARANG_SATUAN',
+        dataIndex: 'TOTAL_HARGA',
         flex:1,
     }]    
 });
