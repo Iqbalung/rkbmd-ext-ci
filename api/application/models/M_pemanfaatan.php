@@ -129,11 +129,11 @@ class M_pemanfaatan extends CI_Model{
 						if (!empty($paramsBarang["BARANG_PEMANFAATAN_ID"])) {
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");
 							$this->db->where("BARANG_PEMANFAATAN_ID", $paramsBarang["BARANG_PEMANFAATAN_ID"]);
-							$resBarang = $this->db->update("pemanfaatan_barang", $paramsBarang);							
+							$resBarang = $this->db->update("PEMANFAATAN_BARANG", $paramsBarang);							
 						} else {
 							$paramsBarang["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
 							unset($paramsBarang["BARANG_PEMANFAATAN_ID"]);
-							$resBarang = $this->db->insert("pemanfaatan_barang", $paramsBarang);						
+							$resBarang = $this->db->insert("PEMANFAATAN_BARANG", $paramsBarang);						
 						}
 
 						$barangPemanfaatanAktif[] = $paramsBarang["BARANG_PEMANFAATAN_ID"];
@@ -142,7 +142,7 @@ class M_pemanfaatan extends CI_Model{
 				
 				$this->db->where_not_in("BARANG_PEMANFAATAN_ID", $barangPemanfaatanAktif);
 				$this->db->where("PEMANFAATAN_ID", $paramsBarang["PEMANFAATAN_ID"]);
-				$res_delete = $this->db->delete("pemanfaatan_barang");				
+				$res_delete = $this->db->delete("PEMANFAATAN_BARANG");				
 				
 			}
 
@@ -200,7 +200,7 @@ class M_pemanfaatan extends CI_Model{
 
 			$this->db->select("pb.*");
 			$this->db->where("pb.PEMANFAATAN_ID", $params["PEMANFAATAN_ID"]);		
-			$res_barang = $this->db->get("pemanfaatan_barang pb");
+			$res_barang = $this->db->get("PEMANFAATAN_BARANG pb");
 			if ($res_barang) {
 				$data["DATA_BARANG"] = $res_barang->result_array();
 			}
