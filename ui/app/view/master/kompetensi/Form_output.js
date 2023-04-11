@@ -6,6 +6,7 @@ Ext.define('koyoku.view.master.kompetensi.Form_output', {
     modal: true,
     width: 700,
     title:'Form Output',
+    closeAction : 'destroy',
     //selama close action destroy tidak pakai Hide window diberi ID tidak masalah
     id : 'window_form_output',
     items: [{

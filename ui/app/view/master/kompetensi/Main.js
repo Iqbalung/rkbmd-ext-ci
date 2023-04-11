@@ -207,6 +207,14 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                 storeList.proxy.extraParams.BIDANG_ID = satkerData.get("BIDANG_ID");
             }
             storeList.load();
+
+            var gridSubKegiatan = me.down("subkompetensiList");
+            gridSubKegiatan.getStore().proxy.extraParams = {};
+            gridSubKegiatan.getStore().load()
+
+            var gridOutput = me.down("outputSubKegiatanList");
+            gridOutput.getStore().proxy.extraParams = {};
+            gridOutput.getStore().load()
     },
 
    
