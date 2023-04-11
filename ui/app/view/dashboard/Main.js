@@ -90,14 +90,14 @@ Ext.define('koyoku.view.dashboard.Main', {
 						text: 'Daftar Pengajuan SKPD'
 					}, 
 					'->', 
-					{
-						xtype: 'textfield',
-						emptyText: 'Pencarian...',
-						itemId: 'text_cari',
-						listeners: {
-							specialkey: 'load_penghapusan_keyword'
-						}
-					}
+					// {
+					// 	xtype: 'textfield',
+					// 	emptyText: 'Pencarian...',
+					// 	itemId: 'text_cari',
+					// 	listeners: {
+					// 		specialkey: 'load_penghapusan_keyword'
+					// 	}
+					// }
 				]
 			}]
 		});
