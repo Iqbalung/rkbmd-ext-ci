@@ -19,4 +19,28 @@ class Dashboard extends MY_Controller {
 		echo json_encode($out);
 	}
 
+	function get_realisasi_kegiatan()
+	{
+
+		$params = array(
+			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
+		);
+
+		$out = $this->M_dashboard->get_realisasi_kegiatan($params);
+
+		echo json_encode($out);
+	}
+
+	function get_rekap_rkpbmd()
+	{
+
+		$params = array(
+			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
+		);
+
+		$out = $this->M_dashboard->get_rekap_rkpbmd($params);
+
+		echo json_encode($out);
+	}
+
 }

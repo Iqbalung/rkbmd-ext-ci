@@ -61,7 +61,7 @@ class M_penghapusan extends CI_Model{
 				$this->db->group_end();
 			}
 
-			$res = $this->db->get("penghapusan p");
+			$res = $this->db->get("PENGHAPUSAN p");
 
 			if ($isCetak) {
 				return $res;
