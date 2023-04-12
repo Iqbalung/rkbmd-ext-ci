@@ -20,7 +20,7 @@ Ext.define('koyoku.view.main.MainController', {
     },
 
     routes: {
-        'dashboard|portal|tki|pptkis|profile_pptkis|job|pengguna|wilayah|jabatan|barang|asuransi|lk|lsp|blkln|sarkes|job_owner|bidang|kompetensi|online_help': {
+        'dashboard|portal|tki|pptkis|profile_pptkis|job|pengguna|wilayah|jabatan|barang|program|bidang|kompetensi': {
             before: 'onBeforeLoadPage',
             action: 'loadPage'
         }
