@@ -36,7 +36,10 @@ class M_kegiatan extends CI_Model{
 		}
 		
 
-		$q = $this->db->query("SELECT * FROM MASTER_KEGIATAN AS a LEFT JOIN MASTER_BIDANG AS b ON a.BIDANG_ID = b.BIDANG_ID $where ");
+		$q = $this->db->query("SELECT * FROM MASTER_KEGIATAN AS a 
+					LEFT JOIN MASTER_BIDANG AS b ON a.BIDANG_ID = b.BIDANG_ID 
+					LEFT JOIN MASTER_PROGRAM AS p ON a.PROGRAM_ID = p.PROGRAM_ID 
+			$where ");
 		return $q;
 	}
 	
@@ -113,6 +116,11 @@ class M_kegiatan extends CI_Model{
 					$where .= " AND k.BIDANG_ID like ? ";
 					$paramsWhere[] = $params['BIDANG_ID'].'%';
 				}
+
+				if(isset($params['PROGRAM_ID']) && !empty($params['PROGRAM_ID'])){
+					$where .= " AND k.PROGRAM_ID = ? ";
+					$paramsWhere[] = $params['PROGRAM_ID'];
+				}				
 
 				if(isset($params['TAHUN']) && !empty($params['TAHUN'])){
 					$where .= " AND k.TAHUN = ? ";

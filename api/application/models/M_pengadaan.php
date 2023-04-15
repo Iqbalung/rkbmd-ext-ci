@@ -93,6 +93,7 @@ class M_pengadaan extends CI_Model{
 				"PENGADAAN_ID" => $params["PENGADAAN_ID"],
 				"BIDANG_ID" => $params["BIDANG_ID"],
 				"TAHUN" => $params["TAHUN"],
+				"PROGRAM_ID" => $params["PROGRAM_ID"],
 				"KEGIATAN_ID" => $params["KEGIATAN_ID"],
 				"SUB_KEGIATAN_ID" => $params["SUB_KEGIATAN_ID"],
 				"STATUS" => $params["STATUS"],

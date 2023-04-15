@@ -9,6 +9,7 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
         'koyoku.view.master.kompetensi.OutputList',
         'koyoku.view.master.bidang.Tree_bidang',
         'koyoku.view.master.kompetensi.Window_bidang',
+        'koyoku.components.combo.Program'
     ],
     controller: 'kompetensi',
     border: 1,
@@ -25,6 +26,12 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                 layout: 'border',
                 tbar : [
                     '->',
+                    {
+                        xtype: 'combo_program',
+                        fieldLabel: 'Program',
+                        name: 'PROGRAM_ID',                     
+                        itemId: 'filter_program',
+                    },
                     {
                         labelWidth  : 50,
                         xtype: 'textfield',

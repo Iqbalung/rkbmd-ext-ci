@@ -11,6 +11,9 @@ Ext.define('koyoku.view.master.kompetensi.Form_kegiatan', {
         title: ''
     },
     padding: 20,
+    requires: [
+        'koyoku.components.combo.Program'
+    ],
     items:[{
         xtype : 'form',
         items: [{
@@ -38,12 +41,19 @@ Ext.define('koyoku.view.master.kompetensi.Form_kegiatan', {
                 }]
             }, */
             {
+                xtype: 'combo_program',
+                fieldLabel: 'Program',
+                name: 'PROGRAM_ID',
+                width : '100%',
+                allowBlank: false
+            },
+            {
                 xtype: 'textfield',
                 fieldLabel: 'Nama',
                 name: 'KEGIATAN_NAMA',
                 width : '100%',
                 allowBlank: false
-            },{
+            }, {
                 xtype: 'hiddenfield',
                 readOnly: true,
                 name: "UPDATE"

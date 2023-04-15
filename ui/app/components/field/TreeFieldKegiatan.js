@@ -8,8 +8,10 @@ Ext.define('koyoku.components.field.TreeFieldKegiatan', {
         emptyText: 'Pilih Kegiatan/Sub Kegiatan',
         fieldLabel: 'Kegiatan/Sub Kegiatan',
         params: {
-            BIDANG_ID: null
-        }
+            BIDANG_ID: null,
+            PROGRAM_ID: null,
+        },
+        root_text: ''
     },
     layout: 'column',
     modal : true,    
@@ -40,6 +42,7 @@ Ext.define('koyoku.components.field.TreeFieldKegiatan', {
                         modal: true,
                         items: [Ext.create('koyoku.components.tree.Kegiatan', {
                             params: me.params,
+                            root_text: me.root_text,
                             height : 450,
                             width : 400,
                             modal : true,
@@ -70,6 +73,8 @@ Ext.define('koyoku.components.field.TreeFieldKegiatan', {
                         })]
                     });
 
+                    var str = Ext.getCmp('window_kegiatan').down("tree_kegiatan").getStore();
+                    str.getRootNode().data.KEGIATAN_NAMA = me.root_text;
                     Ext.getCmp('window_kegiatan').show();
                 },
             }, {

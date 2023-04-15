@@ -60,13 +60,24 @@ Ext.define('koyoku.view.tki.pemeliharaan.FormGridBarang', {
 			displayField: 'BARANG_NAMA',
     		valueField: 'BARANG_NAMA',
 			store: Ext.create('koyoku.store.Barang'),
+			listeners: {
+				select: function(cb, rowData) {							
+					if (Ext.getCmp("txt_barang_kode")) {								
+						Ext.getCmp("txt_barang_kode").setValue(rowData.data.BARANG_CODE);
+					}
+				}
+			}
 		}	
 	}, {
 		text: 'KODE',
 		dataIndex: 'BARANG_KODE',
 		align : 'center',
 		width: 100,
-		editor: 'textfield'
+		editor: {
+			xtype: 'textfield',
+			editable: false,
+			id: 'txt_barang_kode'
+		}
 	}, {
 		text: 'STATUS BARANG',
 		dataIndex: 'STATUS_BARANG',

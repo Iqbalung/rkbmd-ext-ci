@@ -3,7 +3,8 @@ Ext.define('koyoku.view.tki.pengadaan.Form', {
     xtype: 'form_pengadaan',
     requires: [
         'koyoku.components.field.TreeFieldKegiatan',
-        'koyoku.view.tki.pengadaan.FormGridBarang',              
+        'koyoku.view.tki.pengadaan.FormGridBarang',         
+        'koyoku.components.combo.Program'     
     ],        
     bodyPadding: 10,
     // layout: 'column',
@@ -64,7 +65,29 @@ Ext.define('koyoku.view.tki.pengadaan.Form', {
             width: 360,
             name: 'BIDANG_NAMA'            
         }, {
-            xtype: 'kegiatantreefield',
+            xtype: 'combo_program',
+            fieldLabel: 'Program',
+            name: 'PROGRAM_ID',
+            itemId:'cbo_program',
+            width: 760,
+            allowBlank: false,
+            forceSelection: true,
+            editable: false,
+            listeners: {
+                change: function(ths, val, x) {
+                    var cmp = Ext.getCmp("page_renbut"),			
+			            tree_bidang = cmp.down("tree_bidang"),
+			            form = cmp.down("form_pengadaan").down("form");
+
+                    if (ths.getSelectedRecord()) {                        
+                        form.down("kegiatantreefield").root_text = ths.getSelectedRecord().data.PROGRAM_NAMA;
+                        form.down("kegiatantreefield").params.PROGRAM_ID = val;       
+                    }
+                    
+                }
+            }
+        },{
+            xtype: 'kegiatantreefield',            
             width: 760,
         }]
     }, {

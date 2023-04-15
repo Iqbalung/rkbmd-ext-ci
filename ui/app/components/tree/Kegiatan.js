@@ -8,14 +8,15 @@ Ext.define('koyoku.components.tree.Kegiatan', {
     ],
     config: {
         params: {
-            BIDANG_ID: ''
+            BIDANG_ID: '',
+            PROGRAM_ID: ''
         }
     },
     initComponent: function() {
         var me = this;
         Ext.apply(me, {
             rootVisible: true,
-            hideHeaders: true,
+            // hideHeaders: true,
             columns: [{
                 dataIndex: 'KEGIATAN_NAMA',
                 xtype: 'treecolumn',
@@ -24,7 +25,7 @@ Ext.define('koyoku.components.tree.Kegiatan', {
             store: Ext.create('koyoku.store.TreeKegiatan',{
                 storeId:"store_tree_kegiatan",
                 proxy: {
-                    extraParams: { BIDANG_ID: me.params.BIDANG_ID}
+                    extraParams: { BIDANG_ID: me.params.BIDANG_ID, PROGRAM_ID: me.params.PROGRAM_ID}
                 }
             })
         });
