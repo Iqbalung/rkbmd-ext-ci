@@ -17,6 +17,7 @@ class Kegiatan extends MY_Controller {
 			'JABATAN_ID' => ifunsetempty($_POST,'JABATAN_ID',''),
 			'KEGIATAN_NAMA' => ifunsetempty($_POST,'KEGIATAN_NAMA',''),
 			'KEGIATAN_SLUG' => ifunsetempty($_POST,'slug',''),
+			'PROGRAM_ID' => ifunsetempty($_POST,'PROGRAM_ID',''),
 			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',$this->session->userdata('BIDANG_ID')),
 		);
@@ -37,6 +38,10 @@ class Kegiatan extends MY_Controller {
 		if (!$params["KEGIATAN_SLUG"]){
 			unset($params["KEGIATAN_SLUG"]);
 		}
+
+		if($params["PROGRAM_ID"]==""){
+			unset($params["PROGRAM_ID"]);
+		}	
 		
 		$res = $this->M_kegiatan->get($params);
 		$out = array(
@@ -51,6 +56,7 @@ class Kegiatan extends MY_Controller {
 			'KEGIATAN_SLUG' => slug(ifunsetempty($_POST,'KEGIATAN_NAMA','')),
 			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',''),
+			'PROGRAM_ID' => ifunsetempty($_POST,'PROGRAM_ID',''),
 			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 			'UPDATE' => ifunsetempty($_POST, 'UPDATE',''),
 		);
@@ -85,6 +91,7 @@ class Kegiatan extends MY_Controller {
 			'KEGIATAN_NAMA' => ifunsetempty($_POST,'KEGIATAN_NAMA',''),
 			'KEGIATAN_SLUG' => slug(ifunsetempty($_POST,'KEGIATAN_NAMA','')),
 			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
+			'PROGRAM_ID' => ifunsetempty($_POST,'PROGRAM_ID',''),
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',''),
 			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 			'UPDATE' => ifunsetempty($_POST, 'UPDATE',''),
@@ -137,13 +144,13 @@ class Kegiatan extends MY_Controller {
 
 		$params = array(
 			'ID' => ifunsetempty($_POST,'ID',''),
+			'PROGRAM_ID' => ifunsetempty($_POST,'PROGRAM_ID',''),
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',''),
 			'TIPE' => ifunsetempty($_POST,'TIPE',''),
 			'node' => ifunsetempty($_POST,'node',''),	
 			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 		);
-
-        
+				
 		$res = $this->M_kegiatan->get_tree($params);
 		
 		echo json_encode($res);
