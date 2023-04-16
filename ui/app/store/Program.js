@@ -4,6 +4,7 @@ Ext.define('koyoku.store.Program', {
     fields: [
        'PROGRAM_ID','PROGRAM_NAMA','BIDANG_ID', 'TAHUN',
     ],
+    autoLoad: true,
     proxy: {
         type: 'ajax',
         actionMethods: {

@@ -10,7 +10,9 @@ Ext.define('koyoku.view.tki.pengadaan.FormGridBarang', {
 			store: Ext.create('Ext.data.Store', {
 					storeId: 'store_barang',
 					fields:[ 'BARANG_PENGADAAN_ID', 'BARANG_ID', 'BARANG_NAMA', 'BARANG_KODE', 'JUMLAH', 'SATUAN',
-							'CARA_PEMENUHAN', 'KETERANGAN'],					
+							'CARA_PEMENUHAN', 'KETERANGAN', 'KEBUTUHAN_MAKSIMUM_JUMLAH', 'KEBUTUHAN_MAKSIMUM_SATUAN',
+							'KEBUTUHAN_RIIL_JUMLAH', 'KEBUTUHAN_RIIL_SATUAN'
+						],					
 							 
 			}),
 			plugins: [
@@ -69,24 +71,69 @@ Ext.define('koyoku.view.tki.pengadaan.FormGridBarang', {
 					editable: false,
 					id: 'txt_barang_kode'
 				}
-			}, {
-				text: 'JUMLAH',
-				dataIndex: 'JUMLAH',
-				width: 100,
-				editor: 'numberfield'
+			},			
+			{
+				text: 'USULAN',
+				align : 'center',
+				columns: [
+					{
+						text: 'JUMLAH',
+						dataIndex: 'JUMLAH',
+						width: 100,
+						editor: 'numberfield'
+					}, 
+					{
+						text: 'SATUAN',
+						dataIndex: 'SATUAN',
+						width: 120,
+						editor: 'textfield'
+					},
+				]
 			}, 
 			{
-				text: 'SATUAN',
-				dataIndex: 'SATUAN',
-				width: 120,
-				editor: 'textfield'
+				text: 'KEBUTUHAN MAKSIMUM',
+				align : 'center',
+				columns: [
+					{
+						text: 'JUMLAH',
+						dataIndex: 'KEBUTUHAN_MAKSIMUM_JUMLAH',
+						width: 100,
+						editor: 'numberfield'
+					}, 
+					{
+						text: 'SATUAN',
+						dataIndex: 'KEBUTUHAN_MAKSIMUM_SATUAN',
+						width: 120,
+						editor: 'textfield'
+					},
+				]
+			},
+			{
+				text: 'KEBUTUHAN RILL',
+				align : 'center',
+				columns: [
+					{
+						text: 'JUMLAH',
+						dataIndex: 'KEBUTUHAN_RIIL_JUMLAH',
+						width: 100,
+						editor: 'numberfield'
+					}, 
+					{
+						text: 'SATUAN',
+						dataIndex: 'KEBUTUHAN_RIIL_SATUAN',
+						width: 120,
+						editor: 'textfield'
+					},
+				]
 			},
 			{
 				text: 'CARA PEMENUHAN',
 				dataIndex: 'CARA_PEMENUHAN',
+				hidden: true,
 				flex: 1,
 				editor: 'textfield'
-			}]
+			}
+		]
 		});
 		me.callParent([arguments]);
 	},

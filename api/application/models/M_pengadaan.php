@@ -127,6 +127,10 @@ class M_pengadaan extends CI_Model{
 							"CARA_PEMENUHAN" => ifunsetempty($value, "CARA_PEMENUHAN", ""),							
 							"KETERANGAN" => ifunsetempty($value, "KETERANGAN", ""),
 							"TAHUN" => ifunsetempty($paramsPengadaan, "TAHUN", ""),
+							"KEBUTUHAN_MAKSIMUM_JUMLAH" => ifunsetempty($value, "KEBUTUHAN_MAKSIMUM_JUMLAH", ""),
+							"KEBUTUHAN_MAKSIMUM_SATUAN" => ifunsetempty($value, "KEBUTUHAN_MAKSIMUM_SATUAN", ""),
+							"KEBUTUHAN_RIIL_JUMLAH" => ifunsetempty($value, "KEBUTUHAN_RIIL_JUMLAH", ""),
+							"KEBUTUHAN_RIIL_SATUAN" => ifunsetempty($value, "KEBUTUHAN_RIIL_SATUAN", ""),
 						);
 						if (!empty($paramsBarang["BARANG_PENGADAAN_ID"])) {
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");
