@@ -95,14 +95,15 @@ Ext.define('koyoku.view.tki.pemeliharaan.FormGridBarang', {
 			{ text: 'RB', dataIndex: 'KONDISI_RUSAK_BERAT', editor: 'numberfield'}
 		]
 	},{
-		text: 'USULAN KEBUTUHAN PEMELIHARAAN YANG DISETUJUI',
+		text: 'USULAN KEBUTUHAN PEMELIHARAAN</br> YANG DISETUJUI',
 		columns: [
 			{ text: 'Nama Pemeliharaan', width:180, dataIndex: 'PEMELIHARAAN_NAMA', editor: 'textfield' },
 			{ text: 'Jumlah', dataIndex: 'USULAN_JUMLAH', editor: 'numberfield' },
 			{ text: 'Satuan', dataIndex: 'USULAN_SATUAN', editor: 'textfield'}
 		]
 	}, {
-		text: 'RENCANA KEBUTUHAN PEMELIHARAAN BMD YANG DISETUJUI',
+		hidden: true,
+		text: 'RENCANA KEBUTUHAN PEMELIHARAAN BMD</br> YANG DISETUJUI',
 		columns: [
 			{ text: 'Jumlah', dataIndex: 'RENCANA_JUMLAH', editor: 'numberfield' },
 			{ text: 'Satuan', dataIndex: 'RENCANA_SATUAN', editor: 'textfield'}

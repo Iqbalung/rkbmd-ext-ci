@@ -54,14 +54,15 @@ Ext.define('koyoku.view.tki.pemeliharaan.Grid', {
 			{ text: 'RB', align: 'center', dataIndex: 'KONDISI_RUSAK_BERAT'}
 		]
 	},{
-		text: 'USULAN KEBUTUHAN PEMELIHARAAN YANG DISETUJUI',
+		text: 'USULAN KEBUTUHAN PEMELIHARAAN</br> YANG DISETUJUI',
 		columns: [
 			{ text: 'Nama Pemeliharaan', width:180, dataIndex: 'PEMELIHARAAN_NAMA' },
 			{ text: 'Jumlah', align: 'center', dataIndex: 'USULAN_JUMLAH' },
 			{ text: 'Satuan', dataIndex: 'USULAN_SATUAN'}
 		]
 	}, {
-		text: 'RENCANA KEBUTUHAN PEMELIHARAAN BMD YANG DISETUJUI',
+		text: 'RENCANA KEBUTUHAN PEMELIHARAAN BMD</br> YANG DISETUJUI',
+		hidden: true,
 		columns: [
 			{ text: 'Jumlah', align: 'center', dataIndex: 'RENCANA_JUMLAH' },
 			{ text: 'Satuan', dataIndex: 'RENCANA_SATUAN'}
