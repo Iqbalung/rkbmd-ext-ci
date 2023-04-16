@@ -30,9 +30,11 @@ class M_pemeliharaan extends CI_Model{
 					'Diajukan'
 				ELSE
 					'Draft'
-				END as STATUS_DATA
+				END as STATUS_DATA,
+				pg.PROGRAM_NAMA
 			", false);
 			$this->db->join("PEMELIHARAAN_BARANG pb","pb.PEMELIHARAAN_ID = p.PEMELIHARAAN_ID", "RIGHT");
+			$this->db->join("MASTER_PROGRAM pg","pg.PROGRAM_ID = p.PROGRAM_ID", "LEFT");
 			$this->db->join("MASTER_KEGIATAN k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
 			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
@@ -225,6 +227,52 @@ class M_pemeliharaan extends CI_Model{
 				"items" => $data,
 				"error" => null
 			);
+		} catch (\Throwable $e) {			
+			$out = array(
+				'success' => false,
+				'msg' => 'Gagal Disimpan',
+				"error" => $e->getMessage()
+			);
+		}
+		return $out;
+	}
+
+	function save_telaah($params = array())
+	{
+		try {
+			$paramsTelaah = array(
+				'BARANG_PEMELIHARAAN_ID' => ifunsetempty($_POST,'BARANG_PEMELIHARAAN_ID',''),
+				'PEMELIHARAAN_ID' => ifunsetempty($_POST,'PEMELIHARAAN_ID',''),			
+				'PEMELIHARAAN_NAMA' => ifunsetempty($_POST,'PEMELIHARAAN_NAMA',''),
+				'RENCANA_JUMLAH' => ifunsetempty($_POST,'RENCANA_JUMLAH',''),
+				'RENCANA_SATUAN' => ifunsetempty($_POST,'RENCANA_SATUAN',''),
+				'KETERANGAN' => ifunsetempty($_POST,'KETERANGAN','')
+			);
+			$res = false;			
+			if (!empty($paramsTelaah["BARANG_PEMELIHARAAN_ID"])) {
+				$paramsTelaah["TANGGAL_TELAAH"] = date("Y-m-d H:i:s");				
+				$this->db->where("BARANG_PEMELIHARAAN_ID", $paramsTelaah["BARANG_PEMELIHARAAN_ID"]);
+				$this->db->where("PEMELIHARAAN_ID", $paramsTelaah["PEMELIHARAAN_ID"]);
+				unset($paramsTelaah["PEMELIHARAAN_ID"]);
+				unset($paramsTelaah["BARANG_PEMELIHARAAN_ID"]);
+				$res = $this->db->update("PEMELIHARAAN_BARANG", $paramsTelaah);
+			}			
+			
+			
+			$out = array(
+				'success' => false,
+				'msg' => 'Gagal Disimpan',
+				"error" => $res
+			);
+
+			if ($res) {				
+				$out = array(
+					'success' => true,
+					'msg' => 'Berhasil Disimpan',
+					"error" => null
+				);
+			}
+
 		} catch (\Throwable $e) {			
 			$out = array(
 				'success' => false,

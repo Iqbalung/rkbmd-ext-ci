@@ -72,7 +72,7 @@ class Pemeliharaan extends MY_Controller {
 			$objPHPExcel = $objReader->load($template);	
 
 			$params = array(
-				'PENGADAAN_ID' => ifunsetempty($_GET,'PENGADAAN_ID',''),
+				'PEMELIHARAAN_ID' => ifunsetempty($_GET,'PEMELIHARAAN_ID',''),
 				'BIDANG_ID' => ifunsetempty($_GET,'BIDANG_ID', $this->session->userdata('BIDANG_ID')),
 				'TAHUN' => ifunsetempty($_GET,'TAHUN', $this->session->userdata('TAHUN')),
 				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
@@ -327,8 +327,23 @@ class Pemeliharaan extends MY_Controller {
 			$objWriter->save('php://output');
 			exit;
 
-			exit;
+	}
 
+	function save_telaah()
+	{
+
+		$params = array(
+			'BARANG_PEMELIHARAAN_ID' => ifunsetempty($_POST,'BARANG_PEMELIHARAAN_ID',''),
+			'PEMELIHARAAN_ID' => ifunsetempty($_POST,'PEMELIHARAAN_ID',''),			
+			'PEMELIHARAAN_NAMA' => ifunsetempty($_POST,'PEMELIHARAAN_NAMA',''),
+			'RENCANA_JUMLAH' => ifunsetempty($_POST,'RENCANA_JUMLAH',''),
+			'RENCANA_SATUAN' => ifunsetempty($_POST,'RENCANA_SATUAN',''),
+			'KETERANGAN' => ifunsetempty($_POST,'KETERANGAN','')	
+		);	
+		
+		$out = $this->M_pemeliharaan->save_telaah($params);
+		
+		echo json_encode($out);
 	}
 
 	

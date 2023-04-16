@@ -913,5 +913,52 @@ Ext.define('koyoku.view.tki.Controller', {
 			console.error(error);
 		}
 	},
+
+	telaah_pemeliharaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_renbut"),			
+			grid = cmp.down("grid_pemeliharaan"),
+			grid_form = cmp.down("#grid_form_pemeliharaan"),
+			form = cmp.down("form_pemeliharaan").down("form"),
+			data_selected = grid.getSelectionModel().getSelection();
+		
+		if(data_selected.length > 0)
+		{
+			// me.clear_form_pemeliharaan();
+			var win = Ext.create("koyoku.view.tki.pemeliharaan.FormTelaah"),
+				form = win.down("form"),
+				data = data_selected[0].getData();
+
+			form.getForm().reset();
+			data.KEGIATAN_NAMA = data.PARENT_KEGIATAN;			
+			form.getForm().setValues(data);
+			win.show();			
+			form.down("[name=PEMELIHARAAN_NAMA]").focus();
+			
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu terlebih dahulu");
+		}
+	},
+
+	simpan_telaah_pemeliharaan: function() {
+		try {
+			var me = this,
+				cmp = Ext.getCmp("page_renbut"),
+				win = Ext.getCmp("form_telaah_pemeliharaan"),				
+				form = win.down("form"),
+				params = form.getValues();
+
+			koyoku.app.ajaxRequest("pemeliharaan/save_telaah", params, function(res) {				
+				if(res.success) {
+					Ext.Msg.alert('Informasi', res.msg);
+					form.getForm().reset();
+					win.close();
+					me.load_pemeliharaan();
+				}
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	},
 	
 });

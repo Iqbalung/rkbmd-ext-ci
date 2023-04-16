@@ -6,6 +6,7 @@ Ext.define('koyoku.view.tki.Main', {
 
 		'koyoku.view.tki.pemeliharaan.Grid',
 		'koyoku.view.tki.pemeliharaan.Form',
+		'koyoku.view.tki.pemeliharaan.FormTelaah',
 
 		'koyoku.view.tki.pemanfaatan.Grid',
 		'koyoku.view.tki.pemanfaatan.Form',
@@ -66,12 +67,10 @@ Ext.define('koyoku.view.tki.Main', {
 					},
 					'->',
 					{
-						text : 'TELAAH',
-						// glyph: 'f02f@fontAwesome',						
+						text : 'TELAAH',											
 						cls: 'btn-main btn-box',
 						handler: 'telaah_pengadaan'
-					},
-					'|', 
+					},					
 					{
 						// text : 'Cetak',
 						glyph: 'f02f@fontAwesome',						
@@ -109,8 +108,13 @@ Ext.define('koyoku.view.tki.Main', {
 							change: 'load_pemeliharaan_status'
 						}
 					},
-					'->',{
-						// text : 'Cetak',
+					'->',
+					{
+						text : 'TELAAH',											
+						cls: 'btn-main btn-box',
+						handler: 'telaah_pemeliharaan'
+					},
+					{						
 						glyph: 'f02f@fontAwesome',						
 						cls: 'btn-round btn-main',
 						handler: 'cetak_pemeliharaan'
