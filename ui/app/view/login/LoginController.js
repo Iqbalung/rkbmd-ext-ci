@@ -7,7 +7,7 @@ Ext.define('koyoku.view.login.LoginController', {
         me = this;
 
         me.getView().down('form').submit({
-            url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/login/do_login',
+            url: 'http://localhost/project/rkbmd/api/index.php/login/do_login',
             success: function(form, action) {
                 var success_opt = true;
                 try {
@@ -25,6 +25,8 @@ Ext.define('koyoku.view.login.LoginController', {
                             xtype: 'app-main'
                         });*/
                         localStorage.setItem("is_login", 'yes');
+                        localStorage.setItem("IS_BIDANG_TELAAH", res.data.IS_BIDANG_TELAAH);
+                        koyoku.app.IS_BIDANG_TELAAH = res.data.IS_BIDANG_TELAAH;
                         window.location.reload();
                     }
                     Ext.Msg.alert('Informasi', res.msg);

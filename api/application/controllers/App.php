@@ -12,30 +12,7 @@ class App extends MY_Controller {
 	{
 
 		$out['USER'] = $this->user;
-		$out['INSTANSI'] =array();
-		$q=$this->db->query("SELECT 
-				MASTER_PPTKIS.PPTKIS_ID AS ID,
-				PPTKIS_NAMA AS NAMA,
-				PPTKIS_ALAMAT AS ALAMAT,
-				PPTKIS_LEGALITAS AS LEGALITAS,
-				PPTKIS_DES_PENDEK AS DES_PENDEK,
-				PPTKIS_DES_PANJANG AS DES_PANJANG,
-				PPTKIS_NOMOR_TELPHONE AS NOMOR_TELPHONE,
-				PPTKIS_LOGO AS LOGO,
-				PPTKIS_COVER AS COVER,
-				PPTKIS_STRUKTUR_ORGANISASI AS STRUKTUR_ORGANISASI,
-				WILAYAH_ID,
-				PENGGUNA_PPTKIS.SATKER_ID 
-
-			from PENGGUNA_PPTKIS
-			LEFT JOIN MASTER_PPTKIS ON PENGGUNA_PPTKIS.PPTKIS_ID=MASTER_PPTKIS.PPTKIS_ID
-			where PENGGUNA_ID=?
-		",array($out['USER']['ID']));
-		if($q->num_rows()>0){
-			$row = $q->first_row();
-			unset($row->PPTKIS_DES_PANJANG);
-			$out['INSTANSI'] = $row;
-		}
+		$out['INSTANSI'] =array();	
 		$out['akses'] = $this->get_akses($out['USER']['USERGROUP_ID']);
 		$out['TAHUN'] = $this->session->userdata('TAHUN');
 		$out['message'] = 'RKBMD Banjarnegara';

@@ -44,6 +44,7 @@ class Login extends CI_Controller{
 			foreach ($q->first_row() as $key => $value) {
 				$session_data[$key] = $value;
 			}
+			$session_data['IS_BIDANG_TELAAH'] = $q->row()->BIDANG_TELAAH;
 			$session_data['is_login'] = true;
 			$session_data['TAHUN'] = $tahun;
 			$out['data'] = $session_data;
@@ -93,8 +94,8 @@ class Login extends CI_Controller{
 
 	function is_login(){	
 		$out = array();
-		$out['is_login'] = false;
-		$this->do_login_front();
+		$out['is_login'] = true;
+		// $this->do_login_front();
 		if($this->session->userdata('is_login')===true){
 			$out['is_login'] = true;
 			$out['user'] = array(
@@ -107,7 +108,8 @@ class Login extends CI_Controller{
 				'ALAMAT' => $this->session->userdata('ALAMAT_TINGGAL'),
 				'DESKRIPSI' => $this->session->userdata(''),
 				'PHOTO' => $this->session->userdata('PHOTO'),
-				'USERGROUP' => $this->session->userdata('USERGROUP')
+				'USERGROUP' => $this->session->userdata('USERGROUP'),
+				'BIDANG_TELAAH' => (bool) $this->session->userdata('BIDANG_TELAAH')
 			);
 		}
 		echo json_encode($out);

@@ -36,7 +36,7 @@ Ext.define('koyoku.view.main.MainController', {
 
     onBeforeLoadPage: function(action) {
         Ext.Ajax.request({
-            url     : 'http://karya-inovasi.com/beta-rkbmd/api/index.php/login/is_login',
+            url     : 'http://localhost/project/rkbmd/api/index.php/login/is_login',
             success : function(form, act, value) {                
                 var success_opt = true;
                 try {
@@ -102,7 +102,7 @@ Ext.define('koyoku.view.main.MainController', {
     get_data_viewmodel: function() {
         me = this;
         Ext.Ajax.request({
-            url: "http://karya-inovasi.com/beta-rkbmd/api/index.php/app/get_viewmodel",
+            url: "http://localhost/project/rkbmd/api/index.php/app/get_viewmodel",
             success: function(form, action, value) {
                 var success_opt = true;
                 try {
@@ -117,6 +117,8 @@ Ext.define('koyoku.view.main.MainController', {
                     for (r in res.USER) {
                         dataModel.set('USER.'+r,res.USER[r]);
                     }
+                    localStorage.setItem("IS_BIDANG_TELAAH", res.USER.IS_BIDANG_TELAAH);
+                    koyoku.app.IS_BIDANG_TELAAH = res.USER.IS_BIDANG_TELAAH;
                     for (r in res.INSTANSI) {
                         dataModel.set('INSTANSI.'+r,res.INSTANSI[r]);
                     }
@@ -197,7 +199,7 @@ Ext.define('koyoku.view.main.MainController', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pengguna/save',
+                url: 'http://localhost/project/rkbmd/api/index.php/Pengguna/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {
@@ -232,7 +234,7 @@ Ext.define('koyoku.view.main.MainController', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pengguna/saveupd',
+                url: 'http://localhost/project/rkbmd/api/index.php/Pengguna/saveupd',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

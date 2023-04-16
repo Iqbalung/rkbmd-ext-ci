@@ -32,7 +32,8 @@ Ext.define('koyoku.view.main.MainModel', {
 			USERGROUP_ID: '',
 			ALAMAT: '',
 			DESKRIPSI: '',
-			PHOTO: ''
+			PHOTO: '',
+			IS_BIDANG_TELAAH: ''
 		},
 		
 		TAHUN: '',

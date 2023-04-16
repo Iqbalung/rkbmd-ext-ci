@@ -21,197 +21,210 @@ Ext.define('koyoku.view.tki.Main', {
 		'koyoku.components.combo.StatusData'
 	],
 
-	controller: 'tki',
-
+	viewModel: 'main',
+	controller: 'tki',	
+	config: {
+		is_bidang_telaah: 'a',
+	},
+	bind: {
+		is_bidang_telaah: '{USER.IS_BIDANG_TELAAH}'
+	},				
 	border: 1,
 	id: 'page_renbut',
 	layout: 'border',
-	items: [{
-		xtype: 'tree_bidang',
-		region: 'west',
-		border: 1,
-		width: 300,
-		title: 'Organisasi',
-		collapsible: true,
-		collapsed: true,
-		
-		listeners: {			
-			select: 'select_filter_bidang'
-		}
-	}, {
-		layout: 'card',
-		id: 'panel_pemeliharaan',
-		region: 'center',
-		items: [{
-			xtype: 'tabpanel',			
+	initComponent: function() {
+		var me = this;		
+		Ext.apply(me, {
 			items: [{
-				title: 'Pengadaan',				
-				xtype: 'grid_pengadaan',		
-				dockedItems: [{
-					xtype: 'toolbar',
-					dock: 'top',
-					height: 60,
-					items: [{
-						xtype: 'textfield',
-						emptyText: 'Cari ...',
-						itemId: 'text_cari',
-						listeners: {
-							specialkey: 'load_pengadaan_keyword'
-						}
-					}, {
-						xtype: 'combo_status_data',
-						itemId: 'combo_status',
-						listeners: {
-							change: 'load_pengadaan_status'
-						}
-					},
-					'->',
-					{
-						text : 'TELAAH',											
-						cls: 'btn-main btn-box',
-						handler: 'telaah_pengadaan'
-					},					
-					{
-						// text : 'Cetak',
-						glyph: 'f02f@fontAwesome',						
-						cls: 'btn-round btn-main',
-						handler: 'cetak_pengadaan'
-					}, {					
-						glyph: 'xf067@fontAwesome',
-						cls: 'btn-round btn-tambah',
-						handler: 'tambah_pengadaan'
-					}, {						
-						glyph: 'xf044@fontAwesome',
-						cls: 'btn-round btn-edit',
-						handler: 'ubah_pengadaan'
-					}
-				]
-				}],
+				xtype: 'tree_bidang',
+				region: 'west',
+				border: 1,
+				width: 300,
+				title: 'Organisasi',
+				collapsible: true,
+				collapsed: true,
+				
+				listeners: {			
+					select: 'select_filter_bidang'
+				}
 			}, {
-				title: 'Pemeliharaan',
-				xtype: 'grid_pemeliharaan',				
-				dockedItems: [{
-					xtype: 'toolbar',
-					dock: 'top',
-					height: 60,
+				layout: 'card',
+				id: 'panel_pemeliharaan',
+				region: 'center',
+				items: [{
+					xtype: 'tabpanel',			
 					items: [{
-						xtype: 'textfield',
-						emptyText: 'Cari ...',
-						itemId: 'text_cari',
-						listeners: {
-							specialkey: 'load_pemeliharaan_keyword'
-						}
+						title: 'Pengadaan',				
+						xtype: 'grid_pengadaan',							
+						dockedItems: [{
+							xtype: 'toolbar',
+							dock: 'top',
+							height: 60,
+							items: [{
+								xtype: 'textfield',
+								emptyText: 'Cari ...',
+								itemId: 'text_cari',
+								listeners: {
+									specialkey: 'load_pengadaan_keyword'
+								}
+							}, {
+								xtype: 'combo_status_data',
+								itemId: 'combo_status',
+								listeners: {
+									change: 'load_pengadaan_status'
+								}
+							},
+							'->',
+							{
+								text : 'TELAAH',											
+								hidden : !me.is_bidang_telaah,
+								cls: 'btn-main btn-box',
+								handler: 'telaah_pengadaan'
+							},					
+							{
+								// text : 'Cetak',
+								glyph: 'f02f@fontAwesome',						
+								cls: 'btn-round btn-main',
+								handler: 'cetak_pengadaan'
+							}, {					
+								glyph: 'xf067@fontAwesome',
+								cls: 'btn-round btn-tambah',
+								handler: 'tambah_pengadaan'
+							}, {						
+								glyph: 'xf044@fontAwesome',
+								cls: 'btn-round btn-edit',
+								handler: 'ubah_pengadaan'
+							}
+						]
+						}],
 					}, {
-						xtype: 'combo_status_data',
-						itemId: 'combo_status',
-						listeners: {
-							change: 'load_pemeliharaan_status'
-						}
-					},
-					'->',
-					{
-						text : 'TELAAH',											
-						cls: 'btn-main btn-box',
-						handler: 'telaah_pemeliharaan'
-					},
-					{						
-						glyph: 'f02f@fontAwesome',						
-						cls: 'btn-round btn-main',
-						handler: 'cetak_pemeliharaan'
-					}, {					
-						glyph: 'xf067@fontAwesome',
-						cls: 'btn-round btn-tambah',
-						handler: 'tambah_pemeliharaan'
-					}, {						
-						glyph: 'xf044@fontAwesome',
-						cls: 'btn-round btn-edit',
-						handler: 'ubah_pemeliharaan'
-					}
-				]
-				}],
-			}, {
-				xtype: 'grid_pemanfaatan',
-				title: 'Pemanfaatan',				
-				dockedItems: [{
-					xtype: 'toolbar',
-					dock: 'top',
-					height: 60,
-					items: [{
-						xtype: 'textfield',
-						emptyText: 'Cari ...',
-						itemId: 'text_cari',
-						listeners: {
-							specialkey: 'load_pemanfaatan_keyword'
-						}
+						title: 'Pemeliharaan',
+						xtype: 'grid_pemeliharaan',							
+						dockedItems: [{
+							xtype: 'toolbar',
+							dock: 'top',
+							height: 60,
+							items: [{
+								xtype: 'textfield',
+								emptyText: 'Cari ...',
+								itemId: 'text_cari',
+								listeners: {
+									specialkey: 'load_pemeliharaan_keyword'
+								}
+							}, {
+								xtype: 'combo_status_data',
+								itemId: 'combo_status',
+								listeners: {
+									change: 'load_pemeliharaan_status'
+								}
+							},
+							'->',
+							{
+								text : 'TELAAH',											
+								cls: 'btn-main btn-box',
+								handler: 'telaah_pemeliharaan'
+							},
+							{						
+								glyph: 'f02f@fontAwesome',						
+								cls: 'btn-round btn-main',
+								handler: 'cetak_pemeliharaan'
+							}, {					
+								glyph: 'xf067@fontAwesome',
+								cls: 'btn-round btn-tambah',
+								handler: 'tambah_pemeliharaan'
+							}, {						
+								glyph: 'xf044@fontAwesome',
+								cls: 'btn-round btn-edit',
+								handler: 'ubah_pemeliharaan'
+							}
+						]
+						}],
 					}, {
-						xtype: 'combo_status_data',
-						itemId: 'combo_status',
-						listeners: {
-							change: 'load_pemanfaatan_status'
-						}
-					},
-					'->',{
-						// text : 'Cetak',
-						glyph: 'f02f@fontAwesome',						
-						cls: 'btn-round btn-main',
-						handler: 'cetak_pemanfaatan'
-					}, {					
-						glyph: 'xf067@fontAwesome',
-						cls: 'btn-round btn-tambah',
-						handler: 'tambah_pemanfaatan'
-					}, {						
-						glyph: 'xf044@fontAwesome',
-						cls: 'btn-round btn-edit',
-						handler: 'ubah_pemanfaatan'
-					}
-				]
-				}],
-			}, {
-				title: 'Penghapusan/Pemindahtanganan',
-				xtype: 'grid_penghapusan',				
-				dockedItems: [{
-					xtype: 'toolbar',
-					dock: 'top',
-					height: 60,
-					items: [{
-						xtype: 'textfield',
-						emptyText: 'Cari ...',
-						itemId: 'text_cari',
-						listeners: {
-							specialkey: 'load_penghapusan_keyword'
-						}
+						xtype: 'grid_pemanfaatan',
+						title: 'Pemanfaatan',				
+						dockedItems: [{
+							xtype: 'toolbar',
+							dock: 'top',
+							height: 60,
+							items: [{
+								xtype: 'textfield',
+								emptyText: 'Cari ...',
+								itemId: 'text_cari',
+								listeners: {
+									specialkey: 'load_pemanfaatan_keyword'
+								}
+							}, {
+								xtype: 'combo_status_data',
+								itemId: 'combo_status',
+								listeners: {
+									change: 'load_pemanfaatan_status'
+								}
+							},
+							'->',{
+								// text : 'Cetak',
+								glyph: 'f02f@fontAwesome',						
+								cls: 'btn-round btn-main',
+								handler: 'cetak_pemanfaatan'
+							}, {					
+								glyph: 'xf067@fontAwesome',
+								cls: 'btn-round btn-tambah',
+								handler: 'tambah_pemanfaatan'
+							}, {						
+								glyph: 'xf044@fontAwesome',
+								cls: 'btn-round btn-edit',
+								handler: 'ubah_pemanfaatan'
+							}
+						]
+						}],
 					}, {
-						xtype: 'combo_status_data',
-						itemId: 'combo_status',
-						listeners: {
-							change: 'load_penghapusan_status'
-						}
-					},
-					'->',{
-						// text : 'Cetak',
-						glyph: 'f02f@fontAwesome',						
-						cls: 'btn-round btn-main',
-						handler: 'cetak_penghapusan'
-					}, {					
-						glyph: 'xf067@fontAwesome',
-						cls: 'btn-round btn-tambah',
-						handler: 'tambah_penghapusan'
-					}, {						
-						glyph: 'xf044@fontAwesome',
-						cls: 'btn-round btn-edit',
-						handler: 'ubah_penghapusan'
-					}
-				]
-				}],
+						title: 'Penghapusan/Pemindahtanganan',
+						xtype: 'grid_penghapusan',				
+						dockedItems: [{
+							xtype: 'toolbar',
+							dock: 'top',
+							height: 60,
+							items: [{
+								xtype: 'textfield',
+								emptyText: 'Cari ...',
+								itemId: 'text_cari',
+								listeners: {
+									specialkey: 'load_penghapusan_keyword'
+								}
+							}, {
+								xtype: 'combo_status_data',
+								itemId: 'combo_status',
+								listeners: {
+									change: 'load_penghapusan_status'
+								}
+							},
+							'->',{
+								// text : 'Cetak',
+								glyph: 'f02f@fontAwesome',						
+								cls: 'btn-round btn-main',
+								handler: 'cetak_penghapusan'
+							}, {					
+								glyph: 'xf067@fontAwesome',
+								cls: 'btn-round btn-tambah',
+								handler: 'tambah_penghapusan'
+							}, {						
+								glyph: 'xf044@fontAwesome',
+								cls: 'btn-round btn-edit',
+								handler: 'ubah_penghapusan'
+							}
+						]
+						}],
+					}]
+				}, {
+					xtype: 'form_pemeliharaan'
+				}, {
+					xtype: 'form_pemanfaatan'
+				}, {
+					xtype: 'form_penghapusan'
+				}, {
+					xtype: 'form_pengadaan'
+				}]
 			}]
-		}, {
-			xtype: 'form_pemeliharaan'
-		}, {
-			xtype: 'form_pemanfaatan'
-		}, {
-			xtype: 'form_penghapusan'
-		}, {
-			xtype: 'form_pengadaan'
-		}]
-	}]
+		});
+		me.callParent([arguments]);
+	}	
 });

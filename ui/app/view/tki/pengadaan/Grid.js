@@ -3,11 +3,9 @@ Ext.define('koyoku.view.tki.pengadaan.Grid', {
 	xtype: 'grid_pengadaan',
 	requires: [
 		'koyoku.store.pengadaan.Daftar'
-	],
+	],	
 	initComponent: function() {
-		var me = this;
-		
-
+		var me = this;							
 		Ext.apply(me, {			
 			store: Ext.create('koyoku.store.pengadaan.Daftar', {
 				storeId: 'store_pengadaan',			
@@ -20,45 +18,121 @@ Ext.define('koyoku.view.tki.pengadaan.Grid', {
 					}
 				}
 			}),
+			listeners:{
+				 'beforerender' : function(grid) {
+					 
+					 let cols = grid.getColumns();
+					 var colHidden = cols.filter(function(cl) {
+						var listColHidden = ["RENCANA_DISETUJUI_JUMLAH", "RENCANA_DISETUJUI_SATUAN"];						
+					   if (localStorage.getItem("IS_BIDANG_TELAAH") == "1") {
+						   listColHidden = ["KEBUTUHAN_MAKSIMUM_JUMLAH", "KEBUTUHAN_MAKSIMUM_SATUAN", "KEBUTUHAN_RIIL_JUMLAH", "KEBUTUHAN_RIIL_SATUAN"];
+					   }
+						return listColHidden.indexOf(cl.dataIndex) !== -1;
+					});	
+					console.log(colHidden);
+					if (colHidden.length > 0) {							
+						colHidden.forEach(col => {								
+							col.setHidden(true);
+						});
+					}
+
+
+				}
+			},		
 			features: [{ftype:'grouping', groupHeaderTpl: '{name}',}],		
+			columns: [{
+				text: 'No',
+				xtype: 'rownumberer',
+				width: 60
+			}, {
+				text: 'PENGGUNA BARANG/ PROGRAM/KEGIATAN/ SUB KEGIATAN/ OUTPUT',
+				dataIndex: 'NAMA_KEGIATAN',		
+				hidden: true,
+				width: 500,
+			}, {
+				text: 'KODE',
+				dataIndex: 'BARANG_KODE',
+				align : 'center',
+				width: 100		
+			}, {
+				text: 'URAIAN/ NAMA BARANG',
+				dataIndex: 'BARANG_NAMA',		
+				flex: 1
+			}, {
+				text: 'JUMLAH',
+				dataIndex: 'JUMLAH',
+				width: 100		
+			}, 
+			{
+				text: 'SATUAN',
+				dataIndex: 'SATUAN',
+				width: 120		
+			},
+			{
+				text: 'KEBUTUHAN MAKSIMUM',				
+				align : 'center',
+				columns: [
+					{
+						text: 'JUMLAH',
+						dataIndex: 'KEBUTUHAN_MAKSIMUM_JUMLAH',
+						width: 100,
+						editor: 'numberfield'
+					}, 
+					{
+						text: 'SATUAN',
+						dataIndex: 'KEBUTUHAN_MAKSIMUM_SATUAN',
+						width: 120,
+						editor: 'textfield'
+					},
+				]
+			},
+			{
+				text: 'KEBUTUHAN RILL',				
+				align : 'center',
+				columns: [
+					{
+						text: 'JUMLAH',
+						dataIndex: 'KEBUTUHAN_RIIL_JUMLAH',
+						width: 100,
+						editor: 'numberfield'
+					}, 
+					{
+						text: 'SATUAN',
+						dataIndex: 'KEBUTUHAN_RIIL_SATUAN',
+						width: 120,
+						editor: 'textfield'
+					},
+				]
+			},
+			{
+				text: 'RENCANA KEBUTUHAN<br> PENGADAAN BMD<br> YANG DISETUJUI',				
+				align : 'center',
+				columns: [
+					{
+						text: 'JUMLAH',
+						dataIndex: 'RENCANA_DISETUJUI_JUMLAH',
+						width: 100,
+						editor: 'numberfield'
+					}, 
+					{
+						text: 'SATUAN',
+						dataIndex: 'RENCANA_DISETUJUI_SATUAN',
+						width: 120,
+						editor: 'textfield'
+					},
+				]
+			},
+			{
+				text: 'CARA PEMENUHAN',
+				dataIndex: 'CARA_PEMENUHAN',
+				width: 220		
+			}, {
+				text: 'Status',
+				// hidden: me.up("#page_renbut").is_bidang_telaah,
+				dataIndex: 'STATUS_DATA',
+				width: 100
+			}]
 		});
 		me.callParent([arguments]);
 	},
-	columns: [{
-		text: 'No',
-		xtype: 'rownumberer',
-		width: 60
-	}, {
-		text: 'PENGGUNA BARANG/ PROGRAM/KEGIATAN/ SUB KEGIATAN/ OUTPUT',
-		dataIndex: 'NAMA_KEGIATAN',		
-		hidden: true,
-		width: 500,
-	}, {
-		text: 'KODE',
-		dataIndex: 'BARANG_KODE',
-		align : 'center',
-		width: 100		
-	}, {
-		text: 'URAIAN/ NAMA BARANG',
-		dataIndex: 'BARANG_NAMA',		
-		flex: 1
-	}, {
-		text: 'JUMLAH',
-		dataIndex: 'JUMLAH',
-		width: 100		
-	}, 
-	{
-		text: 'SATUAN',
-		dataIndex: 'SATUAN',
-		width: 120		
-	},
-	{
-		text: 'CARA PEMENUHAN',
-		dataIndex: 'CARA_PEMENUHAN',
-		width: 220		
-	}, {
-		text: 'Status',
-		dataIndex: 'STATUS_DATA',
-		width: 100
-	}]
 });

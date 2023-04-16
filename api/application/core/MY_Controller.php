@@ -35,7 +35,7 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PATCH, PUT, DELETE, ge
 			'DESKRIPSI' => $this->session->userdata(''),
 			'PHOTO' => $this->session->userdata('PHOTO'),
 			'USERGROUP' => $this->session->userdata('USERGROUP'),
-			'PPTKIS_ID' => $this->session->userdata('PPTKIS_ID')
+			'IS_BIDANG_TELAAH' => $this->session->userdata('BIDANG_TELAAH')
 		);
 
 	}
