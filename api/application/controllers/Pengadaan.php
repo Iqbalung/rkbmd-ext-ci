@@ -315,6 +315,23 @@ class Pengadaan extends MY_Controller {
 
 	}
 
+	function save_telaah()
+	{
+
+		$params = array(
+			'BARANG_PENGADAAN_ID' => ifunsetempty($_POST,'BARANG_PENGADAAN_ID',''),
+			'PENGADAAN_ID' => ifunsetempty($_POST,'PENGADAAN_ID',''),			
+			'RENCANA_DISETUJUI_JUMLAH' => ifunsetempty($_POST,'RENCANA_DISETUJUI_JUMLAH',''),
+			'RENCANA_DISETUJUI_SATUAN' => ifunsetempty($_POST,'RENCANA_DISETUJUI_SATUAN',''),
+			'CARA_PEMENUHAN' => ifunsetempty($_POST,'CARA_PEMENUHAN',''),
+			'KETERANGAN' => ifunsetempty($_POST,'KETERANGAN','')			
+		);	
+		
+		$out = $this->M_pengadaan->save_telaah($params);
+		
+		echo json_encode($out);
+	}
+
 	
 
 }

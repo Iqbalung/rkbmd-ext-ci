@@ -15,6 +15,7 @@ Ext.define('koyoku.view.tki.Main', {
 
 		'koyoku.view.tki.pengadaan.Grid',
 		'koyoku.view.tki.pengadaan.Form',
+		'koyoku.view.tki.pengadaan.FormTelaah',
 
 		'koyoku.components.combo.StatusData'
 	],
@@ -63,7 +64,15 @@ Ext.define('koyoku.view.tki.Main', {
 							change: 'load_pengadaan_status'
 						}
 					},
-					'->',{
+					'->',
+					{
+						text : 'TELAAH',
+						// glyph: 'f02f@fontAwesome',						
+						cls: 'btn-main btn-box',
+						handler: 'telaah_pengadaan'
+					},
+					'|', 
+					{
 						// text : 'Cetak',
 						glyph: 'f02f@fontAwesome',						
 						cls: 'btn-round btn-main',
