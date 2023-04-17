@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Barang', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Barang/get',
+        url:  api.apiurl + '/Barang/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

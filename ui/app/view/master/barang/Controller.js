@@ -38,7 +38,7 @@ Ext.define('koyoku.view.master.barang.Controller', {
         console.log("form",form)
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Barang/save',
+                url:  api.apiurl + '/Barang/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

@@ -13,7 +13,7 @@ Ext.define('koyoku.view.lihat_tki.Controller', {
 
         if (typeof id != 'undefined') {
             ths.load({
-                url:  api.siteurl + '/pekerja/get_by_id',
+                url:  api.apiurl + '/pekerja/get_by_id',
                 params: {
                     ID: id
                 },

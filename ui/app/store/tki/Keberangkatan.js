@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Keberangkatan', {
             read: 'POST',
         },
         autoLoad: false,
-        url:  api.siteurl + '/Tki/riwkeberangkatan',
+        url:  api.apiurl + '/Tki/riwkeberangkatan',
         reader: {
             type: 'json',
             rootProperty: 'items',

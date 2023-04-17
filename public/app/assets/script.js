@@ -1,7 +1,7 @@
 $("#login").click(function() {
   $.ajax({
     type: 'POST',
-    url:  api.siteurl + '/login/do_login',
+    url:  api.apiurl + '/login/do_login',
     dataType: 'json',
     data: $('#Form').serialize(),
     success: function(data) {

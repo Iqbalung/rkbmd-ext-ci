@@ -10,7 +10,7 @@ Ext.define('koyoku.store.BidangList', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Bidang/get',
+        url:  api.apiurl + '/Bidang/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

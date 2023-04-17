@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Klasifikasi', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Pekerja/get_klasifikasi',
+        url:  api.apiurl + '/Pekerja/get_klasifikasi',
         reader: {
             type: 'json',
             rootProperty: 'items',

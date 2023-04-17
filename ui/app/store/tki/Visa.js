@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Visa', {
             read: 'POST',
         },
         autoLoad: false,
-        url:  api.siteurl + '/Tki/riwvisa',
+        url:  api.apiurl + '/Tki/riwvisa',
         reader: {
             type: 'json',
             rootProperty: 'items',

@@ -43,7 +43,7 @@ Ext.define('koyoku.view.master.jobowner.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Owner/save',
+                url:  api.apiurl + '/Owner/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

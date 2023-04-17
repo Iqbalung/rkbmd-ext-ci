@@ -10,7 +10,7 @@ Ext.define('koyoku.store.MataUang', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Matauang/get',
+        url:  api.apiurl + '/Matauang/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

@@ -8,7 +8,7 @@ Ext.define('koyoku.store.dashboard.RekapRKPBMD', {
             read: 'POST',
         },
         autoLoad: false,
-        url:  api.siteurl + '/dashboard/get_rekap_rkpbmd',
+        url:  api.apiurl + '/dashboard/get_rekap_rkpbmd',
         reader: {
             type: 'json',
             rootProperty: 'items',

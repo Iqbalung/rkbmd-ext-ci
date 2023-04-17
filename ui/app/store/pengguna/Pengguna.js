@@ -8,7 +8,7 @@ Ext.define('koyoku.store.pengguna.Pengguna', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Pengguna/get',
+        url:  api.apiurl + '/Pengguna/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

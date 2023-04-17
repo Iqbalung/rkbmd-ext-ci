@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Lk', {
             read: 'POST',
         },
         autoLoad: false,
-        url:  api.siteurl + '/Tki/riwlk',
+        url:  api.apiurl + '/Tki/riwlk',
         reader: {
             type: 'json',
             rootProperty: 'items',

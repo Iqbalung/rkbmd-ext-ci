@@ -36,7 +36,7 @@ Ext.define('koyoku.view.master.asuransi.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Asuransi/save',
+                url:  api.apiurl + '/Asuransi/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

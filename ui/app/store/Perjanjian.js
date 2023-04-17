@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Perjanjian', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Tki/riwperjanjian',
+        url:  api.apiurl + '/Tki/riwperjanjian',
         reader: {
             type: 'json',
             rootProperty: 'items',

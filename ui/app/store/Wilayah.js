@@ -9,7 +9,7 @@ Ext.define('koyoku.store.Wilayah', {
         actionMethods: {
             read: 'POST'
         },
-        url:  api.siteurl + '/Wilayah/get',
+        url:  api.apiurl + '/Wilayah/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

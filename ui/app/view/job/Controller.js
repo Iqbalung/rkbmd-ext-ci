@@ -98,7 +98,7 @@ Ext.define('koyoku.view.job.Controller', {
 
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Job/save',
+                url:  api.apiurl + '/Job/save',
                 params: {
                     DATA_ALAT: data_alat,
                     DATA_LINGKUNGAN: data_lingkungan,

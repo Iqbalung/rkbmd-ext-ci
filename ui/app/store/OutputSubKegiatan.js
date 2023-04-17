@@ -10,7 +10,7 @@ Ext.define('koyoku.store.OutputSubKegiatan', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/OutputSubKegiatan/get',
+        url:  api.apiurl + '/OutputSubKegiatan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

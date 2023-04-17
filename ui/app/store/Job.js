@@ -45,7 +45,7 @@ Ext.define('koyoku.store.Job', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Job/get',
+        url:  api.apiurl + '/Job/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

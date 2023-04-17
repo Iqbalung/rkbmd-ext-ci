@@ -10,7 +10,7 @@ Ext.define('koyoku.store.LSP', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Lembaga_sertifikasi_profesi/get',
+        url:  api.apiurl + '/Lembaga_sertifikasi_profesi/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

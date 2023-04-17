@@ -41,7 +41,7 @@ Ext.define('koyoku.view.master.pengguna.Controller', {
         
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Pengguna/save',
+                url:  api.apiurl + '/Pengguna/save',
                
                 success: function(form, action) {
                     var success_opt = true;

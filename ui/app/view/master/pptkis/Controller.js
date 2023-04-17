@@ -48,7 +48,7 @@ Ext.define('koyoku.view.master.pptkis.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Pptkis/save',
+                url:  api.apiurl + '/Pptkis/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

@@ -218,7 +218,7 @@ Ext.define('koyoku.view.master.kompetensi.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Kegiatan/save',
+                url:  api.apiurl + '/Kegiatan/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {
@@ -255,7 +255,7 @@ Ext.define('koyoku.view.master.kompetensi.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/SubKegiatan/save',
+                url:  api.apiurl + '/SubKegiatan/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {
@@ -407,7 +407,7 @@ Ext.define('koyoku.view.master.kompetensi.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/OutputSubKegiatan/save',
+                url:  api.apiurl + '/OutputSubKegiatan/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

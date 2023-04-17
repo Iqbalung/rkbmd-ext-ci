@@ -78,7 +78,7 @@ Ext.define('koyoku.view.onhelp.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Chat/addhelptitle',
+                url:  api.apiurl + '/Chat/addhelptitle',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

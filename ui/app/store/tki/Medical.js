@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Medical', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Tki/riwmedical',
+        url:  api.apiurl + '/Tki/riwmedical',
         reader: {
             type: 'json',
             rootProperty: 'items',

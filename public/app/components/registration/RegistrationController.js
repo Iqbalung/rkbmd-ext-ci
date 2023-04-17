@@ -5,7 +5,7 @@ app.controller('RegistrationController', function(dataFactory, $scope, $http) {
   
   $("#btnpptkis").click(function(event) {
     $http({
-        url:  api.siteurl + '/Registration/add_pptkis_chalange',
+        url:  api.apiurl + '/Registration/add_pptkis_chalange',
         method: "POST",
         data: $scope.form
       })
@@ -25,7 +25,7 @@ app.controller('RegistrationController', function(dataFactory, $scope, $http) {
 
   $("#register").click(function(event) {
     $http({
-        url:  api.siteurl + '/Registration/add_pekerja_chalange',
+        url:  api.apiurl + '/Registration/add_pekerja_chalange',
         method: "POST",
         data: $scope.form
       })

@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Purna', {
             read: 'POST',
         },
         autoLoad: false,
-        url:  api.siteurl + '/Tki/getriwayat',
+        url:  api.apiurl + '/Tki/getriwayat',
         reader: {
             type: 'json',
             rootProperty: 'items',

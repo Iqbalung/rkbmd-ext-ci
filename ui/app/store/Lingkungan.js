@@ -13,7 +13,7 @@ Ext.define('koyoku.store.Lingkungan', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Lingkungan/get',
+        url:  api.apiurl + '/Lingkungan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

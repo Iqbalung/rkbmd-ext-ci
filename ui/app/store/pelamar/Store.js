@@ -7,7 +7,7 @@ Ext.define('koyoku.store.pelamar.Store', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Pelamar/get',
+        url:  api.apiurl + '/Pelamar/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

@@ -11,7 +11,7 @@ Ext.define('koyoku.store.Owner', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Owner/get',
+        url:  api.apiurl + '/Owner/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

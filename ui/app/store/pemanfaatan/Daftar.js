@@ -9,7 +9,7 @@ Ext.define('koyoku.store.pemanfaatan.Daftar', {
             read: 'POST',
         },
         autoLoad: false,
-        url:  api.siteurl + '/pemanfaatan/get',
+        url:  api.apiurl + '/pemanfaatan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

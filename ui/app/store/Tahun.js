@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Tahun', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/login/get_tahun',
+        url:  api.apiurl + 'login/get_tahun',
         reader: {
             type: 'json',
             rootProperty: 'items',

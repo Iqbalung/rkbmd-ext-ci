@@ -36,7 +36,7 @@ Ext.define('koyoku.view.master.lk.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Lembaga_keuangan/save',
+                url:  api.apiurl + '/Lembaga_keuangan/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Asuransi', {
             read: 'POST',
         },
         autoLoad: false,
-        url:  api.siteurl + '/Tki/riwasuransi',
+        url:  api.apiurl + '/Tki/riwasuransi',
         reader: {
             type: 'json',
             rootProperty: 'items',

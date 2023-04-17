@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Kompetensi_Jabatan', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Job/get_kompetensi',
+        url:  api.apiurl + '/Job/get_kompetensi',
         reader: {
             type: 'json',
             rootProperty: 'items',

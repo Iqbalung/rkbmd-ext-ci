@@ -10,7 +10,7 @@ Ext.define('Admin.store.Bidangs', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Kompetensi/get',
+        url:  api.apiurl + '/Kompetensi/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

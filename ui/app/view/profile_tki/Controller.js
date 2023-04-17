@@ -13,7 +13,7 @@ Ext.define('koyoku.view.profile_tki.Controller', {
 
         if (typeof id != 'undefined') {
             ths.load({
-                url:  api.siteurl + '/pekerja/get_by_id',
+                url:  api.apiurl + '/pekerja/get_by_id',
                 params: {
                     ID: id
                 },
@@ -96,7 +96,7 @@ Ext.define('koyoku.view.profile_tki.Controller', {
             }
 
             form.submit({
-                url:  api.siteurl + '/pekerja/save',
+                url:  api.apiurl + '/pekerja/save',
                 params: {
                     data_kerja: JSON.stringify(data_kerja),
                     data_pend: JSON.stringify(data_pend),
@@ -366,7 +366,7 @@ Ext.define('koyoku.view.profile_tki.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/pekerja/save_media',      
+                url:  api.apiurl + '/pekerja/save_media',      
                 params:{
                     PEKERJA_ID:me.get_params(1),
                 },  

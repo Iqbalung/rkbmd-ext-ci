@@ -45,7 +45,7 @@ Ext.define('koyoku.view.master.bidang.Controller', {
             form = cmp.windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Bidang/save',
+                url:  api.apiurl + '/Bidang/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

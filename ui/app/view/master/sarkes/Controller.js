@@ -36,7 +36,7 @@ Ext.define('koyoku.view.master.sarkes.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Sarana_kesehatan/save',
+                url:  api.apiurl + '/Sarana_kesehatan/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

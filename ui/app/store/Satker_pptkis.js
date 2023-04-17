@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Satker_pptkis', {
             read: 'POST',
         },
         autoLoad: false,
-        url:  api.siteurl + '/pptkis/get_satker',
+        url:  api.apiurl + '/pptkis/get_satker',
         reader: {
             type: 'json',
             rootProperty: 'items',

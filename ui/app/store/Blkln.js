@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Blkln', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Blkln/get',
+        url:  api.apiurl + '/Blkln/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

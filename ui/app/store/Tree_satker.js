@@ -9,7 +9,7 @@ Ext.define('koyoku.store.Tree_satker', {
         actionMethods: {
             read: 'POST'
         },
-        url:  api.siteurl + '/pptkis/get_tree_satker',
+        url:  api.apiurl + '/pptkis/get_tree_satker',
         reader: {
             type: 'json',
             rootProperty: 'items',

@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Sarkes', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Sarana_kesehatan/get',
+        url:  api.apiurl + '/Sarana_kesehatan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

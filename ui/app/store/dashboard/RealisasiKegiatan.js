@@ -8,7 +8,7 @@ Ext.define('koyoku.store.dashboard.RealisasiKegiatan', {
             read: 'POST',
         },
         autoLoad: false,
-        url:  api.siteurl + '/dashboard/get_realisasi_kegiatan',
+        url:  api.apiurl + '/dashboard/get_realisasi_kegiatan',
         reader: {
             type: 'json',
             rootProperty: 'items',

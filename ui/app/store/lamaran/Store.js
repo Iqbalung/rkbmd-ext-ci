@@ -8,7 +8,7 @@ Ext.define('koyoku.store.lamaran.Store', {
             read: 'POST',
         },
         autoLoad: false,
-        url:  api.siteurl + '/lamaran/get',
+        url:  api.apiurl + '/lamaran/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

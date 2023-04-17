@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Asuransi', {
             read: 'POST',
         },
         autoLoad: true,
-        url:  api.siteurl + '/Asuransi/get',
+        url:  api.apiurl + '/Asuransi/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

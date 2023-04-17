@@ -9,7 +9,7 @@ Ext.define('koyoku.store.tki.Bnptki', {
         actionMethods: {
             read: 'POST',
         },
-        url:  api.siteurl + '/Tki/riwbnptki',
+        url:  api.apiurl + '/Tki/riwbnptki',
         reader: {
             type: 'json',
             rootProperty: 'items',

@@ -36,7 +36,7 @@ Ext.define('koyoku.view.master.blkln.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url:  api.siteurl + '/Blkln/save',
+                url:  api.apiurl + '/Blkln/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

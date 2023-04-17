@@ -11,7 +11,7 @@ Ext.define('koyoku.store.penghapusan.Daftar', {
             read: 'POST',
         },
         autoLoad: false,
-        url:  api.siteurl + '/penghapusan/get',
+        url:  api.apiurl + '/penghapusan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',
