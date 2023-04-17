@@ -36,7 +36,7 @@ Ext.define('koyoku.view.main.MainController', {
 
     onBeforeLoadPage: function(action) {
         Ext.Ajax.request({
-            url     : 'http://localhost/project/rkbmd/api/index.php/login/is_login',
+            url     :  api.siteurl + '/index.php/login/is_login',
             success : function(form, act, value) {                
                 var success_opt = true;
                 try {
@@ -199,7 +199,7 @@ Ext.define('koyoku.view.main.MainController', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/project/rkbmd/api/index.php/Pengguna/save',
+                url:  api.siteurl + '/index.php/Pengguna/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {
@@ -234,7 +234,7 @@ Ext.define('koyoku.view.main.MainController', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/project/rkbmd/api/index.php/Pengguna/saveupd',
+                url:  api.siteurl + '/index.php/Pengguna/saveupd',
                 success: function(form, action) {
                     var success_opt = true;
                     try {
