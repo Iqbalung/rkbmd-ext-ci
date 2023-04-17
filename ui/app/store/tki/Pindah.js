@@ -9,7 +9,7 @@ Ext.define('koyoku.store.tki.Pindah', {
         actionMethods: {
             read: 'POST',
         },
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Tki/getriwayat',
+        url:  api.siteurl + '/Tki/getriwayat',
         reader: {
             type: 'json',
             rootProperty: 'items',

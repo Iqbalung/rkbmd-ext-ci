@@ -218,7 +218,7 @@ Ext.define('koyoku.view.master.kompetensi.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Kegiatan/save',
+                url:  api.siteurl + '/Kegiatan/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {
@@ -255,7 +255,7 @@ Ext.define('koyoku.view.master.kompetensi.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/SubKegiatan/save',
+                url:  api.siteurl + '/SubKegiatan/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {
@@ -407,7 +407,7 @@ Ext.define('koyoku.view.master.kompetensi.Controller', {
         form = windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/OutputSubKegiatan/save',
+                url:  api.siteurl + '/OutputSubKegiatan/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

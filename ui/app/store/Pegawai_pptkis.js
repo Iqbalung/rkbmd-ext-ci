@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Pegawai_pptkis', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/pptkis/get_pegawai',
+        url:  api.siteurl + '/pptkis/get_pegawai',
         reader: {
             type: 'json',
             rootProperty: 'items',

@@ -11,7 +11,7 @@ Ext.define('koyoku.store.Program', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://localhost/project/rkbmd/api/index.php/Program/get',
+        url: api.baseurl + '/api/index.php/Program/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

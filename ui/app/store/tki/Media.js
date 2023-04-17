@@ -14,7 +14,7 @@ Ext.define('koyoku.store.tki.Media', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pekerja/get_media',
+        url:  api.siteurl + '/Pekerja/get_media',
         reader: {
             type: 'json',
             rootProperty: 'items',

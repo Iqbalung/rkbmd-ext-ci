@@ -10,7 +10,7 @@ Ext.define('koyoku.store.TingkatPendidikan', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Tingkatpendidikan/get',
+        url:  api.siteurl + '/Tingkatpendidikan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

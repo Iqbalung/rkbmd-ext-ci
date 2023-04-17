@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Lk', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Tki/riwlk',
+        url:  api.siteurl + '/Tki/riwlk',
         reader: {
             type: 'json',
             rootProperty: 'items',

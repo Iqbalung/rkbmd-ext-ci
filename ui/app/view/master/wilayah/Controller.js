@@ -45,7 +45,7 @@ Ext.define('koyoku.view.master.wilayah.Controller', {
     	form = cmp.windowForm.down("form");
     	if (form.isValid()) {
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Wilayah/save',
+                url:  api.siteurl + '/Wilayah/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

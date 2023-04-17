@@ -11,7 +11,7 @@ Ext.define('koyoku.store.Owner', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Owner/get',
+        url:  api.siteurl + '/Owner/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

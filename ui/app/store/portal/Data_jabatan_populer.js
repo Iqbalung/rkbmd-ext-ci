@@ -9,7 +9,7 @@ Ext.define('koyoku.store.portal.Data_jabatan_populer', {
         actionMethods: {
             read: 'POST',
         },
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/chart/get_jabatan_populer',
+        url:  api.siteurl + '/chart/get_jabatan_populer',
         reader: {
             type: 'json',
             rootProperty: 'data'

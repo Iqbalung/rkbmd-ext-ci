@@ -45,7 +45,7 @@ Ext.define('koyoku.store.Job', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Job/get',
+        url:  api.siteurl + '/Job/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

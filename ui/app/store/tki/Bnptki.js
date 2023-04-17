@@ -9,7 +9,7 @@ Ext.define('koyoku.store.tki.Bnptki', {
         actionMethods: {
             read: 'POST',
         },
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Tki/riwbnptki',
+        url:  api.siteurl + '/Tki/riwbnptki',
         reader: {
             type: 'json',
             rootProperty: 'items',

@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Hilang', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Tki/getriwayat',
+        url:  api.siteurl + '/Tki/getriwayat',
         reader: {
             type: 'json',
             rootProperty: 'items',

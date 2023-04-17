@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Asuransi', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Tki/riwasuransi',
+        url:  api.siteurl + '/Tki/riwasuransi',
         reader: {
             type: 'json',
             rootProperty: 'items',
