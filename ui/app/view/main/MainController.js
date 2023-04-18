@@ -102,7 +102,7 @@ Ext.define('koyoku.view.main.MainController', {
     get_data_viewmodel: function() {
         me = this;
         Ext.Ajax.request({
-            url: "http://localhost/project/rkbmd/api/index.php/app/get_viewmodel",
+            url: api.apiurl + "/app/get_viewmodel",
             success: function(form, action, value) {
                 var success_opt = true;
                 try {
