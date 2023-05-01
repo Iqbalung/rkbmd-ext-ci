@@ -31,6 +31,7 @@ class M_pemeliharaan extends CI_Model{
 				ELSE
 					'Draft'
 				END as STATUS_DATA,
+				pg.PROGRAM_ID,
 				pg.PROGRAM_NAMA
 			", false);
 			$this->db->join("PEMELIHARAAN_BARANG pb","pb.PEMELIHARAAN_ID = p.PEMELIHARAAN_ID", "RIGHT");
@@ -65,7 +66,7 @@ class M_pemeliharaan extends CI_Model{
 			$res = $this->db->get("PEMELIHARAAN p");
 			
 			if ($isCetak) {
-				return $res->result_array();
+				return $res;
 			}
 
 			$data = $res->result_array();

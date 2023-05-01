@@ -11,7 +11,7 @@ Ext.define('koyoku.store.Program', {
             read: 'POST',
         },
         autoLoad: true,
-        url: api.baseurl + '/api/index.php/Program/get',
+        url: api.apiurl + '/Program/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

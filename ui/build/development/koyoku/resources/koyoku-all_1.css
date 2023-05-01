@@ -24486,16 +24486,14 @@ h1 {
     margin-top: 15px;
 }
 
-
-
 .btn-round {
     border-radius: 21px;
     height: 42px;
     width: 42px;
 }
 
-.btn-box {    
-    padding: 8px 8px;    
+.btn-box {
+    padding: 8px 8px;
 }
 
 .btn-x-m2 {
@@ -24517,11 +24515,9 @@ h1 {
 .btn-box:hover .x-btn-icon-el,
 .btn-box.x-btn-hover .x-btn-icon-el,
 .btn-box.x-btn-focus .x-btn-icon-el,
-
 .btn-main:hover .x-btn-icon-el,
 .btn-main.x-btn-hover .x-btn-icon-el,
-.btn-main.x-btn-focus .x-btn-icon-el
-{
+.btn-main.x-btn-focus .x-btn-icon-el {
     color: black !important;
 }
 
@@ -24530,7 +24526,7 @@ h1 {
 .btn-round-small .x-btn-icon-el,
 .btn-main .x-btn-icon-el,
 .btn-purple .x-btn-icon-el,
-.btn-box .x-btn-icon-el{
+.btn-box .x-btn-icon-el {
     color: white;
     opacity: 1 !important;
 }
@@ -24543,7 +24539,6 @@ h1 {
 .btn-main .x-btn-inner {
     color: white;
 }
-
 
 .btn-purple {
     background-color: #6C89C5;
