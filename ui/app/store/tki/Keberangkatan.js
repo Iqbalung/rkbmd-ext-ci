@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Keberangkatan', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Tki/riwkeberangkatan',
+        url:  api.apiurl + '/Tki/riwkeberangkatan',
         reader: {
             type: 'json',
             rootProperty: 'items',

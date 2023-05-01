@@ -10,7 +10,7 @@ Ext.define('koyoku.store.tki.Pak', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Tki/riwpap',
+        url:  api.apiurl + '/Tki/riwpap',
         reader: {
             type: 'json',
             rootProperty: 'items',

@@ -3,6 +3,8 @@
  * calls Ext.application(). This is the ideal place to handle application launch and
  * initialization details.
  */
+
+
 Ext.define('koyoku.Application', {
     extend: 'Ext.app.Application',
 
@@ -15,10 +17,6 @@ Ext.define('koyoku.Application', {
         }
     },
 
-    api: {
-        siteurl: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/index.php/',
-        baseurl: 'http://karya-inovasi.com/beta-rkbmd/api/'
-    },
     akses : {
 
     },

@@ -38,7 +38,7 @@ Ext.define('Admin.view.bidang.BidangsController', {
             form = cmp.windowForm.down("form");
         if (form.isValid()) {
             form.submit({
-                url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Bidang/save',
+                url:  api.apiurl + '/Bidang/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

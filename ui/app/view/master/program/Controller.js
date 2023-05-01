@@ -46,7 +46,7 @@ Ext.define('koyoku.view.master.program.Controller', {
         
         if (form.isValid()) {
             form.submit({
-                url: 'http://localhost/project/rkbmd/api/index.php/Program/save',
+                url:  api.apiurl + '/Program/save',
                 success: function(form, action) {
                     var success_opt = true;
                     try {

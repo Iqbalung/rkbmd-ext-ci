@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Pptkis', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pptkis/get',
+        url:  api.apiurl + '/Pptkis/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

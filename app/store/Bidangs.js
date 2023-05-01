@@ -10,7 +10,7 @@ Ext.define('Admin.store.Bidangs', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Kompetensi/get',
+        url:  api.apiurl + '/Kompetensi/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

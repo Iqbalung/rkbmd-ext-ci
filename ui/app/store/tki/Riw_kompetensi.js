@@ -11,7 +11,7 @@ Ext.define('koyoku.store.tki.Riw_kompetensi', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pekerja/get_riw_kompetensi',
+        url:  api.apiurl + '/Pekerja/get_riw_kompetensi',
         reader: {
             type: 'json',
             rootProperty: 'items',

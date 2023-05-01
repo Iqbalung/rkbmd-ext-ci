@@ -8,7 +8,7 @@ Ext.define('koyoku.store.dashboard.PengajuanSKPD', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/dashboard/get_pengajuan_skpd',
+        url:  api.apiurl + '/dashboard/get_pengajuan_skpd',
         reader: {
             type: 'json',
             rootProperty: 'items',

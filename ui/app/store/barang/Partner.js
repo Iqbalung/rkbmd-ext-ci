@@ -10,7 +10,7 @@ Ext.define('koyoku.store.barang.Partner', {
             read: 'POST',
         },
         autoLoad: false,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Pptkis/get_partner_bytype',
+        url:  api.apiurl + '/Pptkis/get_partner_bytype',
         reader: {
             type: 'json',
             rootProperty: 'items',

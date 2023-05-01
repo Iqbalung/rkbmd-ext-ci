@@ -10,7 +10,7 @@ Ext.define('koyoku.store.Kompetensi', {
             read: 'POST',
         },
         autoLoad: true,
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/Kegiatan/get',
+        url:  api.apiurl + '/Kegiatan/get',
         reader: {
             type: 'json',
             rootProperty: 'items',

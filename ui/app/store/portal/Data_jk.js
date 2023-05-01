@@ -9,7 +9,7 @@ Ext.define('koyoku.store.portal.Data_jk', {
         actionMethods: {
             read: 'POST',
         },
-        url: 'http://karya-inovasi.com/beta-rkbmd/api/index.php/chart/get_jk',
+        url:  api.apiurl + '/chart/get_jk',
         reader: {
             type: 'json',
             rootProperty: 'data'
