@@ -84,8 +84,18 @@ Ext.define('koyoku.view.tki.Main', {
 							{
 								// text : 'Cetak',
 								glyph: 'f02f@fontAwesome',						
-								cls: 'btn-round btn-main',
-								handler: 'cetak_pengadaan'
+								cls: 'btn-round-menu btn-main btn-box',
+								// handler: 'cetak_pengadaan'								
+								menu: [{
+									text: 'Cetak Usulan',									
+									handler: 'cetak_pengadaan_usulan'
+								}, {
+									text: 'Cetak Telaah',
+									handler: 'cetak_pengadaan_telaah'
+								}, {
+									text: 'Cetak Final',									
+									handler: 'cetak_pengadaan_final'
+								}]
 							}, {					
 								glyph: 'xf067@fontAwesome',
 								cls: 'btn-round btn-tambah',

@@ -32,6 +32,7 @@ class M_pengadaan extends CI_Model{
 				ELSE
 					'Draft'
 				END as STATUS_DATA,
+				pg.PROGRAM_ID,
 				pg.PROGRAM_NAMA
 			", false);
 			$this->db->join("PENGADAAN_BARANG pb","pb.PENGADAAN_ID = p.PENGADAAN_ID", "RIGHT");
