@@ -63,6 +63,24 @@ Ext.define('koyoku.view.tki.pengadaan.FormTelaah', {
                     {                        
                         xtype:'fieldset',
                         width: '80%',
+                        title: 'USULAN',                                                                        
+                        items :[{
+                            fieldLabel: 'JUMLAH',
+                            xtype: 'numberfield',
+                            readOnly: true,
+                            width: '60%',
+                            name: 'JUMLAH'   
+                        }, {
+                            fieldLabel: 'SATUAN',
+                            xtype: 'textfield',                            
+                            readOnly: true,
+                            width: '60%',
+                            name: 'SATUAN'   
+                        }]
+                    },
+                    {                        
+                        xtype:'fieldset',
+                        width: '80%',
                         title: 'RENCANA KEBUTUHAN PEMELIHARAAN YANG DISETUJUI',                                                                        
                         items :[{
                             fieldLabel: 'JUMLAH',
