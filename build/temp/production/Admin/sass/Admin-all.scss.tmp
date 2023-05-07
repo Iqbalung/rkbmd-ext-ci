@@ -1,5 +1,5 @@
 $app-name:  dynamic( 'Admin' );
-$image-search-path: 'C:/xampp/htdocs/rkbmd-fe/build/production/Admin/modern/resources';
+$image-search-path: 'C:/xampp/htdocs/project/rkbmd/build/production/Admin/modern/resources';
 $theme-name:  dynamic( 'theme-triton' );
 $include-admin-application: dynamic(true);;
 $include-admin-data-pie: dynamic(true);;

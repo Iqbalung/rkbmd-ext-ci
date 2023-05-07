@@ -4,7 +4,48 @@
  * initialization details.
  */
 
+var env = 'local';
+        
+if(env=='local'){
+    var api = {
+        siteurl: 'http://localhost/project/rkbmd',
+        baseurl: 'http://localhost/project/rkbmd',
+        apiurl: 'http://localhost/project/rkbmd/api/index.php'
+    };
+    var Ext = Ext || {}; // Ext namespace won't be defined yet...
 
+    Ext.beforeLoad = function(tags) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                res = JSON.parse(this.responseText);
+
+            }
+        };
+        xhttp.open("POST", "http://localhost/project/rkbmd" + "/api/index.php/Pptkis/get_fasilitas/login/is_login", false);
+        xhttp.send();
+    };
+}else{
+    var api = {
+        siteurl: 'http://karya-inovasi.com/beta-rkbmd',
+        baseurl: 'http://karya-inovasi.com/beta-rkbmd',
+        apiurl: 'http://karya-inovasi.com/beta-rkbmd/api/index.php'
+    };
+    var Ext = Ext || {}; // Ext namespace won't be defined yet...
+
+    Ext.beforeLoad = function(tags) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                res = JSON.parse(this.responseText);
+
+            }
+        };
+        xhttp.open("POST", "http://karya-inovasi.com/beta-rkbmd" + "/api/index.php/Pptkis/get_fasilitas/login/is_login", false);
+        xhttp.send();
+    };
+
+}
 Ext.define('koyoku.Application', {
     extend: 'Ext.app.Application',
 
