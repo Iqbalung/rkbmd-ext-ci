@@ -23,12 +23,6 @@ Ext.define('koyoku.view.tki.Main', {
 
 	viewModel: 'main',
 	controller: 'tki',	
-	config: {
-		is_bidang_telaah: 'a',
-	},
-	bind: {
-		is_bidang_telaah: '{USER.IS_BIDANG_TELAAH}'
-	},				
 	border: 1,
 	id: 'page_renbut',
 	layout: 'border',
@@ -77,7 +71,7 @@ Ext.define('koyoku.view.tki.Main', {
 							'->',
 							{
 								text : 'TELAAH',											
-								hidden : !me.is_bidang_telaah,
+								hidden : !__dtlg_.cek_akses("ft-telaah"),
 								cls: 'btn-main btn-box',
 								handler: 'telaah_pengadaan'
 							},					
@@ -132,6 +126,7 @@ Ext.define('koyoku.view.tki.Main', {
 							{
 								text : 'TELAAH',											
 								cls: 'btn-main btn-box',
+								hidden : !__dtlg_.cek_akses("ft-telaah"),
 								handler: 'telaah_pemeliharaan'
 							},
 							{

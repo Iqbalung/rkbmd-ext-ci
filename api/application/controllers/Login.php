@@ -38,13 +38,16 @@ class Login extends CI_Controller{
 		);
 		
 		if($q->num_rows()>0){
+
+			$usergroupid = $q->row()->USERGROUP_ID;						
+			$hakAkses = $this->get_usergroup_akses($usergroupid);
 			$out['success'] = true;
 			$out['msg'] = 'Berhasil Login';					
 			$session_data = array();
 			foreach ($q->first_row() as $key => $value) {
 				$session_data[$key] = $value;
 			}
-			$session_data['IS_BIDANG_TELAAH'] = $q->row()->BIDANG_TELAAH;
+			$session_data['HAK_AKSES'] = $hakAkses;			
 			$session_data['is_login'] = true;
 			$session_data['TAHUN'] = $tahun;
 			$out['data'] = $session_data;
@@ -52,6 +55,30 @@ class Login extends CI_Controller{
 		}
 
 		echo json_encode($out);
+	}
+
+	private function get_usergroup_akses($usergroupid = "0")
+	{
+		$hakAkses = $this->db->query("
+			select
+				FITUR.*,
+				case when USERGROUP_FITUR.FITUR_ID is null then
+				0
+				else
+				1
+				end as AKSES
+			from
+				FITUR
+			left join USERGROUP_FITUR on FITUR.FITUR_ID  = USERGROUP_FITUR.FITUR_ID and USERGROUP_ID = ?
+		", array($usergroupid));
+
+		$data = array();
+
+		foreach ($hakAkses->result_array() as $key => $value) {
+			$data[$value["FITUR_ID"]] = $value["AKSES"];
+		}		
+		
+		return $data;
 	}
 
 	function do_login_front(){
@@ -94,9 +121,9 @@ class Login extends CI_Controller{
 
 	function is_login(){	
 		$out = array();
-		$out['is_login'] = true;
-		// $this->do_login_front();
-		if($this->session->userdata('is_login')===true){
+		$out['is_login'] = false;
+		// $this->do_login_front();		
+		if($this->session->userdata('is_login')==true){
 			$out['is_login'] = true;
 			$out['user'] = array(
 				'ID' => $this->session->userdata('ID'),
@@ -109,8 +136,9 @@ class Login extends CI_Controller{
 				'DESKRIPSI' => $this->session->userdata(''),
 				'PHOTO' => $this->session->userdata('PHOTO'),
 				'USERGROUP' => $this->session->userdata('USERGROUP'),
-				'BIDANG_TELAAH' => (bool) $this->session->userdata('BIDANG_TELAAH')
+				'BIDANG_NAMA' => $this->session->userdata('BIDANG_NAMA')
 			);
+			$out["hak_akses"] = $this->session->userdata('HAK_AKSES');
 		}
 		echo json_encode($out);
 	}

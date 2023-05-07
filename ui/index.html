@@ -85,47 +85,60 @@
             background-image: url(http://www.icon100.com/up/282/16/united_kingdom_great_britain.png) !important;
         }
     </style>
-    <script type="text/javascript" src="app/Application.js"></script>
+    <!-- <script type="text/javascript" src="app/Application.js"></script> -->
     <script type="text/javascript">
+        var env = 'local';
+        var __dtlg_ = {
+            hak_akses: {},
+            user: {},
+            cek_akses: function(akses) {
+                let me = this,
+                    out = false;
+                if (me.hak_akses[akses] && me.hak_akses[akses] == "1") {
+                    out = true;
+                }
 
-        var env = 'production';
-        
-        if(env=='local'){
+                return out;
+            }
+        };
+        if (env == 'local') {
             var api = {
-                siteurl: 'http://localhost/project/rkbmd',
-                baseurl: 'http://localhost/project/rkbmd',
+                siteurl: 'http://localhost/project/rkbmd/api',
+                baseurl: 'http://localhost/project/rkbmd/api',
                 apiurl: 'http://localhost/project/rkbmd/api/index.php'
             };
             var Ext = Ext || {}; // Ext namespace won't be defined yet...
-    
+
             Ext.beforeLoad = function(tags) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        res = JSON.parse(this.responseText);
-    
+                        var res = JSON.parse(this.responseText);
+                        __dtlg_.hak_akses = res.hak_akses;
+                        __dtlg_.user = res.user;
                     }
                 };
-                xhttp.open("POST", "http://localhost/project/rkbmd" + "/api/index.php/Pptkis/get_fasilitas/login/is_login", false);
+                xhttp.open("POST", "http://localhost/project/rkbmd" + "/api/index.php/login/is_login", false);
                 xhttp.send();
             };
-        }else{
+        } else {
             var api = {
                 siteurl: 'http://karya-inovasi.com/beta-rkbmd',
                 baseurl: 'http://karya-inovasi.com/beta-rkbmd',
                 apiurl: 'http://karya-inovasi.com/beta-rkbmd/api/index.php'
             };
             var Ext = Ext || {}; // Ext namespace won't be defined yet...
-    
+
             Ext.beforeLoad = function(tags) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        res = JSON.parse(this.responseText);
-    
+                        var res = JSON.parse(this.responseText);
+                        __dtlg_.hak_akses = res.hak_akses;
+                        __dtlg_.user = res.user;
                     }
                 };
-                xhttp.open("POST", "http://karya-inovasi.com/beta-rkbmd" + "/api/index.php/Pptkis/get_fasilitas/login/is_login", false);
+                xhttp.open("POST", "http://karya-inovasi.com/beta-rkbmd" + "/api/index.php/login/is_login", false);
                 xhttp.send();
             };
 

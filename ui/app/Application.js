@@ -58,7 +58,7 @@ Ext.define('koyoku.Application', {
 
     chekIsLoginServer: function() {
         Ext.Ajax.request({
-            url: "http://karya-inovasi.com/beta-rkbmd/api/index.php/login/is_login",
+            url: api.siteurl + "/login/is_login",
             params: {},
             // async : false,
             success: function(form, action, value) {
@@ -74,6 +74,9 @@ Ext.define('koyoku.Application', {
                         localStorage.is_login = false;
                         Ext.Msg.alert('Informasi',"Sesi anda sudah habis, Halaman akan di Refresh dan silahkan Login Kembali.");
                         window.location.reload();
+                    } else {
+                        __dtlg_.hak_akses = res.hak_akses;
+                        __dtlg_.user = res.user;
                     }
                 }
             },
@@ -88,9 +91,10 @@ Ext.define('koyoku.Application', {
     keluar: function() {
         localStorage.removeItem('is_login');
         Ext.Ajax.request({
-            url: koyoku.app.api.siteUrl + "login/keluar",
+            url: api.siteurl + "/login/keluar",
             params: {},
             success: function(form, action, value) {
+                Ext.Msg.alert('Informasi', "Berhasil keluar aplikasi");
                 localStorage.is_login = false;
                 window.location.reload();
             },
@@ -104,7 +108,7 @@ Ext.define('koyoku.Application', {
     ajaxRequest: function(url, params, callback) {
         try {
             Ext.Ajax.request({
-                url: koyoku.app.api.baseurl + "/" + url,
+                url: api.baseurl + "/" + url,
                 params: params,
                 // async : false,
                 success: function(form, action, value) {

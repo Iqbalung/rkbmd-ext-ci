@@ -11,22 +11,21 @@ Ext.define('koyoku.view.main.Sidebar', {
           <i class="fa fa-navicon btn-close-side-bar"></i>
           <div class="text-username"></div>
       </div>
-       <div class="item"><a class="menu-link" href="#dashboard"><i class="fa fa-desktop"></i>Dashboard</a></div>       
+       <div class="item"><a menuId="dashboard" class="menu-link" href="#dashboard"><i class="fa fa-desktop"></i>Dashboard</a></div>       
        <div class="item">
          <a class="sub-btn"><i class="fa fa-list-alt"></i>Setup<i class="fa fa-angle-right dropdown"></i></a>
-         <div class="sub-menu">
-           <a href="#" class="menu-link sub-item">Kepala SKPD</a>
-           <a href="#bidang" class="menu-link sub-item">Bidang</a>
-           <a href="#program" class="menu-link sub-item">Program</a>
-           <a href="#kompetensi" class="menu-link sub-item">Kegiatan</a>
+         <div class="sub-menu">           
+           <a menuId="pengguna" href="#pengguna" class="menu-link sub-item">Pengguna</a>
+           <a menuId="bidang" href="#bidang" class="menu-link sub-item">Bidang</a>
+           <a menuId="program" href="#program" class="menu-link sub-item">Program</a>
+           <a menuId="kegiatan" href="#kompetensi" class="menu-link sub-item">Kegiatan</a>
          </div>
        </div>
-       <div class="item"><a class="menu-link" href="#tki"><i class="fa fa-pencil"></i>RKPBMD</a></div>       
+       <div class="item"><a class="menu-link" menuId="rkpbmd" href="#tki"><i class="fa fa-pencil"></i>RKPBMD</a></div>       
        <div class="item">
          <a class="sub-btn"><i class="fa fa-search"></i>Referensi<i class="fa fa-angle-right dropdown"></i></a>
          <div class="sub-menu">
-           <a href="#barang" class="menu-link sub-item">Daftar Barang</a>
-           <a href="#" class="menu-link sub-item">Daftar Template</a>           
+           <a menuId="barang" href="#barang" class="menu-link sub-item">Daftar Barang</a>           
          </div>
        </div>
      </div>
@@ -41,7 +40,7 @@ Ext.define('koyoku.view.main.Sidebar', {
             $(this).next('.sub-menu').slideToggle();
             $(this).find('.dropdown').toggleClass('rotate');
         });
-
+        
         //jquery for expand and collapse the sidebar
         $('.menu-btn').click(function(){
             $('.side-bar').addClass('active');
@@ -59,6 +58,27 @@ Ext.define('koyoku.view.main.Sidebar', {
         $("#action_side_menu").click(function() {
             me.sideBarToggle();
         });
+
+        let menuFitur = {
+          "dashboard": "ft-dashboard",
+          "pengguna": "ft-pengguna",
+          "bidang": "ft-bidang",
+          "program": "ft-program",
+          "kegiatan": "ft-kegiatan",
+          "rkpbmd": "ft-rkpbmd",
+          "barang": "ft-barang"          
+        };
+
+        for(akses in menuFitur) {
+          let menu = $(".side-bar .menu").find('.menu-link[menuId="' + akses +'"]');
+          if (menu.length > 0) {
+            if (__dtlg_.cek_akses(menuFitur[akses])) {
+              $(menu[0]).removeClass("hidden");
+            } else {
+              $(menu[0]).addClass("hidden");
+            }
+          }
+        }
     }
   },
   sideBarToggle: function() {

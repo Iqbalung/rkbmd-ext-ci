@@ -41,6 +41,10 @@ class Pemeliharaan extends MY_Controller {
 			'DATA_BARANG' => json_decode(ifunsetempty($_POST,'DATA_BARANG','[]'), true)			
 		);
 
+		if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+			$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+		}
+
 		if (empty($params["TAHUN"])) {			
 			$params["TAHUN"] = date("Y");        		
 		}
@@ -78,6 +82,9 @@ class Pemeliharaan extends MY_Controller {
 				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
 				'STATUS' => ifunset($_GET,'STATUS', '-1'),							
 			);
+			if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+				$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+			}
 			$filterBidang = $params["BIDANG_ID"];			
 			
 			$tahun = $params["TAHUN"];
@@ -360,6 +367,9 @@ class Pemeliharaan extends MY_Controller {
 				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
 				'STATUS' => ifunset($_GET,'STATUS', '-1'),							
 			);
+			if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+				$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+			}
 			$filterBidang = $params["BIDANG_ID"];
 			
 			$tahun = $params["TAHUN"];
@@ -516,6 +526,9 @@ class Pemeliharaan extends MY_Controller {
 				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
 				'STATUS' => ifunset($_GET,'STATUS', '-1'),							
 			);
+			if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+				$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+			}
 			$filterBidang = $params["BIDANG_ID"];
 			
 			$tahun = $params["TAHUN"];
@@ -671,6 +684,9 @@ class Pemeliharaan extends MY_Controller {
 				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
 				'STATUS' => ifunset($_GET,'STATUS', '-1'),							
 			);
+			if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+				$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+			}
 			$filterBidang = $params["BIDANG_ID"];
 			
 			$tahun = $params["TAHUN"];

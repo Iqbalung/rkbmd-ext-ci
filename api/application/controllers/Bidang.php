@@ -15,8 +15,11 @@ class Bidang extends MY_Controller {
 			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',''),
 		);
 
+		if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+			$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+		}
 		$res = $this->M_bidang->get($params);
-		$data = array();
+		$data = array();		
 		foreach ($res->result_array() as $key) {
 				$id = $key['BIDANG_ID'];	
 				$params = array(

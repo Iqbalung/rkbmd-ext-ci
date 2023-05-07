@@ -153,8 +153,7 @@ Ext.define('koyoku.view.main.MainController', {
         var langValue = localStorage.getItem("lang");
         if(langValue==""){
             localStorage.setItem("lang", 'id');
-        }
-        console.log(langValue);
+        }        
         Ext.Ajax.request({
 
             url : '../api/language/'+ langValue +'_lang.js',

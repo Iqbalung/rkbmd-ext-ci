@@ -83,12 +83,12 @@ Ext.define('koyoku.view.tki.pemeliharaan.Grid', {
 			let cols = grid.getColumns();
 			var colHidden = cols.filter(function(cl) {
 			var listColHidden = ["RENCANA_SATUAN", "RENCANA_JUMLAH"];						
-			if (localStorage.getItem("IS_BIDANG_TELAAH") == "1") {
+			if (__dtlg_.cek_akses("ft-telaah")) {
 				listColHidden = ["PEMELIHARAAN_NAMA", "USULAN_JUMLAH", "USULAN_SATUAN"];
 			}
 			return listColHidden.indexOf(cl.dataIndex) !== -1;
 		});	
-		console.log(colHidden);
+		
 		if (colHidden.length > 0) {							
 			colHidden.forEach(col => {								
 				col.setHidden(true);

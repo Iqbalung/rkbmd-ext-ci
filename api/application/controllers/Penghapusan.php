@@ -20,7 +20,9 @@ class Penghapusan extends MY_Controller {
 			'PENCARIAN' => ifunsetempty($_POST,'PENCARIAN',''),	
 			'STATUS' => ifunset($_POST,'STATUS', '-1'),								
 		);
-		
+		if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+			$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+		}
 		
 		$out = $this->M_penghapusan->get($params);
 		
@@ -40,6 +42,10 @@ class Penghapusan extends MY_Controller {
 			'STATUS' => (int) ifunsetempty($_POST,'STATUS', 0),
 			'DATA_BARANG' => json_decode(ifunsetempty($_POST,'DATA_BARANG','[]'), true)			
 		);
+
+		if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+			$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+		}
 
 		if (empty($params["TAHUN"])) {			
 			$params["TAHUN"] = date("Y");        		
@@ -77,6 +83,9 @@ class Penghapusan extends MY_Controller {
 				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
 				'STATUS' => ifunset($_GET,'STATUS', '-1'),							
 			);
+			if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+				$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+			}
 			$filterBidang = $params["BIDANG_ID"];
 
 			$tahun = $params["TAHUN"];
