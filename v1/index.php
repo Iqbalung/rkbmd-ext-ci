@@ -94,7 +94,7 @@
             cek_akses: function(akses) {
                 let me = this,
                     out = false;
-                if (me.hak_akses[akses] && me.hak_akses[akses] == "1") {
+                if (me.hak_akses && me.hak_akses[akses] && me.hak_akses[akses] == "1") {
                     out = true;
                 }
 
