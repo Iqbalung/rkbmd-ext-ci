@@ -30,7 +30,7 @@ Ext.define('koyoku.view.master.kompetensi.List', {
          
     },
     listeners:{
-        itemdblclick: function(field, e){
+        itemclick: function(field, e){
             var cmp = Ext.getCmp("page_kompetensi"),
             grid = cmp.down("kompetensiList");
             gridOutput = cmp.down("outputSubKegiatanList"),
