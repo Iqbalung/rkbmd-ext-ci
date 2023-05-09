@@ -9,37 +9,43 @@ class M_kegiatan extends CI_Model{
 	
 	function get($params)
 	{
-		$where = "";
+		$paramsWhere = array();
+		$where = " 1 = 1";
 		if(isset($params['KEGIATAN_NAMA'])){
-			$where .= "WHERE a.KEGIATAN LIKE '%".$params['KEGIATAN_NAMA']."%' ";
+			$where .= " AND a.KEGIATAN LIKE ? ";
+			$paramsWhere[] = "%".$params['KEGIATAN_NAMA']."%";
 		}
 
 		if(isset($params['JABATAN_ID'])){
-			$where .= "WHERE c.JABATAN_ID = '".$params['JABATAN_ID']."' ";
+			$where .= " AND c.JABATAN_ID = ? ";
+			$paramsWhere[] = $params['JABATAN_ID'];
 		}
 
 		if(isset($params['BIDANG_ID'])){
-			$where .= "WHERE b.BIDANG_ID like '".$params['BIDANG_ID']."%' ";
+			$where .= " AND b.BIDANG_ID like ? ";
+			$paramsWhere[] = $params['BIDANG_ID']."%";
 		}
 
 		if(isset($params['KEGIATAN_SLUG'])){
-			$where .= "WHERE a.KEGIATAN_SLUG = '".$params['KEGIATAN_SLUG']."' ";
+			$where .= " AND a.KEGIATAN_SLUG = ? ";
+			$paramsWhere[] = $params['KEGIATAN_SLUG'];
 		}
 
 
-		if(isset($params['TAHUN']) && !isset($params['BIDANG_ID'])){
-			$where .= "WHERE a.TAHUN = '".$params['TAHUN']."' ";
+		if(isset($params['TAHUN']) && !empty($params['TAHUN'])){
+			$where .= " AND a.TAHUN = ? ";
+			$paramsWhere[] = $params['TAHUN'];
 		}
 
-		if(isset($params['TAHUN']) && isset($params['BIDANG'])){
-			$where .= $where. "and a.TAHUN = '".$params['TAHUN']."' ";
+		if(isset($params['PROGRAM_ID']) && !empty($params['PROGRAM_ID'])){
+			$where .= " AND a.PROGRAM_ID = ? ";
+			$paramsWhere[] = $params['PROGRAM_ID'];
 		}
-		
 
 		$q = $this->db->query("SELECT * FROM MASTER_KEGIATAN AS a 
 					LEFT JOIN MASTER_BIDANG AS b ON a.BIDANG_ID = b.BIDANG_ID 
 					LEFT JOIN MASTER_PROGRAM AS p ON a.PROGRAM_ID = p.PROGRAM_ID 
-			$where ");
+			WHERE $where ", $paramsWhere);
 		return $q;
 	}
 	

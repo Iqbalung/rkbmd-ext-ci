@@ -29,8 +29,17 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                     {
                         xtype: 'combo_program',
                         fieldLabel: 'Program',
-                        name: 'PROGRAM_ID',                     
+                        name: 'PROGRAM_ID',        
+                        readonly: true,             
+                        forceSelection: true,
                         itemId: 'filter_program',
+                        listeners: {
+                            change: function(val) {
+                                if (val && val != "") {
+                                    me.pencarian();
+                                }
+                            }
+                        }
                     },
                     {
                         labelWidth  : 50,
@@ -85,6 +94,15 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                     width: 300,
                     listeners : {
                         select : function(){
+                            let storeProgram = me.down("#filter_program").getStore(),
+                                gridSatker = me.down("tree_bidang"),
+                                satkerSelected = gridSatker.getSelectionModel().getSelection();
+
+                            if (satkerSelected.length > 0) {
+                                var satkerData = satkerSelected[0];                            
+                                storeProgram.proxy.extraParams.BIDANG_ID = satkerData.get("BIDANG_ID");
+                            }
+                            storeProgram.load();
                             me.pencarian();
                         }
                     }
@@ -213,6 +231,7 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
             wilayahSelected = gridSatker.getSelectionModel().getSelection(),                  
             gridList = me.down("kompetensiList"),            
             storeList = gridList.getStore(); 
+            storeList.proxy.extraParams.PROGRAM_ID = me.down("#filter_program").getValue();
             if (wilayahSelected.length > 0) {
                 var satkerData = wilayahSelected[0];
                 storeList.proxy.extraParams.BIDANG_ID = satkerData.get("BIDANG_ID");

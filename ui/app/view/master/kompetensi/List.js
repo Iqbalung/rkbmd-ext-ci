@@ -9,7 +9,7 @@ Ext.define('koyoku.view.master.kompetensi.List', {
     store: {
         type: 'listKompetensi',
         storeId : 'listKompetensi',
-        autoLoad: true,
+        autoLoad: false,
     },
     initComponent: function() {
         var me = this;
