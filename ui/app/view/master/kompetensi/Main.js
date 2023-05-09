@@ -138,6 +138,10 @@ Ext.define('koyoku.view.master.kompetensi.Main', {
                                 handler : 'onTambahSub',
                                 glyph: 'xf067@fontAwesome'
                             }, {
+                                cls: 'btn-round-small btn-edit',
+                                handler : 'onUbahSub',
+                                glyph: 'xf044@fontAwesome'
+                            }, {
                                 cls: 'btn-round-small btn-hapus',
                                 handler:'delete_sub',
                                 glyph: 'xf1f8@fontAwesome'

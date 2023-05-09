@@ -42,13 +42,13 @@ Ext.define('koyoku.view.master.kompetensi.SubList', {
                     return "<input name=" + record.get('id') + "_" + record.get('id') + " type='checkbox'" + tempVal + ">";
                 }
             }],
-            plugins: [{
-                ptype: 'rowediting',
-                clicksToEdit: 0,
-                listeners: {  
-                    edit: 'subredit'                
-                }
-            }],     
+            // plugins: [{
+            //     ptype: 'rowediting',
+            //     clicksToEdit: 0,
+            //     listeners: {  
+            //         edit: 'subredit'                
+            //     }
+            // }],     
             listeners:{
                 itemclick: function(field, e){                    
                     cmp = Ext.getCmp("page_kompetensi"),

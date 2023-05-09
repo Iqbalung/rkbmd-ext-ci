@@ -28,6 +28,7 @@ Ext.define('koyoku.view.master.kompetensi.Form_sub_kegiatan', {
                 xtype: 'textfield',
                 fieldLabel: 'Kode Sub Kegiatan',
                 name: 'SUB_KEGIATAN_SLUG',
+                hidden: true,
                 width : '100%',
                 allowBlank: false
             },{
@@ -35,6 +36,7 @@ Ext.define('koyoku.view.master.kompetensi.Form_sub_kegiatan', {
                 fieldLabel: 'Satuan',
                 name: 'SUB_KEGIATAN_TIPE',
                 width : '100%',
+                hidden: true,
                 allowBlank: false
             }, {
                 xtype: 'hiddenfield',
