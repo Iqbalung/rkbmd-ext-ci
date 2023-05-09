@@ -25,7 +25,7 @@ Ext.define('koyoku.view.master.barang.Main', {
                         typeAhead: true,
                         queryMode: 'remote',
                         minChars: 2,
-                        itemId: 'pencarian_agency',
+                        itemId: 'pencarian_barang',
                         forceSelection: false,
                         displayField: 'BARANG_NAMA',
                         width: 250,
@@ -34,13 +34,10 @@ Ext.define('koyoku.view.master.barang.Main', {
                         listeners: {
                             specialkey: function(field, e){
                                 if (e.getKey() == e.ENTER) {
-                                    cmp = Ext.getCmp("page_barang"),
-                                    grid = cmp.down("barangList");
-                                    store = grid.getStore();
-                                    store.clearFilter();
-                                    value = field.lastValue;
-                                    store.clearFilter();
-                                    store.filter('BARANG_NAMA', value, false, false);
+                                    var cmp = Ext.getCmp("page_barang"),
+                                        grid = cmp.down("barangList");
+                                        store = grid.getStore();                                    
+                                        
                                     store.load();
                                 }
                             }

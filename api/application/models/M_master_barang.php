@@ -9,14 +9,22 @@ class M_master_barang extends CI_Model{
 	
 	function get($params)
 	{
-		$where = "";
+		$paramsWhere = array();
+		$where = " 1 = 1";
+		
 		if(isset($params['BARANG_NAMA'])){
-			$where .= "where MASTER_BARANG LIKE '%".$params['BARANG_NAMA']."%' ";
+			$where .= "AND MASTER_BARANG LIKE ? ";
+			$paramsWhere[] = "%".$params['BARANG_NAMA']."%";
 		}
 
 		if(isset($params['query'])){
-			$where .= "where  BARANG_NAMA LIKE '%".$params['query']."%' ";
-		}		$q = $this->db->query("SELECT * FROM MASTER_BARANG $where");
+			$where .= " AND (BARANG_NAMA LIKE ? OR BARANG_CODE LIKE ? OR BARANG_SATUAN LIKE ?) ";
+			$paramsWhere[] = "%".$params['query']."%";
+			$paramsWhere[] = "%".$params['query']."%";
+			$paramsWhere[] = "%".$params['query']."%";
+		}		
+		
+		$q = $this->db->query("SELECT * FROM MASTER_BARANG WHERE $where", $paramsWhere);
 		return $q;	
 	}
 	

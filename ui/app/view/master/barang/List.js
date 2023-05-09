@@ -9,6 +9,14 @@ Ext.define('koyoku.view.master.barang.List', {
         type: 'listBarang',
         storeId : 'listBarang',
         autoLoad: true,
+        listeners: {
+            beforeload:function(str) {
+				var pencarian = Ext.getCmp("page_barang").down("#pencarian_barang");
+                str.proxy.extraParams = {
+                    query: pencarian.getValue()
+                };
+            }
+        }
     },
     columns: [{
         text: 'No',
