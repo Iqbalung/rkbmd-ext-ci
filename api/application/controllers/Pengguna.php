@@ -40,7 +40,8 @@ class Pengguna extends MY_Controller {
 			'BIDANG_NAMA'					=> ifunsetempty($_POST,'BIDANG_NAMA',''),
 			'USERGROUP_ID'			=> ifunsetempty($_POST,'USERGROUP_ID',''),
 			'PASSWORD'				=> ifunsetempty($_POST,'PASSWORD',''),
-			'NEW_PASSWORD'			=> ifunsetempty($_POST,'NEW_PASSWORD','')
+			'NEW_PASSWORD'			=> ifunsetempty($_POST,'NEW_PASSWORD',''),
+			'ACTIVE'			=> ifunsetempty($_POST,'ACTIVE', '1'),			
 		);
 		if($params['NEW_PASSWORD']!=''){
 			$params['PASSWORD'] = md5($params['NEW_PASSWORD']);

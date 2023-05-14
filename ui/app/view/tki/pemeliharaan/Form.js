@@ -91,8 +91,7 @@ Ext.define('koyoku.view.tki.pemeliharaan.Form', {
     }, {
         title: 'Data Barang',
         flex: 1,
-        minHeight: 200,        
-        maxHeight: 500,        
+        minHeight: 200,
         tbar: [				
             {
                 cls: 'btn-round-small btn-tambah',
