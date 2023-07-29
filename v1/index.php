@@ -1448,7 +1448,7 @@
 
 <body>
     <div id="wrap_loading">
-        <img src="./media/images/logo.png"><br>
+        <img src="./media/images/logo.png" width="68%"><br>
         <img src="./media/images/loading.gif" height="30">
     </div>
 </body>

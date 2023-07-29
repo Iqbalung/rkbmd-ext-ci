@@ -87,7 +87,7 @@
     </style>
     <!-- <script type="text/javascript" src="app/Application.js"></script> -->
     <script type="text/javascript">
-        var env = 'local';
+        var env = 'production';
         var __dtlg_ = {
             hak_akses: {},
             user: {},
