@@ -167,6 +167,21 @@ class M_pemanfaatan extends CI_Model{
 		return $out;
 	}
 
+	function delete($params = array(), $isCetak = false)
+	{
+		
+			
+		$this->db->where("PEMANFAATAN_ID", $params["PEMANFAATAN_ID"]);
+		$res = $this->db->delete("PEMANFAATAN", $params);
+		
+		$out = array(
+			'msg' => 'Berhasil menghapus data',
+			"error" => null
+		);
+		
+		return $out;
+	}
+
 	function get_detail($params = array())
 	{
 		try {

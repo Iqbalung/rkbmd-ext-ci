@@ -69,6 +69,19 @@ class Penghapusan extends MY_Controller {
 		echo json_encode($out);
 	}
 
+	function delete()
+	{
+
+		$params = array(
+			'PENGHAPUSAN_ID' => ifunsetempty($_POST,'PENGHAPUSAN_ID',''),
+		);
+		
+		
+		$out = $this->M_penghapusan->delete($params);
+		
+		echo json_encode($out);
+	}
+
 	public function cetak_daftar()
 	{				
 			$this->load->library('excel');			

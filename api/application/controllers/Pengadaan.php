@@ -69,6 +69,19 @@ class Pengadaan extends MY_Controller {
 		echo json_encode($out);
 	}
 
+	function delete()
+	{
+
+		$params = array(
+			'PENGADAAN_ID' => ifunsetempty($_POST,'PENGADAAN_ID',''),
+		);
+		
+		
+		$out = $this->M_pengadaan->delete($params);
+		
+		echo json_encode($out);
+	}
+
 	public function cetak_usulan()
 	{				
 			$this->load->library('excel');

@@ -83,6 +83,21 @@ class M_penghapusan extends CI_Model{
 		}
 		return $out;
 	}
+
+	function delete($params = array(), $isCetak = false)
+	{
+		
+			
+		$this->db->where("PENGHAPUSAN_ID", $params["PENGHAPUSAN_ID"]);
+		$res = $this->db->delete("PENGHAPUSAN", $params);
+		
+		$out = array(
+			'msg' => 'Berhasil menghapus data',
+			"error" => null
+		);
+		
+		return $out;
+	}
 	
 	function save($params = array())
 	{

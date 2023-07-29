@@ -67,6 +67,19 @@ class Pemeliharaan extends MY_Controller {
 		echo json_encode($out);
 	}
 
+	function delete()
+	{
+
+		$params = array(
+			'PEMELIHARAAN_ID' => ifunsetempty($_POST,'PEMELIHARAAN_ID',''),
+		);
+		
+		
+		$out = $this->M_pemeliharaan->delete($params);
+		
+		echo json_encode($out);
+	}
+
 	public function cetak_daftar()
 	{				
 			$this->load->library('excel');

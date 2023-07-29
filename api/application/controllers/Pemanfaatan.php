@@ -68,6 +68,19 @@ class Pemanfaatan extends MY_Controller {
 		echo json_encode($out);
 	}
 
+	function delete()
+	{
+
+		$params = array(
+			'PEMANFAATAN_ID' => ifunsetempty($_POST,'PEMANFAATAN_ID',''),
+		);
+		
+		
+		$out = $this->M_penghapusan->delete($params);
+		
+		echo json_encode($out);
+	}
+
 	public function cetak_daftar()
 	{				
 			$this->load->library('excel');

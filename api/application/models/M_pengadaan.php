@@ -176,6 +176,21 @@ class M_pengadaan extends CI_Model{
 		return $out;
 	}
 
+	function delete($params = array(), $isCetak = false)
+	{
+		
+			
+		$this->db->where("PENGADAAN_ID", $params["PENGADAAN_ID"]);
+		$res = $this->db->delete("PENGADAAN", $params);
+		
+		$out = array(
+			'msg' => 'Berhasil menghapus data',
+			"error" => null
+		);
+		
+		return $out;
+	}
+
 	function get_detail($params = array())
 	{
 		try {
