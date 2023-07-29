@@ -262,7 +262,7 @@ class M_pemeliharaan extends CI_Model{
 				$paramsPemeliharaan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
 				$paramsPemeliharaan["STATUS"] = "2";
 				$this->db->where("PEMELIHARAAN_ID", $paramsTelaah["PEMELIHARAAN_ID"]);
-				$res = $this->db->update("PEMELIHARAAN", $paramsPemeliharaan);
+				$res = $this->db->update("A PEMELIHARAAN", $paramsPemeliharaan);
 			}			
 			
 			
