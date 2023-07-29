@@ -252,6 +252,7 @@ class M_pemeliharaan extends CI_Model{
 			$res = false;			
 			if (!empty($paramsTelaah["BARANG_PEMELIHARAAN_ID"])) {
 				$paramsTelaah["TANGGAL_TELAAH"] = date("Y-m-d H:i:s");				
+				$paramsTelaah["STATUS"] = "2";				
 				$this->db->where("BARANG_PEMELIHARAAN_ID", $paramsTelaah["BARANG_PEMELIHARAAN_ID"]);
 				$this->db->where("PEMELIHARAAN_ID", $paramsTelaah["PEMELIHARAAN_ID"]);
 				unset($paramsTelaah["PEMELIHARAAN_ID"]);
