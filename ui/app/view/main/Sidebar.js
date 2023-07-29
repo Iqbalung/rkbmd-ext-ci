@@ -16,7 +16,7 @@ Ext.define('koyoku.view.main.Sidebar', {
          <a class="sub-btn"><i class="fa fa-list-alt"></i>Setup<i class="fa fa-angle-right dropdown"></i></a>
          <div class="sub-menu">           
            <a menuId="pengguna" href="#pengguna" class="menu-link sub-item">Pengguna</a>
-           <a menuId="bidang" href="#bidang" class="menu-link sub-item">Bidang</a>
+           <a menuId="bidang" href="#bidang" class="menu-link sub-item">OPD (Organisasi Perangkat Daerah)</a>
            <a menuId="program" href="#program" class="menu-link sub-item">Program</a>
            <a menuId="kegiatan" href="#kompetensi" class="menu-link sub-item">Kegiatan</a>
          </div>
