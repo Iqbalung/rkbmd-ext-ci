@@ -18,6 +18,7 @@ class Bidang extends MY_Controller {
 		if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
 			$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
 		}
+		
 		$res = $this->M_bidang->get($params);
 		$data = array();		
 		foreach ($res->result_array() as $key) {
@@ -43,10 +44,15 @@ class Bidang extends MY_Controller {
 			'BIDANG_NAMA' => ifunsetempty($_POST,'BIDANG_NAMA',''),
 			'BIDANG_PEJABAT' => ifunsetempty($_POST,'BIDANG_PEJABAT',''),
 			'BIDANG_PEJABAT_NRP' => ifunsetempty($_POST,'BIDANG_PEJABAT_NRP',''),
-			'BIDANG_ALAMAT' => ifunsetempty($_POST,'BIDANG_ALAMAT','')
+			'BIDANG_ALAMAT' => ifunsetempty($_POST,'BIDANG_ALAMAT',''),
 		);
 
 		if($params['UPDATE']==""){ 
+
+			if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+				$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+			}
+
 			// Jika submit update null maka lakukan insert
 			$new_id = $this->M_bidang->get_id($params)->first_row()->NEW;
 			$params['BIDANG_ID'] = $params['BIDANG_ID'] . $new_id.'.';

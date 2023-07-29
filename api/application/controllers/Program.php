@@ -43,6 +43,10 @@ class Program extends MY_Controller {
 			'UPDATE' => ifunsetempty($_POST, 'UPDATE',''),
 		);
 
+		if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+			$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+		}
+
 		if (empty($params["TAHUN"])) {			
 			$params["TAHUN"] = date("Y");        		
 		}
