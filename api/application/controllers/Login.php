@@ -157,7 +157,7 @@ class Login extends CI_Controller{
 
 		$tahun = date("Y");
 		
-		for ($i= -3; $i <= 1; $i++) { 
+		for ($i= -3; $i <= 100; $i++) { 
 			$data[] = array(
 				"TAHUN" => $tahun + $i
 			);
