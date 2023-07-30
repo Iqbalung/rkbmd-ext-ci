@@ -21,7 +21,7 @@ Ext.define('koyoku.view.main.Sidebar', {
            <a menuId="kegiatan" href="#kompetensi" class="menu-link sub-item">Kegiatan</a>
          </div>
        </div>
-       <div class="item"><a class="menu-link" menuId="rkpbmd" href="#tki"><i class="fa fa-pencil"></i>RKPBMD</a></div>       
+       <div class="item"><a class="menu-link" menuId="rkpbmd" href="#tki"><i class="fa fa-pencil"></i>RKBMD</a></div>       
        <div class="item">
          <a class="sub-btn"><i class="fa fa-search"></i>Referensi<i class="fa fa-angle-right dropdown"></i></a>
          <div class="sub-menu">
