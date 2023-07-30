@@ -98,12 +98,16 @@ Ext.define('koyoku.view.tki.Main', {
 								glyph: 'xf044@fontAwesome',
 								cls: 'btn-round btn-edit',
 								handler: 'ubah_pengadaan'
+							}, {						
+								glyph: 'xf1f8@fontAwesome',
+								cls: 'btn-round btn-hapus',
+								handler: 'hapus_pengadaan'
 							}
 						]
 						}],
 					}, {
 						title: 'Pemeliharaan',
-						xtype: 'grid_pemeliharaan',							
+						xtype: 'grid_pemeliharaan',		
 						dockedItems: [{
 							xtype: 'toolbar',
 							dock: 'top',
@@ -152,6 +156,10 @@ Ext.define('koyoku.view.tki.Main', {
 								glyph: 'xf044@fontAwesome',
 								cls: 'btn-round btn-edit',
 								handler: 'ubah_pemeliharaan'
+							}, {						
+								glyph: 'xf1f8@fontAwesome',
+								cls: 'btn-round btn-hapus',
+								handler: 'hapus_pemeliharaan'
 							}
 						]
 						}],
@@ -189,6 +197,10 @@ Ext.define('koyoku.view.tki.Main', {
 								glyph: 'xf044@fontAwesome',
 								cls: 'btn-round btn-edit',
 								handler: 'ubah_pemanfaatan'
+							}, {						
+								glyph: 'xf1f8@fontAwesome',
+								cls: 'btn-round btn-hapus',
+								handler: 'hapus_pemanfaatan'
 							}
 						]
 						}],
@@ -226,6 +238,10 @@ Ext.define('koyoku.view.tki.Main', {
 								glyph: 'xf044@fontAwesome',
 								cls: 'btn-round btn-edit',
 								handler: 'ubah_penghapusan'
+							}, {						
+								glyph: 'xf1f8@fontAwesome',
+								cls: 'btn-round btn-hapus',
+								handler: 'hapus_penghapusan'
 							}
 						]
 						}],

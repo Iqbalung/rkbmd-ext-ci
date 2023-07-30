@@ -72,11 +72,11 @@ class Pemanfaatan extends MY_Controller {
 	{
 
 		$params = array(
-			'PEMANFAATAN_ID' => ifunsetempty($_POST,'PEMANFAATAN_ID',''),
+			'PEMANFAATAN_ID' => base64_decode(ifunsetempty($_POST,'PEMANFAATAN_ID','')),
 		);
 		
 		
-		$out = $this->M_penghapusan->delete($params);
+		$out = $this->M_pemanfaatan->delete($params);
 		
 		echo json_encode($out);
 	}

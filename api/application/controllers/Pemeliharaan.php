@@ -71,9 +71,8 @@ class Pemeliharaan extends MY_Controller {
 	{
 
 		$params = array(
-			'PEMELIHARAAN_ID' => ifunsetempty($_POST,'PEMELIHARAAN_ID',''),
+			'PEMELIHARAAN_ID' => base64_decode(ifunsetempty($_POST,'PEMELIHARAAN_ID','')),
 		);
-		
 		
 		$out = $this->M_pemeliharaan->delete($params);
 		

@@ -1,6 +1,6 @@
 Ext.define('koyoku.view.tki.pemeliharaan.FormGridBarang', {
 	extend: 'Ext.grid.Panel',
-	xtype: 'grid_barang',
+	xtype: 'grid_barang',	
 	requires: [
 		'koyoku.components.combo.Barang',
 		'koyoku.components.combo.StatusBarang'

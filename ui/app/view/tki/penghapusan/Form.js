@@ -39,7 +39,8 @@ Ext.define('koyoku.view.tki.penghapusan.Form', {
         xtype: 'button',
         text: 'Batal',
         height: 40,
-        width: 100
+        width: 100,
+        handler: 'kembali'
     }],
     items: [{
         xtype: 'form',
@@ -91,8 +92,8 @@ Ext.define('koyoku.view.tki.penghapusan.Form', {
     }, {
         title: 'Data Barang',
         flex: 1,
-        minHeight: 200,        
-        maxHeight: 500,        
+        minHeight: 300,        
+        maxHeight: 500,          
         tbar: [				
             {
                 cls: 'btn-round-small btn-tambah',

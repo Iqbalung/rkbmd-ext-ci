@@ -110,6 +110,37 @@ Ext.define('koyoku.view.tki.Controller', {
 		}
 	},
 
+	hapus_pemeliharaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_renbut"),					
+			grid = cmp.down("grid_pemeliharaan"),			
+			data_selected = grid.getSelectionModel().getSelection();
+		
+		if(data_selected.length > 0)
+		{
+
+			Ext.Msg.confirm('Konfirmasi', 'Apakah anda yakin akan menghapus data ?', function(e) {
+                if (e == 'yes') {					
+					var row = data_selected[0].getData();								
+					var params = {
+						PEMELIHARAAN_ID: btoa(row.PEMELIHARAAN_ID)
+					}
+					koyoku.app.ajaxRequest("pemeliharaan/delete", params, function(res) {				
+						if(res.error == null) {
+							Ext.Msg.alert('Informasi', res.msg);
+							me.load_pemeliharaan();
+						} else {
+							Ext.Msg.alert('Perhatian', "Gagal hapus");
+						}
+					});
+				}
+			});
+			
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu terlebih dahulu");
+		}
+	},
+
 	ubah_barang_pemeliharaan: function() {
 		var me = this,
 			cmp = Ext.getCmp("page_renbut"),
@@ -270,6 +301,37 @@ Ext.define('koyoku.view.tki.Controller', {
 					}					
 				}
 			});
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu terlebih dahulu");
+		}
+	},
+
+	hapus_pemanfaatan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_renbut"),			
+			grid = cmp.down("grid_pemanfaatan"),			
+			data_selected = grid.getSelectionModel().getSelection();
+		
+		if(data_selected.length > 0)
+		{
+
+			Ext.Msg.confirm('Konfirmasi', 'Apakah anda yakin akan menghapus data ?', function(e) {
+                if (e == 'yes') {					
+					var row = data_selected[0].getData();								
+					var params = {
+						PEMANFAATAN_ID: btoa(row.PEMANFAATAN_ID)
+					}
+					koyoku.app.ajaxRequest("pemanfaatan/delete", params, function(res) {				
+						if(res.error == null) {
+							Ext.Msg.alert('Informasi', res.msg);
+							me.load_pemanfaatan();
+						} else {
+							Ext.Msg.alert('Perhatian', "Gagal hapus");
+						}
+					});
+				}
+			});
+			
 		} else {
 			Ext.Msg.alert('Perhatian', "Pilih salah satu terlebih dahulu");
 		}
@@ -468,6 +530,37 @@ Ext.define('koyoku.view.tki.Controller', {
 		}
 	},
 
+	hapus_penghapusan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_renbut"),					
+			grid = cmp.down("grid_penghapusan"),			
+			data_selected = grid.getSelectionModel().getSelection();
+		
+		if(data_selected.length > 0)
+		{
+
+			Ext.Msg.confirm('Konfirmasi', 'Apakah anda yakin akan menghapus data ?', function(e) {
+                if (e == 'yes') {					
+					var row = data_selected[0].getData();								
+					var params = {
+						PENGHAPUSAN_ID: btoa(row.PENGHAPUSAN_ID)
+					}
+					koyoku.app.ajaxRequest("penghapusan/delete", params, function(res) {				
+						if(res.error == null) {
+							Ext.Msg.alert('Informasi', res.msg);
+							me.load_penghapusan();
+						} else {
+							Ext.Msg.alert('Perhatian', "Gagal hapus");
+						}
+					});
+				}
+			});
+			
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu terlebih dahulu");
+		}
+	},
+
 	ubah_barang_penghapusan: function() {
 		var me = this,
 			cmp = Ext.getCmp("page_renbut"),
@@ -629,6 +722,37 @@ Ext.define('koyoku.view.tki.Controller', {
 					}					
 				}
 			});
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu terlebih dahulu");
+		}
+	},
+
+	hapus_pengadaan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_renbut"),			
+			grid = cmp.down("grid_pengadaan"),			
+			data_selected = grid.getSelectionModel().getSelection();
+		
+		if(data_selected.length > 0)
+		{
+
+			Ext.Msg.confirm('Konfirmasi', 'Apakah anda yakin akan menghapus data ?', function(e) {
+                if (e == 'yes') {					
+					var row = data_selected[0].getData();								
+					var params = {
+						PENGADAAN_ID: btoa(row.PENGADAAN_ID)
+					}
+					koyoku.app.ajaxRequest("pengadaan/delete", params, function(res) {				
+						if(res.error == null) {
+							Ext.Msg.alert('Informasi', res.msg);
+							me.load_pengadaan();
+						} else {
+							Ext.Msg.alert('Perhatian', "Gagal hapus");
+						}
+					});
+				}
+			});
+			
 		} else {
 			Ext.Msg.alert('Perhatian', "Pilih salah satu terlebih dahulu");
 		}

@@ -73,7 +73,7 @@ class Pengadaan extends MY_Controller {
 	{
 
 		$params = array(
-			'PENGADAAN_ID' => ifunsetempty($_POST,'PENGADAAN_ID',''),
+			'PENGADAAN_ID' => base64_decode(ifunsetempty($_POST,'PENGADAAN_ID','')),
 		);
 		
 		

@@ -73,7 +73,7 @@ class Penghapusan extends MY_Controller {
 	{
 
 		$params = array(
-			'PENGHAPUSAN_ID' => ifunsetempty($_POST,'PENGHAPUSAN_ID',''),
+			'PENGHAPUSAN_ID' => base64_decode(ifunsetempty($_POST,'PENGHAPUSAN_ID','')),
 		);
 		
 		
