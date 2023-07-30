@@ -4,7 +4,7 @@
  * initialization details.
  */
 
-var env = 'local';
+var env = 'production';
         
 if(env=='local'){
     var api = {
