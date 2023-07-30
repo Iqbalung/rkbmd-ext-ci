@@ -116,11 +116,11 @@ class M_penghapusan extends CI_Model{
 			if (!empty($paramsPenghapusan["PENGHAPUSAN_ID"])) {
 				$paramsPenghapusan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
 				$this->db->where("PENGHAPUSAN_ID", $paramsPenghapusan["PENGHAPUSAN_ID"]);
-				$res = $this->db->update("penghapusan", $paramsPenghapusan);
+				$res = $this->db->update("PENGHAPUSAN", $paramsPenghapusan);
 			} else {
 				$paramsPenghapusan["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
 				unset($paramsPenghapusan["PENGHAPUSAN_ID"]);
-				$res = $this->db->insert("penghapusan", $paramsPenghapusan);
+				$res = $this->db->insert("PENGHAPUSAN", $paramsPenghapusan);
 				$idParent = $this->db->insert_id();
 			}			
 			$barangPemeleiharaanAktif = array();
@@ -150,11 +150,11 @@ class M_penghapusan extends CI_Model{
 						if (!empty($paramsBarang["BARANG_PENGHAPUSAN_ID"])) {
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");
 							$this->db->where("BARANG_PENGHAPUSAN_ID", $paramsBarang["BARANG_PENGHAPUSAN_ID"]);
-							$resBarang = $this->db->update("penghapusan_barang", $paramsBarang);							
+							$resBarang = $this->db->update("PENGHAPUSAN_BARANG", $paramsBarang);							
 						} else {
 							$paramsBarang["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
 							unset($paramsBarang["BARANG_PENGHAPUSAN_ID"]);
-							$resBarang = $this->db->insert("penghapusan_barang", $paramsBarang);						
+							$resBarang = $this->db->insert("PENGHAPUSAN_BARANG", $paramsBarang);						
 						}
 
 						$barangPemeleiharaanAktif[] = $paramsBarang["BARANG_PENGHAPUSAN_ID"];
@@ -163,7 +163,7 @@ class M_penghapusan extends CI_Model{
 				
 				$this->db->where_not_in("BARANG_PENGHAPUSAN_ID", $barangPemeleiharaanAktif);
 				$this->db->where("PENGHAPUSAN_ID", $paramsBarang["PENGHAPUSAN_ID"]);
-				$res_delete = $this->db->delete("penghapusan_barang");				
+				$res_delete = $this->db->delete("PENGHAPUSAN_BARANG");				
 				
 			}
 
@@ -203,7 +203,7 @@ class M_penghapusan extends CI_Model{
 			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
 
 			$this->db->where("p.PENGHAPUSAN_ID", $params["PENGHAPUSAN_ID"]);		
-			$res = $this->db->get("penghapusan p");
+			$res = $this->db->get("PENGHAPUSAN p");
 
 			if ($res->num_rows() == 0) {
 				$out = array(
@@ -221,7 +221,7 @@ class M_penghapusan extends CI_Model{
 
 			$this->db->select("pb.*");
 			$this->db->where("pb.PENGHAPUSAN_ID", $params["PENGHAPUSAN_ID"]);		
-			$res_barang = $this->db->get("penghapusan_barang pb");
+			$res_barang = $this->db->get("PENGHAPUSAN_BARANG pb");
 			if ($res_barang) {
 				$data["DATA_BARANG"] = $res_barang->result_array();
 			}
