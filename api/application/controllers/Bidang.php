@@ -16,6 +16,11 @@ class Bidang extends MY_Controller {
 		);
 
 		if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+			
+			if(empty($params["BIDANG_ID"])){
+				$params['from_session'] = true;
+			}
+			
 			$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
 		}
 		

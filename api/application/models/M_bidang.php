@@ -9,10 +9,17 @@ class M_bidang extends CI_Model{
 	
 	function get($params)
 	{
-		$q = $this->db->query("SELECT * FROM MASTER_BIDANG where 
-			BIDANG_ID LIKE ?
-			AND LENGTH(BIDANG_ID) - LENGTH(REPLACE(BIDANG_ID, '.', '')) = LENGTH(?) - LENGTH(REPLACE(?, '.', '')) + 1
-			",array($params['BIDANG_ID'].'%',$params['BIDANG_ID'],$params['BIDANG_ID']));
+		if(!$params['from_session']){
+			$q = $this->db->query("SELECT * FROM MASTER_BIDANG where 
+				BIDANG_ID LIKE ?
+				AND LENGTH(BIDANG_ID) - LENGTH(REPLACE(BIDANG_ID, '.', '')) = LENGTH(?) - LENGTH(REPLACE(?, '.', '')) + 1
+				",array($params['BIDANG_ID'].'%',$params['BIDANG_ID'],$params['BIDANG_ID']));
+		}else{
+			$q = $this->db->query("SELECT * FROM MASTER_BIDANG where 
+				BIDANG_ID LIKE ?
+				",array($params['BIDANG_ID'].'%'));
+			
+		}
 		return $q;	
 	}
 
