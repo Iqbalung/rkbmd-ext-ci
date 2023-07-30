@@ -24,9 +24,9 @@ class M_pemeliharaan extends CI_Model{
 				p.KEGIATAN_ID,
 				p.SUB_KEGIATAN_ID,
 				pb.*,
-				CASE WHEN p.STATUS = 2 THEN
+				CASE WHEN pb.STATUS_PROSES = 2 THEN
 					'Disetujui'
-				WHEN p.STATUS = 1 THEN						
+				WHEN pb.STATUS_PROSES = 1 THEN						
 					'Diajukan'
 				ELSE
 					'Draft'
@@ -48,7 +48,7 @@ class M_pemeliharaan extends CI_Model{
 			}
 
 			if (isset($params["STATUS"]) && $params["STATUS"] != -1) {
-				$this->db->where("p.STATUS", $params["STATUS"]);
+				$this->db->where("pb.STATUS_PROSES", $params["STATUS"]);
 			}
 
 			if (isset($params["PENCARIAN"]) && !empty($params["PENCARIAN"])) {
@@ -143,6 +143,7 @@ class M_pemeliharaan extends CI_Model{
 							"RENCANA_SATUAN" => ifunsetempty($value, "RENCANA_SATUAN", ""),
 							"KETERANGAN" => ifunsetempty($value, "KETERANGAN", ""),
 							"TAHUN" => ifunsetempty($paramsPemeliharaan, "TAHUN", ""),
+							"STATUS_PROSES" => ifunsetempty($params, "STATUS", 1),
 						);
 
 						if(empty($paramsBarang["KONDISI_BAIK"])){
@@ -262,7 +263,8 @@ class M_pemeliharaan extends CI_Model{
 				'PEMELIHARAAN_NAMA' => ifunsetempty($_POST,'PEMELIHARAAN_NAMA',''),
 				'RENCANA_JUMLAH' => ifunsetempty($_POST,'RENCANA_JUMLAH',''),
 				'RENCANA_SATUAN' => ifunsetempty($_POST,'RENCANA_SATUAN',''),
-				'KETERANGAN' => ifunsetempty($_POST,'KETERANGAN','')
+				'KETERANGAN' => ifunsetempty($_POST,'KETERANGAN',''),
+				'STATUS_PROSES' => 2 //Disetujui
 			);
 			$res = false;			
 			if (!empty($paramsTelaah["BARANG_PEMELIHARAAN_ID"])) {
@@ -275,10 +277,10 @@ class M_pemeliharaan extends CI_Model{
 				$res = $this->db->update("PEMELIHARAAN_BARANG", $paramsTelaah);
 
 
-				$paramsPemeliharaan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
-				$paramsPemeliharaan["STATUS"] = "2";
-				$this->db->where("PEMELIHARAAN_ID", $paramsPemeliharaan["PEMELIHARAAN_ID"]);
-				$res = $this->db->update("PEMELIHARAAN", $paramsPemeliharaan);
+				// $paramsPemeliharaan["DIUBAH_PADA"] = date("Y-m-d H:i:s");
+				// $paramsPemeliharaan["STATUS"] = "2";
+				// $this->db->where("PEMELIHARAAN_ID", $paramsPemeliharaan["PEMELIHARAAN_ID"]);
+				// $res = $this->db->update("PEMELIHARAAN", $paramsPemeliharaan);
 			}			
 			
 			

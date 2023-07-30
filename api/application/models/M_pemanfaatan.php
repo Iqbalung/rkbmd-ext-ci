@@ -24,9 +24,9 @@ class M_pemanfaatan extends CI_Model{
 				p.SUB_KEGIATAN_ID,
 				b.BIDANG_NAMA,
 				pb.*,
-				CASE WHEN p.STATUS = 2 THEN
+				CASE WHEN pb.STATUS_PROSES = 2 THEN
 					'Disetujui'
-				WHEN p.STATUS = 1 THEN						
+				WHEN pb.STATUS_PROSES = 1 THEN						
 					'Diajukan'
 				ELSE
 					'Draft'
@@ -46,7 +46,7 @@ class M_pemanfaatan extends CI_Model{
 			}
 
 			if (isset($params["STATUS"]) && $params["STATUS"] != -1) {
-				$this->db->where("p.STATUS", $params["STATUS"]);
+				$this->db->where("pb.STATUS_PROSES", $params["STATUS"]);
 			}
 
 			if (isset($params["PENCARIAN"]) && !empty($params["PENCARIAN"])) {
@@ -126,6 +126,7 @@ class M_pemanfaatan extends CI_Model{
 							"RENCANA_PEMANFAATAN" => ifunsetempty($value, "RENCANA_PEMANFAATAN", ""),							
 							"KETERANGAN" => ifunsetempty($value, "KETERANGAN", ""),
 							"TAHUN" => ifunsetempty($paramsPemanfaatan, "TAHUN", ""),
+							"STATUS_PROSES" => ifunsetempty($params, "STATUS", ""),
 						);
 						if (!empty($paramsBarang["BARANG_PEMANFAATAN_ID"])) {
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");

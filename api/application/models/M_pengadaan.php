@@ -25,9 +25,9 @@ class M_pengadaan extends CI_Model{
 				p.SUB_KEGIATAN_ID,
 				b.BIDANG_NAMA,
 				pb.*,
-				CASE WHEN p.STATUS = 2 THEN
+				CASE WHEN pb.STATUS_PROSES = 2 THEN
 					'Disetujui'
-				WHEN p.STATUS = 1 THEN						
+				WHEN pb.STATUS_PROSES = 1 THEN						
 					'Diajukan'
 				ELSE
 					'Draft'
@@ -50,7 +50,7 @@ class M_pengadaan extends CI_Model{
 			}
 
 			if (isset($params["STATUS"]) && $params["STATUS"] != -1) {
-				$this->db->where("p.STATUS", $params["STATUS"]);
+				$this->db->where("pb.STATUS_PROSES", $params["STATUS"]);
 			}
 
 			if (isset($params["PENCARIAN"]) && !empty($params["PENCARIAN"])) {
@@ -134,6 +134,7 @@ class M_pengadaan extends CI_Model{
 							"KEBUTUHAN_MAKSIMUM_SATUAN" => ifunsetempty($value, "KEBUTUHAN_MAKSIMUM_SATUAN", ""),
 							"KEBUTUHAN_RIIL_JUMLAH" => ifunsetempty($value, "KEBUTUHAN_RIIL_JUMLAH", ""),
 							"KEBUTUHAN_RIIL_SATUAN" => ifunsetempty($value, "KEBUTUHAN_RIIL_SATUAN", ""),
+							"STATUS_PROSES" => ifunsetempty($params, "STATUS", 1),
 						);
 						if (!empty($paramsBarang["BARANG_PENGADAAN_ID"])) {
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");
@@ -255,7 +256,8 @@ class M_pengadaan extends CI_Model{
 				'RENCANA_DISETUJUI_JUMLAH' => ifunsetempty($params, 'RENCANA_DISETUJUI_JUMLAH', ''),
 				'RENCANA_DISETUJUI_SATUAN' => ifunsetempty($params, 'RENCANA_DISETUJUI_SATUAN', ''),
 				'CARA_PEMENUHAN' => ifunsetempty($params, 'CARA_PEMENUHAN', ''),
-				'KETERANGAN' => ifunsetempty($params, 'KETERANGAN', '')		
+				'KETERANGAN' => ifunsetempty($params, 'KETERANGAN', ''),
+				'STATUS_PROSES' => 2 //Disetujui
 			);
 			$res = false;			
 			if (!empty($paramsTelaah["BARANG_PENGADAAN_ID"])) {
