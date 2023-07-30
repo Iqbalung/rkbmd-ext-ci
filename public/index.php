@@ -2,7 +2,7 @@
 <head>
 <title>KOYOKU</title>
 	<script>
-	var URL = "http://karya-inovasi.com/beta-rkbmd/api/index.php/";
+	var URL = "https://rkbmd.serverup.tech/api/index.php/";
 	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">

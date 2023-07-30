@@ -9,7 +9,7 @@ Ext.define('koyoku.store.TreeKegiatan', {
         actionMethods: {
             read: 'POST'
         },
-        url: "http://karya-inovasi.com/beta-rkbmd/api/index.php/kegiatan/get_tree",
+        url: "https://rkbmd.serverup.tech/api/index.php/kegiatan/get_tree",
         reader: {
             type: 'json',
             rootProperty: 'items',
