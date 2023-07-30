@@ -4,7 +4,7 @@
  * initialization details.
  */
 
-var env = 'local';
+var env = 'production';
         
 if(env=='local'){
     var api = {
@@ -27,9 +27,9 @@ if(env=='local'){
     };
 }else{
     var api = {
-        siteurl: 'http://karya-inovasi.com/beta-rkbmd',
-        baseurl: 'http://karya-inovasi.com/beta-rkbmd',
-        apiurl: 'http://karya-inovasi.com/beta-rkbmd/api/index.php'
+        siteurl: 'https://rkbmd.serverup.tech',
+        baseurl: 'https://rkbmd.serverup.tech',
+        apiurl: 'https://rkbmd.serverup.tech/api/index.php'
     };
     var Ext = Ext || {}; // Ext namespace won't be defined yet...
 
@@ -41,7 +41,7 @@ if(env=='local'){
 
             }
         };
-        xhttp.open("POST", "http://karya-inovasi.com/beta-rkbmd" + "/api/index.php/Pptkis/get_fasilitas/login/is_login", false);
+        xhttp.open("POST", "https://rkbmd.serverup.tech" + "/api/index.php/Pptkis/get_fasilitas/login/is_login", false);
         xhttp.send();
     };
 

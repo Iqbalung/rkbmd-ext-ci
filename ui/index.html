@@ -123,9 +123,9 @@
             };
         } else {
             var api = {
-                siteurl: 'http://karya-inovasi.com/beta-rkbmd',
-                baseurl: 'http://karya-inovasi.com/beta-rkbmd',
-                apiurl: 'http://karya-inovasi.com/beta-rkbmd/api/index.php'
+                siteurl: 'https://rkbmd.serverup.tech',
+                baseurl: 'https://rkbmd.serverup.tech',
+                apiurl: 'https://rkbmd.serverup.tech/api/index.php'
             };
             var Ext = Ext || {}; // Ext namespace won't be defined yet...
 
@@ -138,7 +138,7 @@
                         __dtlg_.user = res.user;
                     }
                 };
-                xhttp.open("POST", "http://karya-inovasi.com/beta-rkbmd" + "/api/index.php/login/is_login", false);
+                xhttp.open("POST", "https://rkbmd.serverup.tech" + "/api/index.php/login/is_login", false);
                 xhttp.send();
             };
 
