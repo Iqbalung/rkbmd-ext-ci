@@ -62,7 +62,7 @@ class M_pemeliharaan extends CI_Model{
 				$this->db->or_where("pb.BARANG_KODE LIKE ", "%".$params["PENCARIAN"]."%");
 				$this->db->group_end();
 			}
-
+			$this->db->order_by("sk.SUB_KEGIATAN_NAMA ASC");
 			$res = $this->db->get("PEMELIHARAAN p");
 			
 			if ($isCetak) {

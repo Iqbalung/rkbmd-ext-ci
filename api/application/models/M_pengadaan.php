@@ -65,6 +65,8 @@ class M_pengadaan extends CI_Model{
 				$this->db->group_end();
 			}
 
+			$this->db->order_by("sk.SUB_KEGIATAN_NAMA ASC");
+
 			$res = $this->db->get("PENGADAAN p");
 
 			if ($isCetak) {

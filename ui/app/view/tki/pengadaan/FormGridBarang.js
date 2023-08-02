@@ -2,7 +2,8 @@ Ext.define('koyoku.view.tki.pengadaan.FormGridBarang', {
 	extend: 'Ext.grid.Panel',
 	xtype: 'grid_barang_pengadaan',
 	requires: [
-		'koyoku.components.combo.Barang'		
+		'koyoku.components.combo.Barang',
+		'koyoku.components.field.TreeFieldBarang'
 	],
 	initComponent: function() {
 		var me = this;
@@ -24,14 +25,14 @@ Ext.define('koyoku.view.tki.pengadaan.FormGridBarang', {
 			],
 			listeners: {
 				edit: function (editor, e, options) {
-					// var field = e.field;
-					console.log(editor, e, options);			
-					var combo_barang = e.grid.columns[1].getEditor(e.record);			
-					if (combo_barang.getSelectedRecord()) {				
-						e.record.set('BARANG_ID', combo_barang.getSelectedRecord().data.BARANG_ID);
-						e.record.set('BARANG_KODE', combo_barang.getSelectedRecord().data.BARANG_CODE);
+					// var field = e.field;						
+					var fieldbarang = e.grid.columns[1].getEditor(e.record);								
+					if (fieldbarang.dataSelected && fieldbarang.dataSelected.length > 0) {	
+						let dataBarang = fieldbarang.dataSelected[0];
+						e.record.set('BARANG_ID', dataBarang.get("BARANG_ID"));
+						e.record.set('BARANG_KODE', dataBarang.get("BARANG_CODE"));
 					}
-					e.record.set('BARANG_NAMA', combo_barang.getRawValue());	
+					// e.record.set('BARANG_NAMA', combo_barang.getRawValue());	
 							
 				},
 			},
@@ -44,21 +45,24 @@ Ext.define('koyoku.view.tki.pengadaan.FormGridBarang', {
 				dataIndex: 'BARANG_NAMA',
 				flex: 1,
 				editor: {
-					xtype: 'combobox',
+					xtype: 'barangtreefield',
 					forceSelection: true,			
 					triggerAction: 'all',
 					allowBlank: false,
+					editable: false,					
 					mode:'remote',
 					minChars:2,
 					displayField: 'BARANG_NAMA',
 					valueField: 'BARANG_NAMA',
 					store: Ext.create('koyoku.store.Barang'),
-					listeners: {
-						select: function(cb, rowData) {							
-							if (Ext.getCmp("txt_barang_kode")) {								
-								Ext.getCmp("txt_barang_kode").setValue(rowData.data.BARANG_CODE);
+					listeners: {						
+						onPilih: function(rec, cmp, windTree) {
+							cmp.setValue(rec[0].get("BARANG_NAMA"));
+							if (Ext.getCmp("txt_barang_kode")) {										
+								// Ext.getCmp("txt_barang_id").setValue(rec[0].get("BARANG_ID"));								
+								Ext.getCmp("txt_barang_kode").setValue(rec[0].get("BARANG_CODE"));
 							}
-						}
+						} 
 					}
 				}	
 			}, {

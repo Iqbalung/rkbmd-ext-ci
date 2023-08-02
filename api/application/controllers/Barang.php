@@ -78,6 +78,18 @@ class Barang extends MY_Controller {
 		echo json_encode($out);
 	}
 
+	function get_tree()
+	{
 
+		$params = array(
+			'ID' => ifunsetempty($_POST,'ID',''),						
+			'node' => ifunsetempty($_POST,'node',''),	
+			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
+		);
+				
+		$res = $this->M_master_barang->get_tree($params);
+		
+		echo json_encode($res);
+	}
 
 }
