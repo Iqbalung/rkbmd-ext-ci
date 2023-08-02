@@ -45,6 +45,7 @@ class Bidang extends MY_Controller {
 
 	function save(){
 		$params = array(
+			'ROWID' => ifunsetempty($_POST, 'ROWID',''),
 			'BIDANG_ID' => ifunsetempty($_POST, 'BIDANG_ID',''),
 			'BIDANG_NAMA' => ifunsetempty($_POST,'BIDANG_NAMA',''),
 			'BIDANG_PEJABAT' => ifunsetempty($_POST,'BIDANG_PEJABAT',''),
@@ -52,7 +53,7 @@ class Bidang extends MY_Controller {
 			'BIDANG_ALAMAT' => ifunsetempty($_POST,'BIDANG_ALAMAT',''),
 		);
 
-		if($params['UPDATE']==""){ 
+		if($params['ROWID']==""){ 
 
 			if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
 				$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
@@ -85,7 +86,7 @@ class Bidang extends MY_Controller {
 
 	function del(){
 		$params = array(
-			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',''),
+			'ROWID' => ifunsetempty($_POST,'ROWID',''),
 		);
 		$res = $this->M_bidang->del($params);
 		if($res){

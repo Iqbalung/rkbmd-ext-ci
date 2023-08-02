@@ -40,6 +40,7 @@ class M_bidang extends CI_Model{
 
 	function add($params)
 	{
+		$params["ROWID"] = uuid();
 		$res = $this->db->insert('MASTER_BIDANG', $params);
 		return $res;
 	}
@@ -49,7 +50,7 @@ class M_bidang extends CI_Model{
 		$res = $this->db->query("
 			UPDATE MASTER_BIDANG 
 			SET BIDANG_NAMA = '".$params['BIDANG_NAMA']."'
-			where BIDANG_ID = '".$params['BIDANG_ID']."'
+			where ROWID = '".$params['ROWID']."'
 		");
 		return $res;
 	}
@@ -58,7 +59,7 @@ class M_bidang extends CI_Model{
 	{
 		$res = $this->db->query("
 			DELETE FROM MASTER_BIDANG
-			where BIDANG_ID  = '".$params['BIDANG_ID']."'
+			where ROWID  = '".$params['ROWID']."'
 		");
 		return $res;
 	}

@@ -12,6 +12,9 @@ Ext.define('koyoku.view.master.bidang.Form_bidang', {
         xtype: 'form',
         items: [{
             xtype: 'hiddenfield',
+            name: 'ROWID'
+        }, {
+            xtype: 'hiddenfield',
             name: 'PARENT_BIDANG_ID'
         }, {
             xtype: 'hiddenfield',

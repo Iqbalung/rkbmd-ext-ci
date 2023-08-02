@@ -79,7 +79,7 @@ Ext.define('koyoku.view.master.bidang.Controller', {
         parent = grid.getSelectionModel().getSelection();
         if (parent.length > 0) {
             var params = {
-                BIDANG_ID: parent[0].get("BIDANG_ID"),
+                ROWID: parent[0].get("ROWID"),
             };
             Ext.Msg.show({
                 title: 'Konfirmasi',
