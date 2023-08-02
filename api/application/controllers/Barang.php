@@ -84,6 +84,7 @@ class Barang extends MY_Controller {
 		$params = array(
 			'ID' => ifunsetempty($_POST,'ID',''),						
 			'node' => ifunsetempty($_POST,'node',''),	
+			'pencarian' => ifunsetempty($_POST,'f_text',''),	
 			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 		);
 				

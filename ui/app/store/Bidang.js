@@ -2,7 +2,7 @@ Ext.define('koyoku.store.Bidang', {
     extend: 'Ext.data.TreeStore',
     alias: 'store.bidang',
     fields: [
-        'BIDANG_ID', 'BIDANG_NAMA', 'BIDANG_PEJABAT', 'BIDANG_PEJABAT_NRP', 'BIDANG_ALAMAT'
+        'BIDANG_ID', 'BIDANG_NAMA', 'BIDANG_PEJABAT', 'BIDANG_PEJABAT_NRP', 'BIDANG_ALAMAT', 'ROWID'
     ],
     proxy: {
         type: 'ajax',
@@ -18,6 +18,7 @@ Ext.define('koyoku.store.Bidang', {
     },
     root: {
         BIDANG_NAMA : 'KAMUS BIDANG',
+        // BIDANG_NAMA : __dtlg_.user["BIDANG_NAMA"] && __dtlg_.user.BIDANG_NAMA != '' ? __dtlg_.user.BIDANG_NAMA : 'KAMUS BIDANG',BIDANG_NAMA : __dtlg_.user["BIDANG_NAMA"] && __dtlg_.user.BIDANG_NAMA != '' ? __dtlg_.user.BIDANG_NAMA : 'KAMUS BIDANG',
         id: '0',
         expanded: true,
         visble: true,
@@ -25,7 +26,7 @@ Ext.define('koyoku.store.Bidang', {
     listeners : {
         beforeload : function( store, operation, eOpts ){
             store.proxy.extraParams.BIDANG_ID = operation.node.data.BIDANG_ID;
-        }
+        }        
     }
 });
     

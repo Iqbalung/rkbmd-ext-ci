@@ -87,6 +87,34 @@ Ext.define('koyoku.components.field.TreeFieldBarang', {
                         height : 450,
                         width : 640,
                         modal : true,
+                        tbar: [ '->',
+                    {
+                        labelWidth  : 50,
+                        xtype: 'textfield',
+                        triggerAction: 'all',
+                        typeAhead: true,
+                        queryMode: 'remote',
+                        minChars: 2,
+                        itemId: 'pencarian_barang',
+                        forceSelection: false,
+                        displayField: 'BARANG_NAMA',
+                        width: 250,
+                        emptyText: "Ketik Kata Kunci",
+                        hideTrigger: true,
+                        listeners: {
+                            specialkey: function(field, e){
+                                if (e.getKey() == e.ENTER) {
+                                    var win = Ext.getCmp('window_barang'),
+                                        grid = win.down('tree_barang');
+                                        store = grid.getStore();                                                                        
+
+                                    store.proxy.extraParams.f_text = field.getValue(); 
+                                    store.load();
+                                }
+                            }
+
+                        }
+                    }],
                         bbar: [
                             '->', {
                                 text: 'Pilih',

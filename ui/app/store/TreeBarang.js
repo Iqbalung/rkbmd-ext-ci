@@ -2,7 +2,7 @@ Ext.define('koyoku.store.TreeBarang', {
     extend: 'Ext.data.TreeStore',
     alias: 'store.tree_barang',
     fields: [
-        'ID', 'BARANG_ID', 'BARANG_NAMA', 'BARANG_CODE', 'CODE_TREE', 'ROWID'
+        'ID', 'BARANG_ID', 'BARANG_NAMA', 'BARANG_CODE', 'CODE_TREE', 'ROWID', 'children'
     ],
     proxy: {
         type: 'ajax',
@@ -23,10 +23,17 @@ Ext.define('koyoku.store.TreeBarang', {
         visble: true,
     },
     listeners : {
-        beforeload : function( store, operation, eOpts ){
+        beforeload : function( store, operation, eOpts ){            
             store.proxy.extraParams.CODE_TREE = operation.node.data.CODE_TREE;            
             store.proxy.extraParams.node = operation.node.data.CODE_TREE;   
-        }
+        },
+        load: function (cmp, data) {
+            data.forEach(function(row) {
+                if (row.data.children && row.data.children.length > 0) {                    
+                    row.appendChild(row.data.children)
+                }
+            })
+        },
     }
 });
     
