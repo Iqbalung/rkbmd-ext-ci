@@ -7,6 +7,7 @@ Ext.define('koyoku.view.tki.Main', {
 		'koyoku.view.tki.pemeliharaan.Grid',
 		'koyoku.view.tki.pemeliharaan.Form',
 		'koyoku.view.tki.pemeliharaan.FormTelaah',
+		'koyoku.view.tki.pengadaan.FormTelaahSubKegiatan',
 
 		'koyoku.view.tki.pemanfaatan.Grid',
 		'koyoku.view.tki.pemanfaatan.Form',
@@ -70,10 +71,16 @@ Ext.define('koyoku.view.tki.Main', {
 							},
 							'->',
 							{
-								text : 'TELAAH',											
+								text : 'TELAAH',
 								hidden : !__dtlg_.cek_akses("ft-telaah"),
 								cls: 'btn-main btn-box',
-								handler: 'telaah_pengadaan'
+								menu: [{
+									text: 'Telaah Sub Kegiatan',									
+									handler: 'telaah_pengadaan_sub_kegiatan'
+								}, {
+									text: 'Telaah Barang',
+									handler: 'telaah_pengadaan'
+								}]
 							},					
 							{
 								// text : 'Cetak',
@@ -130,8 +137,14 @@ Ext.define('koyoku.view.tki.Main', {
 							{
 								text : 'TELAAH',											
 								cls: 'btn-main btn-box',
-								hidden : !__dtlg_.cek_akses("ft-telaah"),
-								handler: 'telaah_pemeliharaan'
+								hidden : !__dtlg_.cek_akses("ft-telaah"),								
+								menu: [{
+									text: 'Telaah Sub Kegiatan',
+									handler: 'telaah_pemeliharaan_sub_kegiatan'
+								}, {
+									text: 'Telaah Barang',
+									handler: 'telaah_pemeliharaan'
+								}]
 							},
 							{
 								// text : 'Cetak',

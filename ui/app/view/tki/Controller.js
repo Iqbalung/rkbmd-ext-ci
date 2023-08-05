@@ -1067,6 +1067,77 @@ Ext.define('koyoku.view.tki.Controller', {
 		}
 	},
 
+	telaah_pengadaan_sub_kegiatan: function() {
+		var me = this,
+			cmp = Ext.getCmp("page_renbut"),			
+			grid = cmp.down("grid_pengadaan"),
+			grid_form = cmp.down("#grid_form_pengadaan"),
+			form = cmp.down("form_pengadaan").down("form"),
+			data_selected = grid.getSelectionModel().getSelection();
+		
+		if(data_selected.length > 0)
+		{
+			
+				var data = data_selected[0].getData(),
+				params = {
+					SUB_KEGIATANID: btoa(data.SUB_KEGIATAN_ID)
+				}
+
+			koyoku.app.ajaxRequest("pengadaan/get_barang_sub_kegiatan", params, function(res) {				
+				if(res.success) {
+					// me.clear_form_pengadaan();
+					var win = Ext.create("koyoku.view.tki.pengadaan.FormTelaahSubKegiatan"),
+					form = win.down("form");
+					
+					form.getForm().reset();
+					win.down("grid").getStore().clearData();
+					win.down("grid").getStore().load();
+					data.KEGIATAN_NAMA = data.PARENT_KEGIATAN;			
+					form.getForm().setValues(data);
+					win.down("grid").getStore().add(res.items);
+					win.show();					
+				}
+			});
+
+			// form.down("[name=RENCANA_DISETUJUI_JUMLAH]").focus();
+			
+		} else {
+			Ext.Msg.alert('Perhatian', "Pilih salah satu terlebih dahulu");
+		}
+	},
+
+	simpan_telaah_pengadaan_sub_kegiatan: function() {
+		try {
+			var me = this,
+				cmp = Ext.getCmp("page_renbut"),
+				win = Ext.getCmp("form_telaah_pengadaan_sub_kegiatan"),				
+				form = win.down("form"),
+				grid = win.down("grid"),
+				data_barang = [],
+				params = {};				
+
+			grid.getStore().getData().items.forEach(function (row) {
+				data_barang.push(row.data);
+			})
+			params.DATA = btoa(JSON.stringify(data_barang));
+
+			koyoku.app.ajaxRequest("pengadaan/save_telaah_sub_kegiatan", params, function(res) {				
+				if(res.success) {
+					Ext.Msg.alert('Informasi', res.msg);
+					form.getForm().reset();
+					win.down("grid").getStore().clearData();
+					win.down("grid").getStore().load();
+					win.close();
+					me.load_pengadaan();
+				} else {
+					Ext.Msg.alert('Informasi', res.msg);
+				}
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	},
+
 	telaah_pemeliharaan: function() {
 		var me = this,
 			cmp = Ext.getCmp("page_renbut"),			

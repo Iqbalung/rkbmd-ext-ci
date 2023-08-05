@@ -767,6 +767,34 @@ class Pengadaan extends MY_Controller {
 		echo json_encode($out);
 	}
 
+	function get_barang_sub_kegiatan()
+	{
+
+		$params = array(
+			'SUB_KEGIATANID' => base64_decode(ifunsetempty($_POST,'SUB_KEGIATANID','')),			
+			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),			
+		);
+
+		if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+			$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+		}
+		
+		$out = $this->M_pengadaan->get_barang_sub_kegiatan($params);
+		
+		echo json_encode($out);
+	}	
+
+	function save_telaah_sub_kegiatan()
+	{
+
+		$params = array(
+			'DATA_BARANG_TELAAH' => json_decode(base64_decode(ifunsetempty($_POST,'DATA','')), true),				
+		);	
+		
+		$out = $this->M_pengadaan->save_telaah_sub_kegiatan($params);
+		
+		echo json_encode($out);
+	}
 	
 
 }
