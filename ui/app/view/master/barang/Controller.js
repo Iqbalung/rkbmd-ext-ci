@@ -4,13 +4,34 @@ Ext.define('koyoku.view.master.barang.Controller', {
    
     add: function(ths) {
         var me = this,        
-        cmp = Ext.getCmp("page_barang"),
-        grid = cmp.down("barangList");
-        selected = grid.getSelectionModel().getSelection();
-        windowForm = Ext.create('koyoku.view.master.barang.Form_barang');
-        form = windowForm.down("form");
+            cmp = Ext.getCmp("page_barang"),
+            grid = cmp.down("barangList"),
+            selected = grid.getSelectionModel().getSelection(),
+            windowForm = Ext.create('koyoku.view.master.barang.Form_barang'),
+            form = windowForm.down("form");
+
         form.reset();
-        windowForm.show();
+        var parentCode = "";
+        if(selected.length > 0){      
+            parentCode = selected[0].data.BARANG_CODE;
+            form.getForm().setValues({                
+                "PARENT_BARANG_CODE": parentCode,
+            });
+        }
+
+        koyoku.app.ajaxRequest("barang/get_next_kode_tree", {
+            BARANG_CODE: parentCode
+        }, function(res) {				
+            if(res.success) {
+                form.getForm().setValues({                
+                    "BARANG_CODE": res.data,
+                });            
+                windowForm.show();
+            } else {
+                Ext.Msg.alert('Informasi', res.msg);
+            }
+        });
+
     },
 
     upd:function(ths){
@@ -33,9 +54,9 @@ Ext.define('koyoku.view.master.barang.Controller', {
     save: function(ths) {
         var me = this,
         cmp = Ext.getCmp("page_barang"),
-        windowForm = Ext.getCmp('window_form_agency');
+        windowForm = Ext.getCmp('window_form_baang');
         form = windowForm.down("form");
-        console.log("form",form)
+        
         if (form.isValid()) {
             form.submit({
                 url:  api.apiurl + '/Barang/save',

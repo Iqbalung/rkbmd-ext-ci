@@ -5,16 +5,20 @@ Ext.define('koyoku.view.master.barang.Form_barang', {
     padding: 10,
     modal: true,
     width: 700,
+    closeAction: 'destroy',
     title:'Form Barang',
     //selama close action destroy tidak pakai Hide window diberi ID tidak masalah
-    id : 'window_form_agency',
+    id : 'window_form_baang',
     items: [{
         xtype : 'form',
         items: [
             {
                 xtype: 'hiddenfield',
                 name: 'BARANG_ID'
-            },{
+            }, {
+                xtype: 'hiddenfield',
+                name: 'PARENT_BARANG_CODE'
+            }, {
                 xtype: 'textfield',
                 fieldLabel: 'Nama',
                 name: 'BARANG_NAMA',
@@ -25,7 +29,9 @@ Ext.define('koyoku.view.master.barang.Form_barang', {
                 fieldLabel: 'Kode',
                 name: 'BARANG_CODE',
                 width : '100%',
-                allowBlank: false
+                allowBlank: false,
+                editable: false,
+                readonly: true
             },{
                 xtype: 'textarea',
                 fieldLabel: 'Satuan',

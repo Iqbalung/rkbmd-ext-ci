@@ -31,11 +31,16 @@ class M_master_barang extends CI_Model{
 
 	function add($params)
 	{
+		
+		// $params["BARANG_CODE"] = $this->get_next_kode_tree($params["PARENT_BARANG_CODE"]);
+		unset($params["PARENT_BARANG_CODE"]);
 		$res = $this->db->insert('MASTER_BARANG', $params); 
 		return $res;
 	}
+
 	function upd($params)
 	{
+		unset($params["PARENT_BARANG_CODE"]);
 		$this->db->where('BARANG_ID',$params['BARANG_ID']);
 		unset($params['BARANG_ID']);
 		$res = $this->db->update("MASTER_BARANG", $params);
@@ -49,6 +54,31 @@ class M_master_barang extends CI_Model{
 			where BARANG_ID = '".$params['BARANG_ID']."'
 		");
 		return $res;
+	}
+
+	public function get_next_kode_tree($kode_barang)
+	{
+		$level = 5;
+		$parentCode = "1.3.1.1.1";
+		if (!empty($kode_barang)) {					
+			$level = strlen($kode_barang) - strlen(str_replace(".", "", $kode_barang)) + 1;
+			$parentCode = $kode_barang;
+		}
+		$lastKode = $this->db->query("SELECT BARANG_CODE LAST_KODE FROM MASTER_BARANG WHERE BARANG_CODE LIKE ? 
+			AND length(BARANG_CODE) - length(replace(BARANG_CODE, '.', '')) = ?
+			ORDER BY cast(replace(BARANG_CODE, '.', '') as INT) DESC LIMIT 1",
+		array(
+			$parentCode."%", $level
+		))->result_array();
+		
+		$newCode = "1";
+		if (count($lastKode) > 0) {
+			$lastKode = $lastKode[0]["LAST_KODE"];
+			$lastKode = end(explode(".", $lastKode));
+			$newCode = ((int) $lastKode) + 1;
+		}
+		
+		return $parentCode.".".$newCode;
 	}
 
 	function get_tree($params)
@@ -92,6 +122,7 @@ class M_master_barang extends CI_Model{
 					br.BARANG_ID,
 					br.BARANG_NAMA,
 					br.BARANG_CODE,
+					br.BARANG_SATUAN,
 					br.CODE_TREE,
 					br.ROWID,
 					(select count(x.BARANG_ID) from MASTER_BARANG as x WHERE x.CODE_TREE <> br.CODE_TREE AND x.CODE_TREE like concat(br.CODE_TREE, '%')) as JML_SUB
@@ -129,6 +160,7 @@ class M_master_barang extends CI_Model{
 					br.BARANG_NAMA,
 					br.BARANG_CODE,
 					br.CODE_TREE,
+					br.BARANG_SATUAN,
 					br.ROWID,
 					(select count(x.BARANG_ID) from MASTER_BARANG as x WHERE x.CODE_TREE <> br.CODE_TREE AND x.CODE_TREE like concat(br.CODE_TREE, '%')) as JML_SUB");					
 				$this->db->where_in("BARANG_CODE", $listParentId);

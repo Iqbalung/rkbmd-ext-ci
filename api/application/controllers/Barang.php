@@ -35,7 +35,8 @@ class Barang extends MY_Controller {
 	}
 
 	function save(){
-		$params = array(
+		$params = array(			
+			'PARENT_BARANG_CODE' => ifunsetempty($_POST,'PARENT_BARANG_CODE',''),
 			'BARANG_ID' => ifunsetempty($_POST,'BARANG_ID',''),
 			'BARANG_NAMA' => ifunsetempty($_POST,'BARANG_NAMA',''),
 			'BARANG_CODE' => ifunsetempty($_POST, 'BARANG_CODE',''),
@@ -46,12 +47,12 @@ class Barang extends MY_Controller {
 		if($params['BARANG_ID']==""){ 
 			unset($params["BARANG_ID"]);
 			$res = $this->M_master_barang->add($params);
-				if($res){
-					$out = array(
-						'success' => true,
-						'msg' => 'Berhasil Menyimpan' 
-					);
-				}	
+			if($res){
+				$out = array(
+					'success' => true,
+					'msg' => 'Berhasil Menyimpan' 
+				);
+			}
 		}else{
 			$res = $this->M_master_barang->upd($params);
 			if($res){
@@ -75,6 +76,23 @@ class Barang extends MY_Controller {
 						'msg' => 'Berhasil Menghapus' 
 					);
 				}	
+		echo json_encode($out);
+	}
+
+	function get_next_kode_tree(){
+		$params = array(
+			'BARANG_CODE' => ifunsetempty($_POST,'BARANG_CODE',''),
+		);
+		$res = $this->M_master_barang->get_next_kode_tree($params["BARANG_CODE"]);
+		
+		$out = array("success" => false);
+		if($res){
+			$out = array(
+				'success' => true,
+				"data" => $res,
+				'msg' => 'Berhasil Menghapus' 
+			);
+		}	
 		echo json_encode($out);
 	}
 

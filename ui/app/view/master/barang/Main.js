@@ -37,7 +37,7 @@ Ext.define('koyoku.view.master.barang.Main', {
                                     var cmp = Ext.getCmp("page_barang"),
                                         grid = cmp.down("barangList");
                                         store = grid.getStore();                                    
-                                        
+                                    store.proxy.extraParams.f_text = field.getValue(); 
                                     store.load();
                                 }
                             }
