@@ -99,7 +99,7 @@ Ext.define('koyoku.Application', {
 
     chekIsLoginServer: function() {
         Ext.Ajax.request({
-            url: api.siteurl + "/login/is_login",
+            url: api.apiurl + "/login/is_login",
             params: {},
             // async : false,
             success: function(form, action, value) {
