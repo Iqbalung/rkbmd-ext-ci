@@ -75,12 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'db-mysql-nyc1-15996-do-user-12623433-0.b.db.ondigitalocean.com',
-	'username' => 'doadmin',
-	'password' => 'AVNS_Qdk2d-N7tZLfph6-KyT',
-	'database' => 'defaultdb',
+	'hostname' => 'loclahost',
+	'username' => 'root',
+	'password' => 'password',
+	'database' => 'rkbmd',
 	'dbdriver' => 'mysqli',
-	'port' => 25060,
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
