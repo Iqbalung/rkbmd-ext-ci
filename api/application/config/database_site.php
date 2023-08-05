@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'koyp3568_koyoku',
-	'password' => 'koyoku123',
-	'database' => 'koyp3568_koyoku',
+	'hostname' => 'db-mysql-nyc1-15996-do-user-12623433-0.b.db.ondigitalocean.com',
+	'username' => 'doadmin',
+	'password' => 'AVNS_Qdk2d-N7tZLfph6-KyT',
+	'database' => 'defaultdb',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
