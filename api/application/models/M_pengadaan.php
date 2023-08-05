@@ -114,6 +114,7 @@ class M_pengadaan extends CI_Model{
 			} else {
 				$paramsPengadaan["DIBUAT_PADA"] = date("Y-m-d H:i:s");			
 				unset($paramsPengadaan["DIUBAH_PADA"]);
+				unset($paramsPengadaan['PENGADAAN_ID']);
 				$res = $this->db->insert("PENGADAAN", $paramsPengadaan);
 				$idParent = $this->db->insert_id();
 			}			
