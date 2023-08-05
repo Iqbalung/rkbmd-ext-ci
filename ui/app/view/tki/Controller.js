@@ -92,7 +92,7 @@ Ext.define('koyoku.view.tki.Controller', {
 			var params = {
 				ROWID: btoa(row.PEMELIHARAAN_ID)
 			}
-			koyoku.app.ajaxRequest(api.apiurl + "pemeliharaan/get_detail", params, function(res) {				
+			koyoku.app.ajaxRequest("pemeliharaan/get_detail", params, function(res) {				
 				if(res.success) {
 					if(res.items) {						
 						var data_form = res.items;						
@@ -125,7 +125,7 @@ Ext.define('koyoku.view.tki.Controller', {
 					var params = {
 						PEMELIHARAAN_ID: btoa(row.PEMELIHARAAN_ID)
 					}
-					koyoku.app.ajaxRequest(api.apiurl + "pemeliharaan/delete", params, function(res) {				
+					koyoku.app.ajaxRequest("pemeliharaan/delete", params, function(res) {				
 						if(res.error == null) {
 							Ext.Msg.alert('Informasi', res.msg);
 							me.load_pemeliharaan();
@@ -213,7 +213,7 @@ Ext.define('koyoku.view.tki.Controller', {
 
 			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
-			koyoku.app.ajaxRequest(api.apiurl + "pemeliharaan/save", params, function(res) {				
+			koyoku.app.ajaxRequest("pemeliharaan/save", params, function(res) {				
 				if(res.success) {
 					Ext.Msg.alert('Informasi', res.msg);
 					me.clear_form_pemeliharaan();
@@ -288,7 +288,7 @@ Ext.define('koyoku.view.tki.Controller', {
 			var params = {
 				ROWID: btoa(row.PEMANFAATAN_ID)
 			}
-			koyoku.app.ajaxRequest(api.apiurl + "pemanfaatan/get_detail", params, function(res) {				
+			koyoku.app.ajaxRequest("pemanfaatan/get_detail", params, function(res) {				
 				if(res.success) {
 					if(res.items) {						
 						var data_form = res.items;						
@@ -321,7 +321,7 @@ Ext.define('koyoku.view.tki.Controller', {
 					var params = {
 						PEMANFAATAN_ID: btoa(row.PEMANFAATAN_ID)
 					}
-					koyoku.app.ajaxRequest(api.apiurl + "pemanfaatan/delete", params, function(res) {				
+					koyoku.app.ajaxRequest("pemanfaatan/delete", params, function(res) {				
 						if(res.error == null) {
 							Ext.Msg.alert('Informasi', res.msg);
 							me.load_pemanfaatan();
@@ -409,7 +409,7 @@ Ext.define('koyoku.view.tki.Controller', {
 
 			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
-			koyoku.app.ajaxRequest(api.apiurl + "pemanfaatan/save", params, function(res) {				
+			koyoku.app.ajaxRequest("pemanfaatan/save", params, function(res) {				
 				if(res.success) {
 					Ext.Msg.alert('Informasi', res.msg);
 					me.clear_form_pemanfaatan();
@@ -512,7 +512,7 @@ Ext.define('koyoku.view.tki.Controller', {
 			var params = {
 				ROWID: btoa(row.PENGHAPUSAN_ID)
 			}
-			koyoku.app.ajaxRequest(api.apiurl + "penghapusan/get_detail", params, function(res) {				
+			koyoku.app.ajaxRequest("penghapusan/get_detail", params, function(res) {				
 				if(res.success) {
 					if(res.items) {						
 						var data_form = res.items;						
@@ -545,7 +545,7 @@ Ext.define('koyoku.view.tki.Controller', {
 					var params = {
 						PENGHAPUSAN_ID: btoa(row.PENGHAPUSAN_ID)
 					}
-					koyoku.app.ajaxRequest(api.apiurl + "penghapusan/delete", params, function(res) {				
+					koyoku.app.ajaxRequest("penghapusan/delete", params, function(res) {				
 						if(res.error == null) {
 							Ext.Msg.alert('Informasi', res.msg);
 							me.load_penghapusan();
@@ -633,7 +633,7 @@ Ext.define('koyoku.view.tki.Controller', {
 
 			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
-			koyoku.app.ajaxRequest(api.apiurl + "penghapusan/save", params, function(res) {				
+			koyoku.app.ajaxRequest("penghapusan/save", params, function(res) {				
 				if(res.success) {
 					Ext.Msg.alert('Informasi', res.msg);
 					me.clear_form_penghapusan();
@@ -709,7 +709,7 @@ Ext.define('koyoku.view.tki.Controller', {
 			var params = {
 				ROWID: btoa(row.PENGADAAN_ID)
 			}
-			koyoku.app.ajaxRequest(api.apiurl + "pengadaan/get_detail", params, function(res) {				
+			koyoku.app.ajaxRequest("pengadaan/get_detail", params, function(res) {				
 				if(res.success) {
 					if(res.items) {						
 						var data_form = res.items;						
@@ -742,7 +742,7 @@ Ext.define('koyoku.view.tki.Controller', {
 					var params = {
 						PENGADAAN_ID: btoa(row.PENGADAAN_ID)
 					}
-					koyoku.app.ajaxRequest(api.apiurl + "pengadaan/delete", params, function(res) {				
+					koyoku.app.ajaxRequest("pengadaan/delete", params, function(res) {				
 						if(res.error == null) {
 							Ext.Msg.alert('Informasi', res.msg);
 							me.load_pengadaan();
@@ -830,7 +830,7 @@ Ext.define('koyoku.view.tki.Controller', {
 
 			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
-			koyoku.app.ajaxRequest(api.apiurl + "pengadaan/save", params, function(res) {				
+			koyoku.app.ajaxRequest("pengadaan/save", params, function(res) {				
 				if(res.success) {
 					Ext.Msg.alert('Informasi', res.msg);
 					me.clear_form_pengadaan();
@@ -908,21 +908,21 @@ Ext.define('koyoku.view.tki.Controller', {
 		var me = this,
 			params = me.get_params_pengadaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open(api.apiurl + "/pengadaan/cetak_usulan?" + params_uri, "_blank");
+		window.open("/pengadaan/cetak_usulan?" + params_uri, "_blank");
 	},
 
 	cetak_pengadaan_telaah: function() {
 		var me = this,
 			params = me.get_params_pengadaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open(api.apiurl + "/pengadaan/cetak_telaah?" + params_uri, "_blank");
+		window.open("/pengadaan/cetak_telaah?" + params_uri, "_blank");
 	},
 
 	cetak_pengadaan_final: function() {
 		var me = this,
 			params = me.get_params_pengadaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open(api.apiurl + "/pengadaan/cetak_final?" + params_uri, "_blank");
+		window.open("/pengadaan/cetak_final?" + params_uri, "_blank");
 	},
 
 	get_params_pemeliharaan: function() {
@@ -949,21 +949,21 @@ Ext.define('koyoku.view.tki.Controller', {
 		var me = this,
 			params = me.get_params_pemeliharaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open(api.apiurl + "/pemeliharaan/cetak_usulan?" + params_uri, "_blank");
+		window.open("/pemeliharaan/cetak_usulan?" + params_uri, "_blank");
 	},
 
 	cetak_pemeliharaan_telaah: function() {
 		var me = this,
 			params = me.get_params_pemeliharaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open(api.apiurl + "/pemeliharaan/cetak_telaah?" + params_uri, "_blank");
+		window.open("/pemeliharaan/cetak_telaah?" + params_uri, "_blank");
 	},
 
 	cetak_pemeliharaan_final: function() {
 		var me = this,
 			params = me.get_params_pemeliharaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open(api.apiurl + "/pemeliharaan/cetak_final?" + params_uri, "_blank");
+		window.open("/pemeliharaan/cetak_final?" + params_uri, "_blank");
 	},
 
 	get_params_pemanfaatan: function() {
@@ -990,7 +990,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		var me = this,
 			params = me.get_params_pemanfaatan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open(api.apiurl + "/pemanfaatan/cetak_daftar?" + params_uri, "_blank");
+		window.open("/pemanfaatan/cetak_daftar?" + params_uri, "_blank");
 	},
 
 	get_params_penghapusan: function() {
@@ -1017,7 +1017,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		var me = this,
 			params = me.get_params_penghapusan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open(api.apiurl + "/penghapusan/cetak_daftar?" + params_uri, "_blank");
+		window.open("/penghapusan/cetak_daftar?" + params_uri, "_blank");
 	},
 
 	telaah_pengadaan: function() {
@@ -1054,7 +1054,7 @@ Ext.define('koyoku.view.tki.Controller', {
 				form = win.down("form"),
 				params = form.getValues();
 
-			koyoku.app.ajaxRequest(api.apiurl + "pengadaan/save_telaah", params, function(res) {				
+			koyoku.app.ajaxRequest("pengadaan/save_telaah", params, function(res) {				
 				if(res.success) {
 					Ext.Msg.alert('Informasi', res.msg);
 					form.getForm().reset();
@@ -1083,7 +1083,7 @@ Ext.define('koyoku.view.tki.Controller', {
 					SUB_KEGIATANID: btoa(data.SUB_KEGIATAN_ID)
 				}
 
-			koyoku.app.ajaxRequest(api.apiurl + "pengadaan/get_barang_sub_kegiatan", params, function(res) {				
+			koyoku.app.ajaxRequest("pengadaan/get_barang_sub_kegiatan", params, function(res) {				
 				if(res.success) {
 					// me.clear_form_pengadaan();
 					var win = Ext.create("koyoku.view.tki.pengadaan.FormTelaahSubKegiatan"),
@@ -1121,7 +1121,7 @@ Ext.define('koyoku.view.tki.Controller', {
 			})
 			params.DATA = btoa(JSON.stringify(data_barang));
 
-			koyoku.app.ajaxRequest(api.apiurl + "pengadaan/save_telaah_sub_kegiatan", params, function(res) {				
+			koyoku.app.ajaxRequest("pengadaan/save_telaah_sub_kegiatan", params, function(res) {				
 				if(res.success) {
 					Ext.Msg.alert('Informasi', res.msg);
 					form.getForm().reset();
@@ -1172,7 +1172,7 @@ Ext.define('koyoku.view.tki.Controller', {
 				form = win.down("form"),
 				params = form.getValues();
 
-			koyoku.app.ajaxRequest(api.apiurl + "pemeliharaan/save_telaah", params, function(res) {				
+			koyoku.app.ajaxRequest("pemeliharaan/save_telaah", params, function(res) {				
 				if(res.success) {
 					Ext.Msg.alert('Informasi', res.msg);
 					form.getForm().reset();
@@ -1201,7 +1201,7 @@ Ext.define('koyoku.view.tki.Controller', {
 					SUB_KEGIATANID: btoa(data.SUB_KEGIATAN_ID)
 				}
 
-			koyoku.app.ajaxRequest(api.apiurl + "pemeliharaan/get_barang_sub_kegiatan", params, function(res) {				
+			koyoku.app.ajaxRequest("pemeliharaan/get_barang_sub_kegiatan", params, function(res) {				
 				if(res.success) {
 					// me.clear_form_pemeliharaan();
 					var win = Ext.create("koyoku.view.tki.pemeliharaan.FormTelaahSubKegiatan"),
@@ -1239,7 +1239,7 @@ Ext.define('koyoku.view.tki.Controller', {
 			})
 			params.DATA = btoa(JSON.stringify(data_barang));
 
-			koyoku.app.ajaxRequest(api.apiurl + "pemeliharaan/save_telaah_sub_kegiatan", params, function(res) {				
+			koyoku.app.ajaxRequest("pemeliharaan/save_telaah_sub_kegiatan", params, function(res) {				
 				if(res.success) {
 					Ext.Msg.alert('Informasi', res.msg);
 					form.getForm().reset();
