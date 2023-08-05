@@ -7,17 +7,18 @@ Ext.define('koyoku.view.tki.Main', {
 		'koyoku.view.tki.pemeliharaan.Grid',
 		'koyoku.view.tki.pemeliharaan.Form',
 		'koyoku.view.tki.pemeliharaan.FormTelaah',
-		'koyoku.view.tki.pengadaan.FormTelaahSubKegiatan',
-
+		'koyoku.view.tki.pemeliharaan.FormTelaahSubKegiatan',
+		
 		'koyoku.view.tki.pemanfaatan.Grid',
 		'koyoku.view.tki.pemanfaatan.Form',
-
+		
 		'koyoku.view.tki.penghapusan.Grid',
 		'koyoku.view.tki.penghapusan.Form',
-
+		
 		'koyoku.view.tki.pengadaan.Grid',
 		'koyoku.view.tki.pengadaan.Form',
 		'koyoku.view.tki.pengadaan.FormTelaah',
+		'koyoku.view.tki.pengadaan.FormTelaahSubKegiatan',
 
 		'koyoku.components.combo.StatusData'
 	],
