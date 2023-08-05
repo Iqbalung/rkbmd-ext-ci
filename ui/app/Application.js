@@ -29,7 +29,7 @@ if(env=='local'){
     var api = {
         siteurl: 'https://rkbmd-banjarnegara.id',
         baseurl: 'https://rkbmd-banjarnegara.id',
-        apiurl: 'https://rkbmd-banjarnegara.id/api/index.php'
+        apiurl: 'https://rkbmd-banjarnegara.id/api/index.php/'
     };
     var Ext = Ext || {}; // Ext namespace won't be defined yet...
 
