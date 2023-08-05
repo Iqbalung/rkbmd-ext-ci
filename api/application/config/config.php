@@ -510,4 +510,4 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
-$config['template_cetak']   = FCPATH2."client/templates/cetak/";
+$config['template_cetak']   = FCPATH2."api/client/templates/cetak/";
