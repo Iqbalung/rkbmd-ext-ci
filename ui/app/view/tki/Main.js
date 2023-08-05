@@ -76,10 +76,10 @@ Ext.define('koyoku.view.tki.Main', {
 								hidden : !__dtlg_.cek_akses("ft-telaah"),
 								cls: 'btn-main btn-box',
 								menu: [{
-									text: 'Telaah Sub Kegiatan',									
+									text: 'Telaah Per Sub Kegiatan',									
 									handler: 'telaah_pengadaan_sub_kegiatan'
 								}, {
-									text: 'Telaah Barang',
+									text: 'Telaah Per Barang',
 									handler: 'telaah_pengadaan'
 								}]
 							},					
