@@ -33,6 +33,7 @@ class M_master_barang extends CI_Model{
 	{
 		
 		// $params["BARANG_CODE"] = $this->get_next_kode_tree($params["PARENT_BARANG_CODE"]);
+		$params['CODE_TREE'] = $params["BARANG_CODE"];
 		unset($params["PARENT_BARANG_CODE"]);
 		$res = $this->db->insert('MASTER_BARANG', $params); 
 		return $res;
