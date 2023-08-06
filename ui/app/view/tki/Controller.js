@@ -204,12 +204,22 @@ Ext.define('koyoku.view.tki.Controller', {
 				grid = cmp.down("#grid_form_pemeliharaan"),
 				store = grid.getStore();
 
+			if(!form.getForm().isValid()) {
+				Ext.Msg.alert('Perhatian', "Periksa kembali form");
+				return false;
+			}
+
 			let params = form.getValues(),
 				data_barang = [];
 
 			store.getData().items.forEach(function (row) {
 				data_barang.push(row.data);
-			})
+			});
+
+			if (data_barang.length == 0) {
+				Ext.Msg.alert('Perhatian', "Barang tidak boleh kosong");
+				return false;
+			}
 
 			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
@@ -400,12 +410,23 @@ Ext.define('koyoku.view.tki.Controller', {
 				grid = cmp.down("#grid_form_pemanfaatan"),
 				store = grid.getStore();
 
+
+			if(!form.getForm().isValid()) {
+				Ext.Msg.alert('Perhatian', "Periksa kembali form");
+				return false;
+			}
+
 			let params = form.getValues(),
 				data_barang = [];
 
 			store.getData().items.forEach(function (row) {
 				data_barang.push(row.data);
-			})
+			});
+
+			if (data_barang.length == 0) {
+				Ext.Msg.alert('Perhatian', "Barang tidak boleh kosong");
+				return false;
+			}
 
 			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
@@ -624,12 +645,22 @@ Ext.define('koyoku.view.tki.Controller', {
 				grid = cmp.down("#grid_form_penghapusan"),
 				store = grid.getStore();
 
+			if(!form.getForm().isValid()) {
+				Ext.Msg.alert('Perhatian', "Periksa kembali form");
+				return false;
+			}
+
 			let params = form.getValues(),
 				data_barang = [];
 
 			store.getData().items.forEach(function (row) {
 				data_barang.push(row.data);
-			})
+			});
+
+			if (data_barang.length == 0) {
+				Ext.Msg.alert('Perhatian', "Barang tidak boleh kosong");
+				return false;
+			}
 
 			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
@@ -821,12 +852,22 @@ Ext.define('koyoku.view.tki.Controller', {
 				grid = cmp.down("#grid_form_pengadaan"),
 				store = grid.getStore();
 
+			if(!form.getForm().isValid()) {
+				Ext.Msg.alert('Perhatian', "Periksa kembali form");
+				return false;
+			}
+
 			let params = form.getValues(),
 				data_barang = [];
 
 			store.getData().items.forEach(function (row) {
 				data_barang.push(row.data);
-			})
+			});
+			
+			if (data_barang.length == 0) {
+				Ext.Msg.alert('Perhatian', "Barang tidak boleh kosong");
+				return false;
+			};
 
 			params.STATUS = status;
 			params.DATA_BARANG = JSON.stringify(data_barang);
@@ -908,21 +949,21 @@ Ext.define('koyoku.view.tki.Controller', {
 		var me = this,
 			params = me.get_params_pengadaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open("/pengadaan/cetak_usulan?" + params_uri, "_blank");
+		window.open(api.apiurl + "/pengadaan/cetak_usulan?" + params_uri, "_blank");
 	},
 
 	cetak_pengadaan_telaah: function() {
 		var me = this,
 			params = me.get_params_pengadaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open("/pengadaan/cetak_telaah?" + params_uri, "_blank");
+		window.open(api.apiurl + "/pengadaan/cetak_telaah?" + params_uri, "_blank");
 	},
 
 	cetak_pengadaan_final: function() {
 		var me = this,
 			params = me.get_params_pengadaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open("/pengadaan/cetak_final?" + params_uri, "_blank");
+		window.open(api.apiurl + "/pengadaan/cetak_final?" + params_uri, "_blank");
 	},
 
 	get_params_pemeliharaan: function() {
@@ -949,21 +990,21 @@ Ext.define('koyoku.view.tki.Controller', {
 		var me = this,
 			params = me.get_params_pemeliharaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open("/pemeliharaan/cetak_usulan?" + params_uri, "_blank");
+		window.open(api.apiurl + "/pemeliharaan/cetak_usulan?" + params_uri, "_blank");
 	},
 
 	cetak_pemeliharaan_telaah: function() {
 		var me = this,
 			params = me.get_params_pemeliharaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open("/pemeliharaan/cetak_telaah?" + params_uri, "_blank");
+		window.open(api.apiurl + "/pemeliharaan/cetak_telaah?" + params_uri, "_blank");
 	},
 
 	cetak_pemeliharaan_final: function() {
 		var me = this,
 			params = me.get_params_pemeliharaan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open("/pemeliharaan/cetak_final?" + params_uri, "_blank");
+		window.open(api.apiurl + "/pemeliharaan/cetak_final?" + params_uri, "_blank");
 	},
 
 	get_params_pemanfaatan: function() {
@@ -990,7 +1031,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		var me = this,
 			params = me.get_params_pemanfaatan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open("/pemanfaatan/cetak_daftar?" + params_uri, "_blank");
+		window.open(api.apiurl + "/pemanfaatan/cetak_daftar?" + params_uri, "_blank");
 	},
 
 	get_params_penghapusan: function() {
@@ -1017,7 +1058,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		var me = this,
 			params = me.get_params_penghapusan();			
 		 var params_uri = new URLSearchParams(params).toString();		
-		window.open("/penghapusan/cetak_daftar?" + params_uri, "_blank");
+		window.open(api.apiurl + "/penghapusan/cetak_daftar?" + params_uri, "_blank");
 	},
 
 	telaah_pengadaan: function() {

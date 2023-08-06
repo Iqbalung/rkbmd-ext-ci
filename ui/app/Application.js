@@ -132,7 +132,7 @@ Ext.define('koyoku.Application', {
     keluar: function() {
         localStorage.removeItem('is_login');
         Ext.Ajax.request({
-            url: api.siteurl + "/login/keluar",
+            url: api.apiurl + "/login/keluar",
             params: {},
             success: function(form, action, value) {
                 Ext.Msg.alert('Informasi', "Berhasil keluar aplikasi");
@@ -149,7 +149,7 @@ Ext.define('koyoku.Application', {
     ajaxRequest: function(url, params, callback) {
         try {
             Ext.Ajax.request({
-                url: api.baseurl + "/" + url,
+                url: api.apiurl + "/" + url,
                 params: params,
                 // async : false,
                 success: function(form, action, value) {

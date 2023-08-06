@@ -20,19 +20,19 @@ Ext.define('koyoku.view.master.barang.Form_barang', {
                 name: 'PARENT_BARANG_CODE'
             }, {
                 xtype: 'textfield',
-                fieldLabel: 'Nama',
-                name: 'BARANG_NAMA',
-                width : '100%',
-                allowBlank: false
-            },{
-                xtype: 'textfield',
                 fieldLabel: 'Kode',
                 name: 'BARANG_CODE',
                 width : '100%',
                 allowBlank: false,
                 editable: false,
                 readonly: true
-            },{
+            }, {
+                xtype: 'textfield',
+                fieldLabel: 'Nama',
+                name: 'BARANG_NAMA',
+                width : '100%',
+                allowBlank: false
+            }, {
                 xtype: 'textarea',
                 fieldLabel: 'Satuan',
                 name: 'BARANG_SATUAN',
