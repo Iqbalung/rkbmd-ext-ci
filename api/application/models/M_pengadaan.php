@@ -138,7 +138,7 @@ class M_pengadaan extends CI_Model{
 							"KEBUTUHAN_MAKSIMUM_SATUAN" => ifunsetempty($value, "KEBUTUHAN_MAKSIMUM_SATUAN", ""),
 							"KEBUTUHAN_RIIL_JUMLAH" => ifunsetempty($value, "KEBUTUHAN_RIIL_JUMLAH", ""),
 							"KEBUTUHAN_RIIL_SATUAN" => ifunsetempty($value, "KEBUTUHAN_RIIL_SATUAN", ""),
-							"STATUS_PROSES" => ifunsetempty($params, "STATUS", 1),
+							"STATUS_PROSES" => ifunsetempty($params, "STATUS", 0),
 						);
 						if (!empty($paramsBarang["BARANG_PENGADAAN_ID"])) {
 							$paramsBarang["DIUBAH_PADA"] = date("Y-M-d H:i:s");
