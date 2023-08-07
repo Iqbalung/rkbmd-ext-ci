@@ -24,7 +24,7 @@ if(!isset($_SERVER['HTTP_HOST'])){
 $config['base_url'] =  "http://".$_SERVER['HTTP_HOST'].preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME'])=="\\"?"":dirname($_SERVER['SCRIPT_NAME'])).'/';
 
 
-$config['site'] = "https://rkbmd-banjarnegara.id";
+$config['site'] = "http://rkbmd-banjarnegara.id";
 /*
 |--------------------------------------------------------------------------
 | Index File

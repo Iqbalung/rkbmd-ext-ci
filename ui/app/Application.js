@@ -27,9 +27,9 @@ if(env=='local'){
     };
 }else{
     var api = {
-        siteurl: 'https://rkbmd-banjarnegara.id',
-        baseurl: 'https://rkbmd-banjarnegara.id',
-        apiurl: 'https://rkbmd-banjarnegara.id/api/index.php/'
+        siteurl: 'http://rkbmd-banjarnegara.id',
+        baseurl: 'http://rkbmd-banjarnegara.id',
+        apiurl: 'http://rkbmd-banjarnegara.id/api/index.php/'
     };
     var Ext = Ext || {}; // Ext namespace won't be defined yet...
 
@@ -41,7 +41,7 @@ if(env=='local'){
 
             }
         };
-        xhttp.open("POST", "https://rkbmd-banjarnegara.id" + "/api/index.php/Pptkis/get_fasilitas/login/is_login", false);
+        xhttp.open("POST", "http://rkbmd-banjarnegara.id" + "/api/index.php/Pptkis/get_fasilitas/login/is_login", false);
         xhttp.send();
     };
 
