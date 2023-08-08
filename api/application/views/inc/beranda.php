@@ -1,4 +1,7 @@
-<main style="background: #a8a8a8 url(<?php echo base_url('api/media/images/home_bg.png'); ?>) 100% ; background-size:cover; ">
+<div style="height: 200px;background:url(<?php echo base_url('api/media/images/bg-profil.png'); ?>) 100% center;background-size:cover;">
+
+
+	</div>
 	<div class="container center">
 		<div class="row" style="margin-bottom:0px;">
 			<div class="col s12 l6 offset-l3 center">
@@ -11,9 +14,7 @@
 				<br>
 				<br>
 				<br>
-				Tenaga Kerja, Penyalur Pekerjaan, Penyedia Pekerjaan terhubung dalam komunitas.<br>
-				Koyoku mempermudah <b>pencarian kerja</b> dan <b>penempatan serta perlindungan kerja</b> diluar negeri, <b>hemat waktu</b> dan <b>biaya</b>.<br>
-				Bergabunglah bersama kami dan dapatkan hasil yang terbaik.
+				<center><h1 style="color: blue;">RKBMD BPPKAD</h1></center>
 				<br>
 				<br>
 				<br>

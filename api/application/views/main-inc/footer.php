@@ -25,10 +25,10 @@
           </div>  
           <div class="col l4 s12">
 
-            <strong>Thamrin City Office Park Blok AA-02</strong><br />
-            <strong>Jl. Thamrin Boulevard - Jakarta Pusat 10230 <br>
-            Telp (021) 31997486<br>
-            Email info@koyoku.com</strong>
+            <strong>Graha Permai Land</strong><br />
+            <strong>Blok L No 2 - Banjarnegara <br>
+            Telp 085747818383<br>
+            Email iqbalung@gmail.com</strong>
             <br>
             <a href="https://twitter.com/koyoku_id">
               <img href="https://twitter.com/koyoku_id" src="<?php echo base_url('api/media/images/twitter-icon.png'); ?>" height="30" width="30"></a>
@@ -46,7 +46,7 @@
         <div class="footer-copyright">
           <div class="container">
            <div class="center">
-            Hak Cipta © 2017 PT. TRASPAC Makmur Sejahtera          
+            Hak Cipta © CV. Karya Inovasi Anak Bangsa          
             </div>
           </div>
         </div>

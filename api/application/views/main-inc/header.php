@@ -63,8 +63,8 @@
               <li><a class="drop_daftar red-text hide" href="#!" data-activates="drop_daftar">
                  Daftar<i class="material-icons right">arrow_drop_down</i>
                 </a></li>
-              <li><a href="<?php echo base_url('sign_up'); ?>" class="red-text"><?php   echo $this->lang->line('reg'); ?></a></li>
-              <li><a href="<?php echo base_url('sign_in'); ?>" class="red-text"><?php   echo $this->lang->line('login'); ?></a></li>
+              
+              <li><a href="<?php echo base_url('sign_in'); ?>" class="red-text">Login</a></li>
 			      </ul>            
 			    </div>
     		</div>
