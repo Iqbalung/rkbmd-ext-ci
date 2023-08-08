@@ -1,4 +1,4 @@
-<main style="background: #a8a8a8 url(<?php echo base_url('api/media/images/home_bg.png'); ?>) 100% ; background-size:cover; ">
+<main style="background: #a8a8a8 url(<?php echo base_url('api/media/images/bg-profil.png'); ?>) 100% ; background-size:cover; ">
 <br>
 <br>
 <div class="row">
