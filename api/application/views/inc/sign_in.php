@@ -5,7 +5,7 @@
     <form class="col s12 l4 offset-l4 card " id="form_login">
       <div class="row">
         <br>
-         <h5 class="center red-text"><?php  echo $this->lang->line('login_title'); ?></h5>
+         <h5 class="center red-text">Masuk RKBMD</h5>
       </div>
       <div class="row">
         <div class="col s12">
