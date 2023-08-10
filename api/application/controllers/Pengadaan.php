@@ -564,6 +564,8 @@ class Pengadaan extends MY_Controller {
 		$sheet->setCellValue('E'.$rowIndex, "Paraf");
 		for ($i=1; $i <= 2; $i++) { 
 			$rowIndex++;
+			$sheet->getRowDimension($rowIndex)->setRowHeight(40);
+			$sheet->getStyle('A'.$rowIndex)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
 			$sheet->setCellValue('A'.$rowIndex, $i);
 		}
 

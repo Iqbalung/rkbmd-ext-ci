@@ -208,6 +208,8 @@ class Penghapusan extends MY_Controller {
 		$sheet->setCellValue('F'.$rowIndex, "Paraf");
 		for ($i=1; $i <= 2; $i++) { 
 			$rowIndex++;
+			$sheet->getRowDimension($rowIndex)->setRowHeight(40);
+			$sheet->getStyle('B'.$rowIndex)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
 			$sheet->setCellValue('B'.$rowIndex, $i);
 		}
 
