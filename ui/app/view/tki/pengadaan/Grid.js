@@ -4,6 +4,8 @@ Ext.define('koyoku.view.tki.pengadaan.Grid', {
 	requires: [
 		'koyoku.store.pengadaan.Daftar'
 	],	
+	bufferedRenderer: false,
+    runInViewport: false,
 	initComponent: function() {
 		var me = this;							
 		Ext.apply(me, {			

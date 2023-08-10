@@ -4,6 +4,8 @@ Ext.define('koyoku.view.tki.pemanfaatan.Grid', {
 	requires: [
 		'koyoku.store.pemanfaatan.Daftar'
 	],
+	bufferedRenderer: false,
+    runInViewport: false,
 	initComponent: function() {
 		var me = this;
 		
