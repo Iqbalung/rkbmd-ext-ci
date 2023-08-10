@@ -79,6 +79,35 @@ class Pemeliharaan extends MY_Controller {
 		echo json_encode($out);
 	}
 
+	
+	private function footerTelahDiperiksa($rowIndex, $sheet)
+	{
+		$rowIndex = $rowIndex+2;
+		$sheet->setCellValue('A'.$rowIndex, "Telah diperiksa");
+		$rowIndex++;
+		$startFooter = $rowIndex;
+		$sheet->setCellValue('A'.$rowIndex, "No");
+		$sheet->setCellValue('B'.$rowIndex, "Nama");
+		$sheet->setCellValue('C'.$rowIndex, "Jabatan");
+		$sheet->setCellValue('D'.$rowIndex, "Tgl");
+		$sheet->setCellValue('E'.$rowIndex, "Paraf");
+		for ($i=1; $i <= 2; $i++) { 
+			$rowIndex++;
+			$sheet->setCellValue('A'.$rowIndex, $i);
+		}
+
+		$styleArray = array(
+			'borders' => array(
+				'allborders' => array(
+					'style' => PHPExcel_Style_Border::BORDER_THIN
+				)
+			)
+		);
+		$sheet->getStyle('A'.$startFooter.":E".$rowIndex)->applyFromArray($styleArray);
+
+		return $rowIndex;
+	}
+
 	public function cetak_daftar()
 	{				
 			$this->load->library('excel');
@@ -328,6 +357,8 @@ class Pemeliharaan extends MY_Controller {
 			
 			}
 
+			$this->footerTelahDiperiksa($rowIndex, $sheet);
+
 			$fileName = "Laporan Pemelihraan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 			header('Content-Disposition: attachment;filename="'.$fileName.'"');
@@ -503,6 +534,8 @@ class Pemeliharaan extends MY_Controller {
 
 			
 			}
+
+			$this->footerTelahDiperiksa($rowIndex, $sheet);
 			
 			$fileName = "Laporan Usulan Pemeliharaan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -662,6 +695,8 @@ class Pemeliharaan extends MY_Controller {
 
 			
 			}
+
+			$this->footerTelahDiperiksa($rowIndex, $sheet);
 			
 			$fileName = "Laporan Telaah Pemeliharaan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -683,7 +718,7 @@ class Pemeliharaan extends MY_Controller {
 	}
 
 	public function cetak_final()
-	{						
+	{								
 			$this->load->library('excel');			
 			$template = $this->config->item("template_cetak")."laporan_pemeliharaan_final.xlsx";		
 			$objReader = PHPExcel_IOFactory::createReader('Excel2007');
@@ -821,6 +856,8 @@ class Pemeliharaan extends MY_Controller {
 			
 			}
 			
+			$this->footerTelahDiperiksa($rowIndex, $sheet);
+
 			$fileName = "Laporan Final Pemeliharaan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 			header('Content-Disposition: attachment;filename="'.$fileName.'"');

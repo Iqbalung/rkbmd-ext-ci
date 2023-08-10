@@ -162,7 +162,7 @@ class Pemanfaatan extends MY_Controller {
 				$sheet->getStyle('B'.$startIndex.":F".$rowIndex)->applyFromArray($styleArray);
 			}
 
-			
+			$this->footerTelahDiperiksa($rowIndex, $sheet);
 			
 			$fileName = "Laporan Pemanfaatan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -185,6 +185,33 @@ class Pemanfaatan extends MY_Controller {
 
 	}
 
+	private function footerTelahDiperiksa($rowIndex, $sheet)
+	{
+		$rowIndex = $rowIndex+2;
+		$sheet->setCellValue('B'.$rowIndex, "Telah diperiksa");
+		$rowIndex++;
+		$startFooter = $rowIndex;
+		$sheet->setCellValue('B'.$rowIndex, "No");
+		$sheet->setCellValue('C'.$rowIndex, "Nama");
+		$sheet->setCellValue('D'.$rowIndex, "Jabatan");
+		$sheet->setCellValue('E'.$rowIndex, "Tgl");
+		$sheet->setCellValue('F'.$rowIndex, "Paraf");
+		for ($i=1; $i <= 2; $i++) { 
+			$rowIndex++;
+			$sheet->setCellValue('B'.$rowIndex, $i);
+		}
+
+		$styleArray = array(
+			'borders' => array(
+				'allborders' => array(
+					'style' => PHPExcel_Style_Border::BORDER_THIN
+				)
+			)
+		);
+		$sheet->getStyle('B'.$startFooter.":F".$rowIndex)->applyFromArray($styleArray);
+
+		return $rowIndex;
+	}
 	
 
 }
