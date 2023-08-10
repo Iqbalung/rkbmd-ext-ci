@@ -49,7 +49,11 @@ class M_bidang extends CI_Model{
 	{
 		$res = $this->db->query("
 			UPDATE MASTER_BIDANG 
-			SET BIDANG_NAMA = '".$params['BIDANG_NAMA']."'
+			SET BIDANG_NAMA = '".$params['BIDANG_NAMA']."', 
+			BIDANG_PEJABAT = '".$params['BIDANG_PEJABAT']."',
+			BIDANG_PEJABAT_NRP = '".$params['BIDANG_PEJABAT_NRP']."',
+			BIDANG_ALAMAT = '".$params['BIDANG_ALAMAT']."'
+			
 			where ROWID = '".$params['ROWID']."'
 		");
 		return $res;
