@@ -33,7 +33,7 @@ Ext.define('koyoku.view.master.bidang.Form_bidang', {
             columnWidth: 0.7,
         }, {
             xtype: 'textfield',
-            fieldLabel: 'NRP Pejabat',
+            fieldLabel: 'NIP Pejabat',
             name: 'BIDANG_PEJABAT_NRP',
             columnWidth: 0.7,
         }, {
