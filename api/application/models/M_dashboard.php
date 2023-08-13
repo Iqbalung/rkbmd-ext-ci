@@ -129,7 +129,7 @@ class M_dashboard extends CI_Model{
 			$q = $this->db->query("
 				SELECT 
 					MS.*,
-					COALESCE((STS_PENGADAAN.JUMLAH + STS_PEMANFAATAN.JUMLAH + STS_PEMELIHARAAN.JUMLAH + STS_PENGHAPUSAN.JUMLAH), 0) AS JUMLAH
+					COALESCE((STS_PENGADAAN.JUMLAH + IFNULL(STS_PEMANFAATAN.JUMLAH,0) + STS_PEMELIHARAAN.JUMLAH + STS_PENGHAPUSAN.JUMLAH), 0) AS JUMLAH
 				FROM (
 					select 'orange' as CLS, 'Jumlah Draft' as LABEL, '0' STATUS union
 					select 'green' as CLS, 'Jumlah Diajukan' as LABEL, '1' STATUS union
