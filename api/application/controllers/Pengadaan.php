@@ -376,7 +376,9 @@ class Pengadaan extends MY_Controller {
 			
 			}
 			
-			$this->footerTelahDiperiksa($rowIndex, $sheet);
+			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);		
+
+			$this->footerTelahDiperiksa($rowIndex, $sheet, true, $pejabatOpd);
 
 			$fileName = "Laporan Telaah Pengadaan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -551,11 +553,26 @@ class Pengadaan extends MY_Controller {
 
 	}
 
-	private function footerTelahDiperiksa($rowIndex, $sheet)
+	private function footerTelahDiperiksa($rowIndex, $sheet, $isTtd = false, $pejabat = array())
 	{
 		$rowIndex = $rowIndex+2;
 		$sheet->setCellValue('A'.$rowIndex, "Telah diperiksa");
+		if ($isTtd) {
+			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('J'.$rowIndex, "Banjarnegara, ". create_time_indonesia2(date("d/m/Y")));
+		}
 		$rowIndex++;
+		if ($isTtd) {
+			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('J'.$rowIndex, "Disetujui, ");
+		}
+		$rowIndex++;
+
+		if ($isTtd) {
+			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('J'.$rowIndex, "Penggunaa Barang Milik Daerah");
+		}
+
 		$startFooter = $rowIndex;
 		$sheet->setCellValue('A'.$rowIndex, "No");
 		$sheet->setCellValue('B'.$rowIndex, "Nama");
@@ -577,6 +594,20 @@ class Pengadaan extends MY_Controller {
 			)
 		);
 		$sheet->getStyle('A'.$startFooter.":E".$rowIndex)->applyFromArray($styleArray);
+		
+		if ($isTtd) {
+			// $sheet->mergeCells('J'.($rowIndex-1).':M'.$rowIndex);			
+			$rowIndex++;
+			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('J'.$rowIndex, $pejabat["NAMA"]);
+			$rowIndex++;
+			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('J'.$rowIndex, "NIP." . $pejabat["NIP"]);
+			$sheet->getStyle('J'.($startFooter-2).":J".$rowIndex)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
+			);
+		}
+
 
 		return $rowIndex;
 	}

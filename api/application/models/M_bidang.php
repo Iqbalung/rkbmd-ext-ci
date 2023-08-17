@@ -71,7 +71,27 @@ class M_bidang extends CI_Model{
 	function get_root()
 	{
 		$this->db->where("LENGTH( BIDANG_ID ) - LENGTH(REPLACE ( BIDANG_ID, '.', '' )) = ", "1");
-		return $this->db->get("MASTER_BIDANG");
+		return $this->db
+		->get("MASTER_BIDANG");
+	}
+
+	function get_pejabat($id)
+	{
+		$this->db->where("BIDANG_ID", $id);
+		$res = $this->db->get('MASTER_BIDANG');
+		$out = array(
+			"OPD" => "",
+			"NAMA" => "",
+			"NIP" => "",		
+		);
+		if ($res->num_rows() > 0) {
+			$out = array(
+				"OPD" => $res->row()->BIDANG_NAMA,
+				"NAMA" => $res->row()->BIDANG_PEJABAT,
+				"NIP" => $res->row()->BIDANG_PEJABAT_NRP,
+			);	
+		}
+		return $out;
 	}
 
 }
