@@ -27,6 +27,12 @@ class Bidang extends MY_Controller {
 		$res = $this->M_bidang->get($params);
 		$data = array();		
 		foreach ($res->result_array() as $key) {
+				if ($params['from_session']) {
+					if ($params["BIDANG_ID"] == $key["BIDANG_ID"]) {
+						continue;
+					}
+					
+				}
 				$id = $key['BIDANG_ID'];	
 				$params = array(
 					'BIDANG_ID' => $id,

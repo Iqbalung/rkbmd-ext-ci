@@ -4,6 +4,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Penghapusan extends MY_Controller {
+
+	private $usergroupAdmin = "1";
+	private $usergroupTelaah = "2";
+	private $usergroupOPD = "3";
+	
 	function __construct(){
 		parent::__construct();
 		$this->load->model('M_penghapusan');
@@ -171,7 +176,23 @@ class Penghapusan extends MY_Controller {
 				
 			}
 
-			$this->footerTelahDiperiksa($rowIndex, $sheet);
+			
+			$usergroupId = $this->session->userdata("USERGROUP_ID");			
+			$cetakTtd = false;
+			$cetakParaf = true;
+			
+			if ($usergroupId == $this->usergroupAdmin) {
+				$cetakTtd = true;
+			}						
+
+			if ($usergroupId == $this->usergroupOPD) {
+				$cetakTtd = true;
+				$cetakParaf = false;
+			}
+		
+			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);	
+
+			$this->footerTelahDiperiksa($rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd);
 			
 			$fileName = "Laporan Penghapusan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -195,22 +216,48 @@ class Penghapusan extends MY_Controller {
 	}
 
 	
-	private function footerTelahDiperiksa($rowIndex, $sheet)
+	private function footerTelahDiperiksa($rowIndex, $sheet, $isParaf = true, $isTtd = false, $pejabat = array())
 	{
 		$rowIndex = $rowIndex+2;
-		$sheet->setCellValue('B'.$rowIndex, "Telah diperiksa");
+		if ($isParaf) {
+			$sheet->setCellValue('B'.$rowIndex, "Telah diperiksa");
+		}
+
+		if ($isTtd) {
+			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('J'.$rowIndex, "Banjarnegara, ". create_time_indonesia2(date("d/m/Y")));
+		}
+
 		$rowIndex++;
+
+		if ($isTtd) {
+			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('J'.$rowIndex, "Disetujui, ");
+		}
+
+		$rowIndex++;
+		if ($isTtd) {
+			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('J'.$rowIndex, "Pengelola Barang Milik Daerah");
+		}
+		
 		$startFooter = $rowIndex;
-		$sheet->setCellValue('B'.$rowIndex, "No");
-		$sheet->setCellValue('C'.$rowIndex, "Nama");
-		$sheet->setCellValue('D'.$rowIndex, "Jabatan");
-		$sheet->setCellValue('E'.$rowIndex, "Tgl");
-		$sheet->setCellValue('F'.$rowIndex, "Paraf");
+		if ($isParaf) {
+			$sheet->setCellValue('B'.$rowIndex, "No");
+			$sheet->setCellValue('C'.$rowIndex, "Nama");
+			$sheet->setCellValue('D'.$rowIndex, "Jabatan");
+			$sheet->setCellValue('E'.$rowIndex, "Tgl");
+			$sheet->setCellValue('F'.$rowIndex, "Paraf");
+		}
+
 		for ($i=1; $i <= 2; $i++) { 
 			$rowIndex++;
-			$sheet->getRowDimension($rowIndex)->setRowHeight(40);
-			$sheet->getStyle('B'.$rowIndex)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
-			$sheet->setCellValue('B'.$rowIndex, $i);
+
+			if ($isParaf) {
+				$sheet->getRowDimension($rowIndex)->setRowHeight(40);
+				$sheet->getStyle('B'.$rowIndex)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
+				$sheet->setCellValue('B'.$rowIndex, $i);
+			}
 		}
 
 		$styleArray = array(
@@ -220,7 +267,23 @@ class Penghapusan extends MY_Controller {
 				)
 			)
 		);
-		$sheet->getStyle('B'.$startFooter.":F".$rowIndex)->applyFromArray($styleArray);
+
+		if ($isParaf) {			
+			$sheet->getStyle('B'.$startFooter.":F".$rowIndex)->applyFromArray($styleArray);
+		}
+
+		if ($isTtd) {
+			// $sheet->mergeCells('J'.($rowIndex-1).':M'.$rowIndex);			
+			$rowIndex++;
+			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('J'.$rowIndex, $pejabat["NAMA"]);
+			$rowIndex++;
+			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('J'.$rowIndex, "NIP." . $pejabat["NIP"]);
+			$sheet->getStyle('J'.($startFooter-2).":J".$rowIndex)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
+			);
+		}	
 
 		return $rowIndex;
 	}

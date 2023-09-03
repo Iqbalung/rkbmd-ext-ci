@@ -4,6 +4,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pengadaan extends MY_Controller {
+
+	private $usergroupAdmin = "1";
+	private $usergroupTelaah = "2";
+	private $usergroupOPD = "3";
+
 	function __construct(){
 		parent::__construct();
 		$this->load->model('M_pengadaan');
@@ -89,7 +94,7 @@ class Pengadaan extends MY_Controller {
 			$template = $this->config->item("template_cetak")."laporan_pengadaan_usulan.xlsx";		
 			$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 			$objPHPExcel = $objReader->load($template);	
-		
+			
 			$params = array(
 				'PENGADAAN_ID' => ifunsetempty($_GET,'PENGADAAN_ID',''),
 				'BIDANG_ID' => ifunsetempty($_GET,'BIDANG_ID', $this->session->userdata('BIDANG_ID')),
@@ -218,7 +223,27 @@ class Pengadaan extends MY_Controller {
 			
 			}
 		
-			$this->footerTelahDiperiksa($rowIndex, $sheet);
+
+			$usergroupId = $this->session->userdata("USERGROUP_ID");			
+			$cetakTtd = false;
+			$cetakParaf = true;
+			
+			if ($usergroupId == $this->usergroupAdmin) {
+				$cetakTtd = true;
+			}						
+
+			if ($usergroupId == $this->usergroupOPD) {
+				$cetakTtd = true;
+				$cetakParaf = false;
+			}
+
+			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);		
+			
+			
+			$this->footerTelahDiperiksa($rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd, array(
+				"col_ttd" => "H",
+				"col_ttd2" => "K"
+			));
 			
 			$fileName = "Laporan Usulan Pengadaan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -241,161 +266,162 @@ class Pengadaan extends MY_Controller {
 
 	public function cetak_telaah()
 	{					
-			$this->load->library('excel');			
-			$template = $this->config->item("template_cetak")."laporan_pengadaan_telaah.xlsx";		
-			$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-			$objPHPExcel = $objReader->load($template);	
+		$this->load->library('excel');			
+		$template = $this->config->item("template_cetak")."laporan_pengadaan_telaah.xlsx";		
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($template);	
+	
+		$params = array(
+			'PENGADAAN_ID' => ifunsetempty($_GET,'PENGADAAN_ID',''),
+			'BIDANG_ID' => ifunsetempty($_GET,'BIDANG_ID', $this->session->userdata('BIDANG_ID')),
+			'TAHUN' => ifunsetempty($_GET,'TAHUN', $this->session->userdata('TAHUN')),
+			'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
+			'STATUS' => ifunset($_GET,'STATUS', '-1'),							
+		);
+		if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
+			$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+		}
+		$filterBidang = $params["BIDANG_ID"];
 		
-			$params = array(
-				'PENGADAAN_ID' => ifunsetempty($_GET,'PENGADAAN_ID',''),
-				'BIDANG_ID' => ifunsetempty($_GET,'BIDANG_ID', $this->session->userdata('BIDANG_ID')),
-				'TAHUN' => ifunsetempty($_GET,'TAHUN', $this->session->userdata('TAHUN')),
-				'PENCARIAN' => ifunsetempty($_GET,'PENCARIAN',''),		
-				'STATUS' => ifunset($_GET,'STATUS', '-1'),							
-			);
-			if (empty($params["BIDANG_ID"]) && $this->session->userdata('BIDANG_ID')) {
-				$params["BIDANG_ID"] = $this->session->userdata('BIDANG_ID');
+		$tahun = $params["TAHUN"];
+		if (empty($tahun)) {
+			$tahun = date("Y");			
+		}			
+		
+		$bidang = $this->M_bidang->get_root();								
+		
+		$startIndex = 13;
+		$rowIndex = $startIndex;
+		$sheet = $objPHPExcel->getActiveSheet();
+		$no = 1;			
+	
+		$sheet->setCellValue('A4', "TAHUN ".$tahun);
+
+		$mapBarang = array(
+			"C" => "BARANG_KODE",
+			"D" => "BARANG_NAMA",
+			"E" => "JUMLAH",
+			"F" => "SATUAN",
+			"G" => "KEBUTUHAN_MAKSIMUM_JUMLAH",
+			"H" => "KEBUTUHAN_MAKSIMUM_SATUAN",
+			"I" => "KEBUTUHAN_RIIL_JUMLAH",
+			"J" => "KEBUTUHAN_RIIL_SATUAN",				
+			"K" => "RENCANA_DISETUJUI_JUMLAH",
+			"L" => "RENCANA_DISETUJUI_SATUAN",				
+			"M" => "CARA_PEMENUHAN",
+			"N" => "KETERANGAN"
+		);
+		$endCol = "N";
+		foreach ($bidang->result_array() as $keyBidang => $value) {				
+			
+			if (!empty($filterBidang) && $value["BIDANG_ID"] != substr($filterBidang, 0, strlen($value["BIDANG_ID"]))) {
+				continue;
 			}
-			$filterBidang = $params["BIDANG_ID"];
-			
-			$tahun = $params["TAHUN"];
-			if (empty($tahun)) {
-				$tahun = date("Y");			
-			}			
-			
-			$bidang = $this->M_bidang->get_root();								
-			
-			$startIndex = 13;
-			$rowIndex = $startIndex;
-			$sheet = $objPHPExcel->getActiveSheet();
-			$no = 1;			
-		
-			$sheet->setCellValue('A4', "TAHUN ".$tahun);
+			$params["BIDANG_ID"] = $value["BIDANG_ID"];				
 
-			$mapBarang = array(
-				"C" => "BARANG_KODE",
-				"D" => "BARANG_NAMA",
-				"E" => "JUMLAH",
-				"F" => "SATUAN",
-				"G" => "KEBUTUHAN_MAKSIMUM_JUMLAH",
-				"H" => "KEBUTUHAN_MAKSIMUM_SATUAN",
-				"I" => "KEBUTUHAN_RIIL_JUMLAH",
-				"J" => "KEBUTUHAN_RIIL_SATUAN",				
-				"K" => "RENCANA_DISETUJUI_JUMLAH",
-				"L" => "RENCANA_DISETUJUI_SATUAN",				
-				"M" => "CARA_PEMENUHAN",
-				"N" => "KETERANGAN"
-			);
-			$endCol = "N";
-			foreach ($bidang->result_array() as $keyBidang => $value) {				
-				
-				if (!empty($filterBidang) && $value["BIDANG_ID"] != substr($filterBidang, 0, strlen($value["BIDANG_ID"]))) {
-					continue;
-				}
-				$params["BIDANG_ID"] = $value["BIDANG_ID"];				
+			$data = $this->M_pengadaan->get($params, true);
+			$dataCetakBidang = array();
+			$dataSubBidang = array();
+			if ($data->num_rows() > 0) {
+				$data = $data->result_array();
+				$dataGroup = array();
 
-				$data = $this->M_pengadaan->get($params, true);
-				$dataCetakBidang = array();
-				$dataSubBidang = array();
-				if ($data->num_rows() > 0) {
-					$data = $data->result_array();
-					$dataGroup = array();
-
-					foreach ($data as $rowGroup) {
-						
-						if (!isset($dataGroup[$rowGroup["PROGRAM_ID"]])) {	
-							
-							$dataGroup[$rowGroup["PROGRAM_ID"]] = array(
-								"PROGRAM_ID" => $rowGroup["PROGRAM_ID"],
-								"PROGRAM_NAMA" => $rowGroup["PROGRAM_NAMA"],
-								"DATA" => array(),
-								"DATA_BIDANG" => array(),
-								"DATA_SUB_BIDANG" => array()
-							);
-						}
-
-						$dataGroup[$rowGroup["PROGRAM_ID"]]["DATA"][] = $rowGroup;
-
-					}	
-								
-					$dataCetakBidang = $this->format_data_cetak($dataGroup, $value, false);						
+				foreach ($data as $rowGroup) {
 					
-					$paramsBidang = array(
-						"BIDANG_ID" => $value["BIDANG_ID"]
-					);																
-					$subBidang = $this->M_bidang->get($paramsBidang)->result_array();
-					foreach ($subBidang as $keySubBidang => $rowSubBidang)
-					{
-						$dataCetak = $this->format_data_cetak($dataGroup, $rowSubBidang);											
-						$dataCetak = array_values($dataCetak);						
-						if (count($dataCetak) > 0) {
-							$dataSubBidang[] = $dataCetak[0];
-						}
-
-
-					}
-				}
-				
-				if (count(array_values($dataCetakBidang)) == 0) {					
-					// $sheet->setCellValue('A'.$rowIndex, $no++);
-					$sheet->setCellValue('B'.$rowIndex, $value["BIDANG_NAMA"]);		
-					$sheet->getStyle('A'.$rowIndex.":".$endCol.$rowIndex)->applyFromArray(
-						array(
-							'fill' => array(
-								'type' => PHPExcel_Style_Fill::FILL_SOLID,
-								'color' => array('rgb' => '92D050')
-							)
-						)
-					);
-					$sheet->getStyle('A'.$rowIndex.":".$endCol.$rowIndex)->getFont()->setBold(true);						
-					$rowIndex++;					
-				} else {
-					$cetakDataBidang = $this->cetak_data($sheet, $no, $rowIndex, $dataCetakBidang, $mapBarang, true, "A", $endCol);				
-					$rowIndex = $cetakDataBidang["rowIndex"];
-					$no = $cetakDataBidang["no"];
-				}
-				
-				
-				$cetakDataSubBidang = $this->cetak_data($sheet, $no, $rowIndex, $dataSubBidang, $mapBarang, false, "A", $endCol);				
-				$rowIndex = $cetakDataSubBidang["rowIndex"];
-				$no = $cetakDataSubBidang["no"];
-				
-				$sheet->getStyle('A'.$startIndex.":A".$rowIndex)->getAlignment()->applyFromArray(
-							array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
+					if (!isset($dataGroup[$rowGroup["PROGRAM_ID"]])) {	
+						
+						$dataGroup[$rowGroup["PROGRAM_ID"]] = array(
+							"PROGRAM_ID" => $rowGroup["PROGRAM_ID"],
+							"PROGRAM_NAMA" => $rowGroup["PROGRAM_NAMA"],
+							"DATA" => array(),
+							"DATA_BIDANG" => array(),
+							"DATA_SUB_BIDANG" => array()
 						);
+					}
 
-				$styleArray = array(
-					'borders' => array(
-						'allborders' => array(
-							'style' => PHPExcel_Style_Border::BORDER_THIN
+					$dataGroup[$rowGroup["PROGRAM_ID"]]["DATA"][] = $rowGroup;
+
+				}	
+							
+				$dataCetakBidang = $this->format_data_cetak($dataGroup, $value, false);						
+				
+				$paramsBidang = array(
+					"BIDANG_ID" => $value["BIDANG_ID"]
+				);																
+				$subBidang = $this->M_bidang->get($paramsBidang)->result_array();
+				foreach ($subBidang as $keySubBidang => $rowSubBidang)
+				{
+					$dataCetak = $this->format_data_cetak($dataGroup, $rowSubBidang);											
+					$dataCetak = array_values($dataCetak);						
+					if (count($dataCetak) > 0) {
+						$dataSubBidang[] = $dataCetak[0];
+					}
+
+
+				}
+			}
+			
+			if (count(array_values($dataCetakBidang)) == 0) {					
+				// $sheet->setCellValue('A'.$rowIndex, $no++);
+				$sheet->setCellValue('B'.$rowIndex, $value["BIDANG_NAMA"]);		
+				$sheet->getStyle('A'.$rowIndex.":".$endCol.$rowIndex)->applyFromArray(
+					array(
+						'fill' => array(
+							'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							'color' => array('rgb' => '92D050')
 						)
 					)
 				);
-				$sheet->getStyle('A'.$startIndex.":".$endCol.$rowIndex)->applyFromArray($styleArray);
-
-			
+				$sheet->getStyle('A'.$rowIndex.":".$endCol.$rowIndex)->getFont()->setBold(true);						
+				$rowIndex++;					
+			} else {
+				$cetakDataBidang = $this->cetak_data($sheet, $no, $rowIndex, $dataCetakBidang, $mapBarang, true, "A", $endCol);				
+				$rowIndex = $cetakDataBidang["rowIndex"];
+				$no = $cetakDataBidang["no"];
 			}
 			
-			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);		
+			
+			$cetakDataSubBidang = $this->cetak_data($sheet, $no, $rowIndex, $dataSubBidang, $mapBarang, false, "A", $endCol);				
+			$rowIndex = $cetakDataSubBidang["rowIndex"];
+			$no = $cetakDataSubBidang["no"];
+			
+			$sheet->getStyle('A'.$startIndex.":A".$rowIndex)->getAlignment()->applyFromArray(
+						array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
+					);
 
-			$this->footerTelahDiperiksa($rowIndex, $sheet, true, $pejabatOpd);
+			$styleArray = array(
+				'borders' => array(
+					'allborders' => array(
+						'style' => PHPExcel_Style_Border::BORDER_THIN
+					)
+				)
+			);
+			$sheet->getStyle('A'.$startIndex.":".$endCol.$rowIndex)->applyFromArray($styleArray);
 
-			$fileName = "Laporan Telaah Pengadaan - $tahun.xlsx";
-			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-			header('Content-Disposition: attachment;filename="'.$fileName.'"');
-			header('Cache-Control: max-age=0');
-			// If you're serving to IE 9, then the following may be needed
-			header('Cache-Control: max-age=1');
+		
+		}
+		
+		$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);		
+		
 
-			// If you're serving to IE over SSL, then the following may be needed
-			header ('Expires: Mon, 26 Jul 2030 05:00:00 GMT'); // Date in the past
-			header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
-			header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-			header ('Pragma: public'); // HTTP/1.0
+		$this->footerTelahDiperiksa($rowIndex, $sheet, true, true, $pejabatOpd);
 
-			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-			$objWriter->save('php://output');
-			exit;
+		$fileName = "Laporan Telaah Pengadaan - $tahun.xlsx";
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="'.$fileName.'"');
+		header('Cache-Control: max-age=0');
+		// If you're serving to IE 9, then the following may be needed
+		header('Cache-Control: max-age=1');
+
+		// If you're serving to IE over SSL, then the following may be needed
+		header ('Expires: Mon, 26 Jul 2030 05:00:00 GMT'); // Date in the past
+		header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+		header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+		header ('Pragma: public'); // HTTP/1.0
+
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+		$objWriter->save('php://output');
+		exit;
 
 	}
 
@@ -553,57 +579,82 @@ class Pengadaan extends MY_Controller {
 
 	}
 
-	private function footerTelahDiperiksa($rowIndex, $sheet, $isTtd = false, $pejabat = array())
+	private function footerTelahDiperiksa($rowIndex, $sheet, $isParaf = true, $isTtd = false, $pejabat = array(), $conf = array())
 	{
-		$rowIndex = $rowIndex+2;
-		$sheet->setCellValue('A'.$rowIndex, "Telah diperiksa");
-		if ($isTtd) {
-			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
-			$sheet->setCellValue('J'.$rowIndex, "Banjarnegara, ". create_time_indonesia2(date("d/m/Y")));
+
+		$colTdd = "J";
+		$colTdd2 = "M";
+
+		if(is_array($conf)) {
+			$colTdd = ifunsetempty($conf, "col_ttd", "J");
+			$colTdd2 = ifunsetempty($conf, "col_ttd2", "M");
 		}
+
+
+		$rowIndex = $rowIndex+2;
+
+		if ($isParaf) {			
+			$sheet->setCellValue('A'.$rowIndex, "Telah diperiksa");
+		}
+
+		if ($isTtd) {
+			$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
+			$sheet->setCellValue($colTdd.$rowIndex, "Banjarnegara, ". create_time_indonesia2(date("d/m/Y")));
+		}
+
 		$rowIndex++;
 		if ($isTtd) {
-			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
-			$sheet->setCellValue('J'.$rowIndex, "Disetujui, ");
+			$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
+			$sheet->setCellValue($colTdd.$rowIndex, "Disetujui, ");
 		}
 		$rowIndex++;
 
 		if ($isTtd) {
-			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
-			$sheet->setCellValue('J'.$rowIndex, "Penggunaa Barang Milik Daerah");
+			$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
+			$sheet->setCellValue($colTdd.$rowIndex, "Penggunaa Barang Milik Daerah");
 		}
 
 		$startFooter = $rowIndex;
-		$sheet->setCellValue('A'.$rowIndex, "No");
-		$sheet->setCellValue('B'.$rowIndex, "Nama");
-		$sheet->setCellValue('C'.$rowIndex, "Jabatan");
-		$sheet->setCellValue('D'.$rowIndex, "Tgl");
-		$sheet->setCellValue('E'.$rowIndex, "Paraf");
-		for ($i=1; $i <= 2; $i++) { 
-			$rowIndex++;
-			$sheet->getRowDimension($rowIndex)->setRowHeight(40);
-			$sheet->getStyle('A'.$rowIndex)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
-			$sheet->setCellValue('A'.$rowIndex, $i);
+
+		if ($isParaf) {
+			$sheet->setCellValue('A'.$rowIndex, "No");
+			$sheet->setCellValue('B'.$rowIndex, "Nama");
+			$sheet->setCellValue('C'.$rowIndex, "Jabatan");
+			$sheet->setCellValue('D'.$rowIndex, "Tgl");
+			$sheet->setCellValue('E'.$rowIndex, "Paraf");
 		}
 
-		$styleArray = array(
-			'borders' => array(
-				'allborders' => array(
-					'style' => PHPExcel_Style_Border::BORDER_THIN
+		for ($i=1; $i <= 2; $i++) { 
+			$rowIndex++;
+
+			if ($isParaf) {
+				$sheet->getRowDimension($rowIndex)->setRowHeight(40);
+				$sheet->getStyle('A'.$rowIndex)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
+				$sheet->setCellValue('A'.$rowIndex, $i);
+			}
+		}
+
+		if ($isParaf) {
+			$styleArray = array(
+				'borders' => array(
+					'allborders' => array(
+						'style' => PHPExcel_Style_Border::BORDER_THIN
+					)
 				)
-			)
-		);
-		$sheet->getStyle('A'.$startFooter.":E".$rowIndex)->applyFromArray($styleArray);
+			);
+			
+			$sheet->getStyle('A'.$startFooter.":E".$rowIndex)->applyFromArray($styleArray);
+		}
 		
 		if ($isTtd) {
-			// $sheet->mergeCells('J'.($rowIndex-1).':M'.$rowIndex);			
+			// $sheet->mergeCells($colTdd.($rowIndex-1).':'.$colTdd2.$rowIndex);			
 			$rowIndex++;
-			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
-			$sheet->setCellValue('J'.$rowIndex, $pejabat["NAMA"]);
+			$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
+			$sheet->setCellValue($colTdd.$rowIndex, $pejabat["NAMA"]);
 			$rowIndex++;
-			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
-			$sheet->setCellValue('J'.$rowIndex, "NIP." . $pejabat["NIP"]);
-			$sheet->getStyle('J'.($startFooter-2).":J".$rowIndex)->getAlignment()->applyFromArray(
+			$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
+			$sheet->setCellValue($colTdd.$rowIndex, "NIP." . $pejabat["NIP"]);
+			$sheet->getStyle($colTdd.($startFooter-2).":J".$rowIndex)->getAlignment()->applyFromArray(
 				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
 			);
 		}

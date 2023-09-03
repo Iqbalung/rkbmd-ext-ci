@@ -4,6 +4,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pemeliharaan extends MY_Controller {
+
+	private $usergroupAdmin = "1";
+	private $usergroupTelaah = "2";
+	private $usergroupOPD = "3";
+
 	function __construct(){
 		parent::__construct();
 		$this->load->model('M_pemeliharaan');
@@ -80,10 +85,13 @@ class Pemeliharaan extends MY_Controller {
 	}
 
 	
-	private function footerTelahDiperiksa($rowIndex, $sheet, $isTtd = false, $pejabat = array())
+	private function footerTelahDiperiksa($rowIndex, $sheet, $isParaf = true, $isTtd = false, $pejabat = array(), $conf = array())
 	{
 		$rowIndex = $rowIndex+2;
-		$sheet->setCellValue('A'.$rowIndex, "Telah diperiksa");
+		if ($isParaf) {
+			$sheet->setCellValue('A'.$rowIndex, "Telah diperiksa");
+		}
+
 		if ($isTtd) {
 			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
 			$sheet->setCellValue('J'.$rowIndex, "Banjarnegara, ". create_time_indonesia2(date("d/m/Y")));
@@ -101,16 +109,22 @@ class Pemeliharaan extends MY_Controller {
 		}
 
 		$startFooter = $rowIndex;
-		$sheet->setCellValue('A'.$rowIndex, "No");
-		$sheet->setCellValue('B'.$rowIndex, "Nama");
-		$sheet->setCellValue('C'.$rowIndex, "Jabatan");
-		$sheet->setCellValue('D'.$rowIndex, "Tgl");
-		$sheet->setCellValue('E'.$rowIndex, "Paraf");
+		if ($isParaf) {			
+			$sheet->setCellValue('A'.$rowIndex, "No");
+			$sheet->setCellValue('B'.$rowIndex, "Nama");
+			$sheet->setCellValue('C'.$rowIndex, "Jabatan");
+			$sheet->setCellValue('D'.$rowIndex, "Tgl");
+			$sheet->setCellValue('E'.$rowIndex, "Paraf");
+			
+		}
+		
 		for ($i=1; $i <= 2; $i++) { 
 			$rowIndex++;
-			$sheet->getRowDimension($rowIndex)->setRowHeight(40);
-			$sheet->getStyle('A'.$rowIndex)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
-			$sheet->setCellValue('A'.$rowIndex, $i);
+			if ($isParaf) {			
+				$sheet->getRowDimension($rowIndex)->setRowHeight(40);
+				$sheet->getStyle('A'.$rowIndex)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
+				$sheet->setCellValue('A'.$rowIndex, $i);
+			}
 		}
 
 		$styleArray = array(
@@ -120,8 +134,9 @@ class Pemeliharaan extends MY_Controller {
 				)
 			)
 		);
-
-		$sheet->getStyle('A'.$startFooter.":E".$rowIndex)->applyFromArray($styleArray);
+		if ($isParaf) {			
+			$sheet->getStyle('A'.$startFooter.":E".$rowIndex)->applyFromArray($styleArray);
+		}
 
 		if ($isTtd) {
 			// $sheet->mergeCells('J'.($rowIndex-1).':M'.$rowIndex);			
@@ -566,7 +581,22 @@ class Pemeliharaan extends MY_Controller {
 			
 			}
 
-			$this->footerTelahDiperiksa($rowIndex, $sheet);
+			$usergroupId = $this->session->userdata("USERGROUP_ID");			
+			$cetakTtd = false;
+			$cetakParaf = true;
+			
+			if ($usergroupId == $this->usergroupAdmin) {
+				$cetakTtd = true;
+			}						
+
+			if ($usergroupId == $this->usergroupOPD) {
+				$cetakTtd = true;
+				$cetakParaf = false;
+			}
+		
+			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);		
+
+			$this->footerTelahDiperiksa($rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd);
 			
 			$fileName = "Laporan Usulan Pemeliharaan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -729,7 +759,7 @@ class Pemeliharaan extends MY_Controller {
 
 			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);
 			
-			$this->footerTelahDiperiksa($rowIndex, $sheet, true, $pejabatOpd);
+			$this->footerTelahDiperiksa($rowIndex, $sheet, true, true, $pejabatOpd);
 			
 			$fileName = "Laporan Telaah Pemeliharaan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

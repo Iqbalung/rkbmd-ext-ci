@@ -4,6 +4,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pemanfaatan extends MY_Controller {
+
+	private $usergroupAdmin = "1";
+	private $usergroupTelaah = "2";
+	private $usergroupOPD = "3";
+
 	function __construct(){
 		parent::__construct();
 		$this->load->model('M_pemanfaatan');
@@ -162,7 +167,22 @@ class Pemanfaatan extends MY_Controller {
 				$sheet->getStyle('B'.$startIndex.":F".$rowIndex)->applyFromArray($styleArray);
 			}
 
-			$this->footerTelahDiperiksa($rowIndex, $sheet);
+			$usergroupId = $this->session->userdata("USERGROUP_ID");			
+			$cetakTtd = false;
+			$cetakParaf = true;
+			
+			if ($usergroupId == $this->usergroupAdmin) {
+				$cetakTtd = true;
+			}						
+
+			if ($usergroupId == $this->usergroupOPD) {
+				$cetakTtd = true;
+				$cetakParaf = false;
+			}
+		
+			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);	
+
+			$this->footerTelahDiperiksa($rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd);
 			
 			$fileName = "Laporan Pemanfaatan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -185,32 +205,63 @@ class Pemanfaatan extends MY_Controller {
 
 	}
 
-	private function footerTelahDiperiksa($rowIndex, $sheet)
+	private function footerTelahDiperiksa($rowIndex, $sheet, $isParaf = true, $isTtd = false, $pejabat = array())
 	{
-		$rowIndex = $rowIndex+2;
-		$sheet->setCellValue('B'.$rowIndex, "Telah diperiksa");
-		$rowIndex++;
-		$startFooter = $rowIndex;
-		$sheet->setCellValue('B'.$rowIndex, "No");
-		$sheet->setCellValue('C'.$rowIndex, "Nama");
-		$sheet->setCellValue('D'.$rowIndex, "Jabatan");
-		$sheet->setCellValue('E'.$rowIndex, "Tgl");
-		$sheet->setCellValue('F'.$rowIndex, "Paraf");
-		for ($i=1; $i <= 2; $i++) { 
+		if ($isParaf) {
+			$rowIndex = $rowIndex+2;
+			$sheet->setCellValue('B'.$rowIndex, "Telah diperiksa");
+			$rowIndex++;			
+			$startFooter = $rowIndex;
+			$sheet->setCellValue('B'.$rowIndex, "No");
+			$sheet->setCellValue('C'.$rowIndex, "Nama");
+			$sheet->setCellValue('D'.$rowIndex, "Jabatan");
+			$sheet->setCellValue('E'.$rowIndex, "Tgl");
+			$sheet->setCellValue('F'.$rowIndex, "Paraf");
+			for ($i=1; $i <= 2; $i++) { 
+				$rowIndex++;
+				$sheet->getRowDimension($rowIndex)->setRowHeight(40);
+				$sheet->getStyle('B'.$rowIndex)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
+				$sheet->setCellValue('B'.$rowIndex, $i);
+			}
+	
+			$styleArray = array(
+				'borders' => array(
+					'allborders' => array(
+						'style' => PHPExcel_Style_Border::BORDER_THIN
+					)
+				)
+			);
+
+			$sheet->getStyle('B'.$startFooter.":F".$rowIndex)->applyFromArray($styleArray);
 			$rowIndex++;
-			$sheet->getRowDimension($rowIndex)->setRowHeight(40);
-			$sheet->getStyle('B'.$rowIndex)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
-			$sheet->setCellValue('B'.$rowIndex, $i);
 		}
 
-		$styleArray = array(
-			'borders' => array(
-				'allborders' => array(
-					'style' => PHPExcel_Style_Border::BORDER_THIN
-				)
-			)
-		);
-		$sheet->getStyle('B'.$startFooter.":F".$rowIndex)->applyFromArray($styleArray);
+		
+		if ($isTtd) {
+			$startFooter = $rowIndex;
+			$rowIndex = $rowIndex+2;	
+			// $sheet->mergeCells('F'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('F'.$rowIndex, "Banjarnegara, ". create_time_indonesia2(date("d/m/Y")));
+			$rowIndex++;
+			// $sheet->mergeCells('F'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('F'.$rowIndex, "Disetujui, ");
+			$rowIndex++;
+			// $sheet->mergeCells('F'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('F'.$rowIndex, "Pengelola Barang Milik Daerah");
+			$rowIndex++;
+			$rowIndex++;
+			$rowIndex++;
+			// $sheet->mergeCells('F'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('F'.$rowIndex, $pejabat["NAMA"]);
+			$rowIndex++;
+			// $sheet->mergeCells('F'.$rowIndex.':M'.$rowIndex);
+			$sheet->setCellValue('F'.$rowIndex, "NIP." . $pejabat["NIP"]);
+			$sheet->getStyle('F'.($startFooter-2).":F".$rowIndex)->getAlignment()->applyFromArray(
+				array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
+			);			
+
+		}
+		
 
 		return $rowIndex;
 	}
