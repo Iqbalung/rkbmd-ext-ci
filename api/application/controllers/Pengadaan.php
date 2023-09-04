@@ -558,7 +558,26 @@ class Pengadaan extends MY_Controller {
 			
 			}
 			
-			$this->footerTelahDiperiksa($rowIndex, $sheet);
+			$usergroupId = $this->session->userdata("USERGROUP_ID");			
+			$cetakTtd = false;
+			$cetakParaf = true;
+			
+			if ($usergroupId == $this->usergroupAdmin) {
+				$cetakTtd = true;
+			}						
+
+			if ($usergroupId == $this->usergroupOPD) {
+				$cetakTtd = true;
+				$cetakParaf = false;
+			}
+
+			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);		
+			
+			
+			$this->footerTelahDiperiksa($rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd, array(
+				"col_ttd" => "H",
+				"col_ttd2" => "K"
+			));
 
 			$fileName = "Laporan Final Pengadaan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
