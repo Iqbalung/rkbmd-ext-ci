@@ -44,7 +44,41 @@ Ext.define('koyoku.view.dashboard.Main', {
 							'<div class="label">{LABEL}</div>',
                           '</div>'],
 
-			}]
+			}, {
+				xtype: 'panel',
+				layout: {
+					type: 'hbox',		
+				},
+				cls: 'top-pengajuan',
+				// title: 'V',				
+				width: '100%',
+				items:[
+				{
+					xtype: 'dataview',
+					width: '100%',
+					height: 150,
+					flex: 10,					
+					store: {
+						type: 'storeRealisasiKegiatan',
+						storeId : 'storeRealisasiKegiatan',
+						autoLoad: true,
+					},
+					cls: 'my-top-pengajuan',
+					itemCls: 'my-card-top-pengajuan',
+					itemTpl: ['<div class="my-card-top-pengajuan-item">',
+								'<div class="label">{BIDANG_NAMA}</div>',
+								'<progress value="{JUMLAH_TERINPUT}" max="{JUMLAH_KEGIATAN}"></progress>',
+								'<div class="nilai">Rp. {REALISASI}</div>',
+							'</div>'],
+
+				},
+				{
+					flex: 3,
+					height: 150,			
+					xtype: 'chart_top_pengajuan', 					
+					
+				}
+				]
 			}, {
 				xtype: 'list_pengajuan',
 				cls: 'list-pengajuan',

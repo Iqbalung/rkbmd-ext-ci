@@ -254,7 +254,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		var cboStatus = Ext.getCmp("page_renbut").down('grid_pemeliharaan').down('#combo_status');
 		var tree_bidang = Ext.getCmp("page_renbut").down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
-		if(rec.length>0){
+		if(rec.length>0 && rec[0].data.BIDANG_ID){
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		store.proxy.extraParams.PENCARIAN = fcari.getValue();
@@ -474,7 +474,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		var cboStatus = Ext.getCmp("page_renbut").down('grid_pemanfaatan').down('#combo_status');
 		var tree_bidang = Ext.getCmp("page_renbut").down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
-		if(rec.length>0){
+		if(rec.length>0 && rec[0].data.BIDANG_ID){
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		store.proxy.extraParams.PENCARIAN = fcari.getValue();
@@ -695,7 +695,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		var cboStatus = Ext.getCmp("page_renbut").down('grid_penghapusan').down('#combo_status');
 		var tree_bidang = Ext.getCmp("page_renbut").down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
-		if(rec.length>0){
+		if(rec.length>0 && rec[0].data.BIDANG_ID){
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		store.proxy.extraParams.PENCARIAN = fcari.getValue();		
@@ -915,7 +915,7 @@ Ext.define('koyoku.view.tki.Controller', {
 		var cboStatus = Ext.getCmp("page_renbut").down('grid_pengadaan').down('#combo_status');
 		var tree_bidang = Ext.getCmp("page_renbut").down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
-		if(rec.length>0){
+		if(rec.length>0 && rec[0].data.BIDANG_ID){
 			store.proxy.extraParams.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		store.proxy.extraParams.PENCARIAN = fcari.getValue();
@@ -934,14 +934,14 @@ Ext.define('koyoku.view.tki.Controller', {
 		var cboStatus = Ext.getCmp("page_renbut").down('grid_pengadaan').down('#combo_status');
 		var tree_bidang = Ext.getCmp("page_renbut").down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
-		if(rec.length>0){
+		if(rec.length>0 && rec[0].data.BIDANG_ID){
 			params.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		params.PENCARIAN = fcari.getValue();
 		if (cboStatus.getValue()) {
 			params.STATUS = cboStatus.getValue();
 		}
-
+		params.tx_ = new Date().getTime();
 		return params;
 	},
 
@@ -975,14 +975,14 @@ Ext.define('koyoku.view.tki.Controller', {
 		var cboStatus = Ext.getCmp("page_renbut").down('grid_pemeliharaan').down('#combo_status');
 		var tree_bidang = Ext.getCmp("page_renbut").down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
-		if(rec.length>0){
+		if(rec.length>0 && rec[0].data.BIDANG_ID){
 			params.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		params.PENCARIAN = fcari.getValue();
 		if (cboStatus.getValue()) {
 			params.STATUS = cboStatus.getValue();
 		}
-
+		params.tx_ = new Date().getTime();
 		return params;
 	},
 
@@ -1016,14 +1016,14 @@ Ext.define('koyoku.view.tki.Controller', {
 		var cboStatus = Ext.getCmp("page_renbut").down('grid_pemanfaatan').down('#combo_status');
 		var tree_bidang = Ext.getCmp("page_renbut").down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
-		if(rec.length>0){
+		if(rec.length>0 && rec[0].data.BIDANG_ID){
 			params.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		params.PENCARIAN = fcari.getValue();
 		if (cboStatus.getValue()) {
 			params.STATUS = cboStatus.getValue();
 		}
-
+		params.tx_ = new Date().getTime();
 		return params;
 	},
 
@@ -1043,14 +1043,14 @@ Ext.define('koyoku.view.tki.Controller', {
 		var cboStatus = Ext.getCmp("page_renbut").down('grid_penghapusan').down('#combo_status');
 		var tree_bidang = Ext.getCmp("page_renbut").down('tree_bidang');
 		var rec = tree_bidang.getSelectionModel().getSelection();
-		if(rec.length>0){
+		if(rec.length>0 && rec[0].data.BIDANG_ID){
 			params.BIDANG_ID = rec[0].data.BIDANG_ID;			
 		}
 		params.PENCARIAN = fcari.getValue();
 		if (cboStatus.getValue()) {
 			params.STATUS = cboStatus.getValue();
 		}
-
+		params.tx_ = new Date().getTime();
 		return params;
 	},
 
