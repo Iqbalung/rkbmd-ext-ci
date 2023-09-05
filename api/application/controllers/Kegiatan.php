@@ -55,7 +55,7 @@ class Kegiatan extends MY_Controller {
 			'KEGIATAN_NAMA' => ifunsetempty($_POST,'KEGIATAN_NAMA',''),
 			'KEGIATAN_SLUG' => slug(ifunsetempty($_POST,'KEGIATAN_NAMA','')),
 			'KEGIATAN_ID' => ifunsetempty($_POST,'KEGIATAN_ID',''),
-			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',''),
+			'BIDANG_ID' => ifunsetempty($_POST,'BIDANG_ID',$this->session->userdata('BIDANG_ID')),
 			'PROGRAM_ID' => ifunsetempty($_POST,'PROGRAM_ID',''),
 			'TAHUN' => ifunsetempty($_POST,'TAHUN', $this->session->userdata('TAHUN')),
 			'UPDATE' => ifunsetempty($_POST, 'UPDATE',''),
