@@ -295,7 +295,8 @@ class Pengadaan extends MY_Controller {
 		$sheet = $objPHPExcel->getActiveSheet();
 		$no = 1;			
 	
-		$sheet->setCellValue('A4', "TAHUN ".$tahun);
+		$sheet->setCellValue('A4', "PEMERINTAH KABUPATEN BANJARNEGARA");
+		$sheet->setCellValue('A5', "TAHUN ".$tahun);
 
 		$mapBarang = array(
 			"C" => "BARANG_KODE",
