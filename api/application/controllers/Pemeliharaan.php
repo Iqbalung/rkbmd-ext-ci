@@ -85,29 +85,50 @@ class Pemeliharaan extends MY_Controller {
 	}
 
 	
-	private function footerTelahDiperiksa($rowIndex, $sheet, $isParaf = true, $isTtd = false, $pejabat = array(), $conf = array())
+	private function footerTelahDiperiksa($tipe, $rowIndex, $sheet, $isParaf = true, $isTtd = false, $pejabat = array())
 	{
 		$rowIndex = $rowIndex+2;
 		if ($isParaf) {
 			$sheet->setCellValue('A'.$rowIndex, "Telah diperiksa");
 		}
 
+
 		if ($isTtd) {
-			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
-			$sheet->setCellValue('J'.$rowIndex, "Banjarnegara, ". create_time_indonesia2(date("d/m/Y")));
+				
+			if ($tipe == "usulan") {
+				$rowIndex++;
+				$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+				$sheet->setCellValue('J'.$rowIndex, "Kepala ". $pejabat["OPD"]);
+			} else if ($tipe == "final") {
+				$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+				$sheet->setCellValue('J'.$rowIndex, $pejabat["OPD"]." Kab. Banjarnegara");			
+			} else {
+				$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+				$sheet->setCellValue('J'.$rowIndex, "Banjarnegara, ". create_time_indonesia2(date("d/m/Y")));
+			}
 		}
+
+		
 		$rowIndex++;
 		if ($isTtd) {
 			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
-			$sheet->setCellValue('J'.$rowIndex, "Disetujui, ");
+			if ($tipe == "usulan") {
+				$sheet->setCellValue('J'.$rowIndex, "Selaku Pengguna Barang");
+			} else if ($tipe == "final") {				
+				$sheet->setCellValue('J'.$rowIndex, "Selaku Pengelola Barang");
+			} else {
+				$sheet->setCellValue('J'.$rowIndex, "Disetujui, ");
+			}
 		}
-		$rowIndex++;
-
+		
 		if ($isTtd) {
-			$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
-			$sheet->setCellValue('J'.$rowIndex, "Pengelola Barang Milik Daerah");
+			if ($tipe == "telaah") {
+				$rowIndex++;
+				$sheet->mergeCells('J'.$rowIndex.':M'.$rowIndex);
+				$sheet->setCellValue('J'.$rowIndex, "Pengelola Barang Milik Daerah");
+			}
 		}
-
+		
 		$startFooter = $rowIndex;
 		if ($isParaf) {			
 			$sheet->setCellValue('A'.$rowIndex, "No");
@@ -582,21 +603,20 @@ class Pemeliharaan extends MY_Controller {
 			}
 
 			$usergroupId = $this->session->userdata("USERGROUP_ID");			
-			$cetakTtd = false;
-			$cetakParaf = true;
+			$cetakTtd = true;
+			$cetakParaf = false;
 			
 			if ($usergroupId == $this->usergroupAdmin) {
 				$cetakTtd = true;
 			}						
 
 			if ($usergroupId == $this->usergroupOPD) {
-				$cetakTtd = true;
-				$cetakParaf = false;
+				$cetakTtd = true;				
 			}
 		
 			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);		
 
-			$this->footerTelahDiperiksa($rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd);
+			$this->footerTelahDiperiksa("usulan", $rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd);
 			
 			$fileName = "Laporan Usulan Pemeliharaan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -759,7 +779,7 @@ class Pemeliharaan extends MY_Controller {
 
 			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);
 			
-			$this->footerTelahDiperiksa($rowIndex, $sheet, true, true, $pejabatOpd);
+			$this->footerTelahDiperiksa("telaah", $rowIndex, $sheet, true, true, $pejabatOpd);
 			
 			$fileName = "Laporan Telaah Pemeliharaan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -921,21 +941,20 @@ class Pemeliharaan extends MY_Controller {
 			
 			$usergroupId = $this->session->userdata("USERGROUP_ID");			
 			$cetakTtd = false;
-			$cetakParaf = true;
+			$cetakParaf = false;
 			
 			if ($usergroupId == $this->usergroupAdmin) {
 				$cetakTtd = true;
 			}						
 
 			if ($usergroupId == $this->usergroupOPD) {
-				$cetakTtd = true;
-				$cetakParaf = false;
+				$cetakTtd = true;				
 			}
 
 			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);		
 			
 			
-			$this->footerTelahDiperiksa($rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd);
+			$this->footerTelahDiperiksa("final", $rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd);
 
 			$fileName = "Laporan Final Pemeliharaan - $tahun.xlsx";
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

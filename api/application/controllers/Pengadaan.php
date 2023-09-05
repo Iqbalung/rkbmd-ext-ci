@@ -226,7 +226,7 @@ class Pengadaan extends MY_Controller {
 
 			$usergroupId = $this->session->userdata("USERGROUP_ID");			
 			$cetakTtd = false;
-			$cetakParaf = true;
+			$cetakParaf = false;
 			
 			if ($usergroupId == $this->usergroupAdmin) {
 				$cetakTtd = true;
@@ -240,7 +240,7 @@ class Pengadaan extends MY_Controller {
 			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);		
 			
 			
-			$this->footerTelahDiperiksa($rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd, array(
+			$this->footerTelahDiperiksa("usulan", $rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd, array(
 				"col_ttd" => "H",
 				"col_ttd2" => "K"
 			));
@@ -404,7 +404,7 @@ class Pengadaan extends MY_Controller {
 		$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);		
 		
 
-		$this->footerTelahDiperiksa($rowIndex, $sheet, true, true, $pejabatOpd);
+		$this->footerTelahDiperiksa("telaah", $rowIndex, $sheet, true, true, $pejabatOpd);
 
 		$fileName = "Laporan Telaah Pengadaan - $tahun.xlsx";
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -559,24 +559,23 @@ class Pengadaan extends MY_Controller {
 			}
 			
 			$usergroupId = $this->session->userdata("USERGROUP_ID");			
-			$cetakTtd = false;
-			$cetakParaf = true;
+			$cetakTtd = true;
+			$cetakParaf = false;
 			
 			if ($usergroupId == $this->usergroupAdmin) {
 				$cetakTtd = true;
 			}						
 
 			if ($usergroupId == $this->usergroupOPD) {
-				$cetakTtd = true;
-				$cetakParaf = false;
+				$cetakTtd = true;				
 			}
 
 			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);		
 			
 			
-			$this->footerTelahDiperiksa($rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd, array(
-				"col_ttd" => "H",
-				"col_ttd2" => "K"
+			$this->footerTelahDiperiksa("final", $rowIndex, $sheet, $cetakParaf, $cetakTtd, $pejabatOpd, array(
+				"col_ttd" => "E",
+				"col_ttd2" => "G"
 			));
 
 			$fileName = "Laporan Final Pengadaan - $tahun.xlsx";
@@ -598,7 +597,7 @@ class Pengadaan extends MY_Controller {
 
 	}
 
-	private function footerTelahDiperiksa($rowIndex, $sheet, $isParaf = true, $isTtd = false, $pejabat = array(), $conf = array())
+	private function footerTelahDiperiksa($tipe, $rowIndex, $sheet, $isParaf = true, $isTtd = false, $pejabat = array(), $conf = array())
 	{
 
 		$colTdd = "J";
@@ -614,23 +613,40 @@ class Pengadaan extends MY_Controller {
 
 		if ($isParaf) {			
 			$sheet->setCellValue('A'.$rowIndex, "Telah diperiksa");
-		}
+		}		
 
-		if ($isTtd) {
-			$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
-			$sheet->setCellValue($colTdd.$rowIndex, "Banjarnegara, ". create_time_indonesia2(date("d/m/Y")));
+		if ($isTtd) {			
+			if ($tipe == "usulan") {
+				$rowIndex++;
+				$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
+				$sheet->setCellValue($colTdd.$rowIndex, "Kepala ". $pejabat["OPD"]);
+			} else if ($tipe == "final") {
+				$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
+				$sheet->setCellValue($colTdd.$rowIndex, $pejabat["OPD"]." Kab. Banjarnegara");			
+			} else {
+				$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
+				$sheet->setCellValue($colTdd.$rowIndex, "Banjarnegara, ". create_time_indonesia2(date("d/m/Y")));
+			}
 		}
 
 		$rowIndex++;
 		if ($isTtd) {
 			$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
-			$sheet->setCellValue($colTdd.$rowIndex, "Disetujui, ");
+			if ($tipe == "usulan") {
+				$sheet->setCellValue($colTdd.$rowIndex, "Selaku Pengguna Barang");
+			} else if ($tipe == "final") {				
+				$sheet->setCellValue($colTdd.$rowIndex, "Selaku Pengelola Barang");
+			} else {
+				$sheet->setCellValue($colTdd.$rowIndex, "Disetujui, ");
+			}
 		}
-		$rowIndex++;
-
+		
 		if ($isTtd) {
-			$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
-			$sheet->setCellValue($colTdd.$rowIndex, "Penggunaa Barang Milik Daerah");
+			if ($tipe == "telaah") {
+				$rowIndex++;
+				$sheet->mergeCells($colTdd.$rowIndex.':'.$colTdd2.$rowIndex);
+				$sheet->setCellValue($colTdd.$rowIndex, "Penggunaa Barang Milik Daerah");
+			}
 		}
 
 		$startFooter = $rowIndex;

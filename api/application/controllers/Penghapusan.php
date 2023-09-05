@@ -178,16 +178,15 @@ class Penghapusan extends MY_Controller {
 
 			
 			$usergroupId = $this->session->userdata("USERGROUP_ID");			
-			$cetakTtd = false;
-			$cetakParaf = true;
+			$cetakTtd = true;
+			$cetakParaf = false;
 			
 			if ($usergroupId == $this->usergroupAdmin) {
 				$cetakTtd = true;
 			}						
 
 			if ($usergroupId == $this->usergroupOPD) {
-				$cetakTtd = true;
-				$cetakParaf = false;
+				$cetakTtd = true;				
 			}
 		
 			$pejabatOpd = $this->M_bidang->get_pejabat($filterBidang);	
