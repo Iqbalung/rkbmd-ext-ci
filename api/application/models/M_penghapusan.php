@@ -18,7 +18,7 @@ class M_penghapusan extends CI_Model{
 				else
 					sk.SUB_KEGIATAN_NAMA
 				end as NAMA_KEGIATAN,
-				sk.SUB_KEGIATAN_NAMA,
+				CONCAT(sk.SUB_KEGIATAN_NAMA,'-',b.BIDANG_NAMA) AS SUB_KEGIATAN_NAMA,
 				p.BIDANG_ID,
 				p.KEGIATAN_ID,
 				p.SUB_KEGIATAN_ID,

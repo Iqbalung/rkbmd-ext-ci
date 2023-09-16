@@ -18,7 +18,7 @@ class M_pemeliharaan extends CI_Model{
 				else
 					sk.SUB_KEGIATAN_NAMA
 				end as NAMA_KEGIATAN,
-				sk.SUB_KEGIATAN_NAMA,
+				CONCAT(sk.SUB_KEGIATAN_NAMA,'-',b.BIDANG_NAMA) AS SUB_KEGIATAN_NAMA,
 				k.KEGIATAN_NAMA as PARENT_KEGIATAN,
 				p.BIDANG_ID,
 				p.KEGIATAN_ID,
@@ -38,6 +38,7 @@ class M_pemeliharaan extends CI_Model{
 			$this->db->join("MASTER_PROGRAM pg","pg.PROGRAM_ID = p.PROGRAM_ID", "LEFT");
 			$this->db->join("MASTER_KEGIATAN k","k.KEGIATAN_ID = p.KEGIATAN_ID", "LEFT");
 			$this->db->join("MASTER_SUB_KEGIATAN sk","sk.SUB_KEGIATAN_ID = p.SUB_KEGIATAN_ID", "LEFT");
+			$this->db->join("MASTER_BIDANG b","b.BIDANG_ID = p.BIDANG_ID", "LEFT");
 
 			if (isset($params["TAHUN"]) && !empty($params["TAHUN"])) {
 				$this->db->where("p.TAHUN", $params["TAHUN"]);
