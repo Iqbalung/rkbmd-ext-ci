@@ -37,7 +37,7 @@ Ext.define('koyoku.view.master.kompetensi.Form_kegiatan', {
                     xtype:'button',
                     handler:'bidang',
                     width : '20%',
-                    text: 'Pilih Bidang'
+                    text: 'Pilih OPD'
                 }]
             }, */
             {

@@ -8,7 +8,7 @@ Ext.define('koyoku.view.master.program.Controller', {
         tree = cmp.down('tree_bidang').getSelectionModel().getSelection();
 
         if (tree.length < 1) {
-            Ext.Msg.alert('Peringatan', 'Pilih Bidang Terlebih Dahulu');
+            Ext.Msg.alert('Peringatan', 'Pilih OPD Terlebih Dahulu');
             return ;
         }
 

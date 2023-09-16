@@ -10,7 +10,7 @@ Ext.define('koyoku.view.master.kompetensi.Controller', {
         tree = cmp.down('tree_bidang').getSelectionModel().getSelection();
 
         if (tree.length < 1) {
-            Ext.Msg.alert('Peringatan', 'Pilih Bidang Terlebih Dahulu');
+            Ext.Msg.alert('Peringatan', 'Pilih OPD Terlebih Dahulu');
             return ;
         }
         
@@ -106,7 +106,7 @@ Ext.define('koyoku.view.master.kompetensi.Controller', {
         selected = grid.getSelectionModel().getSelection();
         console.log(selected[0]);
         if (me.length < 1) {
-            Ext.Msg.alert('Peringatan', 'Pilih Bidang Terlebih Dahulu');
+            Ext.Msg.alert('Peringatan', 'Pilih OPD Terlebih Dahulu');
         } else {
             var windowForm = Ext.create('koyoku.view.master.kompetensi.Form_sub_kegiatan', {
                 title: 'Tambah Sub Kegiatan'
