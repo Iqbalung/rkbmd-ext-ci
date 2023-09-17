@@ -19,7 +19,8 @@ class M_pengadaan extends CI_Model{
 					sk.SUB_KEGIATAN_NAMA
 				end as NAMA_KEGIATAN,
 				k.KEGIATAN_NAMA as PARENT_KEGIATAN,
-				CONCAT(sk.SUB_KEGIATAN_NAMA,'-',b.BIDANG_NAMA) AS SUB_KEGIATAN_NAMA,
+				sk.SUB_KEGIATAN_NAMA,
+				CONCAT(sk.SUB_KEGIATAN_NAMA,'-',b.BIDANG_NAMA) AS GROUP_NAMA,
 				p.BIDANG_ID,
 				p.KEGIATAN_ID,
 				p.SUB_KEGIATAN_ID,
@@ -65,7 +66,7 @@ class M_pengadaan extends CI_Model{
 				$this->db->group_end();
 			}
 
-			$this->db->order_by("sk.SUB_KEGIATAN_NAMA ASC");
+			$this->db->order_by("CONCAT(sk.SUB_KEGIATAN_NAMA,'-',b.BIDANG_NAMA) ASC");
 			$this->db->order_by("pb.BARANG_NAMA ASC");
 
 			$res = $this->db->get("PENGADAAN p");

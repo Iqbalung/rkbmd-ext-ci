@@ -24579,3 +24579,29 @@ h1 {
 .text-white {
     color: white;
 }
+
+.row-draft {
+    background-color: #fdfdb1;
+}
+
+.row-diajukan {
+    background-color: #c2dcff;
+}
+
+.row-disetujui {
+    background-color: #c2ffd4;
+}
+
+.ft-box {
+    display: inline-flex;
+}
+
+.ft-box .color {
+    height: 18px;
+    width: 18px;
+    border: 1px solid #b0b0b0;
+}
+
+.ft-box .text {
+    padding: 3px;
+}

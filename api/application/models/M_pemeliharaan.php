@@ -18,7 +18,8 @@ class M_pemeliharaan extends CI_Model{
 				else
 					sk.SUB_KEGIATAN_NAMA
 				end as NAMA_KEGIATAN,
-				CONCAT(sk.SUB_KEGIATAN_NAMA,'-',b.BIDANG_NAMA) AS SUB_KEGIATAN_NAMA,
+				sk.SUB_KEGIATAN_NAMA,
+				CONCAT(sk.SUB_KEGIATAN_NAMA,'-',b.BIDANG_NAMA) AS GROUP_NAMA,
 				k.KEGIATAN_NAMA as PARENT_KEGIATAN,
 				p.BIDANG_ID,
 				p.KEGIATAN_ID,
@@ -63,7 +64,7 @@ class M_pemeliharaan extends CI_Model{
 				$this->db->or_where("pb.BARANG_KODE LIKE ", "%".$params["PENCARIAN"]."%");
 				$this->db->group_end();
 			}
-			$this->db->order_by("sk.SUB_KEGIATAN_NAMA ASC");
+			$this->db->order_by("CONCAT(sk.SUB_KEGIATAN_NAMA,'-',b.BIDANG_NAMA) ASC");
 			$this->db->order_by("pb.BARANG_NAMA ASC");
 			$res = $this->db->get("PEMELIHARAAN p");
 			
