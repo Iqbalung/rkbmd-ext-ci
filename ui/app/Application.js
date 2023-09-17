@@ -27,8 +27,8 @@ if(env=='local'){
     };
 }else{
     var api = {
-        siteurl: 'http://rkbmd-banjarnegara.id',
-        baseurl: 'http://rkbmd-banjarnegara.id',
+        siteurl: 'https://rkbmd.banjarnegarakab.go.id',
+        baseurl: 'https://rkbmd.banjarnegarakab.go.id',
         apiurl: 'https://rkbmd.banjarnegarakab.go.id/api/index.php'
     };
     var Ext = Ext || {}; // Ext namespace won't be defined yet...
@@ -41,7 +41,7 @@ if(env=='local'){
 
             }
         };
-        xhttp.open("POST", "http://rkbmd-banjarnegara.id" + "/api/index.php/Pptkis/get_fasilitas/login/is_login", false);
+        xhttp.open("POST", "https://rkbmd.banjarnegarakab.go.id" + "/api/index.php/Pptkis/get_fasilitas/login/is_login", false);
         xhttp.send();
     };
 

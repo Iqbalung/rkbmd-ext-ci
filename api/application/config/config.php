@@ -24,7 +24,11 @@ if(!isset($_SERVER['HTTP_HOST'])){
 $config['base_url'] =  "https://".$_SERVER['HTTP_HOST'].preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME'])=="\\"?"":dirname($_SERVER['SCRIPT_NAME'])).'/';
 
 
+<<<<<<< HEAD
 $config['site'] = "https://rkbmd.banjarnegara.go.id";
+=======
+$config['site'] = "https://rkbmd.banjarnegarakab.go.id";
+>>>>>>> 017a579dda25c8ef7cf8f6f8cf423a2373d86358
 /*
 |--------------------------------------------------------------------------
 | Index File
