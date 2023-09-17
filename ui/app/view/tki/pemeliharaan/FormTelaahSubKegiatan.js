@@ -46,6 +46,7 @@ Ext.define('koyoku.view.tki.pemeliharaan.FormTelaahSubKegiatan', {
                     store: Ext.create('Ext.data.Store', {
 	    				storeId: 'store_barang_telaah',
                         fields:[ 'BARANG_PEMELIHARAAn_ID', 'BARANG_ID', 'BARANG_NAMA', 'BARANG_KODE', 'USULAN_JUMLAH', 'USULAN_SATUAN',
+                                'KONDISI_BAIK', 'KONDISI_RUSAK_BERAT', 'KONDISI_RUSAK_RINGAN', 
                                 'KETERANGAN', 'PEMELIHARAAN_NAMA', 'RENCANA_JUMLAH', 'RENCANA_SATUAN'
                             ],					
                                     
@@ -71,20 +72,12 @@ Ext.define('koyoku.view.tki.pemeliharaan.FormTelaahSubKegiatan', {
                         align : 'center',
                         width: 125,
                     }, {
-                        text: 'USULAN',
+                        text: 'Kondisi',
                         align : 'center',
                         columns: [
-                            {
-                                text: 'JUMLAH',
-                                align : 'center',
-                                dataIndex: 'USULAN_JUMLAH',
-                                width: 90,
-                            }, 
-                            {
-                                text: 'SATUAN',
-                                dataIndex: 'USULAN_SATUAN',
-                                width: 120,
-                            },
+                            { text: 'B',  align: 'center', dataIndex: 'KONDISI_BAIK' },
+                            { text: 'RR', align: 'center', dataIndex: 'KONDISI_RUSAK_RINGAN' },
+                            { text: 'RB', align: 'center', dataIndex: 'KONDISI_RUSAK_BERAT'}
                         ]
                     }, {
                         text: 'RENCANA KEBUTUHAN </br>PEMELIHARAAN YANG </br>DISETUJUI',
