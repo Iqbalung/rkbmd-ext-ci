@@ -45,7 +45,7 @@ Ext.define('koyoku.view.master.pengguna.Form_pengguna', {
             },
             {
                 xtype: 'bidangfield',
-                fieldLabel: 'Bidang',
+                fieldLabel: 'OPD',
                 modal: true,
             },
         ],

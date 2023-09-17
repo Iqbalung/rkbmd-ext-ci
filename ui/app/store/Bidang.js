@@ -17,7 +17,7 @@ Ext.define('koyoku.store.Bidang', {
         }
     },
     root: {
-        BIDANG_NAMA : 'KAMUS BIDANG',
+        BIDANG_NAMA : 'OPD',
         // BIDANG_NAMA : __dtlg_.user["BIDANG_NAMA"] && __dtlg_.user.BIDANG_NAMA != '' ? __dtlg_.user.BIDANG_NAMA : 'KAMUS BIDANG',BIDANG_NAMA : __dtlg_.user["BIDANG_NAMA"] && __dtlg_.user.BIDANG_NAMA != '' ? __dtlg_.user.BIDANG_NAMA : 'KAMUS BIDANG',
         id: '0',
         expanded: true,

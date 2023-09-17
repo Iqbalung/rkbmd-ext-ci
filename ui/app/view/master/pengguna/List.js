@@ -23,8 +23,8 @@ Ext.define('koyoku.view.master.pengguna.List', {
         dataIndex: 'NAMA',
         flex: 1,
     }, {
-        text: 'No KTP',
-        dataIndex: 'NO_KTP',
+        text: 'OPD',
+        dataIndex: 'BIDANG_NAMA',
         width: 150,
     }, {
         text: 'Tanggal Dibuat',
