@@ -1,3 +1,10 @@
+
+
+<script>
+	if (localStorage.is_login == "yes") {
+	  window.location = "<?php echo base_url('ui'); ?>";      
+	}  	
+</script>
 <div style="height: 200px;background:url(<?php echo base_url('api/media/images/bg-profil.png'); ?>) 100% center;background-size:cover;">
 
 

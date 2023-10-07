@@ -37,8 +37,6 @@ class Login extends CI_Controller{
 			'success' => false,
 			'msg' => 'Gagal Login'
 		);
-
-		print_r($q->num_rows());
 		
 		if($q->num_rows()>0){
 
