@@ -137,7 +137,7 @@ Ext.define('koyoku.Application', {
             success: function(form, action, value) {
                 Ext.Msg.alert('Informasi', "Berhasil keluar aplikasi");
                 localStorage.is_login = false;
-                window.location.reload();
+                window.location = api.siteurl
             },
             failure: function(form) {
                 Ext.Msg.alert('Error', form.responseText);

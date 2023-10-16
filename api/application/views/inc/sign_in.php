@@ -25,12 +25,19 @@
           <input id="password" type="password" name="password" class="validate">
           <label for="password">Password</label>
         </div>
-      </div>
-      
+      </div>      
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix"></i>          
+          <select name="tahun" id="tahun">                          
+          </select>
+          <label for="tahun">Tahun</label>
+        </div>
+      </div>            
       <div class="row">
         <btn class="waves-effect col s12 red btn" id="login">Login</btn>
       </div>
-      <div class="row center">
+      <div class="row center hide">
         <?php  echo $this->lang->line('login_guide'); ?> <a href='http://www.koyoku.com/demo/sign_in'>di sini.</a>
       </div>
     </form>
@@ -39,7 +46,24 @@
 <br>
 </main>
 <script type="text/javascript">
-  $(document).ready(function(){
+  $(document).ready(function(){      
+
+    if (localStorage.is_login == "yes") {
+      window.location = "<?php echo base_url('ui'); ?>";      
+    }  
+
+      $.ajax({
+        type: 'GET',
+        url: '<?php echo site_url('login/get_tahun'); ?>',
+        dataType: 'json',        
+        success: function(data) {
+          data.items.forEach(row => {            
+            $("#tahun").append(`<option value=` + row.TAHUN + `>` + row.TAHUN + `</option>`);
+          });
+          $('select').material_select();
+        }        
+      });
+
        $("#login").click(function() {
         $.ajax({
           type: 'POST',
@@ -47,8 +71,10 @@
           dataType: 'json',
           data: $('#form_login').serialize(),
           success: function(data) {
+            console.log(data, data.success);
             if(data.success == true) {
               localStorage.setItem("is_login", 'yes');
+              localStorage.setItem("IS_BIDANG_TELAAH", data.IS_BIDANG_TELAAH);
               window.location = "<?php echo base_url('ui'); ?>";
             } else {
               $("#add_err").removeClass("yellow-text");
@@ -62,6 +88,7 @@
           }
         });
         return false;
-      });
+    });
+      
   });
 </script>
