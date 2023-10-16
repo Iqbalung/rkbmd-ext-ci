@@ -23,6 +23,7 @@ class M_pemeliharaan extends CI_Model{
 				k.KEGIATAN_NAMA as PARENT_KEGIATAN,
 				p.BIDANG_ID,
 				p.KEGIATAN_ID,
+				b.BIDANG_NAMA,
 				p.SUB_KEGIATAN_ID,
 				pb.*,
 				CASE WHEN pb.STATUS_PROSES = 2 THEN
