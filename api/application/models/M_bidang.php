@@ -12,11 +12,11 @@ class M_bidang extends CI_Model{
 		if(!$params['from_session']){
 			$q = $this->db->query("SELECT * FROM MASTER_BIDANG where 
 				BIDANG_ID LIKE ?
-				AND LENGTH(BIDANG_ID) - LENGTH(REPLACE(BIDANG_ID, '.', '')) = LENGTH(?) - LENGTH(REPLACE(?, '.', '')) + 1
+				AND LENGTH(BIDANG_ID) - LENGTH(REPLACE(BIDANG_ID, '.', '')) = LENGTH(?) - LENGTH(REPLACE(?, '.', '')) + 1 ORDER BY URUTAN
 				",array($params['BIDANG_ID'].'%',$params['BIDANG_ID'],$params['BIDANG_ID']));
 		}else{
 			$q = $this->db->query("SELECT * FROM MASTER_BIDANG where 
-				BIDANG_ID LIKE ?
+				BIDANG_ID LIKE ? ORDER BY URUTAN
 				",array($params['BIDANG_ID'].'%'));
 			
 		}

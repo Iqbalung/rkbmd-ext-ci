@@ -25,6 +25,7 @@ class M_pengadaan extends CI_Model{
 				p.KEGIATAN_ID,
 				p.SUB_KEGIATAN_ID,
 				b.BIDANG_NAMA,
+				b.URUTAN,
 				pb.*,
 				CASE WHEN pb.STATUS_PROSES = 2 THEN
 					'Disetujui'
@@ -67,7 +68,7 @@ class M_pengadaan extends CI_Model{
 			}
 
 			$this->db->order_by("CONCAT(sk.SUB_KEGIATAN_NAMA,'-',b.BIDANG_NAMA) ASC");
-			$this->db->order_by("pb.BARANG_NAMA ASC");
+			$this->db->order_by("pb.BARANG_NAMA ASC, b.URUTAN");
 
 			$res = $this->db->get("PENGADAAN p");
 
