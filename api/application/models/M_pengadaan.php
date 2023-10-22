@@ -67,8 +67,10 @@ class M_pengadaan extends CI_Model{
 				$this->db->group_end();
 			}
 
+			$this->db->order_by("b.URUTAN ASC");
+
 			$this->db->order_by("CONCAT(sk.SUB_KEGIATAN_NAMA,'-',b.BIDANG_NAMA) ASC");
-			$this->db->order_by("pb.BARANG_NAMA ASC, b.URUTAN");
+			$this->db->order_by("pb.BARANG_NAMA ASC");
 
 			$res = $this->db->get("PENGADAAN p");
 
