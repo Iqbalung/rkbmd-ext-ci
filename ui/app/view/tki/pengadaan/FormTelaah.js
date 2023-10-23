@@ -26,6 +26,13 @@ Ext.define('koyoku.view.tki.pengadaan.FormTelaah', {
                             name: 'BARANG_PENGADAAN_ID',
                     }, 
                     {
+                        fieldLabel: 'OPD',
+                        xtype: 'textfield',
+                        readOnly: true,
+                        width: '95%',
+                        name: 'BIDANG_NAMA'            
+                    },
+                    {
                         fieldLabel: 'PROGRAM',
                         xtype: 'textfield',
                         readOnly: true,
