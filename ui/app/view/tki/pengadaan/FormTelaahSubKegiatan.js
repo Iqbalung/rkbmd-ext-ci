@@ -25,6 +25,13 @@ Ext.define('koyoku.view.tki.pengadaan.FormTelaahSubKegiatan', {
                             name: 'SUB_KEGIATAN_ID',
                     },                     
                     {
+                        fieldLabel: 'OPD',
+                        xtype: 'textfield',
+                        readOnly: true,
+                        width: '95%',
+                        name: 'BIDANG_NAMA'            
+                    },
+                    {
                         fieldLabel: 'KEGIATAN',
                         xtype: 'textfield',
                         readOnly: true,
