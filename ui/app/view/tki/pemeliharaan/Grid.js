@@ -79,6 +79,11 @@ Ext.define('koyoku.view.tki.pemeliharaan.Grid', {
 		dataIndex: 'STATUS_BARANG',
 		width: 200,
 		align : 'center'		
+	},{
+		text: 'SATUAN',
+		dataIndex: 'SATUAN',
+		width: 200,
+		align : 'center'		
 	}, {
 		text: 'KONDISI',
 		align : 'center',
