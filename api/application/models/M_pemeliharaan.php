@@ -394,6 +394,7 @@ class M_pemeliharaan extends CI_Model{
 	function save_telaah_sub_kegiatan($params = array())
 	{
 		
+		print_r($params);
 			
 			$dataBarang = ifunsetempty($params, 'DATA_BARANG_TELAAH', array());	
 			$tanggalTelaah = date("Y-m-d H:i:s");
@@ -445,7 +446,7 @@ class M_pemeliharaan extends CI_Model{
 			}
 
 		
-		return $out;
+		return $res;
 	}
 	
 
