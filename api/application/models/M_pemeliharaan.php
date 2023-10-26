@@ -393,7 +393,7 @@ class M_pemeliharaan extends CI_Model{
 
 	function save_telaah_sub_kegiatan($params = array())
 	{
-		try {
+		
 			
 			$dataBarang = ifunsetempty($params, 'DATA_BARANG_TELAAH', array());	
 			$tanggalTelaah = date("Y-m-d H:i:s");
@@ -444,13 +444,7 @@ class M_pemeliharaan extends CI_Model{
 				);
 			}
 
-		} catch (\Throwable $e) {			
-			$out = array(
-				'success' => false,
-				'msg' => 'Gagal Disimpan',
-				"error" => $e->getMessage()
-			);
-		}
+		
 		return $out;
 	}
 	
