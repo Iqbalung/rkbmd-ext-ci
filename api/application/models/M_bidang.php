@@ -71,9 +71,9 @@ class M_bidang extends CI_Model{
 	function get_root()
 	{
 		$this->db->where("LENGTH( BIDANG_ID ) - LENGTH(REPLACE ( BIDANG_ID, '.', '' )) = ", "1");
-		$this->db->order_by("URUTAN ASC");
-		return $this->db->->get("MASTER_BIDANG");
-
+		return $this->db
+		->get("MASTER_BIDANG");
+		
 	}
 
 	function get_pejabat($id)
