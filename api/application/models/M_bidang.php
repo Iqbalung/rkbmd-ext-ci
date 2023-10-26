@@ -72,7 +72,8 @@ class M_bidang extends CI_Model{
 	{
 		$this->db->where("LENGTH( BIDANG_ID ) - LENGTH(REPLACE ( BIDANG_ID, '.', '' )) = ", "1");
 		return $this->db
-		->get("MASTER_BIDANG");
+		->get("MASTER_BIDANG")->order_by("URUTAN ASC");;
+
 	}
 
 	function get_pejabat($id)
