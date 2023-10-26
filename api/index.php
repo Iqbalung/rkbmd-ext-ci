@@ -1,11 +1,11 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 if (!isset($_SESSION)
     && !headers_sent()
 ) {
 	ini_set('display_errors', 0);
     session_start();
-	error_reporting(0);
+	//error_reporting(0);
 }
 /**
  * CodeIgniter
@@ -298,6 +298,6 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
-error_reporting(0);
+//error_reporting(0);
 require_once BASEPATH.'core/CodeIgniter.php';
 
