@@ -260,7 +260,7 @@ class M_pemeliharaan extends CI_Model{
 
 	function save_telaah($params = array())
 	{
-		try {
+		
 			$paramsTelaah = array(
 				'BARANG_PEMELIHARAAN_ID' => ifunsetempty($_POST,'BARANG_PEMELIHARAAN_ID',''),
 				'PEMELIHARAAN_ID' => ifunsetempty($_POST,'PEMELIHARAAN_ID',''),			
@@ -302,13 +302,7 @@ class M_pemeliharaan extends CI_Model{
 				);
 			}
 
-		} catch (\Throwable $e) {			
-			$out = array(
-				'success' => false,
-				'msg' => 'Gagal Disimpan',
-				"error" => $e->getMessage()
-			);
-		}
+		
 		return $out;
 	}
 
