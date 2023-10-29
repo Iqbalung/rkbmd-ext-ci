@@ -1201,13 +1201,13 @@ class Pemeliharaan extends MY_Controller {
 		$var = base64_decode(ifunsetempty($_POST,'DATA',''));
 		$var = utf8_encode($var);
 		$var = json_decode($var,true);
-		print_r($var);
+		/* print_r($var);
 		echo json_last_error_msg();
 		print_r(utf8_encode($var, true));
-		exit;
+		exit; */
 		
 		$params = array(
-			'DATA_BARANG_TELAAH' => json_decode($var,true),				
+			'DATA_BARANG_TELAAH' => $var,				
 		);	
 		
 		$out = $this->M_pemeliharaan->save_telaah_sub_kegiatan($params);
