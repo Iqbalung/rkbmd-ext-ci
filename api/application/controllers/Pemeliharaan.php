@@ -1200,8 +1200,7 @@ class Pemeliharaan extends MY_Controller {
 	{
 		$var = base64_decode(ifunsetempty($_POST,'DATA',''));
 	
-		print_r(utf8_encode($var));
-		exit;
+		
 		
 		$params = array(
 			'DATA_BARANG_TELAAH' => utf8_encode($var),				
