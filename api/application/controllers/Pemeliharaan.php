@@ -1200,7 +1200,7 @@ class Pemeliharaan extends MY_Controller {
 	{
 		$var = base64_decode(ifunsetempty($_POST,'DATA',''));
 		$var = utf8_encode($var);
-		$var = json_encode($var);
+		$var = json_decode($var);
 		print_r($var);
 		echo json_last_error_msg();
 		print_r(utf8_encode($var, true));
