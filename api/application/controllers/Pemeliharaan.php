@@ -1199,7 +1199,7 @@ class Pemeliharaan extends MY_Controller {
 	function save_telaah_sub_kegiatan()
 	{
 		$var = base64_decode(ifunsetempty($_POST,'DATA',''));
-		echo $var;
+		print_r($var);
 		exit;
 		
 		$params = array(
