@@ -1198,7 +1198,7 @@ class Pemeliharaan extends MY_Controller {
 
 	function save_telaah_sub_kegiatan()
 	{
-
+		ini_set('max_input_vars', 10000);
 		$params = array(
 			'DATA_BARANG_TELAAH' => json_decode(base64_decode(ifunsetempty($_POST,'DATA','')), true),				
 		);	
