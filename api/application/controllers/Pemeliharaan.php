@@ -1199,6 +1199,9 @@ class Pemeliharaan extends MY_Controller {
 	function save_telaah_sub_kegiatan()
 	{
 		$var = base64_decode(ifunsetempty($_POST,'DATA',''));
+		var_dump(json_decode($var));
+// NULL 
+		echo json_last_error_msg();
 		print_r(json_decode($var, true));
 		exit;
 		
