@@ -1215,7 +1215,7 @@ class Pemeliharaan extends MY_Controller {
 	}
 
 
-	public static function convert_from_latin1_to_utf8_recursively($dat)
+	function convert_from_latin1_to_utf8_recursively($dat)
    {
       if (is_string($dat)) {
          return utf8_encode($dat);
