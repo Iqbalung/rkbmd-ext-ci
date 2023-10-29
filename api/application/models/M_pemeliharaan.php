@@ -445,7 +445,7 @@ class M_pemeliharaan extends CI_Model{
 			}
 
 		
-		return $res;
+		return $out;
 	}
 	
 
