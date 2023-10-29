@@ -1199,7 +1199,8 @@ class Pemeliharaan extends MY_Controller {
 	function save_telaah_sub_kegiatan()
 	{
 		$var = base64_decode(ifunsetempty($_POST,'DATA',''));
-		$var = convert_from_latin1_to_utf8_recursively($var);
+		$var = utf8_encode($var);
+		$var = json_decode($var,true);
 		print_r($var);
 		echo json_last_error_msg();
 		print_r(utf8_encode($var, true));
@@ -1215,7 +1216,7 @@ class Pemeliharaan extends MY_Controller {
 	}
 
 
-	function convert_from_latin1_to_utf8_recursively($dat)
+	public static function convert_from_latin1_to_utf8_recursively($dat)
    {
       if (is_string($dat)) {
          return utf8_encode($dat);
