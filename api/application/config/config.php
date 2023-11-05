@@ -21,8 +21,7 @@ include('configuration.php');
 if(!isset($_SERVER['HTTP_HOST'])){
 	$_SERVER['HTTP_HOST']='localhost';
 }
-$config['base_url'] =  "http://".$_SERVER['HTTP_HOST'].preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME'])=="\\"?"":dirname($_SERVER['SCRIPT_NAME'])).'/';
-
+$config['base_url'] =  "https://".$_SERVER['HTTP_HOST'].preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME'])=="\\"?"":dirname($_SERVER['SCRIPT_NAME'])).'/';
 
 $config['site'] = "https://rkbmd.banjarnegarakab.go.id";
 /*
