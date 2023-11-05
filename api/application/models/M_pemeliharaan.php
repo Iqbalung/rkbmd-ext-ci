@@ -411,9 +411,7 @@ class M_pemeliharaan extends CI_Model{
 							break;
 						}
 					}
-					print_r($value);
-					print_r($valid);
-					exit;
+					
 					if ($valid) {
 						$paramsTelaah = array(
 							'RENCANA_JUMLAH' => ifunsetempty($value, 'RENCANA_JUMLAH', $value['USULAN_JUMLAH']),
