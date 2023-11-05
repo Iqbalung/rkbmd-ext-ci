@@ -414,8 +414,8 @@ class M_pengadaan extends CI_Model{
 					
 					if ($valid) {
 						$paramsTelaah = array(
-							'RENCANA_DISETUJUI_JUMLAH' => ifunsetempty($value, 'RENCANA_DISETUJUI_JUMLAH', ''),
-							'RENCANA_DISETUJUI_SATUAN' => ifunsetempty($value, 'RENCANA_DISETUJUI_SATUAN', ''),
+							'RENCANA_DISETUJUI_JUMLAH' => ifunsetempty($value, 'RENCANA_DISETUJUI_JUMLAH', $value['USULAN_JUMLAH']),
+							'RENCANA_DISETUJUI_SATUAN' => ifunsetempty($value, 'RENCANA_DISETUJUI_SATUAN', $value['USULAN_SATUAN']),
 							'CARA_PEMENUHAN' => ifunsetempty($value, 'CARA_PEMENUHAN', ''),
 							'KETERANGAN' => ifunsetempty($value, 'KETERANGAN', ''),
 							"TANGGAL_TELAAH" => $tanggalTelaah,
