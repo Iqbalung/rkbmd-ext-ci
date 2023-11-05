@@ -405,13 +405,14 @@ class M_pemeliharaan extends CI_Model{
 				foreach ($dataBarang as $key => $value) {
 					
 					$valid = true;
-					foreach ($fieldValid as $field) {						
+					foreach ($fieldValid as $field) {
 						if (!isset($value[$field])) {
 							$valid = false;
 							break;
 						}
 					}
-					
+					print_r($value);
+					exit;
 					if ($valid) {
 						$paramsTelaah = array(
 							'RENCANA_JUMLAH' => ifunsetempty($value, 'RENCANA_JUMLAH', $value['USULAN_JUMLAH']),
