@@ -415,7 +415,7 @@ class M_pemeliharaan extends CI_Model{
 					if ($valid) {
 						$paramsTelaah = array(
 							'RENCANA_JUMLAH' => ifunsetempty($value, 'RENCANA_JUMLAH', $value['USULAN_JUMLAH']),
-							'RENCANA_SATUAN' => ifunsetempty($value, 'RENCANA_SATUAN', $value['USULAN_JUMLAH']),							
+							'RENCANA_SATUAN' => ifunsetempty($value, 'RENCANA_SATUAN', $value['USULAN_SATUAN']),							
 							'KETERANGAN' => ifunsetempty($value, 'KETERANGAN', ''),
 							'PEMELIHARAAN_NAMA' => ifunsetempty($value, 'PEMELIHARAAN_NAMA', ''),
 							"TANGGAL_TELAAH" => $tanggalTelaah,
