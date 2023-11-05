@@ -411,7 +411,7 @@ class M_pemeliharaan extends CI_Model{
 							break;
 						}
 					}
-					print_r($value);
+					print_r($value,$valid);
 					exit;
 					if ($valid) {
 						$paramsTelaah = array(
